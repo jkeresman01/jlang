@@ -1,6 +1,7 @@
 #include "AST/AstPrinter.h"
 #include "CodeGen/CodeGen.h"
 #include "Parser/Parser.h"
+#include "Preprocessor/Preprocessor.h"
 #include "Scanner/Scanner.h"
 #include "SemanticAnalyzer/SemanticAnalyzer.h"
 
@@ -37,7 +38,10 @@ void Compile(const std::string &filePath, bool dumpAst)
         return;
     }
 
-    Scanner scanner(sourceCode);
+    Preprocessor preprocessor(sourceCode, filePath);
+    std::string processed = preprocessor.Process();
+
+    Scanner scanner(processed);
     const std::vector<Token> &tokens = scanner.Tokenize();
 
     Parser parser(tokens);
