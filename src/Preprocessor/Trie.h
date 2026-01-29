@@ -8,8 +8,7 @@
 namespace jlang
 {
 
-template <typename T>
-class Trie
+template <typename T> class Trie
 {
   public:
     void Insert(const std::string &key, const T &value)

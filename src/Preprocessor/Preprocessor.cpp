@@ -344,8 +344,7 @@ std::string Preprocessor::SubstituteMacros(const std::string &line) const
         if (std::isalpha(static_cast<unsigned char>(line[i])) || line[i] == '_')
         {
             size_t start = i;
-            while (i < len &&
-                   (std::isalnum(static_cast<unsigned char>(line[i])) || line[i] == '_'))
+            while (i < len && (std::isalnum(static_cast<unsigned char>(line[i])) || line[i] == '_'))
             {
                 ++i;
             }
