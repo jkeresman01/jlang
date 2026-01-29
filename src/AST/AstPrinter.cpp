@@ -51,8 +51,6 @@ std::string AstPrinter::FormatTypeRef(const TypeRef &typeRef)
     return s;
 }
 
-// --- Declarations ---
-
 void AstPrinter::VisitFunctionDecl(FunctionDecl &node)
 {
     Indent();
@@ -118,8 +116,6 @@ void AstPrinter::VisitVariableDecl(VariableDecl &node)
     Indent();
     m_result += ")\n";
 }
-
-// --- Statements ---
 
 void AstPrinter::VisitIfStatement(IfStatement &node)
 {
@@ -206,8 +202,6 @@ void AstPrinter::VisitReturnStatement(ReturnStatement &node)
     Indent();
     m_result += ")\n";
 }
-
-// --- Expressions ---
 
 void AstPrinter::VisitCallExpr(CallExpr &node)
 {

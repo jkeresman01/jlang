@@ -1,16 +1,10 @@
 #pragma once
 
 #include "../Ast.h"
+#include "../TypeRef.h"
 
 namespace jlang
 {
-
-struct TypeRef
-{
-    std::string name;
-    bool isPointer = false;
-    bool isNullable = false;
-};
 
 struct InterfaceDecl : public AstNode
 {

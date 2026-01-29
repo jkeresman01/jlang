@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Ast.h"
-#include "../TopLevelDecl/TopLevelDecl.h"
+#include "../TypeRef.h"
 
 namespace jlang
 {

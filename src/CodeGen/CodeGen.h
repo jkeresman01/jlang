@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AstVisitor.h"
+#include "SymbolTable.h"
 
 #include "../AST/Ast.h"
 #include "../AST/Expressions/Expressions.h"
@@ -8,9 +9,7 @@
 #include "../AST/TopLevelDecl/TopLevelDecl.h"
 
 #include <memory>
-#include <optional>
 #include <unordered_map>
-#include <unordered_set>
 
 #include <llvm/IR/Function.h>
 #include <llvm/IR/IRBuilder.h>
@@ -60,54 +59,12 @@ class CodeGenerator : public AstVisitor
     llvm::Type *MapType(const TypeRef &typeRef);
     TypeRef InferTypeRef(llvm::Type *llvmType);
 
-    // Struct field information
-    struct FieldInfo
-    {
-        unsigned index;
-        TypeRef type;
-        bool isPublic;
-    };
-
-    struct StructInfo
-    {
-        llvm::StructType *llvmType;
-        std::unordered_map<std::string, FieldInfo> fields;
-    };
-
-    // Track variable usage for unused variable detection
-    struct VariableInfo
-    {
-        llvm::Value *value;
-        TypeRef type;
-        bool used = false;
-        bool isMutable = true;
-    };
-
-    void CheckUnusedVariables();
-
-    // Loop unrolling optimization
-    static const int MAX_UNROLL_COUNT = 8;
-
-    struct LoopUnrollInfo
-    {
-        std::string varName;
-        int64_t start;
-        int64_t end;
-        int64_t step;          // +1 or -1
-        std::string compareOp; // "<", "<=", ">", ">="
-    };
-
-    std::optional<LoopUnrollInfo> AnalyzeForUnroll(ForStatement &node);
-    bool BodyModifiesVar(const std::shared_ptr<AstNode> &node, const std::string &varName);
-
   private:
     llvm::LLVMContext m_Context;
     std::unique_ptr<llvm::Module> m_Module;
     llvm::IRBuilder<> m_IRBuilder;
 
-    std::unordered_map<std::string, VariableInfo> m_variables;  // Track variables with usage info
-    std::unordered_map<std::string, StructInfo> m_structTypes;  // Track struct definitions
-    std::unordered_set<std::string> m_currentFunctionVariables; // Variables declared in current function
+    SymbolTable m_symbols;
     llvm::Value *m_LastValue = nullptr;
 };
 

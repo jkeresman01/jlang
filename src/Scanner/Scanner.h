@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../Parser/Parser.h"
 #include "Token.h"
 
 #include <string>

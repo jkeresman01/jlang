@@ -2,6 +2,7 @@
 #include "CodeGen/CodeGen.h"
 #include "Parser/Parser.h"
 #include "Scanner/Scanner.h"
+#include "SemanticAnalyzer/SemanticAnalyzer.h"
 
 #include <cstring>
 #include <fstream>
@@ -48,6 +49,9 @@ void Compile(const std::string &filePath, bool dumpAst)
         std::cout << printer.Print(program) << "\n";
         return;
     }
+
+    SemanticAnalyzer analyzer;
+    analyzer.Analyze(program);
 
     CodeGenerator codegen;
     codegen.Generate(program);
