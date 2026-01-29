@@ -1,7 +1,7 @@
-#include "CodeGen.h"
+#include "../CodeGen.h"
 
-#include "../Common/Logger.h"
-#include "../Optimizer/LoopUnroller.h"
+#include "../../Common/Logger.h"
+#include "../../Optimizer/LoopUnroller.h"
 
 namespace jlang
 {
