@@ -68,6 +68,56 @@ void CodeGenerator::VisitBinaryExpr(BinaryExpr &node)
         return;
     }
 
+    if (node.op == "?:")
+    {
+        // Elvis operator: if left is non-null, use left; otherwise evaluate right
+        node.left->Accept(*this);
+        llvm::Value *leftVal = m_LastValue;
+
+        if (!leftVal)
+        {
+            JLANG_ERROR("Invalid left operand in ?: expression");
+            return;
+        }
+
+        llvm::Function *parentFunction = m_IRBuilder.GetInsertBlock()->getParent();
+
+        llvm::BasicBlock *rhsBlock = llvm::BasicBlock::Create(m_Context, "elvis.rhs", parentFunction);
+        llvm::BasicBlock *mergeBlock = llvm::BasicBlock::Create(m_Context, "elvis.merge");
+
+        llvm::Value *isNonNull = m_IRBuilder.CreateICmpNE(
+            leftVal, llvm::ConstantPointerNull::get(llvm::cast<llvm::PointerType>(leftVal->getType())),
+            "elvis.nonnull");
+
+        llvm::BasicBlock *entryBlock = m_IRBuilder.GetInsertBlock();
+        m_IRBuilder.CreateCondBr(isNonNull, mergeBlock, rhsBlock);
+
+        // RHS block - evaluate right operand only when left is null
+        m_IRBuilder.SetInsertPoint(rhsBlock);
+        node.right->Accept(*this);
+        llvm::Value *rightVal = m_LastValue;
+
+        if (!rightVal)
+        {
+            JLANG_ERROR("Invalid right operand in ?: expression");
+            return;
+        }
+
+        llvm::BasicBlock *rhsEndBlock = m_IRBuilder.GetInsertBlock();
+        m_IRBuilder.CreateBr(mergeBlock);
+
+        // Merge block
+        mergeBlock->insertInto(parentFunction);
+        m_IRBuilder.SetInsertPoint(mergeBlock);
+
+        llvm::PHINode *phi = m_IRBuilder.CreatePHI(leftVal->getType(), 2, "elvis.result");
+        phi->addIncoming(leftVal, entryBlock);
+        phi->addIncoming(rightVal, rhsEndBlock);
+
+        m_LastValue = phi;
+        return;
+    }
+
     if (node.op == "||")
     {
         // Short-circuit OR: if left is true, result is true; otherwise evaluate right

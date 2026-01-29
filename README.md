@@ -344,6 +344,42 @@ p.Name;                  // OK - p is guaranteed non-null
 > [!NOTE]
 > Smart casts after null checks (e.g., automatically treating a `Person*?` as `Person*` inside an `if (p != null)` block) are a planned future enhancement.
 
+#### Elvis Operator (`?:`)
+
+The elvis operator provides a concise way to supply a fallback value for nullable pointers. If the left operand is non-null, it is returned directly; otherwise the right operand is evaluated and returned:
+
+```rust
+var primary: Config*? = null;
+var cfg: Config* = primary ?: getDefaultConfig();
+```
+
+The right-hand side is only evaluated when the left side is null (short-circuit evaluation), so expensive fallback operations are avoided when they aren't needed:
+
+```rust
+// getDefaultConfig() is NOT called because primary is non-null
+var primary: Config*? = getExistingConfig();
+var cfg: Config* = primary ?: getDefaultConfig();
+```
+
+This is equivalent to writing:
+
+```rust
+var cfg: Config*;
+if (primary != null) {
+    cfg = primary;
+} else {
+    cfg = getDefaultConfig();
+}
+```
+
+| Expression | Left is non-null | Left is null |
+|------------|-----------------|--------------|
+| `a ?: b` | Returns `a` | Evaluates and returns `b` |
+
+<h6><i>The elvis operator is inspired by Kotlin's `?:` operator. It works on nullable pointer types (`Type*?`) and produces a non-nullable result, making it ideal for providing defaults or fallbacks. Precedence is between assignment and `||`, so `a ?: b || c` parses as `a ?: (b || c)`.</i></h6>
+
+<h6><i>See `samples/elvis_operator.j` for a working example.</i></h6>
+
 #### Logical operators
 
 ```rust

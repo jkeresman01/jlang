@@ -652,7 +652,7 @@ std::shared_ptr<AstNode> Parser::ParseForStatement()
 
 std::shared_ptr<AstNode> Parser::ParseExpression()
 {
-    auto expr = ParseLogicalOr();
+    auto expr = ParseElvis();
 
     // Handle assignment: identifier = expression
     if (IsMatched(TokenType::Equal))
@@ -739,6 +739,25 @@ std::shared_ptr<AstNode> Parser::ParseExpression()
     }
 
     return expr;
+}
+
+std::shared_ptr<AstNode> Parser::ParseElvis()
+{
+    auto left = ParseLogicalOr();
+
+    while (Check(TokenType::QuestionColon))
+    {
+        Advance();
+        auto right = ParseLogicalOr();
+
+        auto binary = std::make_shared<BinaryExpr>();
+        binary->op = "?:";
+        binary->left = left;
+        binary->right = right;
+        left = binary;
+    }
+
+    return left;
 }
 
 std::shared_ptr<AstNode> Parser::ParseLogicalOr()

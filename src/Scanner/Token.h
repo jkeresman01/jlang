@@ -77,6 +77,7 @@ enum class TokenType
     Percent,         // %
     PercentEqual,    // %=
     Question,        // ?
+    QuestionColon,   // ?:
     Ampersand,       // &
     Pipe,            // |
     Caret,           // ^

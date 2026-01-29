@@ -177,7 +177,7 @@ void Scanner::ScanToken()
         }
         break;
     case '?':
-        AddToken(TokenType::Question);
+        AddToken(IsMatched(':') ? TokenType::QuestionColon : TokenType::Question);
         break;
     case '-':
         if (IsMatched('-'))

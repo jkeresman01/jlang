@@ -40,6 +40,7 @@ class Parser
     std::shared_ptr<AstNode> ParseReturnStatement();
     std::shared_ptr<AstNode> ParseVarDecl();
     std::shared_ptr<AstNode> ParseExpression();
+    std::shared_ptr<AstNode> ParseElvis();
     std::shared_ptr<AstNode> ParseLogicalOr();
     std::shared_ptr<AstNode> ParseLogicalAnd();
     std::shared_ptr<AstNode> ParseBitwiseOr();
