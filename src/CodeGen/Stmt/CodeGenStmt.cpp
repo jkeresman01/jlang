@@ -1,7 +1,6 @@
 #include "../CodeGen.h"
 
 #include "../../Common/Logger.h"
-#include "../../Optimizer/LoopUnroller.h"
 
 namespace jlang
 {
@@ -91,58 +90,6 @@ void CodeGenerator::VisitWhileStatement(WhileStatement &node)
 
 void CodeGenerator::VisitForStatement(ForStatement &node)
 {
-    // Try loop unrolling optimization
-    auto unrollInfo = LoopUnroller::AnalyzeForUnroll(node);
-    if (unrollInfo && !LoopUnroller::BodyModifiesVar(node.body, unrollInfo->varName))
-    {
-        // Emit the init (creates the alloca and stores the start value)
-        node.init->Accept(*this);
-
-        // Find the loop variable's alloca
-        VariableInfo *varInfo = m_symbols.LookupVariable(unrollInfo->varName);
-        if (!varInfo)
-        {
-            JLANG_ERROR(STR("Loop unroll: variable '%s' not found after init", unrollInfo->varName.c_str()));
-            return;
-        }
-
-        llvm::AllocaInst *alloca = llvm::dyn_cast<llvm::AllocaInst>(varInfo->value);
-        if (!alloca)
-        {
-            JLANG_ERROR("Loop unroll: variable is not an alloca");
-            return;
-        }
-
-        // Compute trip count
-        int64_t tripCount = 0;
-        if (unrollInfo->step == 1)
-        {
-            if (unrollInfo->compareOp == "<")
-                tripCount = unrollInfo->end - unrollInfo->start;
-            else
-                tripCount = unrollInfo->end - unrollInfo->start + 1;
-        }
-        else
-        {
-            if (unrollInfo->compareOp == ">")
-                tripCount = unrollInfo->start - unrollInfo->end;
-            else
-                tripCount = unrollInfo->start - unrollInfo->end + 1;
-        }
-
-        // Emit the body N times, storing each iteration value
-        for (int64_t i = 0; i < tripCount; ++i)
-        {
-            int64_t iterVal = unrollInfo->start + i * unrollInfo->step;
-            llvm::Value *val = llvm::ConstantInt::get(alloca->getAllocatedType(), iterVal);
-            m_IRBuilder.CreateStore(val, alloca);
-            node.body->Accept(*this);
-        }
-
-        return;
-    }
-
-    // Fall through to normal loop codegen
     // Execute initializer (if present)
     if (node.init)
     {
