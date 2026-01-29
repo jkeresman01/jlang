@@ -1,7 +1,7 @@
 #include "AST/AstPrinter.h"
 #include "CodeGen/CodeGen.h"
 #include "Parser/Parser.h"
-#include "Preprocessor/Preprocessor.h"
+#include "Preprocessor/PreprocessorFacade.h"
 #include "Scanner/Scanner.h"
 #include "SemanticAnalyzer/SemanticAnalyzer.h"
 
@@ -38,7 +38,7 @@ void Compile(const std::string &filePath, bool dumpAst)
         return;
     }
 
-    Preprocessor preprocessor(sourceCode, filePath);
+    PreprocessorFacade preprocessor(sourceCode, filePath);
     std::string processed = preprocessor.Process();
 
     Scanner scanner(processed);
