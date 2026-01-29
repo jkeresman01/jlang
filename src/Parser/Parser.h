@@ -4,7 +4,7 @@
 #include "../AST/Expressions/Expressions.h"
 #include "../AST/Statements/Statements.h"
 #include "../AST/TopLevelDecl/TopLevelDecl.h"
-#include "../Types/Token.h"
+#include "../Scanner/Token.h"
 
 #include <memory>
 #include <optional>

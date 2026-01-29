@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../CodeGen/AstVisitor.h"
-#include "../Enums/NodeTypes.h"
 
 #include <memory>
 #include <string>
@@ -9,6 +8,33 @@
 
 namespace jlang
 {
+
+enum class NodeType
+{
+    InterfaceDecl,
+    StructDecl,
+    FunctionDecl,
+    VariableDecl,
+
+    IfStatement,
+    WhileStatement,
+    ForStatement,
+    BlockStatement,
+    ExprStatement,
+    ReturnStatement,
+
+    CallExpr,
+    BinaryExpr,
+    UnaryExpr,
+    VarExpr,
+    LiteralExpr,
+    CastExpr,
+    AllocExpr,
+    AssignExpr,
+    MemberAccessExpr,
+    PrefixExpr,
+    PostfixExpr
+};
 
 struct AstNode
 {

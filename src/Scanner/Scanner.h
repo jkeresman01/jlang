@@ -1,8 +1,7 @@
 #pragma once
 
-#include "../Enums/TokenTypes.h"
 #include "../Parser/Parser.h"
-#include "../Types/Token.h"
+#include "Token.h"
 
 #include <string>
 #include <vector>

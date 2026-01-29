@@ -1,7 +1,12 @@
 #pragma once
 
+#include <cstdint>
+#include <sstream>
+#include <string>
+
 namespace jlang
 {
+
 enum class TokenType
 {
     // Keywords
@@ -93,6 +98,29 @@ enum class TokenType
 
     EndOfFile,
     Unknown
+};
+
+struct Token
+{
+    TokenType m_type;
+    std::string m_lexeme;
+    uint32_t m_CurrentLine;
+
+    Token(const TokenType type, const std::string &lexeme, uint32_t const currentLine)
+        : m_type(type), m_lexeme(lexeme), m_CurrentLine(currentLine)
+    {
+    }
+
+    std::string ToString() const
+    {
+        std::stringstream ss;
+
+        ss << m_CurrentLine << ": ";
+        ss << m_lexeme;
+        ss << " (" << static_cast<int32_t>(m_type) << ")";
+
+        return ss.str();
+    }
 };
 
 } // namespace jlang
