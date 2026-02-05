@@ -67,6 +67,7 @@ class Parser
   private:
     const std::vector<Token> &m_Tokens;
     size_t m_CurrentPosition;
+    TypeRef m_CurrentFunctionReturnType;
 };
 
 } // namespace jlang

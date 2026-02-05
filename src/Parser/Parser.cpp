@@ -360,7 +360,9 @@ std::shared_ptr<AstNode> Parser::ParseFunction()
         }
     }
 
+    m_CurrentFunctionReturnType = returnType;
     auto body = ParseBlock();
+    m_CurrentFunctionReturnType = TypeRef{};
 
     auto functionDeclNode = std::make_shared<FunctionDecl>();
     functionDeclNode->name = functionName;
@@ -443,6 +445,19 @@ std::shared_ptr<AstNode> Parser::ParseReturnStatement()
     if (!Check(TokenType::Semicolon))
     {
         value = ParseExpression();
+
+        // Propagate Result type from function return type to Ok/Err expressions
+        if (m_CurrentFunctionReturnType.isResult())
+        {
+            if (auto okExpr = std::dynamic_pointer_cast<OkExpr>(value))
+            {
+                okExpr->resultType = m_CurrentFunctionReturnType;
+            }
+            else if (auto errExpr = std::dynamic_pointer_cast<ErrExpr>(value))
+            {
+                errExpr->resultType = m_CurrentFunctionReturnType;
+            }
+        }
     }
 
     if (!IsMatched(TokenType::Semicolon))

@@ -455,6 +455,35 @@ var x: i32 = match result {
 
 <h6><i>See `samples/result_type.j` for a working example.</i></h6>
 
+#### Functions Returning Result Types
+
+Functions can declare `Result<T, E>` as their return type and use `return Ok(...)` / `return Err(...)` directly. The compiler automatically propagates the Result type context to Ok/Err expressions inside return statements:
+
+```rust
+fn divide(a: i32, b: i32) -> Result<i32, char*> {
+    if (b == 0) {
+        return Err("Division by zero");
+    }
+    return Ok(a / b);
+}
+```
+
+Callers handle the result with a `match` expression as usual:
+
+```rust
+var result: Result<i32, char*> = divide(10, 3);
+match result {
+    Ok(val) => {
+        printf("Result: %d\n", val);
+    },
+    Err(msg) => {
+        printf("Error: %s\n", msg);
+    }
+};
+```
+
+<h6><i>This enables idiomatic error handling where functions signal success or failure through their return type, and callers are forced to handle both cases explicitly.</i></h6>
+
 #### Logical operators
 
 ```rust
