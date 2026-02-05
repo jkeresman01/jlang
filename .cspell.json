@@ -4,6 +4,7 @@
   "words": [
     "struct",
     "bitxor",
+    "scrutinee",
     "bitnot",
     "ifcond",
     "deallocation",
