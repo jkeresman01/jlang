@@ -426,8 +426,8 @@ Match can also be used as a statement for side effects:
 var result: Result<i32, char*> = Err("Connection failed");
 
 match result {
-    Ok(value) => {
-        printf("Success: %d\n", value);
+    Ok(v) => {
+        printf("Success: %d\n", v);
     },
     Err(msg) => {
         printf("Error: %s\n", msg);
@@ -473,8 +473,8 @@ Callers handle the result with a `match` expression as usual:
 ```rust
 var result: Result<i32, char*> = divide(10, 3);
 match result {
-    Ok(val) => {
-        printf("Result: %d\n", val);
+    Ok(v) => {
+        printf("Result: %d\n", v);
     },
     Err(msg) => {
         printf("Error: %s\n", msg);
