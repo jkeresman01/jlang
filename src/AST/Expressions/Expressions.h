@@ -118,4 +118,42 @@ struct PostfixExpr : public Expression
     void Accept(AstVisitor &visitor) override { visitor.VisitPostfixExpr(*this); }
 };
 
+struct OkExpr : public Expression
+{
+    std::shared_ptr<AstNode> value;
+    TypeRef resultType; // Full Result<T, E> type (inferred from context)
+
+    OkExpr() { type = NodeType::OkExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitOkExpr(*this); }
+};
+
+struct ErrExpr : public Expression
+{
+    std::shared_ptr<AstNode> error;
+    TypeRef resultType; // Full Result<T, E> type (inferred from context)
+
+    ErrExpr() { type = NodeType::ErrExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitErrExpr(*this); }
+};
+
+struct MatchArm
+{
+    std::string pattern;     // "Ok" or "Err"
+    std::string bindingName; // Variable name to bind the extracted value
+    std::shared_ptr<AstNode> body;
+};
+
+struct MatchExpr : public Expression
+{
+    std::shared_ptr<AstNode> scrutinee;
+    MatchArm okArm;
+    MatchArm errArm;
+
+    MatchExpr() { type = NodeType::MatchExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitMatchExpr(*this); }
+};
+
 } // namespace jlang

@@ -380,6 +380,81 @@ if (primary != null) {
 
 <h6><i>See `samples/elvis_operator.j` for a working example.</i></h6>
 
+#### Error Handling with Result Types
+
+jlang provides a generic `Result<T, E>` type for explicit error handling, inspired by Rust's Result type. Instead of exceptions or error codes, functions return a `Result` that must be explicitly handled via pattern matching.
+
+**Declaring Result Types:**
+
+```rust
+// A Result that holds either an i32 value or an error message
+var result: Result<i32, char*> = Ok(42);
+var error: Result<i32, char*> = Err("Something went wrong");
+```
+
+**Creating Results with Ok and Err:**
+
+```rust
+// Ok wraps a success value
+var success: Result<i32, char*> = Ok(100);
+
+// Err wraps an error value
+var failure: Result<i32, char*> = Err("Division by zero");
+```
+
+**Extracting Values with Match Expressions:**
+
+The only way to access the value inside a Result is through a `match` expression. This ensures you handle both success and error cases:
+
+```rust
+var result: Result<i32, char*> = Ok(42);
+
+// Match expression returns a value
+var x: i32 = match result {
+    Ok(v) => v * 2,      // v is bound to the success value
+    Err(e) => 0          // e is bound to the error value
+};
+
+printf("Result: %d\n", x);  // prints "Result: 84"
+```
+
+**Match as Statement (void):**
+
+Match can also be used as a statement for side effects:
+
+```rust
+var result: Result<i32, char*> = Err("Connection failed");
+
+match result {
+    Ok(value) => {
+        printf("Success: %d\n", value);
+    },
+    Err(msg) => {
+        printf("Error: %s\n", msg);
+    }
+};
+```
+
+**Exhaustiveness:**
+
+Match expressions must handle both `Ok` and `Err` cases. Missing either arm is a compile error:
+
+```rust
+// ERROR: Match expression missing 'Err' arm
+var x: i32 = match result {
+    Ok(v) => v
+};
+```
+
+| Pattern | Binds | Description |
+|---------|-------|-------------|
+| `Ok(name)` | Success value | Matches when Result contains a value |
+| `Err(name)` | Error value | Matches when Result contains an error |
+
+<h6><i>This design follows Rust's error handling philosophy: make errors explicit and impossible to ignore. The match expression enforces exhaustive handling at compile time.</i></h6>
+
+<h6><i>See `samples/result_type.j` for a working example.</i></h6>
+
 #### Logical operators
 
 ```rust
@@ -695,6 +770,7 @@ fn add(a: i32, b: i32) -> i32 {
 | `char` | Character | 1 byte | ASCII 0-255 |
 | `char*` | String (char pointer) | 8 bytes | Memory address |
 | `void` | No value | - | Functions only |
+| `Result<T, E>` | Success or error | varies | `Ok(T)` or `Err(E)` |
 
 <h6><i>See `samples/types.j` for a complete working example of all types.</i></h6>
 

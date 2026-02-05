@@ -33,6 +33,18 @@ void CodeGenerator::VisitUnaryExpr(UnaryExpr &node)
         // Bitwise NOT (flip all bits)
         m_LastValue = m_IRBuilder.CreateNot(operandVal, "bitnot");
     }
+    else if (node.op == "-")
+    {
+        // Unary negation
+        if (operandVal->getType()->isFloatingPointTy())
+        {
+            m_LastValue = m_IRBuilder.CreateFNeg(operandVal, "neg");
+        }
+        else
+        {
+            m_LastValue = m_IRBuilder.CreateNeg(operandVal, "neg");
+        }
+    }
     else
     {
         JLANG_ERROR(STR("Unknown unary operator: %s", node.op.c_str()));

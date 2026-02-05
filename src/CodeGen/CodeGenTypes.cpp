@@ -1,9 +1,59 @@
 #include "CodeGen.h"
 
+#include "../Common/Logger.h"
+
+#include <algorithm>
 #include <unordered_map>
 
 namespace jlang
 {
+
+llvm::StructType *CodeGenerator::GetOrCreateResultType(const TypeRef &typeRef)
+{
+    if (!typeRef.isResult())
+    {
+        return nullptr;
+    }
+
+    std::string mangledName = typeRef.getMangledName();
+
+    // Check if we already have this Result type
+    ResultTypeInfo *existing = m_symbols.LookupResultType(mangledName);
+    if (existing)
+    {
+        return existing->llvmType;
+    }
+
+    // Get the Ok and Err types
+    const TypeRef &okTypeRef = typeRef.typeParameters[0];
+    const TypeRef &errTypeRef = typeRef.typeParameters[1];
+
+    llvm::Type *okType = MapType(okTypeRef);
+    llvm::Type *errType = MapType(errTypeRef);
+
+    // Calculate sizes to determine data field size
+    llvm::DataLayout dataLayout(m_Module.get());
+    size_t okSize = dataLayout.getTypeAllocSize(okType);
+    size_t errSize = dataLayout.getTypeAllocSize(errType);
+    size_t dataSize = std::max(okSize, errSize);
+
+    // Create Result struct: { i8 tag, [dataSize x i8] data }
+    llvm::Type *tagType = llvm::Type::getInt8Ty(m_Context);
+    llvm::Type *dataType = llvm::ArrayType::get(llvm::Type::getInt8Ty(m_Context), dataSize);
+
+    llvm::StructType *resultType = llvm::StructType::create(m_Context, {tagType, dataType}, mangledName);
+
+    // Store type info
+    ResultTypeInfo info;
+    info.llvmType = resultType;
+    info.okType = okTypeRef;
+    info.errType = errTypeRef;
+    info.dataSize = dataSize;
+
+    m_symbols.DefineResultType(mangledName, info);
+
+    return resultType;
+}
 
 llvm::Type *CodeGenerator::MapType(const TypeRef &typeRef)
 {
@@ -27,6 +77,17 @@ llvm::Type *CodeGenerator::MapType(const TypeRef &typeRef)
     if (typeRef.name == "void")
     {
         return llvm::Type::getVoidTy(m_Context);
+    }
+
+    // Handle Result<T, E> types
+    if (typeRef.isResult())
+    {
+        llvm::Type *resultType = GetOrCreateResultType(typeRef);
+        if (typeRef.isPointer)
+        {
+            return llvm::PointerType::getUnqual(resultType);
+        }
+        return resultType;
     }
 
     llvm::Type *baseType = nullptr;

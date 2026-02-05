@@ -24,6 +24,9 @@ enum class TokenType
     Alloc,
     True,
     False,
+    Match,
+    Ok,
+    Err,
 
     // Type keywords
     Void,
@@ -89,6 +92,7 @@ enum class TokenType
     CaretEqual,      // ^=
     LeftShiftEqual,  // <<=
     RightShiftEqual, // >>=
+    FatArrow,        // =>
 
     // Literals and identifiers
     Identifier,

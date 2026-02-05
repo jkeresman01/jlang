@@ -53,11 +53,15 @@ class CodeGenerator : public AstVisitor
     virtual void VisitMemberAccessExpr(MemberAccessExpr &) override;
     virtual void VisitPrefixExpr(PrefixExpr &) override;
     virtual void VisitPostfixExpr(PostfixExpr &) override;
+    virtual void VisitMatchExpr(MatchExpr &) override;
+    virtual void VisitOkExpr(OkExpr &) override;
+    virtual void VisitErrExpr(ErrExpr &) override;
 
   private:
     void DeclareExternalFunctions();
     llvm::Type *MapType(const TypeRef &typeRef);
     TypeRef InferTypeRef(llvm::Type *llvmType);
+    llvm::StructType *GetOrCreateResultType(const TypeRef &typeRef);
 
   private:
     llvm::LLVMContext m_Context;

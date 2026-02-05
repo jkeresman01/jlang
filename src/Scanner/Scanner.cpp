@@ -42,6 +42,10 @@ static std::unordered_map<std::string, TokenType> s_Keywords = {
     // Logical operators (non-short-circuit)
     {"and", TokenType::AndKeyword},
     {"or", TokenType::OrKeyword},
+    // Result type and pattern matching
+    {"match", TokenType::Match},
+    {"Ok", TokenType::Ok},
+    {"Err", TokenType::Err},
 };
 
 Scanner::Scanner(const std::string &source) : m_Source(source) {}
@@ -117,7 +121,18 @@ void Scanner::ScanToken()
         AddToken(IsMatched('=') ? TokenType::PercentEqual : TokenType::Percent);
         break;
     case '=':
-        AddToken(IsMatched('=') ? TokenType::EqualEqual : TokenType::Equal);
+        if (IsMatched('='))
+        {
+            AddToken(TokenType::EqualEqual);
+        }
+        else if (IsMatched('>'))
+        {
+            AddToken(TokenType::FatArrow);
+        }
+        else
+        {
+            AddToken(TokenType::Equal);
+        }
         break;
     case '!':
         AddToken(IsMatched('=') ? TokenType::NotEqual : TokenType::Not);

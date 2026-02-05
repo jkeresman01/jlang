@@ -44,6 +44,9 @@ class SemanticAnalyzer : public AstVisitor
     void VisitMemberAccessExpr(MemberAccessExpr &) override;
     void VisitPrefixExpr(PrefixExpr &) override;
     void VisitPostfixExpr(PostfixExpr &) override;
+    void VisitMatchExpr(MatchExpr &) override;
+    void VisitOkExpr(OkExpr &) override;
+    void VisitErrExpr(ErrExpr &) override;
 
     void CheckUnusedVariables();
 

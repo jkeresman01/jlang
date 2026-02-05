@@ -200,6 +200,31 @@ void SemanticAnalyzer::VisitPostfixExpr(PostfixExpr &node)
     }
 }
 
+void SemanticAnalyzer::VisitMatchExpr(MatchExpr &node)
+{
+    if (node.scrutinee)
+        node.scrutinee->Accept(*this);
+
+    // The binding names in match arms are local to their arms
+    // We don't track them for unused variable checking since they're always used
+    if (node.okArm.body)
+        node.okArm.body->Accept(*this);
+    if (node.errArm.body)
+        node.errArm.body->Accept(*this);
+}
+
+void SemanticAnalyzer::VisitOkExpr(OkExpr &node)
+{
+    if (node.value)
+        node.value->Accept(*this);
+}
+
+void SemanticAnalyzer::VisitErrExpr(ErrExpr &node)
+{
+    if (node.error)
+        node.error->Accept(*this);
+}
+
 void SemanticAnalyzer::CheckUnusedVariables()
 {
     for (const auto &varName : m_currentFunctionVariables)

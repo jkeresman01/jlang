@@ -327,4 +327,60 @@ void AstPrinter::VisitPostfixExpr(PostfixExpr &node)
     m_result += ")\n";
 }
 
+void AstPrinter::VisitMatchExpr(MatchExpr &node)
+{
+    Indent();
+    m_result += "(MatchExpr\n";
+
+    ++m_indent;
+    Indent();
+    m_result += "scrutinee:\n";
+    ++m_indent;
+    VisitChild(node.scrutinee);
+    --m_indent;
+
+    Indent();
+    m_result += "Ok(" + node.okArm.bindingName + ") =>\n";
+    ++m_indent;
+    VisitChild(node.okArm.body);
+    --m_indent;
+
+    Indent();
+    m_result += "Err(" + node.errArm.bindingName + ") =>\n";
+    ++m_indent;
+    VisitChild(node.errArm.body);
+    --m_indent;
+
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
+void AstPrinter::VisitOkExpr(OkExpr &node)
+{
+    Indent();
+    m_result += "(OkExpr\n";
+
+    ++m_indent;
+    VisitChild(node.value);
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
+void AstPrinter::VisitErrExpr(ErrExpr &node)
+{
+    Indent();
+    m_result += "(ErrExpr\n";
+
+    ++m_indent;
+    VisitChild(node.error);
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
 } // namespace jlang

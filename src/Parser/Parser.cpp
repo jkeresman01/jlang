@@ -299,28 +299,30 @@ std::shared_ptr<AstNode> Parser::ParseFunction()
                 break;
             }
 
-            std::string typeName = ParseTypeName();
-            if (typeName.empty())
+            TypeRef paramType = ParseTypeWithParameters();
+            if (paramType.name.empty())
             {
                 JLANG_ERROR("Expected parameter type");
                 break;
             }
 
             bool isPointer = IsMatched(TokenType::Star);
+            paramType.isPointer = isPointer;
 
             bool isNullable = false;
             if (isPointer && IsMatched(TokenType::Question))
             {
                 isNullable = true;
+                paramType.isNullable = true;
             }
             else if (!isPointer && Check(TokenType::Question))
             {
-                JLANG_ERROR("Only pointer types can be nullable. Use '" + typeName + "*?' instead of '" +
-                            typeName + "?'");
+                JLANG_ERROR("Only pointer types can be nullable. Use '" + paramType.name +
+                            "*?' instead of '" + paramType.name + "?'");
                 Advance();
             }
 
-            params.push_back(Parameter{paramName, TypeRef{typeName, isPointer, isNullable}});
+            params.push_back(Parameter{paramName, paramType});
 
         } while (IsMatched(TokenType::Comma));
     }
@@ -335,26 +337,27 @@ std::shared_ptr<AstNode> Parser::ParseFunction()
 
     if (IsMatched(TokenType::Arrow))
     {
-        std::string returnTypeName = ParseTypeName();
-        if (returnTypeName.empty())
+        returnType = ParseTypeWithParameters();
+        if (returnType.name.empty())
         {
             JLANG_ERROR("Expected return type after '->'");
         }
+
         bool isPointer = IsMatched(TokenType::Star);
+        returnType.isPointer = isPointer;
 
         bool isNullable = false;
         if (isPointer && IsMatched(TokenType::Question))
         {
             isNullable = true;
+            returnType.isNullable = true;
         }
         else if (!isPointer && Check(TokenType::Question))
         {
-            JLANG_ERROR("Only pointer types can be nullable. Use '" + returnTypeName + "*?' instead of '" +
-                        returnTypeName + "?'");
+            JLANG_ERROR("Only pointer types can be nullable. Use '" + returnType.name + "*?' instead of '" +
+                        returnType.name + "?'");
             Advance();
         }
-
-        returnType = TypeRef{returnTypeName, isPointer, isNullable};
     }
 
     auto body = ParseBlock();
@@ -492,19 +495,23 @@ std::shared_ptr<AstNode> Parser::ParseVarDecl()
             return nullptr;
         }
 
-        // Parse type
-        typeName = ParseTypeName();
-        if (typeName.empty())
+        // Parse type with potential type parameters (e.g., Result<i32, char*>)
+        TypeRef parsedType = ParseTypeWithParameters();
+        if (parsedType.name.empty())
         {
             JLANG_ERROR("Expected variable type");
             return nullptr;
         }
 
+        typeName = parsedType.name;
+
         isPointer = IsMatched(TokenType::Star);
+        parsedType.isPointer = isPointer;
 
         if (isPointer && IsMatched(TokenType::Question))
         {
             isNullable = true;
+            parsedType.isNullable = true;
         }
         else if (!isPointer && Check(TokenType::Question))
         {
@@ -516,7 +523,34 @@ std::shared_ptr<AstNode> Parser::ParseVarDecl()
         if (IsMatched(TokenType::Equal))
         {
             initializer = ParseExpression();
+
+            // For Result types, propagate type info to Ok/Err expressions
+            if (parsedType.isResult())
+            {
+                if (auto okExpr = std::dynamic_pointer_cast<OkExpr>(initializer))
+                {
+                    okExpr->resultType = parsedType;
+                }
+                else if (auto errExpr = std::dynamic_pointer_cast<ErrExpr>(initializer))
+                {
+                    errExpr->resultType = parsedType;
+                }
+            }
         }
+
+        // Store the full type including parameters
+        auto varDecl = std::make_shared<VariableDecl>();
+        varDecl->name = varName;
+        varDecl->varType = parsedType;
+        varDecl->initializer = initializer;
+        varDecl->isMutable = isMutable;
+
+        if (!IsMatched(TokenType::Semicolon))
+        {
+            JLANG_ERROR("Expected ';' after variable declaration");
+        }
+
+        return varDecl;
     }
 
     if (!IsMatched(TokenType::Semicolon))
@@ -960,7 +994,7 @@ std::shared_ptr<AstNode> Parser::ParseMultiplicative()
 
 std::shared_ptr<AstNode> Parser::ParseUnary()
 {
-    if (Check(TokenType::Not) || Check(TokenType::Tilde))
+    if (Check(TokenType::Not) || Check(TokenType::Tilde) || Check(TokenType::Minus))
     {
         std::string op = Peek().m_lexeme;
         Advance();
@@ -1057,6 +1091,24 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
         auto literal = std::make_shared<LiteralExpr>();
         literal->value = "false";
         return literal;
+    }
+
+    // Handle match expression
+    if (IsMatched(TokenType::Match))
+    {
+        return ParseMatchExpr();
+    }
+
+    // Handle Ok() expression
+    if (IsMatched(TokenType::Ok))
+    {
+        return ParseOkExpr();
+    }
+
+    // Handle Err() expression
+    if (IsMatched(TokenType::Err))
+    {
+        return ParseErrExpr();
     }
 
     // Handle alloc<Type>() expression
@@ -1259,6 +1311,210 @@ std::string Parser::ParseTypeName()
     }
 
     return "";
+}
+
+TypeRef Parser::ParseTypeWithParameters()
+{
+    std::string typeName = ParseTypeName();
+    if (typeName.empty())
+    {
+        return TypeRef{};
+    }
+
+    TypeRef typeRef;
+    typeRef.name = typeName;
+
+    // Check for generic type parameters: Type<T, E>
+    if (IsMatched(TokenType::Less))
+    {
+        do
+        {
+            TypeRef paramType = ParseTypeWithParameters();
+            if (paramType.name.empty())
+            {
+                JLANG_ERROR("Expected type parameter");
+                break;
+            }
+
+            // Check for pointer in type parameter
+            if (IsMatched(TokenType::Star))
+            {
+                paramType.isPointer = true;
+            }
+
+            typeRef.typeParameters.push_back(paramType);
+        } while (IsMatched(TokenType::Comma));
+
+        if (!IsMatched(TokenType::Greater))
+        {
+            JLANG_ERROR("Expected '>' after type parameters");
+        }
+    }
+
+    return typeRef;
+}
+
+std::shared_ptr<AstNode> Parser::ParseOkExpr()
+{
+    // Already consumed 'Ok'
+    if (!IsMatched(TokenType::LParen))
+    {
+        JLANG_ERROR("Expected '(' after 'Ok'");
+        return nullptr;
+    }
+
+    auto okExpr = std::make_shared<OkExpr>();
+    okExpr->value = ParseExpression();
+
+    if (!IsMatched(TokenType::RParen))
+    {
+        JLANG_ERROR("Expected ')' after Ok value");
+        return nullptr;
+    }
+
+    return okExpr;
+}
+
+std::shared_ptr<AstNode> Parser::ParseErrExpr()
+{
+    // Already consumed 'Err'
+    if (!IsMatched(TokenType::LParen))
+    {
+        JLANG_ERROR("Expected '(' after 'Err'");
+        return nullptr;
+    }
+
+    auto errExpr = std::make_shared<ErrExpr>();
+    errExpr->error = ParseExpression();
+
+    if (!IsMatched(TokenType::RParen))
+    {
+        JLANG_ERROR("Expected ')' after Err value");
+        return nullptr;
+    }
+
+    return errExpr;
+}
+
+MatchArm Parser::ParseMatchArm()
+{
+    MatchArm arm;
+
+    // Expect Ok or Err
+    if (IsMatched(TokenType::Ok))
+    {
+        arm.pattern = "Ok";
+    }
+    else if (IsMatched(TokenType::Err))
+    {
+        arm.pattern = "Err";
+    }
+    else
+    {
+        JLANG_ERROR("Expected 'Ok' or 'Err' in match arm");
+        return arm;
+    }
+
+    // Expect (binding)
+    if (!IsMatched(TokenType::LParen))
+    {
+        JLANG_ERROR("Expected '(' after pattern");
+        return arm;
+    }
+
+    if (!IsMatched(TokenType::Identifier))
+    {
+        JLANG_ERROR("Expected binding name in match arm");
+        return arm;
+    }
+    arm.bindingName = Previous().m_lexeme;
+
+    if (!IsMatched(TokenType::RParen))
+    {
+        JLANG_ERROR("Expected ')' after binding name");
+        return arm;
+    }
+
+    // Expect =>
+    if (!IsMatched(TokenType::FatArrow))
+    {
+        JLANG_ERROR("Expected '=>' after match pattern");
+        return arm;
+    }
+
+    // Parse body - either a block or a single expression
+    if (Check(TokenType::LBrace))
+    {
+        arm.body = ParseBlock();
+    }
+    else
+    {
+        arm.body = ParseExpression();
+    }
+
+    return arm;
+}
+
+std::shared_ptr<AstNode> Parser::ParseMatchExpr()
+{
+    // Already consumed 'match'
+    auto matchExpr = std::make_shared<MatchExpr>();
+
+    matchExpr->scrutinee = ParseExpression();
+
+    if (!IsMatched(TokenType::LBrace))
+    {
+        JLANG_ERROR("Expected '{' after match scrutinee");
+        return nullptr;
+    }
+
+    // Parse two arms (Ok and Err, in any order)
+    bool hasOk = false;
+    bool hasErr = false;
+
+    while (!Check(TokenType::RBrace) && !IsEndReached())
+    {
+        MatchArm arm = ParseMatchArm();
+
+        if (arm.pattern == "Ok")
+        {
+            if (hasOk)
+            {
+                JLANG_ERROR("Duplicate 'Ok' arm in match expression");
+            }
+            matchExpr->okArm = arm;
+            hasOk = true;
+        }
+        else if (arm.pattern == "Err")
+        {
+            if (hasErr)
+            {
+                JLANG_ERROR("Duplicate 'Err' arm in match expression");
+            }
+            matchExpr->errArm = arm;
+            hasErr = true;
+        }
+
+        // Consume optional comma between arms
+        IsMatched(TokenType::Comma);
+    }
+
+    if (!hasOk)
+    {
+        JLANG_ERROR("Match expression missing 'Ok' arm");
+    }
+    if (!hasErr)
+    {
+        JLANG_ERROR("Match expression missing 'Err' arm");
+    }
+
+    if (!IsMatched(TokenType::RBrace))
+    {
+        JLANG_ERROR("Expected '}' at end of match expression");
+        return nullptr;
+    }
+
+    return matchExpr;
 }
 
 } // namespace jlang

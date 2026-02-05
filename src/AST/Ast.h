@@ -33,7 +33,10 @@ enum class NodeType
     AssignExpr,
     MemberAccessExpr,
     PrefixExpr,
-    PostfixExpr
+    PostfixExpr,
+    MatchExpr,
+    OkExpr,
+    ErrExpr
 };
 
 struct AstNode

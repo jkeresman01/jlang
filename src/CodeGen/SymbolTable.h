@@ -32,6 +32,15 @@ struct VariableInfo
     TypeRef type;
     bool used = false;
     bool isMutable = true;
+    bool isResultMatched = false; // For Result type safety tracking
+};
+
+struct ResultTypeInfo
+{
+    llvm::StructType *llvmType;
+    TypeRef okType;
+    TypeRef errType;
+    size_t dataSize; // Size of the data field (max of ok and err types)
 };
 
 class SymbolTable
@@ -73,10 +82,22 @@ class SymbolTable
         return m_currentFunctionVariables;
     }
 
+    void DefineResultType(const std::string &mangledName, const ResultTypeInfo &info)
+    {
+        m_resultTypes[mangledName] = info;
+    }
+
+    ResultTypeInfo *LookupResultType(const std::string &mangledName)
+    {
+        auto it = m_resultTypes.find(mangledName);
+        return it != m_resultTypes.end() ? &it->second : nullptr;
+    }
+
   private:
     std::unordered_map<std::string, VariableInfo> m_variables;
     std::unordered_map<std::string, StructInfo> m_structTypes;
     std::unordered_set<std::string> m_currentFunctionVariables;
+    std::unordered_map<std::string, ResultTypeInfo> m_resultTypes;
 };
 
 } // namespace jlang
