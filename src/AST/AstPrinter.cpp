@@ -203,6 +203,12 @@ void AstPrinter::VisitReturnStatement(ReturnStatement &node)
     m_result += ")\n";
 }
 
+void AstPrinter::VisitBreakStatement(BreakStatement &)
+{
+    Indent();
+    m_result += "(BreakStatement)\n";
+}
+
 void AstPrinter::VisitCallExpr(CallExpr &node)
 {
     Indent();

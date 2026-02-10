@@ -32,6 +32,7 @@ class SemanticAnalyzer : public AstVisitor
     void VisitBlockStatement(BlockStatement &) override;
     void VisitExprStatement(ExprStatement &) override;
     void VisitReturnStatement(ReturnStatement &) override;
+    void VisitBreakStatement(BreakStatement &) override;
 
     void VisitCallExpr(CallExpr &) override;
     void VisitBinaryExpr(BinaryExpr &) override;
@@ -53,6 +54,7 @@ class SemanticAnalyzer : public AstVisitor
   private:
     std::unordered_map<std::string, bool> m_declaredVariables; // name -> used
     std::unordered_set<std::string> m_currentFunctionVariables;
+    int m_LoopDepth = 0;
 };
 
 } // namespace jlang

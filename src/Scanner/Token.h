@@ -20,6 +20,7 @@ enum class TokenType
     While,
     For,
     Return,
+    Break,
     Null,
     Alloc,
     True,

@@ -13,6 +13,7 @@ static std::unordered_map<std::string, TokenType> s_Keywords = {
     {"while", TokenType::While},
     {"for", TokenType::For},
     {"return", TokenType::Return},
+    {"break", TokenType::Break},
     // Declarations
     {"fn", TokenType::Fn},
     {"var", TokenType::Var},

@@ -22,6 +22,7 @@ enum class NodeType
     BlockStatement,
     ExprStatement,
     ReturnStatement,
+    BreakStatement,
 
     CallExpr,
     BinaryExpr,

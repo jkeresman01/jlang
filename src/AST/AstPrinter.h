@@ -27,6 +27,7 @@ class AstPrinter : public AstVisitor
     void VisitBlockStatement(BlockStatement &) override;
     void VisitExprStatement(ExprStatement &) override;
     void VisitReturnStatement(ReturnStatement &) override;
+    void VisitBreakStatement(BreakStatement &) override;
 
     void VisitCallExpr(CallExpr &) override;
     void VisitBinaryExpr(BinaryExpr &) override;

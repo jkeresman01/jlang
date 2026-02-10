@@ -80,8 +80,13 @@ void CodeGenerator::VisitWhileStatement(WhileStatement &node)
     // Body block
     bodyBlock->insertInto(parentFunction);
     m_IRBuilder.SetInsertPoint(bodyBlock);
+    m_LoopExitStack.push_back(exitBlock);
     node.body->Accept(*this);
-    m_IRBuilder.CreateBr(condBlock);
+    m_LoopExitStack.pop_back();
+    if (!m_IRBuilder.GetInsertBlock()->getTerminator())
+    {
+        m_IRBuilder.CreateBr(condBlock);
+    }
 
     // Exit block
     exitBlock->insertInto(parentFunction);
@@ -137,8 +142,13 @@ void CodeGenerator::VisitForStatement(ForStatement &node)
     // Body block
     bodyBlock->insertInto(parentFunction);
     m_IRBuilder.SetInsertPoint(bodyBlock);
+    m_LoopExitStack.push_back(exitBlock);
     node.body->Accept(*this);
-    m_IRBuilder.CreateBr(updateBlock);
+    m_LoopExitStack.pop_back();
+    if (!m_IRBuilder.GetInsertBlock()->getTerminator())
+    {
+        m_IRBuilder.CreateBr(updateBlock);
+    }
 
     // Update block
     updateBlock->insertInto(parentFunction);
@@ -184,6 +194,22 @@ void CodeGenerator::VisitReturnStatement(ReturnStatement &node)
     {
         m_IRBuilder.CreateRetVoid();
     }
+}
+
+void CodeGenerator::VisitBreakStatement(BreakStatement &)
+{
+    if (m_LoopExitStack.empty())
+    {
+        JLANG_ERROR("'break' used outside of a loop");
+        return;
+    }
+
+    m_IRBuilder.CreateBr(m_LoopExitStack.back());
+
+    // Create unreachable block for any dead code after break
+    llvm::Function *parentFunction = m_IRBuilder.GetInsertBlock()->getParent();
+    llvm::BasicBlock *deadBlock = llvm::BasicBlock::Create(m_Context, "break.dead", parentFunction);
+    m_IRBuilder.SetInsertPoint(deadBlock);
 }
 
 } // namespace jlang

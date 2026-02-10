@@ -14,6 +14,7 @@ struct ForStatement;
 struct BlockStatement;
 struct ExprStatement;
 struct ReturnStatement;
+struct BreakStatement;
 struct CallExpr;
 struct BinaryExpr;
 struct UnaryExpr;
@@ -45,6 +46,7 @@ class AstVisitor
     virtual void VisitBlockStatement(BlockStatement &) = 0;
     virtual void VisitExprStatement(ExprStatement &) = 0;
     virtual void VisitReturnStatement(ReturnStatement &) = 0;
+    virtual void VisitBreakStatement(BreakStatement &) = 0;
 
     virtual void VisitCallExpr(CallExpr &) = 0;
     virtual void VisitBinaryExpr(BinaryExpr &) = 0;

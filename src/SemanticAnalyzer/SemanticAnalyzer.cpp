@@ -68,8 +68,10 @@ void SemanticAnalyzer::VisitWhileStatement(WhileStatement &node)
 {
     if (node.condition)
         node.condition->Accept(*this);
+    m_LoopDepth++;
     if (node.body)
         node.body->Accept(*this);
+    m_LoopDepth--;
 }
 
 void SemanticAnalyzer::VisitForStatement(ForStatement &node)
@@ -80,8 +82,10 @@ void SemanticAnalyzer::VisitForStatement(ForStatement &node)
         node.condition->Accept(*this);
     if (node.update)
         node.update->Accept(*this);
+    m_LoopDepth++;
     if (node.body)
         node.body->Accept(*this);
+    m_LoopDepth--;
 }
 
 void SemanticAnalyzer::VisitBlockStatement(BlockStatement &node)
@@ -103,6 +107,14 @@ void SemanticAnalyzer::VisitReturnStatement(ReturnStatement &node)
 {
     if (node.value)
         node.value->Accept(*this);
+}
+
+void SemanticAnalyzer::VisitBreakStatement(BreakStatement &)
+{
+    if (m_LoopDepth == 0)
+    {
+        std::cerr << "Error: 'break' used outside of a loop" << std::endl;
+    }
 }
 
 void SemanticAnalyzer::VisitCallExpr(CallExpr &node)

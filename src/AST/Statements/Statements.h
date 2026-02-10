@@ -69,4 +69,10 @@ struct ReturnStatement : public Statement
     void Accept(AstVisitor &visitor) override { visitor.VisitReturnStatement(*this); }
 };
 
+struct BreakStatement : public Statement
+{
+    BreakStatement() { type = NodeType::BreakStatement; }
+    void Accept(AstVisitor &visitor) override { visitor.VisitBreakStatement(*this); }
+};
+
 } // namespace jlang

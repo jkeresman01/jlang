@@ -422,6 +422,11 @@ std::shared_ptr<AstNode> Parser::ParseStatement()
         return ParseVarDecl();
     }
 
+    if (Check(TokenType::Break))
+    {
+        return ParseBreakStatement();
+    }
+
     if (Check(TokenType::Return))
     {
         return ParseReturnStatement();
@@ -469,6 +474,18 @@ std::shared_ptr<AstNode> Parser::ParseReturnStatement()
     returnStmt->value = value;
 
     return returnStmt;
+}
+
+std::shared_ptr<AstNode> Parser::ParseBreakStatement()
+{
+    Advance(); // consume 'break'
+
+    if (!IsMatched(TokenType::Semicolon))
+    {
+        JLANG_ERROR("Expected ';' after break statement");
+    }
+
+    return std::make_shared<BreakStatement>();
 }
 
 std::shared_ptr<AstNode> Parser::ParseVarDecl()
