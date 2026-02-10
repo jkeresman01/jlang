@@ -117,6 +117,14 @@ void SemanticAnalyzer::VisitBreakStatement(BreakStatement &)
     }
 }
 
+void SemanticAnalyzer::VisitContinueStatement(ContinueStatement &)
+{
+    if (m_LoopDepth == 0)
+    {
+        std::cerr << "Error: 'continue' used outside of a loop" << std::endl;
+    }
+}
+
 void SemanticAnalyzer::VisitCallExpr(CallExpr &node)
 {
     for (auto &arg : node.arguments)

@@ -75,4 +75,10 @@ struct BreakStatement : public Statement
     void Accept(AstVisitor &visitor) override { visitor.VisitBreakStatement(*this); }
 };
 
+struct ContinueStatement : public Statement
+{
+    ContinueStatement() { type = NodeType::ContinueStatement; }
+    void Accept(AstVisitor &visitor) override { visitor.VisitContinueStatement(*this); }
+};
+
 } // namespace jlang

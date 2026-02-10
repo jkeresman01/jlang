@@ -21,6 +21,7 @@ enum class TokenType
     For,
     Return,
     Break,
+    Continue,
     Null,
     Alloc,
     True,

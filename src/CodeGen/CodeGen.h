@@ -42,6 +42,7 @@ class CodeGenerator : public AstVisitor
     virtual void VisitExprStatement(ExprStatement &) override;
     virtual void VisitReturnStatement(ReturnStatement &) override;
     virtual void VisitBreakStatement(BreakStatement &) override;
+    virtual void VisitContinueStatement(ContinueStatement &) override;
 
     virtual void VisitCallExpr(CallExpr &) override;
     virtual void VisitBinaryExpr(BinaryExpr &) override;
@@ -72,6 +73,7 @@ class CodeGenerator : public AstVisitor
     SymbolTable m_symbols;
     llvm::Value *m_LastValue = nullptr;
     std::vector<llvm::BasicBlock *> m_LoopExitStack;
+    std::vector<llvm::BasicBlock *> m_LoopContinueStack;
 };
 
 } // namespace jlang

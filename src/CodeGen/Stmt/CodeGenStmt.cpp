@@ -81,7 +81,9 @@ void CodeGenerator::VisitWhileStatement(WhileStatement &node)
     bodyBlock->insertInto(parentFunction);
     m_IRBuilder.SetInsertPoint(bodyBlock);
     m_LoopExitStack.push_back(exitBlock);
+    m_LoopContinueStack.push_back(condBlock);
     node.body->Accept(*this);
+    m_LoopContinueStack.pop_back();
     m_LoopExitStack.pop_back();
     if (!m_IRBuilder.GetInsertBlock()->getTerminator())
     {
@@ -143,7 +145,9 @@ void CodeGenerator::VisitForStatement(ForStatement &node)
     bodyBlock->insertInto(parentFunction);
     m_IRBuilder.SetInsertPoint(bodyBlock);
     m_LoopExitStack.push_back(exitBlock);
+    m_LoopContinueStack.push_back(updateBlock);
     node.body->Accept(*this);
+    m_LoopContinueStack.pop_back();
     m_LoopExitStack.pop_back();
     if (!m_IRBuilder.GetInsertBlock()->getTerminator())
     {
@@ -209,6 +213,22 @@ void CodeGenerator::VisitBreakStatement(BreakStatement &)
     // Create unreachable block for any dead code after break
     llvm::Function *parentFunction = m_IRBuilder.GetInsertBlock()->getParent();
     llvm::BasicBlock *deadBlock = llvm::BasicBlock::Create(m_Context, "break.dead", parentFunction);
+    m_IRBuilder.SetInsertPoint(deadBlock);
+}
+
+void CodeGenerator::VisitContinueStatement(ContinueStatement &)
+{
+    if (m_LoopContinueStack.empty())
+    {
+        JLANG_ERROR("'continue' used outside of a loop");
+        return;
+    }
+
+    m_IRBuilder.CreateBr(m_LoopContinueStack.back());
+
+    // Create unreachable block for any dead code after continue
+    llvm::Function *parentFunction = m_IRBuilder.GetInsertBlock()->getParent();
+    llvm::BasicBlock *deadBlock = llvm::BasicBlock::Create(m_Context, "continue.dead", parentFunction);
     m_IRBuilder.SetInsertPoint(deadBlock);
 }
 

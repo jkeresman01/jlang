@@ -23,6 +23,7 @@ enum class NodeType
     ExprStatement,
     ReturnStatement,
     BreakStatement,
+    ContinueStatement,
 
     CallExpr,
     BinaryExpr,

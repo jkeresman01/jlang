@@ -209,6 +209,12 @@ void AstPrinter::VisitBreakStatement(BreakStatement &)
     m_result += "(BreakStatement)\n";
 }
 
+void AstPrinter::VisitContinueStatement(ContinueStatement &)
+{
+    Indent();
+    m_result += "(ContinueStatement)\n";
+}
+
 void AstPrinter::VisitCallExpr(CallExpr &node)
 {
     Indent();

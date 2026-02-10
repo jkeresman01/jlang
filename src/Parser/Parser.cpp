@@ -427,6 +427,11 @@ std::shared_ptr<AstNode> Parser::ParseStatement()
         return ParseBreakStatement();
     }
 
+    if (Check(TokenType::Continue))
+    {
+        return ParseContinueStatement();
+    }
+
     if (Check(TokenType::Return))
     {
         return ParseReturnStatement();
@@ -486,6 +491,18 @@ std::shared_ptr<AstNode> Parser::ParseBreakStatement()
     }
 
     return std::make_shared<BreakStatement>();
+}
+
+std::shared_ptr<AstNode> Parser::ParseContinueStatement()
+{
+    Advance(); // consume 'continue'
+
+    if (!IsMatched(TokenType::Semicolon))
+    {
+        JLANG_ERROR("Expected ';' after continue statement");
+    }
+
+    return std::make_shared<ContinueStatement>();
 }
 
 std::shared_ptr<AstNode> Parser::ParseVarDecl()
