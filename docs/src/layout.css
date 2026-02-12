@@ -1,4 +1,3 @@
-/* ===== Layout ===== */
 .layout {
   display: flex;
   min-height: 100vh;
@@ -12,7 +11,6 @@
   min-height: 100vh;
 }
 
-/* ===== Header ===== */
 .header {
   position: sticky;
   top: 0;
@@ -50,7 +48,6 @@
   text-transform: lowercase;
 }
 
-/* ===== Sidebar ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -168,7 +165,6 @@
   color: var(--text-primary);
 }
 
-/* ===== Content ===== */
 .content {
   flex: 1;
   display: flex;
@@ -181,7 +177,6 @@
   width: 100%;
 }
 
-/* ===== Typography ===== */
 .content-inner h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -258,7 +253,6 @@
   margin-bottom: 0.35rem;
 }
 
-/* ===== Code Blocks ===== */
 .code-block {
   margin: 1rem 0 1.5rem;
   border-radius: 10px;
@@ -321,7 +315,6 @@
   color: var(--syntax-punctuation);
 }
 
-/* ===== Tables ===== */
 .doc-table {
   width: 100%;
   border-collapse: collapse;
@@ -369,9 +362,6 @@
   border-radius: 3px;
   color: var(--accent);
 }
-
-/* ===== Callouts ===== */
-.callout {
   margin: 1.25rem 0;
   padding: 1rem 1.25rem;
   border-radius: 8px;
@@ -422,7 +412,6 @@
   margin-bottom: 0;
 }
 
-/* ===== Hero (Introduction page) ===== */
 .hero {
   text-align: center;
   padding: 2rem 0 2.5rem;
@@ -480,7 +469,6 @@
   color: var(--text-primary);
 }
 
-/* ===== Design Note (subtle italic paragraphs) ===== */
 .design-note {
   font-size: 0.85rem;
   font-style: italic;
@@ -490,7 +478,6 @@
   line-height: 1.6;
 }
 
-/* ===== LLVM Details (collapsible) ===== */
 .details-block {
   margin: 1rem 0 1.5rem;
   border: 1px solid var(--border);
