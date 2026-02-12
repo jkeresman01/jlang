@@ -33,6 +33,8 @@ struct ErrExpr;
 struct ArrayLiteralExpr;
 struct IndexExpr;
 struct IndexAssignExpr;
+struct MethodCallExpr;
+struct MemberAssignExpr;
 
 class AstVisitor
 {
@@ -70,5 +72,7 @@ class AstVisitor
     virtual void VisitArrayLiteralExpr(ArrayLiteralExpr &) = 0;
     virtual void VisitIndexExpr(IndexExpr &) = 0;
     virtual void VisitIndexAssignExpr(IndexAssignExpr &) = 0;
+    virtual void VisitMethodCallExpr(MethodCallExpr &) = 0;
+    virtual void VisitMemberAssignExpr(MemberAssignExpr &) = 0;
 };
 } // namespace jlang

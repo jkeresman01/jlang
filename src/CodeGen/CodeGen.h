@@ -61,12 +61,16 @@ class CodeGenerator : public AstVisitor
     virtual void VisitArrayLiteralExpr(ArrayLiteralExpr &) override;
     virtual void VisitIndexExpr(IndexExpr &) override;
     virtual void VisitIndexAssignExpr(IndexAssignExpr &) override;
+    virtual void VisitMethodCallExpr(MethodCallExpr &) override;
+    virtual void VisitMemberAssignExpr(MemberAssignExpr &) override;
 
   private:
     void DeclareExternalFunctions();
     llvm::Type *MapType(const TypeRef &typeRef);
     TypeRef InferTypeRef(llvm::Type *llvmType);
     llvm::StructType *GetOrCreateResultType(const TypeRef &typeRef);
+    void GenerateVtables();
+    std::string DetermineStructTypeName(AstNode *node);
 
   private:
     llvm::LLVMContext m_Context;

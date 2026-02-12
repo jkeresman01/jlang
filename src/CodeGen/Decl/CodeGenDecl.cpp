@@ -4,6 +4,7 @@
 
 #include <algorithm>
 
+#include <llvm/IR/Constants.h>
 #include <llvm/IR/Verifier.h>
 
 namespace jlang
@@ -14,15 +15,25 @@ void CodeGenerator::VisitFunctionDecl(FunctionDecl &node)
     // Clear tracking for new function scope
     m_symbols.EnterFunctionScope();
 
-    std::vector<llvm::Type *> paramTypes;
-    paramTypes.reserve(node.params.size());
-    std::transform(node.params.begin(), node.params.end(), std::back_inserter(paramTypes),
-                   [this](const Parameter &param) { return MapType(param.type); });
+    // Name mangling: if first param is self: StructName*, use StructName_methodName
+    std::string llvmName = node.name;
+    if (!node.params.empty() && node.params[0].name == "self" && node.params[0].type.isPointer)
+    {
+        StructInfo *si = m_symbols.LookupStruct(node.params[0].type.name);
+        if (si)
+        {
+            llvmName = node.params[0].type.name + "_" + node.name;
+        }
+    }
 
-    llvm::FunctionType *funcType = llvm::FunctionType::get(MapType(node.returnType), paramTypes, false);
-
-    llvm::Function *function =
-        llvm::Function::Create(funcType, llvm::Function::ExternalLinkage, node.name, m_Module.get());
+    // Reuse the function created in pass 2
+    llvm::Function *function = m_Module->getFunction(llvmName);
+    if (!function)
+    {
+        JLANG_ERROR(STR("Internal error: function '%s' not found in module", llvmName.c_str()));
+        m_symbols.LeaveFunctionScope();
+        return;
+    }
 
     llvm::BasicBlock *entry = llvm::BasicBlock::Create(m_Context, "entry", function);
     m_IRBuilder.SetInsertPoint(entry);
@@ -31,8 +42,23 @@ void CodeGenerator::VisitFunctionDecl(FunctionDecl &node)
     for (auto &arg : function->args())
     {
         const std::string &paramName = node.params[paramIndex].name;
+        const TypeRef &paramType = node.params[paramIndex].type;
         arg.setName(paramName);
-        m_symbols.DefineVariable(paramName, VariableInfo{&arg, node.params[paramIndex].type, false});
+
+        // For interface/struct-value parameters, create an alloca so we can GEP into them
+        InterfaceInfo *ifaceParam = m_symbols.LookupInterface(paramType.name);
+        if (ifaceParam && !paramType.isPointer)
+        {
+            // Store the fat pointer arg into an alloca
+            llvm::AllocaInst *alloca =
+                m_IRBuilder.CreateAlloca(ifaceParam->fatPtrType, nullptr, paramName + "_addr");
+            m_IRBuilder.CreateStore(&arg, alloca);
+            m_symbols.DefineVariable(paramName, VariableInfo{alloca, paramType, false});
+        }
+        else
+        {
+            m_symbols.DefineVariable(paramName, VariableInfo{&arg, paramType, false});
+        }
         m_symbols.TrackFunctionLocal(paramName);
         ++paramIndex;
     }
@@ -53,7 +79,58 @@ void CodeGenerator::VisitFunctionDecl(FunctionDecl &node)
     m_symbols.LeaveFunctionScope();
 }
 
-void CodeGenerator::VisitInterfaceDecl(InterfaceDecl &) {}
+void CodeGenerator::VisitInterfaceDecl(InterfaceDecl &node)
+{
+    llvm::Type *i8Ptr = llvm::PointerType::getUnqual(llvm::Type::getInt8Ty(m_Context));
+
+    InterfaceInfo ifaceInfo;
+    ifaceInfo.name = node.name;
+
+    std::vector<llvm::Type *> vtableSlotTypes;
+
+    for (unsigned idx = 0; idx < node.methods.size(); ++idx)
+    {
+        auto &method = node.methods[idx];
+
+        // Build function type: retType (i8* self, params...)
+        std::vector<llvm::Type *> funcParamTypes;
+        funcParamTypes.push_back(i8Ptr); // self as i8*
+
+        std::vector<TypeRef> paramTypeRefs;
+        for (auto &param : method.params)
+        {
+            funcParamTypes.push_back(MapType(param.type));
+            paramTypeRefs.push_back(param.type);
+        }
+
+        llvm::Type *retType = MapType(method.returnType);
+        llvm::FunctionType *funcType = llvm::FunctionType::get(retType, funcParamTypes, false);
+
+        // Vtable slot is a pointer to this function type
+        vtableSlotTypes.push_back(llvm::PointerType::getUnqual(funcType));
+
+        InterfaceMethodInfo methodInfo;
+        methodInfo.name = method.name;
+        methodInfo.paramTypes = paramTypeRefs;
+        methodInfo.returnType = method.returnType;
+        methodInfo.vtableIndex = idx;
+        methodInfo.llvmFuncType = funcType;
+
+        ifaceInfo.methods.push_back(methodInfo);
+    }
+
+    // Create vtable struct type
+    llvm::StructType *vtableType =
+        llvm::StructType::create(m_Context, vtableSlotTypes, node.name + "_vtable_t");
+    ifaceInfo.vtableType = vtableType;
+
+    // Create fat pointer type: { i8*, vtable_t* }
+    llvm::StructType *fatPtrType = llvm::StructType::create(
+        m_Context, {i8Ptr, llvm::PointerType::getUnqual(vtableType)}, node.name + "_fat_ptr");
+    ifaceInfo.fatPtrType = fatPtrType;
+
+    m_symbols.DefineInterface(node.name, ifaceInfo);
+}
 
 void CodeGenerator::VisitStructDecl(StructDecl &node)
 {
@@ -74,8 +151,18 @@ void CodeGenerator::VisitStructDecl(StructDecl &node)
 
     llvm::StructType *structType = llvm::StructType::create(m_Context, fieldTypes, node.name);
     structInfo.llvmType = structType;
+    structInfo.interfaceImplemented = node.interfaceImplemented;
 
     m_symbols.DefineStruct(node.name, structInfo);
+
+    // Record struct-interface mapping (vtable global will be created later)
+    if (!node.interfaceImplemented.empty())
+    {
+        StructInterfaceInfo siInfo;
+        siInfo.interfaceName = node.interfaceImplemented;
+        siInfo.vtableGlobal = nullptr; // filled in by GenerateVtables()
+        m_symbols.DefineStructInterface(node.name, siInfo);
+    }
 }
 
 void CodeGenerator::VisitVariableDecl(VariableDecl &node)
@@ -128,6 +215,54 @@ void CodeGenerator::VisitVariableDecl(VariableDecl &node)
 
         // Track variable with inferred type
         m_symbols.DefineVariable(node.name, VariableInfo{alloca, inferredType, false, node.isMutable});
+        m_symbols.TrackFunctionLocal(node.name);
+        return;
+    }
+
+    // Check if declared type is an interface (implicit struct*-to-interface conversion)
+    InterfaceInfo *ifaceInfo = m_symbols.LookupInterface(node.varType.name);
+    if (ifaceInfo && node.initializer)
+    {
+        // Evaluate the initializer (should be a struct pointer)
+        node.initializer->Accept(*this);
+        if (!m_LastValue)
+        {
+            JLANG_ERROR(STR("Invalid initializer for interface variable: %s", node.name.c_str()));
+            return;
+        }
+
+        // Determine the struct type name from the initializer
+        std::string structTypeName = DetermineStructTypeName(node.initializer.get());
+        if (structTypeName.empty())
+        {
+            JLANG_ERROR("Cannot determine struct type for interface conversion");
+            return;
+        }
+
+        StructInterfaceInfo *siInfo = m_symbols.LookupStructInterface(structTypeName);
+        if (!siInfo || !siInfo->vtableGlobal)
+        {
+            JLANG_ERROR(STR("Struct '%s' does not implement interface '%s' (no vtable)",
+                            structTypeName.c_str(), node.varType.name.c_str()));
+            return;
+        }
+
+        // Create fat pointer: { bitcast(ptr, i8*), &vtable }
+        llvm::Type *i8Ptr = llvm::PointerType::getUnqual(llvm::Type::getInt8Ty(m_Context));
+        llvm::Value *dataPtr = m_IRBuilder.CreateBitCast(m_LastValue, i8Ptr, "data_ptr");
+
+        llvm::AllocaInst *alloca = m_IRBuilder.CreateAlloca(ifaceInfo->fatPtrType, nullptr, node.name);
+
+        // Store data pointer at index 0
+        llvm::Value *dataField = m_IRBuilder.CreateStructGEP(ifaceInfo->fatPtrType, alloca, 0, "fat_data");
+        m_IRBuilder.CreateStore(dataPtr, dataField);
+
+        // Store vtable pointer at index 1
+        llvm::Value *vtableField =
+            m_IRBuilder.CreateStructGEP(ifaceInfo->fatPtrType, alloca, 1, "fat_vtable");
+        m_IRBuilder.CreateStore(siInfo->vtableGlobal, vtableField);
+
+        m_symbols.DefineVariable(node.name, VariableInfo{alloca, node.varType, false, node.isMutable});
         m_symbols.TrackFunctionLocal(node.name);
         return;
     }

@@ -6,10 +6,23 @@
 namespace jlang
 {
 
+struct Parameter
+{
+    std::string name;
+    TypeRef type;
+};
+
+struct InterfaceMethodDecl
+{
+    std::string name;
+    std::vector<Parameter> params; // excludes implicit self
+    TypeRef returnType;
+};
+
 struct InterfaceDecl : public AstNode
 {
     std::string name;
-    std::vector<std::string> methods;
+    std::vector<InterfaceMethodDecl> methods;
 
     InterfaceDecl() { type = NodeType::InterfaceDecl; }
 
@@ -32,12 +45,6 @@ struct StructDecl : public AstNode
     StructDecl() { type = NodeType::StructDecl; }
 
     void Accept(AstVisitor &visitor) override { visitor.VisitStructDecl(*this); }
-};
-
-struct Parameter
-{
-    std::string name;
-    TypeRef type;
 };
 
 struct FunctionDecl : public AstNode

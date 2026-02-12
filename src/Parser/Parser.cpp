@@ -119,33 +119,93 @@ std::shared_ptr<AstNode> Parser::ParseInterface()
         if (!IsMatched(TokenType::Fn))
         {
             JLANG_ERROR("Expected 'fn' in interface method");
-            Advance(); // error recovery
+            Advance();
             continue;
         }
 
         if (!IsMatched(TokenType::Identifier))
         {
             JLANG_ERROR("Expected method name");
-            Advance(); // error recovery
+            Advance();
             continue;
         }
 
         std::string methodName = Previous().m_lexeme;
 
-        if (!IsMatched(TokenType::LParen) || !IsMatched(TokenType::RParen) ||
-            !IsMatched(TokenType::Semicolon))
+        if (!IsMatched(TokenType::LParen))
         {
-            JLANG_ERROR("Expected '()' and ';' after method name");
-            // Skip to semicolon for error recovery
+            JLANG_ERROR("Expected '(' after method name");
             while (!IsEndReached() && !Check(TokenType::Semicolon) && !Check(TokenType::RBrace))
-            {
                 Advance();
-            }
             IsMatched(TokenType::Semicolon);
             continue;
         }
 
-        interfaceDeclNode->methods.push_back(methodName);
+        // Parse parameters (excluding implicit self)
+        std::vector<Parameter> params;
+        if (!Check(TokenType::RParen))
+        {
+            do
+            {
+                if (!IsMatched(TokenType::Identifier))
+                {
+                    JLANG_ERROR("Expected parameter name");
+                    break;
+                }
+                std::string paramName = Previous().m_lexeme;
+
+                if (!IsMatched(TokenType::Colon))
+                {
+                    JLANG_ERROR("Expected ':' after parameter name");
+                    break;
+                }
+
+                TypeRef paramType = ParseTypeWithParameters();
+                if (paramType.name.empty())
+                {
+                    JLANG_ERROR("Expected parameter type");
+                    break;
+                }
+
+                if (IsMatched(TokenType::Star))
+                    paramType.isPointer = true;
+
+                params.push_back(Parameter{paramName, paramType});
+            } while (IsMatched(TokenType::Comma));
+        }
+
+        if (!IsMatched(TokenType::RParen))
+        {
+            JLANG_ERROR("Expected ')' after parameters");
+            while (!IsEndReached() && !Check(TokenType::Semicolon) && !Check(TokenType::RBrace))
+                Advance();
+            IsMatched(TokenType::Semicolon);
+            continue;
+        }
+
+        // Parse return type (optional)
+        TypeRef returnType{"void", false, false};
+        if (IsMatched(TokenType::Arrow))
+        {
+            returnType = ParseTypeWithParameters();
+            if (returnType.name.empty())
+            {
+                JLANG_ERROR("Expected return type after '->'");
+            }
+            if (IsMatched(TokenType::Star))
+                returnType.isPointer = true;
+        }
+
+        if (!IsMatched(TokenType::Semicolon))
+        {
+            JLANG_ERROR("Expected ';' after interface method declaration");
+        }
+
+        InterfaceMethodDecl method;
+        method.name = methodName;
+        method.params = params;
+        method.returnType = returnType;
+        interfaceDeclNode->methods.push_back(method);
     }
 
     if (!IsMatched(TokenType::RBrace))
@@ -781,6 +841,14 @@ std::shared_ptr<AstNode> Parser::ParseExpression()
             indexAssign->value = value;
             return indexAssign;
         }
+        else if (auto memberExpr = std::dynamic_pointer_cast<MemberAccessExpr>(expr))
+        {
+            auto memberAssign = std::make_shared<MemberAssignExpr>();
+            memberAssign->object = memberExpr->object;
+            memberAssign->memberName = memberExpr->memberName;
+            memberAssign->value = value;
+            return memberAssign;
+        }
         else
         {
             JLANG_ERROR("Invalid assignment target");
@@ -1359,7 +1427,7 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
         std::shared_ptr<AstNode> expr = std::make_shared<VarExpr>();
         std::static_pointer_cast<VarExpr>(expr)->name = name;
 
-        // Handle member access chain: obj.field1.field2
+        // Handle member access chain: obj.field1.field2 or obj.method(args)
         while (IsMatched(TokenType::Dot))
         {
             if (!IsMatched(TokenType::Identifier))
@@ -1369,10 +1437,36 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
             }
             std::string memberName = Previous().m_lexeme;
 
-            auto memberAccess = std::make_shared<MemberAccessExpr>();
-            memberAccess->object = expr;
-            memberAccess->memberName = memberName;
-            expr = memberAccess;
+            // Check if this is a method call: obj.method(args)
+            if (IsMatched(TokenType::LParen))
+            {
+                auto methodCall = std::make_shared<MethodCallExpr>();
+                methodCall->object = expr;
+                methodCall->methodName = memberName;
+
+                if (!Check(TokenType::RParen))
+                {
+                    do
+                    {
+                        auto arg = ParseExpression();
+                        methodCall->arguments.push_back(arg);
+                    } while (IsMatched(TokenType::Comma));
+                }
+
+                if (!IsMatched(TokenType::RParen))
+                {
+                    JLANG_ERROR("Expected ')' after method arguments");
+                }
+
+                expr = methodCall;
+            }
+            else
+            {
+                auto memberAccess = std::make_shared<MemberAccessExpr>();
+                memberAccess->object = expr;
+                memberAccess->memberName = memberName;
+                expr = memberAccess;
+            }
         }
 
         return expr;

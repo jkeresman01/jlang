@@ -98,6 +98,18 @@ llvm::Type *CodeGenerator::MapType(const TypeRef &typeRef)
     }
     else
     {
+        // Check if it's a registered interface type
+        InterfaceInfo *ifaceInfo = m_symbols.LookupInterface(typeRef.name);
+        if (ifaceInfo)
+        {
+            // Interface variables are fat pointers
+            if (typeRef.isPointer)
+            {
+                return llvm::PointerType::getUnqual(ifaceInfo->fatPtrType);
+            }
+            return ifaceInfo->fatPtrType;
+        }
+
         // Check if it's a registered struct type
         StructInfo *structInfo = m_symbols.LookupStruct(typeRef.name);
         if (structInfo)

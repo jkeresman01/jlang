@@ -7,6 +7,7 @@ namespace jlang
 
 void SemanticAnalyzer::Analyze(std::vector<std::shared_ptr<AstNode>> &program)
 {
+    // Pass 1: collect all declarations
     for (auto &node : program)
     {
         if (node)
@@ -14,10 +15,27 @@ void SemanticAnalyzer::Analyze(std::vector<std::shared_ptr<AstNode>> &program)
             node->Accept(*this);
         }
     }
+
+    // Pass 2: validate interface implementations
+    ValidateInterfaceImplementations();
 }
 
 void SemanticAnalyzer::VisitFunctionDecl(FunctionDecl &node)
 {
+    // Record function signature for interface validation
+    // If first param is self: StructName*, register as StructName_methodName
+    if (!node.params.empty() && node.params[0].name == "self" && node.params[0].type.isPointer)
+    {
+        std::string structName = node.params[0].type.name;
+        std::string key = structName + "_" + node.name;
+        FuncSig sig;
+        // Store params excluding self
+        for (size_t i = 1; i < node.params.size(); ++i)
+            sig.params.push_back(node.params[i]);
+        sig.returnType = node.returnType;
+        m_functionSignatures[key] = sig;
+    }
+
     m_currentFunctionVariables.clear();
     m_declaredVariables.clear();
 
@@ -39,9 +57,18 @@ void SemanticAnalyzer::VisitFunctionDecl(FunctionDecl &node)
     m_declaredVariables.clear();
 }
 
-void SemanticAnalyzer::VisitInterfaceDecl(InterfaceDecl &) {}
+void SemanticAnalyzer::VisitInterfaceDecl(InterfaceDecl &node)
+{
+    m_declaredInterfaces[node.name] = node.methods;
+}
 
-void SemanticAnalyzer::VisitStructDecl(StructDecl &) {}
+void SemanticAnalyzer::VisitStructDecl(StructDecl &node)
+{
+    if (!node.interfaceImplemented.empty())
+    {
+        m_structInterfaces[node.name] = node.interfaceImplemented;
+    }
+}
 
 void SemanticAnalyzer::VisitVariableDecl(VariableDecl &node)
 {
@@ -280,6 +307,66 @@ void SemanticAnalyzer::VisitIndexAssignExpr(IndexAssignExpr &node)
         node.index->Accept(*this);
     if (node.value)
         node.value->Accept(*this);
+}
+
+void SemanticAnalyzer::VisitMethodCallExpr(MethodCallExpr &node)
+{
+    if (node.object)
+        node.object->Accept(*this);
+    for (auto &arg : node.arguments)
+    {
+        if (arg)
+            arg->Accept(*this);
+    }
+}
+
+void SemanticAnalyzer::VisitMemberAssignExpr(MemberAssignExpr &node)
+{
+    if (node.object)
+        node.object->Accept(*this);
+    if (node.value)
+        node.value->Accept(*this);
+}
+
+void SemanticAnalyzer::ValidateInterfaceImplementations()
+{
+    for (auto &[structName, ifaceName] : m_structInterfaces)
+    {
+        auto ifaceIt = m_declaredInterfaces.find(ifaceName);
+        if (ifaceIt == m_declaredInterfaces.end())
+        {
+            std::cerr << "Error: Struct '" << structName << "' implements unknown interface '" << ifaceName
+                      << "'" << std::endl;
+            continue;
+        }
+
+        for (auto &method : ifaceIt->second)
+        {
+            std::string key = structName + "_" + method.name;
+            auto funcIt = m_functionSignatures.find(key);
+            if (funcIt == m_functionSignatures.end())
+            {
+                std::cerr << "Error: Struct '" << structName << "' does not implement method '" << method.name
+                          << "' required by interface '" << ifaceName << "'" << std::endl;
+                continue;
+            }
+
+            // Check parameter count (excluding self)
+            if (funcIt->second.params.size() != method.params.size())
+            {
+                std::cerr << "Error: Method '" << method.name << "' in struct '" << structName
+                          << "' has wrong number of parameters for interface '" << ifaceName << "'"
+                          << std::endl;
+            }
+
+            // Check return type
+            if (funcIt->second.returnType.name != method.returnType.name)
+            {
+                std::cerr << "Error: Method '" << method.name << "' in struct '" << structName
+                          << "' has wrong return type for interface '" << ifaceName << "'" << std::endl;
+            }
+        }
+    }
 }
 
 void SemanticAnalyzer::CheckUnusedVariables()

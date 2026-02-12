@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 #include <llvm/IR/DerivedTypes.h>
 #include <llvm/IR/Type.h>
@@ -24,6 +25,7 @@ struct StructInfo
 {
     llvm::StructType *llvmType;
     std::unordered_map<std::string, FieldInfo> fields;
+    std::string interfaceImplemented;
 };
 
 struct VariableInfo
@@ -41,6 +43,29 @@ struct ResultTypeInfo
     TypeRef okType;
     TypeRef errType;
     size_t dataSize; // Size of the data field (max of ok and err types)
+};
+
+struct InterfaceMethodInfo
+{
+    std::string name;
+    std::vector<TypeRef> paramTypes; // excludes self
+    TypeRef returnType;
+    unsigned vtableIndex;
+    llvm::FunctionType *llvmFuncType; // with i8* as self
+};
+
+struct InterfaceInfo
+{
+    std::string name;
+    std::vector<InterfaceMethodInfo> methods;
+    llvm::StructType *vtableType;
+    llvm::StructType *fatPtrType;
+};
+
+struct StructInterfaceInfo
+{
+    std::string interfaceName;
+    llvm::GlobalVariable *vtableGlobal;
 };
 
 class SymbolTable
@@ -93,11 +118,39 @@ class SymbolTable
         return it != m_resultTypes.end() ? &it->second : nullptr;
     }
 
+    void DefineInterface(const std::string &name, const InterfaceInfo &info) { m_interfaces[name] = info; }
+
+    InterfaceInfo *LookupInterface(const std::string &name)
+    {
+        auto it = m_interfaces.find(name);
+        return it != m_interfaces.end() ? &it->second : nullptr;
+    }
+
+    void DefineStructInterface(const std::string &structName, const StructInterfaceInfo &info)
+    {
+        m_structInterfaces[structName] = info;
+    }
+
+    StructInterfaceInfo *LookupStructInterface(const std::string &structName)
+    {
+        auto it = m_structInterfaces.find(structName);
+        return it != m_structInterfaces.end() ? &it->second : nullptr;
+    }
+
+    const std::unordered_map<std::string, StructInterfaceInfo> &GetAllStructInterfaces() const
+    {
+        return m_structInterfaces;
+    }
+
+    const std::unordered_map<std::string, InterfaceInfo> &GetAllInterfaces() const { return m_interfaces; }
+
   private:
     std::unordered_map<std::string, VariableInfo> m_variables;
     std::unordered_map<std::string, StructInfo> m_structTypes;
     std::unordered_set<std::string> m_currentFunctionVariables;
     std::unordered_map<std::string, ResultTypeInfo> m_resultTypes;
+    std::unordered_map<std::string, InterfaceInfo> m_interfaces;
+    std::unordered_map<std::string, StructInterfaceInfo> m_structInterfaces;
 };
 
 } // namespace jlang

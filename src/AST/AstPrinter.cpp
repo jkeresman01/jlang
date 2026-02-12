@@ -76,14 +76,23 @@ void AstPrinter::VisitFunctionDecl(FunctionDecl &node)
 void AstPrinter::VisitInterfaceDecl(InterfaceDecl &node)
 {
     Indent();
-    m_result += "(InterfaceDecl " + node.name + " [";
-    for (size_t i = 0; i < node.methods.size(); ++i)
+    m_result += "(InterfaceDecl " + node.name + "\n";
+    ++m_indent;
+    for (auto &method : node.methods)
     {
-        if (i > 0)
-            m_result += ", ";
-        m_result += node.methods[i];
+        Indent();
+        m_result += "fn " + method.name + "(";
+        for (size_t i = 0; i < method.params.size(); ++i)
+        {
+            if (i > 0)
+                m_result += ", ";
+            m_result += method.params[i].name + ":" + FormatTypeRef(method.params[i].type);
+        }
+        m_result += ") -> " + FormatTypeRef(method.returnType) + "\n";
     }
-    m_result += "])\n";
+    --m_indent;
+    Indent();
+    m_result += ")\n";
 }
 
 void AstPrinter::VisitStructDecl(StructDecl &node)
@@ -433,6 +442,35 @@ void AstPrinter::VisitIndexAssignExpr(IndexAssignExpr &node)
     ++m_indent;
     VisitChild(node.object);
     VisitChild(node.index);
+    VisitChild(node.value);
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
+void AstPrinter::VisitMethodCallExpr(MethodCallExpr &node)
+{
+    Indent();
+    m_result += "(MethodCallExpr ." + node.methodName + "\n";
+
+    ++m_indent;
+    VisitChild(node.object);
+    for (auto &arg : node.arguments)
+        VisitChild(arg);
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
+void AstPrinter::VisitMemberAssignExpr(MemberAssignExpr &node)
+{
+    Indent();
+    m_result += "(MemberAssignExpr ." + node.memberName + " =\n";
+
+    ++m_indent;
+    VisitChild(node.object);
     VisitChild(node.value);
     --m_indent;
 

@@ -1,5 +1,10 @@
 #include "CodeGen.h"
 
+#include "../Common/Logger.h"
+
+#include <algorithm>
+
+#include <llvm/IR/Constants.h>
 #include <llvm/IR/Verifier.h>
 
 namespace jlang
@@ -14,9 +19,58 @@ void CodeGenerator::Generate(const std::vector<std::shared_ptr<AstNode>> &progra
 {
     DeclareExternalFunctions();
 
+    // Pass 1: Visit interface and struct declarations (builds types)
     for (auto &node : program)
     {
-        if (node)
+        if (node && (node->type == NodeType::InterfaceDecl || node->type == NodeType::StructDecl))
+        {
+            node->Accept(*this);
+        }
+    }
+
+    // Pass 2: Create function signatures only (no bodies)
+    // This registers all mangled function names so vtables can reference them
+    for (auto &node : program)
+    {
+        if (node && node->type == NodeType::FunctionDecl)
+        {
+            auto &funcNode = static_cast<FunctionDecl &>(*node);
+
+            m_symbols.EnterFunctionScope();
+
+            std::vector<llvm::Type *> paramTypes;
+            paramTypes.reserve(funcNode.params.size());
+            std::transform(funcNode.params.begin(), funcNode.params.end(), std::back_inserter(paramTypes),
+                           [this](const Parameter &param) { return MapType(param.type); });
+
+            llvm::FunctionType *funcType =
+                llvm::FunctionType::get(MapType(funcNode.returnType), paramTypes, false);
+
+            // Name mangling
+            std::string llvmName = funcNode.name;
+            if (!funcNode.params.empty() && funcNode.params[0].name == "self" &&
+                funcNode.params[0].type.isPointer)
+            {
+                StructInfo *si = m_symbols.LookupStruct(funcNode.params[0].type.name);
+                if (si)
+                {
+                    llvmName = funcNode.params[0].type.name + "_" + funcNode.name;
+                }
+            }
+
+            llvm::Function::Create(funcType, llvm::Function::ExternalLinkage, llvmName, m_Module.get());
+
+            m_symbols.LeaveFunctionScope();
+        }
+    }
+
+    // Pass 3: Generate vtables (now all function signatures exist)
+    GenerateVtables();
+
+    // Pass 4: Visit function declarations with bodies
+    for (auto &node : program)
+    {
+        if (node && node->type == NodeType::FunctionDecl)
         {
             node->Accept(*this);
         }
@@ -40,6 +94,58 @@ void CodeGenerator::DeclareExternalFunctions()
     llvm::FunctionType *freeType =
         llvm::FunctionType::get(llvm::Type::getVoidTy(m_Context), {ptrType}, false);
     llvm::Function::Create(freeType, llvm::Function::ExternalLinkage, "free", m_Module.get());
+}
+
+void CodeGenerator::GenerateVtables()
+{
+    for (auto &[structName, siInfo] : m_symbols.GetAllStructInterfaces())
+    {
+        InterfaceInfo *ifaceInfo = m_symbols.LookupInterface(siInfo.interfaceName);
+        if (!ifaceInfo)
+            continue;
+
+        // Build vtable constant entries
+        std::vector<llvm::Constant *> vtableEntries;
+        for (auto &method : ifaceInfo->methods)
+        {
+            std::string mangledName = structName + "_" + method.name;
+            llvm::Function *func = m_Module->getFunction(mangledName);
+            if (!func)
+            {
+                JLANG_ERROR(STR("Vtable: function '%s' not found for struct '%s' implementing '%s'",
+                                mangledName.c_str(), structName.c_str(), siInfo.interfaceName.c_str()));
+                return;
+            }
+
+            // Bitcast the function to the vtable slot type (i8* as self instead of StructName*)
+            llvm::Constant *castedFunc =
+                llvm::ConstantExpr::getBitCast(func, llvm::PointerType::getUnqual(method.llvmFuncType));
+            vtableEntries.push_back(castedFunc);
+        }
+
+        // Create vtable global constant
+        llvm::Constant *vtableInit = llvm::ConstantStruct::get(ifaceInfo->vtableType, vtableEntries);
+        std::string vtableGlobalName = structName + "_" + siInfo.interfaceName + "_vtable";
+        auto *vtableGlobal =
+            new llvm::GlobalVariable(*m_Module, ifaceInfo->vtableType, true,
+                                     llvm::GlobalValue::InternalLinkage, vtableInit, vtableGlobalName);
+
+        // Update the StructInterfaceInfo with the vtable global
+        StructInterfaceInfo updated = siInfo;
+        updated.vtableGlobal = vtableGlobal;
+        m_symbols.DefineStructInterface(structName, updated);
+    }
+}
+
+std::string CodeGenerator::DetermineStructTypeName(AstNode *node)
+{
+    if (auto *varExpr = dynamic_cast<VarExpr *>(node))
+    {
+        VariableInfo *info = m_symbols.LookupVariable(varExpr->name);
+        if (info)
+            return info->type.name;
+    }
+    return "";
 }
 
 void CodeGenerator::DumpIR()

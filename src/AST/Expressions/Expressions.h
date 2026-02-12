@@ -186,4 +186,26 @@ struct IndexAssignExpr : public Expression
     void Accept(AstVisitor &visitor) override { visitor.VisitIndexAssignExpr(*this); }
 };
 
+struct MethodCallExpr : public Expression
+{
+    std::shared_ptr<AstNode> object;
+    std::string methodName;
+    std::vector<std::shared_ptr<AstNode>> arguments;
+
+    MethodCallExpr() { type = NodeType::MethodCallExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitMethodCallExpr(*this); }
+};
+
+struct MemberAssignExpr : public Expression
+{
+    std::shared_ptr<AstNode> object;
+    std::string memberName;
+    std::shared_ptr<AstNode> value;
+
+    MemberAssignExpr() { type = NodeType::MemberAssignExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitMemberAssignExpr(*this); }
+};
+
 } // namespace jlang

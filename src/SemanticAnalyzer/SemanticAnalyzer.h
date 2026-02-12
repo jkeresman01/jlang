@@ -52,13 +52,27 @@ class SemanticAnalyzer : public AstVisitor
     void VisitArrayLiteralExpr(ArrayLiteralExpr &) override;
     void VisitIndexExpr(IndexExpr &) override;
     void VisitIndexAssignExpr(IndexAssignExpr &) override;
+    void VisitMethodCallExpr(MethodCallExpr &) override;
+    void VisitMemberAssignExpr(MemberAssignExpr &) override;
 
     void CheckUnusedVariables();
+    void ValidateInterfaceImplementations();
 
   private:
     std::unordered_map<std::string, bool> m_declaredVariables; // name -> used
     std::unordered_set<std::string> m_currentFunctionVariables;
     int m_LoopDepth = 0;
+
+    // Interface/struct/function registries for validation
+    std::unordered_map<std::string, std::vector<InterfaceMethodDecl>> m_declaredInterfaces;
+    std::unordered_map<std::string, std::string> m_structInterfaces; // struct -> interface
+    // function key: "StructName_methodName", value: {params, returnType}
+    struct FuncSig
+    {
+        std::vector<Parameter> params;
+        TypeRef returnType;
+    };
+    std::unordered_map<std::string, FuncSig> m_functionSignatures;
 };
 
 } // namespace jlang

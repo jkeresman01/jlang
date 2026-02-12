@@ -47,6 +47,8 @@ class AstPrinter : public AstVisitor
     void VisitArrayLiteralExpr(ArrayLiteralExpr &) override;
     void VisitIndexExpr(IndexExpr &) override;
     void VisitIndexAssignExpr(IndexAssignExpr &) override;
+    void VisitMethodCallExpr(MethodCallExpr &) override;
+    void VisitMemberAssignExpr(MemberAssignExpr &) override;
 
   private:
     void Indent();

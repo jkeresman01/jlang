@@ -41,7 +41,9 @@ enum class NodeType
     ErrExpr,
     ArrayLiteralExpr,
     IndexExpr,
-    IndexAssignExpr
+    IndexAssignExpr,
+    MethodCallExpr,
+    MemberAssignExpr
 };
 
 struct AstNode

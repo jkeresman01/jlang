@@ -9,6 +9,21 @@ void CodeGenerator::VisitCallExpr(CallExpr &node)
 {
     llvm::Function *callee = m_Module->getFunction(node.callee);
 
+    // If not found, try mangled name based on first argument type
+    if (!callee && !node.arguments.empty())
+    {
+        // Peek at first arg to determine struct type
+        if (auto *varExpr = dynamic_cast<VarExpr *>(node.arguments[0].get()))
+        {
+            VariableInfo *argInfo = m_symbols.LookupVariable(varExpr->name);
+            if (argInfo)
+            {
+                std::string mangledName = argInfo->type.name + "_" + node.callee;
+                callee = m_Module->getFunction(mangledName);
+            }
+        }
+    }
+
     if (!callee)
     {
         JLANG_ERROR(STR("Unknown function: %s", node.callee.c_str()));
@@ -16,18 +31,90 @@ void CodeGenerator::VisitCallExpr(CallExpr &node)
 
     std::vector<llvm::Value *> args;
 
-    for (auto &arg : node.arguments)
+    for (size_t i = 0; i < node.arguments.size(); ++i)
     {
-        arg->Accept(*this);
+        node.arguments[i]->Accept(*this);
 
         if (!m_LastValue)
         {
             JLANG_ERROR(STR("Invalid argument in call to %s", node.callee.c_str()));
         }
+
+        // Check if we need implicit struct*-to-interface conversion for this argument
+        if (callee && i < callee->arg_size())
+        {
+            llvm::Type *expectedType = callee->getArg(i)->getType();
+
+            // If the expected type is an interface fat pointer struct, and we're passing a struct pointer
+            if (expectedType->isStructTy() && m_LastValue->getType()->isPointerTy())
+            {
+                llvm::StructType *expectedStruct = llvm::dyn_cast<llvm::StructType>(expectedType);
+                if (expectedStruct && expectedStruct->hasName())
+                {
+                    std::string expectedName = expectedStruct->getName().str();
+                    // Check if this is a fat_ptr type
+                    if (expectedName.find("_fat_ptr") != std::string::npos)
+                    {
+                        // Extract interface name from "InterfaceName_fat_ptr"
+                        std::string ifaceName = expectedName.substr(0, expectedName.find("_fat_ptr"));
+                        InterfaceInfo *ifaceInfo = m_symbols.LookupInterface(ifaceName);
+
+                        if (ifaceInfo)
+                        {
+                            // Determine struct type of the argument
+                            std::string argStructName;
+                            if (auto *argVar = dynamic_cast<VarExpr *>(node.arguments[i].get()))
+                            {
+                                VariableInfo *ai = m_symbols.LookupVariable(argVar->name);
+                                if (ai)
+                                    argStructName = ai->type.name;
+                            }
+
+                            if (!argStructName.empty())
+                            {
+                                StructInterfaceInfo *siInfo = m_symbols.LookupStructInterface(argStructName);
+                                if (siInfo && siInfo->vtableGlobal)
+                                {
+                                    // Create fat pointer on the fly
+                                    llvm::Type *i8Ptr =
+                                        llvm::PointerType::getUnqual(llvm::Type::getInt8Ty(m_Context));
+                                    llvm::Value *dataPtr =
+                                        m_IRBuilder.CreateBitCast(m_LastValue, i8Ptr, "arg_data");
+
+                                    llvm::AllocaInst *fatPtr =
+                                        m_IRBuilder.CreateAlloca(ifaceInfo->fatPtrType, nullptr, "arg_fat");
+
+                                    llvm::Value *dataField = m_IRBuilder.CreateStructGEP(
+                                        ifaceInfo->fatPtrType, fatPtr, 0, "arg_fat_data");
+                                    m_IRBuilder.CreateStore(dataPtr, dataField);
+
+                                    llvm::Value *vtableField = m_IRBuilder.CreateStructGEP(
+                                        ifaceInfo->fatPtrType, fatPtr, 1, "arg_fat_vtable");
+                                    m_IRBuilder.CreateStore(siInfo->vtableGlobal, vtableField);
+
+                                    // Load the fat pointer struct to pass by value
+                                    m_LastValue =
+                                        m_IRBuilder.CreateLoad(ifaceInfo->fatPtrType, fatPtr, "arg_fat_val");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         args.push_back(m_LastValue);
     }
 
-    m_LastValue = m_IRBuilder.CreateCall(callee, args, node.callee + "_call");
+    if (callee->getReturnType()->isVoidTy())
+    {
+        m_IRBuilder.CreateCall(callee, args);
+        m_LastValue = nullptr;
+    }
+    else
+    {
+        m_LastValue = m_IRBuilder.CreateCall(callee, args, node.callee + "_call");
+    }
 }
 
 void CodeGenerator::VisitLiteralExpr(LiteralExpr &node)
