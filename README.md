@@ -4,6 +4,7 @@
 
   <h4>A procedural programming language mostly inspired by Go/Rust</h4>
   <h6><i>Clean syntax, explicit memory management, and modern language features compiled to native code via LLVM.</i></h6>
+  <h6>Documenation:  </h6>
 
 [![C++](https://img.shields.io/badge/C++-blue.svg?style=for-the-badge&logo=cplusplus)](https://isocpp.org/)
 [![LLVM](https://img.shields.io/badge/LLVM-262D3A.svg?style=for-the-badge&logo=llvm)](https://llvm.org/)
@@ -14,6 +15,9 @@
 
 > [!NOTE]
 > This project is still very much a work in progress. Syntax and features may change.
+
+> [!NOTE]
+> For detailed documenation check this out: https://jkeresman01.github.io/jlang
 
 ### Syntax Design Decisions
 
