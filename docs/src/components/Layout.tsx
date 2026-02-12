@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
+import ThemeToggle from './ThemeToggle'
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -27,6 +28,8 @@ export default function Layout() {
             </svg>
           </button>
           <span className="header-title">jlang documentation</span>
+          <div className="header-spacer" />
+          <ThemeToggle />
         </header>
         <main className="content">
           <div className="content-inner">
