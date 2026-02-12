@@ -362,6 +362,8 @@
   border-radius: 3px;
   color: var(--accent);
 }
+
+.callout {
   margin: 1.25rem 0;
   padding: 1rem 1.25rem;
   border-radius: 8px;
