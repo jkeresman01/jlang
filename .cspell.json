@@ -28,6 +28,13 @@
     "zstd",
     "libzstd",
     "libnames",
-    "whilecond"
+    "whilecond",
+    "njsproj",
+    "tseslint",
+    "prismjs",
+    "rolldown",
+    "callout",
+    "Callouts",
+    "tsbuildinfo"
   ]
 }
