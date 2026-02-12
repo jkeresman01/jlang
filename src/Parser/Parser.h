@@ -60,6 +60,7 @@ class Parser
     std::shared_ptr<AstNode> ParseMatchExpr();
     std::shared_ptr<AstNode> ParseOkExpr();
     std::shared_ptr<AstNode> ParseErrExpr();
+    std::shared_ptr<AstNode> ParseArrayLiteral();
     MatchArm ParseMatchArm();
 
     bool IsTypeKeyword() const;

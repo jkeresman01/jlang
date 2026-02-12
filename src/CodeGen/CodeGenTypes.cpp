@@ -111,6 +111,17 @@ llvm::Type *CodeGenerator::MapType(const TypeRef &typeRef)
         }
     }
 
+    // Handle array types: e.g. i32[5] -> [5 x i32]
+    if (typeRef.isArrayType())
+    {
+        llvm::Type *arrayType = llvm::ArrayType::get(baseType, typeRef.arraySize);
+        if (typeRef.isPointer)
+        {
+            return llvm::PointerType::getUnqual(baseType);
+        }
+        return arrayType;
+    }
+
     if (typeRef.isPointer)
     {
         return llvm::PointerType::getUnqual(baseType);
@@ -158,6 +169,15 @@ TypeRef CodeGenerator::InferTypeRef(llvm::Type *llvmType)
     if (llvmType->isDoubleTy())
     {
         return TypeRef{"f64", false};
+    }
+
+    // Handle array types
+    if (auto *arrayType = llvm::dyn_cast<llvm::ArrayType>(llvmType))
+    {
+        TypeRef elemRef = InferTypeRef(arrayType->getElementType());
+        elemRef.isArray = true;
+        elemRef.arraySize = static_cast<int>(arrayType->getNumElements());
+        return elemRef;
     }
 
     // Handle struct types

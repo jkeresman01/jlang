@@ -11,24 +11,33 @@ struct TypeRef
     std::string name;
     bool isPointer = false;
     bool isNullable = false;
+    bool isArray = false;
+    int arraySize = 0;
     std::vector<TypeRef> typeParameters;
 
     bool isGeneric() const { return !typeParameters.empty(); }
 
     bool isResult() const { return name == "Result" && typeParameters.size() == 2; }
 
+    bool isArrayType() const { return isArray && arraySize > 0; }
+
     std::string getMangledName() const
     {
-        if (!isGeneric())
+        std::string mangled = name;
+
+        if (isArrayType())
         {
-            return name + (isPointer ? "_ptr" : "");
+            mangled += "_arr" + std::to_string(arraySize);
         }
 
-        std::string mangled = name;
-        for (const auto &param : typeParameters)
+        if (isGeneric())
         {
-            mangled += "_" + param.getMangledName();
+            for (const auto &param : typeParameters)
+            {
+                mangled += "_" + param.getMangledName();
+            }
         }
+
         if (isPointer)
         {
             mangled += "_ptr";

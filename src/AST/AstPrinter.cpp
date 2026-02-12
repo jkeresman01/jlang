@@ -44,6 +44,8 @@ void AstPrinter::VisitChild(std::shared_ptr<AstNode> &node)
 std::string AstPrinter::FormatTypeRef(const TypeRef &typeRef)
 {
     std::string s = typeRef.name;
+    if (typeRef.isArrayType())
+        s += "[" + std::to_string(typeRef.arraySize) + "]";
     if (typeRef.isPointer)
         s += "*";
     if (typeRef.isNullable)
@@ -389,6 +391,49 @@ void AstPrinter::VisitErrExpr(ErrExpr &node)
 
     ++m_indent;
     VisitChild(node.error);
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
+void AstPrinter::VisitArrayLiteralExpr(ArrayLiteralExpr &node)
+{
+    Indent();
+    m_result += "(ArrayLiteralExpr [" + std::to_string(node.elements.size()) + "]\n";
+
+    ++m_indent;
+    for (auto &elem : node.elements)
+        VisitChild(elem);
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
+void AstPrinter::VisitIndexExpr(IndexExpr &node)
+{
+    Indent();
+    m_result += "(IndexExpr\n";
+
+    ++m_indent;
+    VisitChild(node.object);
+    VisitChild(node.index);
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
+void AstPrinter::VisitIndexAssignExpr(IndexAssignExpr &node)
+{
+    Indent();
+    m_result += "(IndexAssignExpr\n";
+
+    ++m_indent;
+    VisitChild(node.object);
+    VisitChild(node.index);
+    VisitChild(node.value);
     --m_indent;
 
     Indent();

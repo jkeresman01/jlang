@@ -231,6 +231,28 @@ std::shared_ptr<AstNode> Parser::ParseStruct()
             continue;
         }
 
+        bool isArray = false;
+        int arraySize = 0;
+
+        // Check for array type: Type[size]
+        if (IsMatched(TokenType::LBracket))
+        {
+            if (!IsMatched(TokenType::NumberLiteral))
+            {
+                JLANG_ERROR("Expected array size");
+            }
+            else
+            {
+                isArray = true;
+                arraySize = std::stoi(Previous().m_lexeme);
+            }
+
+            if (!IsMatched(TokenType::RBracket))
+            {
+                JLANG_ERROR("Expected ']' after array size");
+            }
+        }
+
         bool isPointer = IsMatched(TokenType::Star);
 
         bool isNullable = false;
@@ -251,7 +273,8 @@ std::shared_ptr<AstNode> Parser::ParseStruct()
         }
 
         bool isPublic = !fieldName.empty() && std::isupper(static_cast<unsigned char>(fieldName[0]));
-        StructField field{fieldName, TypeRef{typeName, isPointer, isNullable}, isPublic};
+        TypeRef fieldType{typeName, isPointer, isNullable, isArray, arraySize};
+        StructField field{fieldName, fieldType, isPublic};
         structDeclNode->fields.push_back(field);
     }
 
@@ -737,7 +760,7 @@ std::shared_ptr<AstNode> Parser::ParseExpression()
 {
     auto expr = ParseElvis();
 
-    // Handle assignment: identifier = expression
+    // Handle assignment: identifier = expression or arr[i] = expression
     if (IsMatched(TokenType::Equal))
     {
         auto value = ParseExpression();
@@ -749,6 +772,14 @@ std::shared_ptr<AstNode> Parser::ParseExpression()
             assign->name = varExpr->name;
             assign->value = value;
             return assign;
+        }
+        else if (auto indexExpr = std::dynamic_pointer_cast<IndexExpr>(expr))
+        {
+            auto indexAssign = std::make_shared<IndexAssignExpr>();
+            indexAssign->object = indexExpr->object;
+            indexAssign->index = indexExpr->index;
+            indexAssign->value = value;
+            return indexAssign;
         }
         else
         {
@@ -814,6 +845,19 @@ std::shared_ptr<AstNode> Parser::ParseExpression()
             assign->name = varExpr->name;
             assign->value = binary;
             return assign;
+        }
+        else if (auto indexExpr = std::dynamic_pointer_cast<IndexExpr>(expr))
+        {
+            auto binary = std::make_shared<BinaryExpr>();
+            binary->op = compoundOp;
+            binary->left = expr;
+            binary->right = rhs;
+
+            auto indexAssign = std::make_shared<IndexAssignExpr>();
+            indexAssign->object = indexExpr->object;
+            indexAssign->index = indexExpr->index;
+            indexAssign->value = binary;
+            return indexAssign;
         }
         else
         {
@@ -1075,16 +1119,38 @@ std::shared_ptr<AstNode> Parser::ParsePostfix()
 {
     auto expr = ParsePrimary();
 
-    // Handle postfix increment/decrement
-    while (Check(TokenType::PlusPlus) || Check(TokenType::MinusMinus))
+    // Handle postfix operators: indexing and increment/decrement
+    while (true)
     {
-        std::string op = Peek().m_lexeme;
-        Advance();
+        if (Check(TokenType::LBracket))
+        {
+            Advance(); // consume '['
+            auto index = ParseExpression();
 
-        auto postfix = std::make_shared<PostfixExpr>();
-        postfix->op = op;
-        postfix->operand = expr;
-        expr = postfix;
+            if (!IsMatched(TokenType::RBracket))
+            {
+                JLANG_ERROR("Expected ']' after index expression");
+            }
+
+            auto indexExpr = std::make_shared<IndexExpr>();
+            indexExpr->object = expr;
+            indexExpr->index = index;
+            expr = indexExpr;
+        }
+        else if (Check(TokenType::PlusPlus) || Check(TokenType::MinusMinus))
+        {
+            std::string op = Peek().m_lexeme;
+            Advance();
+
+            auto postfix = std::make_shared<PostfixExpr>();
+            postfix->op = op;
+            postfix->operand = expr;
+            expr = postfix;
+        }
+        else
+        {
+            break;
+        }
     }
 
     return expr;
@@ -1160,6 +1226,12 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
         return ParseErrExpr();
     }
 
+    // Handle array literal: [expr, expr, ...]
+    if (Check(TokenType::LBracket))
+    {
+        return ParseArrayLiteral();
+    }
+
     // Handle alloc<Type>() expression
     if (IsMatched(TokenType::Alloc))
     {
@@ -1169,13 +1241,18 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
             return nullptr;
         }
 
-        if (!IsMatched(TokenType::Identifier))
+        TypeRef allocType = ParseTypeWithParameters();
+        if (allocType.name.empty())
         {
             JLANG_ERROR("Expected type name in alloc<Type>");
             return nullptr;
         }
 
-        std::string typeName = Previous().m_lexeme;
+        // Check for pointer suffix on the base type (e.g., alloc<i32*>)
+        if (IsMatched(TokenType::Star))
+        {
+            allocType.isPointer = true;
+        }
 
         if (!IsMatched(TokenType::Greater))
         {
@@ -1189,8 +1266,9 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
             return nullptr;
         }
 
+        allocType.isPointer = true; // alloc always returns a pointer
         auto allocExpr = std::make_shared<AllocExpr>();
-        allocExpr->allocType = TypeRef{typeName, true}; // always returns a pointer
+        allocExpr->allocType = allocType;
         return allocExpr;
     }
 
@@ -1373,6 +1451,26 @@ TypeRef Parser::ParseTypeWithParameters()
     TypeRef typeRef;
     typeRef.name = typeName;
 
+    // Check for array type: Type[size]
+    if (IsMatched(TokenType::LBracket))
+    {
+        if (!IsMatched(TokenType::NumberLiteral))
+        {
+            JLANG_ERROR("Expected array size");
+            return typeRef;
+        }
+
+        typeRef.isArray = true;
+        typeRef.arraySize = std::stoi(Previous().m_lexeme);
+
+        if (!IsMatched(TokenType::RBracket))
+        {
+            JLANG_ERROR("Expected ']' after array size");
+        }
+
+        return typeRef;
+    }
+
     // Check for generic type parameters: Type<T, E>
     if (IsMatched(TokenType::Less))
     {
@@ -1443,6 +1541,29 @@ std::shared_ptr<AstNode> Parser::ParseErrExpr()
     }
 
     return errExpr;
+}
+
+std::shared_ptr<AstNode> Parser::ParseArrayLiteral()
+{
+    Advance(); // consume '['
+
+    auto arrayLiteral = std::make_shared<ArrayLiteralExpr>();
+
+    if (!Check(TokenType::RBracket))
+    {
+        do
+        {
+            auto element = ParseExpression();
+            arrayLiteral->elements.push_back(element);
+        } while (IsMatched(TokenType::Comma));
+    }
+
+    if (!IsMatched(TokenType::RBracket))
+    {
+        JLANG_ERROR("Expected ']' after array literal");
+    }
+
+    return arrayLiteral;
 }
 
 MatchArm Parser::ParseMatchArm()

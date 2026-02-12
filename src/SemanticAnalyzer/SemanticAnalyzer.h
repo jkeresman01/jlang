@@ -49,6 +49,9 @@ class SemanticAnalyzer : public AstVisitor
     void VisitMatchExpr(MatchExpr &) override;
     void VisitOkExpr(OkExpr &) override;
     void VisitErrExpr(ErrExpr &) override;
+    void VisitArrayLiteralExpr(ArrayLiteralExpr &) override;
+    void VisitIndexExpr(IndexExpr &) override;
+    void VisitIndexAssignExpr(IndexAssignExpr &) override;
 
     void CheckUnusedVariables();
 

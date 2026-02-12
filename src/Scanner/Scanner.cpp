@@ -87,6 +87,12 @@ void Scanner::ScanToken()
     case ')':
         AddToken(TokenType::RParen);
         break;
+    case '[':
+        AddToken(TokenType::LBracket);
+        break;
+    case ']':
+        AddToken(TokenType::RBracket);
+        break;
     case ';':
         AddToken(TokenType::Semicolon);
         break;

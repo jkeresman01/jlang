@@ -38,7 +38,10 @@ enum class NodeType
     PostfixExpr,
     MatchExpr,
     OkExpr,
-    ErrExpr
+    ErrExpr,
+    ArrayLiteralExpr,
+    IndexExpr,
+    IndexAssignExpr
 };
 
 struct AstNode

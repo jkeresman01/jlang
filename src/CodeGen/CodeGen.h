@@ -58,6 +58,9 @@ class CodeGenerator : public AstVisitor
     virtual void VisitMatchExpr(MatchExpr &) override;
     virtual void VisitOkExpr(OkExpr &) override;
     virtual void VisitErrExpr(ErrExpr &) override;
+    virtual void VisitArrayLiteralExpr(ArrayLiteralExpr &) override;
+    virtual void VisitIndexExpr(IndexExpr &) override;
+    virtual void VisitIndexAssignExpr(IndexAssignExpr &) override;
 
   private:
     void DeclareExternalFunctions();

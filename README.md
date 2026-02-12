@@ -758,6 +758,78 @@ a ^= b;
 
 <h6><i>See `samples/bitwise.j` for a working example.</i></h6>
 
+#### Arrays
+
+jlang supports fixed-size arrays with C-style bracket syntax. Arrays can be stack-allocated or heap-allocated via `alloc`, and support indexing for both reads and writes.
+
+**Stack-allocated arrays:**
+
+```rust
+// Explicit type with array literal
+var arr: i32[5] = [10, 20, 30, 40, 50];
+
+// Immutable array
+val constants: i32[3] = [1, 2, 3];
+
+// Uninitialized (elements have undefined values)
+var buffer: i32[100];
+```
+
+**Type inference with array literals:**
+
+```rust
+// Inferred as i32[3]
+var nums := [1, 2, 3];
+```
+
+**Indexing (read and write):**
+
+```rust
+var arr: i32[5] = [10, 20, 30, 40, 50];
+
+// Read
+var x: i32 = arr[0];       // 10
+printf("%d\n", arr[2]);    // 30
+
+// Write
+arr[0] = 99;
+arr[4] = arr[1] + arr[2];
+
+// Dynamic index
+for (var i: i32 = 0; i < 5; i++) {
+    printf("arr[%d] = %d\n", i, arr[i]);
+}
+```
+
+**Heap-allocated arrays:**
+
+```rust
+var heap: i32[10]* = alloc<i32[10]>();
+heap[0] = 100;
+heap[1] = 200;
+printf("%d\n", heap[0]);  // 100
+```
+
+**Immutability applies to elements too:**
+
+```rust
+val arr: i32[3] = [1, 2, 3];
+// arr[0] = 99;  // ERROR: Cannot assign to element of immutable array 'arr'
+```
+
+| Syntax | Storage | Lifetime |
+|--------|---------|----------|
+| `var arr: i32[5]` | Stack | Current scope |
+| `var arr: i32[5] = [...]` | Stack | Current scope |
+| `var arr := [1, 2, 3]` | Stack (inferred) | Current scope |
+| `var arr: i32[10]* = alloc<i32[10]>()` | Heap | Until `free()` |
+
+<h6><i>The syntax <code>Type[size]</code> was chosen over alternatives like <code>[size]Type</code> (Go) or <code>[Type; size]</code> (Rust) because it reads naturally as "an array of Type with size elements" and mirrors how C developers already think about array types. The size is part of the type — <code>i32[3]</code> and <code>i32[5]</code> are distinct types. Array literals use square brackets (<code>[1, 2, 3]</code>) to visually match the indexing syntax (<code>arr[0]</code>), keeping the notation consistent.</i></h6>
+
+<h6><i>Arrays are fixed-size by design. The size must be a compile-time constant, which allows stack allocation without runtime overhead and enables the compiler to catch out-of-bounds errors in the future. For dynamic collections, heap-allocated arrays via <code>alloc</code> provide manual control over sizing.</i></h6>
+
+<h6><i>See <code>samples/arrays.j</code> for a working example.</i></h6>
+
 ### Memory: manual management
 
 ```rust
@@ -799,6 +871,7 @@ fn add(a: i32, b: i32) -> i32 {
 | `char` | Character | 1 byte | ASCII 0-255 |
 | `char*` | String (char pointer) | 8 bytes | Memory address |
 | `void` | No value | - | Functions only |
+| `Type[N]` | Fixed-size array | N × element | Stack-allocated, N elements |
 | `Result<T, E>` | Success or error | varies | `Ok(T)` or `Err(E)` |
 
 <h6><i>See `samples/types.j` for a complete working example of all types.</i></h6>

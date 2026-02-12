@@ -50,6 +50,8 @@ enum class TokenType
     RBrace,
     LParen,
     RParen,
+    LBracket,
+    RBracket,
     Semicolon,
     Colon,
     Arrow,

@@ -156,4 +156,34 @@ struct MatchExpr : public Expression
     void Accept(AstVisitor &visitor) override { visitor.VisitMatchExpr(*this); }
 };
 
+struct ArrayLiteralExpr : public Expression
+{
+    std::vector<std::shared_ptr<AstNode>> elements;
+
+    ArrayLiteralExpr() { type = NodeType::ArrayLiteralExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitArrayLiteralExpr(*this); }
+};
+
+struct IndexExpr : public Expression
+{
+    std::shared_ptr<AstNode> object;
+    std::shared_ptr<AstNode> index;
+
+    IndexExpr() { type = NodeType::IndexExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitIndexExpr(*this); }
+};
+
+struct IndexAssignExpr : public Expression
+{
+    std::shared_ptr<AstNode> object;
+    std::shared_ptr<AstNode> index;
+    std::shared_ptr<AstNode> value;
+
+    IndexAssignExpr() { type = NodeType::IndexAssignExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitIndexAssignExpr(*this); }
+};
+
 } // namespace jlang

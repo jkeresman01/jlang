@@ -30,6 +30,9 @@ struct PostfixExpr;
 struct MatchExpr;
 struct OkExpr;
 struct ErrExpr;
+struct ArrayLiteralExpr;
+struct IndexExpr;
+struct IndexAssignExpr;
 
 class AstVisitor
 {
@@ -64,5 +67,8 @@ class AstVisitor
     virtual void VisitMatchExpr(MatchExpr &) = 0;
     virtual void VisitOkExpr(OkExpr &) = 0;
     virtual void VisitErrExpr(ErrExpr &) = 0;
+    virtual void VisitArrayLiteralExpr(ArrayLiteralExpr &) = 0;
+    virtual void VisitIndexExpr(IndexExpr &) = 0;
+    virtual void VisitIndexAssignExpr(IndexAssignExpr &) = 0;
 };
 } // namespace jlang

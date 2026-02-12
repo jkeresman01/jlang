@@ -245,6 +245,43 @@ void SemanticAnalyzer::VisitErrExpr(ErrExpr &node)
         node.error->Accept(*this);
 }
 
+void SemanticAnalyzer::VisitArrayLiteralExpr(ArrayLiteralExpr &node)
+{
+    for (auto &elem : node.elements)
+    {
+        if (elem)
+            elem->Accept(*this);
+    }
+}
+
+void SemanticAnalyzer::VisitIndexExpr(IndexExpr &node)
+{
+    if (node.object)
+        node.object->Accept(*this);
+    if (node.index)
+        node.index->Accept(*this);
+}
+
+void SemanticAnalyzer::VisitIndexAssignExpr(IndexAssignExpr &node)
+{
+    // Mark the base variable as used
+    if (auto *varExpr = dynamic_cast<VarExpr *>(node.object.get()))
+    {
+        auto it = m_declaredVariables.find(varExpr->name);
+        if (it != m_declaredVariables.end())
+        {
+            it->second = true;
+        }
+    }
+
+    if (node.object)
+        node.object->Accept(*this);
+    if (node.index)
+        node.index->Accept(*this);
+    if (node.value)
+        node.value->Accept(*this);
+}
+
 void SemanticAnalyzer::CheckUnusedVariables()
 {
     for (const auto &varName : m_currentFunctionVariables)

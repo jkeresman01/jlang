@@ -104,7 +104,17 @@ void CodeGenerator::VisitVarExpr(VarExpr &node)
 
     if (llvm::AllocaInst *alloca = llvm::dyn_cast<llvm::AllocaInst>(storedValue))
     {
-        m_LastValue = m_IRBuilder.CreateLoad(alloca->getAllocatedType(), alloca, node.name);
+        // For array types, return a pointer to the first element instead of loading
+        if (alloca->getAllocatedType()->isArrayTy())
+        {
+            llvm::Value *zero = llvm::ConstantInt::get(llvm::Type::getInt32Ty(m_Context), 0);
+            m_LastValue =
+                m_IRBuilder.CreateGEP(alloca->getAllocatedType(), alloca, {zero, zero}, node.name + "_ptr");
+        }
+        else
+        {
+            m_LastValue = m_IRBuilder.CreateLoad(alloca->getAllocatedType(), alloca, node.name);
+        }
     }
     else
     {

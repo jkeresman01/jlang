@@ -100,6 +100,25 @@ void CodeGenerator::VisitVariableDecl(VariableDecl &node)
             return;
         }
 
+        // Check if the initializer produced an array alloca (from array literal)
+        if (llvm::AllocaInst *srcAlloca = llvm::dyn_cast<llvm::AllocaInst>(m_LastValue))
+        {
+            if (srcAlloca->getAllocatedType()->isArrayTy())
+            {
+                varType = srcAlloca->getAllocatedType();
+                inferredType = InferTypeRef(varType);
+
+                llvm::AllocaInst *alloca = m_IRBuilder.CreateAlloca(varType, nullptr, node.name);
+                uint64_t typeSize = m_Module->getDataLayout().getTypeAllocSize(varType);
+                m_IRBuilder.CreateMemCpy(alloca, llvm::MaybeAlign(), srcAlloca, llvm::MaybeAlign(), typeSize);
+
+                m_symbols.DefineVariable(node.name,
+                                         VariableInfo{alloca, inferredType, false, node.isMutable});
+                m_symbols.TrackFunctionLocal(node.name);
+                return;
+            }
+        }
+
         varType = m_LastValue->getType();
         inferredType = InferTypeRef(varType);
 
@@ -127,25 +146,46 @@ void CodeGenerator::VisitVariableDecl(VariableDecl &node)
 
     if (node.initializer)
     {
-        node.initializer->Accept(*this);
-        if (m_LastValue)
+        // Check if initializer is an array literal being assigned to an array type
+        if (node.varType.isArrayType() && node.initializer->type == NodeType::ArrayLiteralExpr)
         {
-            // Null safety: cannot assign null to non-nullable pointer
-            if (node.varType.isPointer && !node.varType.isNullable &&
-                llvm::isa<llvm::ConstantPointerNull>(m_LastValue))
+            // Visit the array literal - it creates its own alloca
+            node.initializer->Accept(*this);
+            if (m_LastValue)
             {
-                JLANG_ERROR(
-                    STR("Cannot assign null to non-nullable pointer type '%s*'. Use '%s*?' to allow null.",
+                // m_LastValue is an alloca for the array literal.
+                // We need to memcpy from the literal's alloca to our variable's alloca.
+                llvm::AllocaInst *srcAlloca = llvm::dyn_cast<llvm::AllocaInst>(m_LastValue);
+                if (srcAlloca)
+                {
+                    uint64_t typeSize = m_Module->getDataLayout().getTypeAllocSize(varType);
+                    m_IRBuilder.CreateMemCpy(alloca, llvm::MaybeAlign(), srcAlloca, llvm::MaybeAlign(),
+                                             typeSize);
+                }
+            }
+        }
+        else
+        {
+            node.initializer->Accept(*this);
+            if (m_LastValue)
+            {
+                // Null safety: cannot assign null to non-nullable pointer
+                if (node.varType.isPointer && !node.varType.isNullable &&
+                    llvm::isa<llvm::ConstantPointerNull>(m_LastValue))
+                {
+                    JLANG_ERROR(STR(
+                        "Cannot assign null to non-nullable pointer type '%s*'. Use '%s*?' to allow null.",
                         node.varType.name.c_str(), node.varType.name.c_str()));
-                return;
-            }
+                    return;
+                }
 
-            if (m_LastValue->getType() != varType && varType->isPointerTy() &&
-                m_LastValue->getType()->isPointerTy())
-            {
-                m_LastValue = m_IRBuilder.CreateBitCast(m_LastValue, varType, "cast");
+                if (m_LastValue->getType() != varType && varType->isPointerTy() &&
+                    m_LastValue->getType()->isPointerTy())
+                {
+                    m_LastValue = m_IRBuilder.CreateBitCast(m_LastValue, varType, "cast");
+                }
+                m_IRBuilder.CreateStore(m_LastValue, alloca);
             }
-            m_IRBuilder.CreateStore(m_LastValue, alloca);
         }
     }
 

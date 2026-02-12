@@ -46,15 +46,26 @@ void CodeGenerator::VisitAllocExpr(AllocExpr &node)
 
     // Calculate size based on the type being allocated
     uint64_t allocSize = 8; // Default size
+    const llvm::DataLayout &dataLayout = m_Module->getDataLayout();
 
-    // Check if we're allocating a struct
-    StructInfo *structInfo = m_symbols.LookupStruct(node.allocType.name);
-    if (structInfo)
+    if (node.allocType.isArrayType())
     {
-        // Get the size of the struct from LLVM's data layout
-        llvm::StructType *structType = structInfo->llvmType;
-        const llvm::DataLayout &dataLayout = m_Module->getDataLayout();
-        allocSize = dataLayout.getTypeAllocSize(structType);
+        // Array allocation: elementSize * arraySize
+        TypeRef elemRef;
+        elemRef.name = node.allocType.name;
+        llvm::Type *elemType = MapType(elemRef);
+        uint64_t elemSize = dataLayout.getTypeAllocSize(elemType);
+        allocSize = elemSize * node.allocType.arraySize;
+    }
+    else
+    {
+        // Check if we're allocating a struct
+        StructInfo *structInfo = m_symbols.LookupStruct(node.allocType.name);
+        if (structInfo)
+        {
+            llvm::StructType *structType = structInfo->llvmType;
+            allocSize = dataLayout.getTypeAllocSize(structType);
+        }
     }
 
     llvm::Value *size = llvm::ConstantInt::get(llvm::Type::getInt64Ty(m_Context), allocSize);
