@@ -35,6 +35,10 @@
     "rolldown",
     "callout",
     "Callouts",
-    "tsbuildinfo"
+    "tsbuildinfo",
+    "BOOP",
+    "Bitcast",
+    "bitcast",
+    "vcall"
   ]
 }
