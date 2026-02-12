@@ -226,6 +226,67 @@ for (var i: i32 = 0; i < 5; ++i) {
 
 <h6><i>See `samples/control_flow.j` for comprehensive examples of all control flow constructs.</i></h6>
 
+#### Break and Continue
+
+jlang supports `break` and `continue` statements for controlling loop execution, following standard C-family semantics.
+
+**`break`** exits the innermost loop immediately:
+
+```rust
+for (var i: i32 = 0; i < 100; i++) {
+    if (i == 3) {
+        break;
+    }
+    printf("i = %d", i);
+}
+// prints: i = 0, i = 1, i = 2
+```
+
+**`continue`** skips the rest of the current iteration and jumps to the next one:
+
+```rust
+for (var j: i32 = 0; j < 5; j++) {
+    if (j == 2) {
+        continue;
+    }
+    printf("j = %d", j);
+}
+// prints: j = 0, j = 1, j = 3, j = 4
+```
+
+Both work in `while` and `for` loops:
+
+```rust
+// break in a while loop
+var i: i32 = 0;
+while (i < 100) {
+    if (i == 5) {
+        break;
+    }
+    printf("i = %d", i);
+    i = i + 1;
+}
+
+// continue in a while loop - skip when i == 3
+var j: i32 = 0;
+while (j < 5) {
+    j = j + 1;
+    if (j == 3) {
+        continue;
+    }
+    printf("j = %d", j);
+}
+```
+
+| Statement | Effect | Works in |
+|-----------|--------|----------|
+| `break` | Exits the innermost loop | `for`, `while` |
+| `continue` | Skips to the next iteration | `for`, `while` |
+
+<h6><i>In <code>for</code> loops, <code>continue</code> jumps to the update clause (e.g., <code>i++</code>) before re-evaluating the condition. In <code>while</code> loops, <code>continue</code> jumps directly back to the condition check.</i></h6>
+
+<h6><i>See <code>samples/break.j</code> and <code>samples/continue.j</code> for working examples.</i></h6>
+
 #### Structs: colon for interface implementation
 
 ```rust
