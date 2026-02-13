@@ -28,6 +28,7 @@ class CodeGenerator : public AstVisitor
 
     void Generate(const std::vector<std::shared_ptr<AstNode>> &program);
     void DumpIR();
+    bool EmitExecutable(const std::string &outputPath);
 
   private:
     virtual void VisitFunctionDecl(FunctionDecl &) override;

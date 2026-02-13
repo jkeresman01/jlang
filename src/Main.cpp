@@ -30,12 +30,12 @@ std::string Load(const std::string &path)
     return buffer.str();
 }
 
-void Compile(const std::string &filePath, bool dumpAst)
+int Compile(const std::string &filePath, bool dumpAst, bool emitIR, const std::string &outputPath)
 {
     std::string sourceCode = Load(filePath);
     if (sourceCode.empty())
     {
-        return;
+        return 1;
     }
 
     PreprocessorFacade preprocessor(sourceCode, filePath);
@@ -51,7 +51,7 @@ void Compile(const std::string &filePath, bool dumpAst)
     {
         AstPrinter printer;
         std::cout << printer.Print(program) << "\n";
-        return;
+        return 0;
     }
 
     SemanticAnalyzer analyzer;
@@ -59,26 +59,64 @@ void Compile(const std::string &filePath, bool dumpAst)
 
     CodeGenerator codegen;
     codegen.Generate(program);
-    codegen.DumpIR();
+
+    if (emitIR)
+    {
+        codegen.DumpIR();
+        return 0;
+    }
+
+    if (!codegen.EmitExecutable(outputPath))
+    {
+        return 1;
+    }
+
+    return 0;
 }
 
 int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        std::cerr << "Usage: Jlang [--dump-ast] <source_file.j>\n";
+        std::cerr << "Usage: Jlang [options] <source_file.j>\n"
+                  << "Options:\n"
+                  << "  --dump-ast    Print the AST and exit\n"
+                  << "  --emit-ir     Print LLVM IR to stdout\n"
+                  << "  -o <file>     Output executable path (default: a.out)\n";
         return 1;
     }
 
     bool dumpAst = false;
+    bool emitIR = false;
+    std::string outputPath = "a.out";
     const char *filePath = nullptr;
 
     for (int i = 1; i < argc; ++i)
     {
         if (std::strcmp(argv[i], "--dump-ast") == 0)
+        {
             dumpAst = true;
+        }
+        else if (std::strcmp(argv[i], "--emit-ir") == 0)
+        {
+            emitIR = true;
+        }
+        else if (std::strcmp(argv[i], "-o") == 0)
+        {
+            if (i + 1 < argc)
+            {
+                outputPath = argv[++i];
+            }
+            else
+            {
+                std::cerr << "Error: -o requires an argument\n";
+                return 1;
+            }
+        }
         else
+        {
             filePath = argv[i];
+        }
     }
 
     if (!filePath)
@@ -87,6 +125,5 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    Compile(filePath, dumpAst);
-    return 0;
+    return Compile(filePath, dumpAst, emitIR, outputPath);
 }

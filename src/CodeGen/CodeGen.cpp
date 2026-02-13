@@ -3,9 +3,18 @@
 #include "../Common/Logger.h"
 
 #include <algorithm>
+#include <cstdlib>
 
 #include <llvm/IR/Constants.h>
+#include <llvm/IR/LegacyPassManager.h>
 #include <llvm/IR/Verifier.h>
+#include <llvm/MC/TargetRegistry.h>
+#include <llvm/Support/FileSystem.h>
+#include <llvm/Support/TargetSelect.h>
+#include <llvm/Support/raw_ostream.h>
+#include <llvm/Target/TargetMachine.h>
+#include <llvm/Target/TargetOptions.h>
+#include <llvm/TargetParser/Host.h>
 
 namespace jlang
 {
@@ -151,6 +160,61 @@ std::string CodeGenerator::DetermineStructTypeName(AstNode *node)
 void CodeGenerator::DumpIR()
 {
     m_Module->print(llvm::outs(), nullptr);
+}
+
+bool CodeGenerator::EmitExecutable(const std::string &outputPath)
+{
+    llvm::InitializeNativeTarget();
+    llvm::InitializeNativeTargetAsmPrinter();
+    llvm::InitializeNativeTargetAsmParser();
+
+    std::string targetTriple = llvm::sys::getDefaultTargetTriple();
+    m_Module->setTargetTriple(targetTriple);
+
+    std::string error;
+    const llvm::Target *target = llvm::TargetRegistry::lookupTarget(targetTriple, error);
+    if (!target)
+    {
+        std::cerr << "Error: Failed to lookup target: " << error << "\n";
+        return false;
+    }
+
+    llvm::TargetOptions opts;
+    auto targetMachine = target->createTargetMachine(targetTriple, "generic", "", opts, llvm::Reloc::PIC_);
+    m_Module->setDataLayout(targetMachine->createDataLayout());
+
+    // Emit object file to a temporary path
+    std::string objPath = outputPath + ".o";
+    std::error_code ec;
+    llvm::raw_fd_ostream dest(objPath, ec, llvm::sys::fs::OF_None);
+    if (ec)
+    {
+        std::cerr << "Error: Could not open output file: " << ec.message() << "\n";
+        return false;
+    }
+
+    llvm::legacy::PassManager pass;
+    if (targetMachine->addPassesToEmitFile(pass, dest, nullptr, llvm::CodeGenFileType::ObjectFile))
+    {
+        std::cerr << "Error: Target machine cannot emit object file\n";
+        return false;
+    }
+
+    pass.run(*m_Module);
+    dest.flush();
+
+    // Link the object file into an executable using the system compiler
+    std::string linkCmd = "cc " + objPath + " -o " + outputPath + " -lm";
+    int result = std::system(linkCmd.c_str());
+    std::remove(objPath.c_str());
+
+    if (result != 0)
+    {
+        std::cerr << "Error: Linking failed (exit code " << result << ")\n";
+        return false;
+    }
+
+    return true;
 }
 
 } // namespace jlang

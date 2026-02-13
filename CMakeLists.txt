@@ -23,8 +23,13 @@ target_include_directories(Jlang PRIVATE
 find_package(LLVM REQUIRED CONFIG)
 find_package(ZLIB REQUIRED)
 
+find_package(zstd QUIET)
 if(NOT TARGET zstd::libzstd_shared)
-    add_library(zstd::libzstd_shared INTERFACE IMPORTED)
+    add_library(zstd::libzstd_shared SHARED IMPORTED)
+    find_file(ZSTD_SO NAMES libzstd.so libzstd.so.1 PATHS /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE} /usr/lib)
+    if(ZSTD_SO)
+        set_target_properties(zstd::libzstd_shared PROPERTIES IMPORTED_LOCATION "${ZSTD_SO}")
+    endif()
 endif()
 
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
@@ -38,7 +43,10 @@ llvm_map_components_to_libnames(LLVM_LIBS
     Core
     Support
     ExecutionEngine
+    Passes
+    Target
+    MC
     native
 )
 
-target_link_libraries(Jlang PRIVATE ${LLVM_LIBS} ZLIB::ZLIB)
+target_link_libraries(Jlang PRIVATE ${LLVM_LIBS} ZLIB::ZLIB zstd::libzstd_shared)
