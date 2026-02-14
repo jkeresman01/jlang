@@ -131,49 +131,35 @@ fn print(self: Employee*) {
 fn main() -> i32 {
     // Allocate a Point struct
     var pt: Point* = alloc<Point>();
-    if (pt == null) {
-        printf("Failed to allocate Point");
-        return 1;
-    }
-    printf("Allocated Point struct");
+    pt.X = 10;
+    pt.Y = 20;
+    printf("Point(%d, %d)\n", pt.X, pt.Y);
 
-    // Allocate a Person struct
+    // Allocate a Person struct and use interface method
     var person: Person* = alloc<Person>();
-    if (person == null) {
-        printf("Failed to allocate Person");
-        free(pt);
-        return 1;
-    }
-    printf("Allocated Person struct");
+    person.Name = "Alice";
+    person.Age = 30;
+    person.print();
 
     // Allocate a Counter struct
     var counter: Counter* = alloc<Counter>();
-    if (counter == null) {
-        printf("Failed to allocate Counter");
-        free(pt);
-        free(person);
-        return 1;
-    }
-    printf("Allocated Counter struct");
+    counter.Value = 0;
+    counter.Max = 100;
+    printf("Counter: %d / %d\n", counter.Value, counter.Max);
 
-    // Allocate an Employee struct
+    // Allocate an Employee struct and use interface method
     var emp: Employee* = alloc<Employee>();
-    if (emp == null) {
-        printf("Failed to allocate Employee");
-        free(pt);
-        free(person);
-        free(counter);
-        return 1;
-    }
-    printf("Allocated Employee struct");
+    emp.Name = "Bob";
+    emp.Department = "Engineering";
+    emp.Salary = 75000.0;
+    emp.Id = 1;
+    emp.print();
 
     // Clean up - always free allocated memory
     free(pt);
     free(person);
     free(counter);
     free(emp);
-
-    printf("All structs freed successfully");
 
     return 0;
 }

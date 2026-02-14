@@ -26,7 +26,7 @@ fn main() -> i32 {
     var name: char* = "milica";
     var greeting: char* = "Hello, World!";
 
-    var ptr: i32* = null;
+    var ptr: i32*? = null;
 
     return 0;
 }

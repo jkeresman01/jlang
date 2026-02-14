@@ -37,8 +37,8 @@ if (b != 0 && a / b > 10) {
     printf("Ratio exceeds 10");
 }
 
-// Fallback: expensive lookup only runs if cache misses
-if (cache != null || loadFromDisk()) {
+// Fallback: loadFromDisk() only runs if hasData is false
+if (hasData || loadFromDisk()) {
     printf("Data available");
 }`} />
 

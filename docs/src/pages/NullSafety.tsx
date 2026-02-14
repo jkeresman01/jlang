@@ -106,21 +106,17 @@ if (q != null) {
       <CodeBlock code={`// getDefaultConfig() is only called if primary is null
 var cfg: Config* = primary ?: getDefaultConfig();`} />
 
-      <h3>Equivalent If/Else</h3>
+      <h3>Equivalent Logic</h3>
       <p>
-        The elvis operator is syntactic sugar for a common if/else pattern:
+        The elvis operator is syntactic sugar for a common null-check pattern:
       </p>
 
       <CodeBlock code={`// Using elvis operator
 var cfg: Config* = primary ?: getDefaultConfig();
 
-// Equivalent if/else
-var cfg: Config*;
-if (primary != null) {
-    cfg = primary;
-} else {
-    cfg = getDefaultConfig();
-}`} />
+// Equivalent logic:
+// if primary is non-null → cfg = primary
+// if primary is null     → cfg = getDefaultConfig()`} />
 
       <h3>Behavior Summary</h3>
 

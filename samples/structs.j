@@ -24,13 +24,18 @@ fn print(self: Frog*) {
 
 fn main() -> i32 {
     var person: Person* = alloc<Person>();
+    person.Name = "Alice";
+    person.Age = 30;
 
-    if (person == null) {
-        printf("No can do");
-    } else {
-        printf("Incredible");
-    }
+    person.print();
+
+    var frog: Frog* = alloc<Frog>();
+    frog.Name = "Kermit";
+    frog.Age = 5;
+
+    frog.print();
 
     free(person);
+    free(frog);
     return 0;
 }

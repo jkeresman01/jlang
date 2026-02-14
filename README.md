@@ -350,6 +350,7 @@ fn print(self: Person*) {
 #### Null: lowercase `null`
 
 ```rust
+var p: Person*? = findPerson("Alice");
 if (p == null) { ... }
 ```
 
@@ -426,15 +427,11 @@ var primary: Config*? = getExistingConfig();
 var cfg: Config* = primary ?: getDefaultConfig();
 ```
 
-This is equivalent to writing:
+This is equivalent to:
 
 ```rust
-var cfg: Config*;
-if (primary != null) {
-    cfg = primary;
-} else {
-    cfg = getDefaultConfig();
-}
+// if primary is non-null → cfg = primary
+// if primary is null     → cfg = getDefaultConfig()
 ```
 
 | Expression | Left is non-null | Left is null |
@@ -583,14 +580,7 @@ if (hasCache || loadFromDisk()) {
 }
 ```
 
-<h6><i>This is useful for guarding against null pointer access or avoiding expensive operations:</i></h6>
-
-```rust
-// Safe: if p is null, we never access p.value
-if (p != null && p.value > 0) {
-    printf("positive value");
-}
-```
+<h6><i>This is useful for guarding against expensive operations or avoiding division by zero.</i></h6>
 
 #### Non-short-circuit operators: `and` / `or`
 
