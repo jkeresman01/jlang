@@ -32,7 +32,7 @@ llvm::StructType *CodeGenerator::GetOrCreateResultType(const TypeRef &typeRef)
     llvm::Type *errType = MapType(errTypeRef);
 
     // Calculate sizes to determine data field size
-    llvm::DataLayout dataLayout(m_Module.get());
+    const llvm::DataLayout &dataLayout = m_Module->getDataLayout();
     size_t okSize = dataLayout.getTypeAllocSize(okType);
     size_t errSize = dataLayout.getTypeAllocSize(errType);
     size_t dataSize = std::max(okSize, errSize);
