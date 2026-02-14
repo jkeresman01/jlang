@@ -37,13 +37,13 @@ export default function NullSafety() {
 printf("%s", q.Name);  // ERROR: cannot access member 'Name' on nullable type 'Person*?'`} />
 
       <p>
-        To access members on a nullable pointer, you must first check for null:
+        To access members on a nullable pointer, use the elvis operator to
+        convert it to a non-nullable pointer first:
       </p>
 
       <CodeBlock code={`var q: Person*? = findPerson("Alice");
-if (q != null) {
-    printf("Found: %s", q.Name);  // OK: q is checked
-}`} />
+var p: Person* = q ?: getDefaultPerson();
+printf("Found: %s", p.Name);  // OK: p is non-nullable`} />
 
       {/* ── Section 3: Comparison Table ── */}
       <h2>Nullable vs Non-nullable</h2>
