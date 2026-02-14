@@ -8,6 +8,7 @@
     "bitnot",
     "ifcond",
     "immut",
+    "libgtest",
     "nums",
     "deallocation",
     "ptrcast",
