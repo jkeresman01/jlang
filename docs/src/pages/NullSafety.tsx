@@ -94,7 +94,8 @@ if (q != null) {
         returned.
       </p>
 
-      <CodeBlock code={`var cfg: Config* = primary ?: getDefaultConfig();`} />
+      <CodeBlock code={`var primary: Config*? = findConfig("main");
+var cfg: Config* = primary ?: getDefaultConfig();`} />
 
       <h3>Short-circuit Evaluation</h3>
       <p>
@@ -103,7 +104,8 @@ if (q != null) {
         needed.
       </p>
 
-      <CodeBlock code={`// getDefaultConfig() is only called if primary is null
+      <CodeBlock code={`var primary: Config*? = findConfig("main");
+// getDefaultConfig() is only called if primary is null
 var cfg: Config* = primary ?: getDefaultConfig();`} />
 
       <h3>Equivalent Logic</h3>
@@ -111,7 +113,9 @@ var cfg: Config* = primary ?: getDefaultConfig();`} />
         The elvis operator is syntactic sugar for a common null-check pattern:
       </p>
 
-      <CodeBlock code={`// Using elvis operator
+      <CodeBlock code={`var primary: Config*? = findConfig("main");
+
+// Using elvis operator
 var cfg: Config* = primary ?: getDefaultConfig();
 
 // Equivalent logic:
