@@ -14,11 +14,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up GCC
-      run: sudo apt-get install -y gcc g++
-
-    - name: Install CMake
-      run: sudo apt-get install -y cmake
+    - name: Install dependencies
+      run: |
+        wget https://apt.llvm.org/llvm.sh
+        chmod +x llvm.sh
+        sudo ./llvm.sh 18
+        sudo apt-get install -y gcc g++ cmake llvm-18-dev libzstd-dev
 
     - name: Configure CMake
       run: mkdir -p build && cd build && cmake ..
