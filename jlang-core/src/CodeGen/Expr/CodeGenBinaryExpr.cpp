@@ -191,19 +191,21 @@ void CodeGenerator::VisitBinaryExpr(BinaryExpr &node)
         return;
     }
 
+    bool isFloat = leftVal->getType()->isFloatingPointTy();
+
     if (node.op == "==")
     {
         if (leftVal->getType()->isPointerTy() && rightVal->getType()->isPointerTy())
         {
             m_LastValue = m_IRBuilder.CreateICmpEQ(leftVal, rightVal, "ptreq");
         }
-        else if (leftVal->getType()->isIntegerTy() && rightVal->getType()->isIntegerTy())
+        else if (isFloat)
         {
-            m_LastValue = m_IRBuilder.CreateICmpEQ(leftVal, rightVal, "eq");
+            m_LastValue = m_IRBuilder.CreateFCmpOEQ(leftVal, rightVal, "feq");
         }
         else
         {
-            JLANG_ERROR("Unsupported types for == comparison");
+            m_LastValue = m_IRBuilder.CreateICmpEQ(leftVal, rightVal, "eq");
         }
     }
     else if (node.op == "!=")
@@ -212,50 +214,59 @@ void CodeGenerator::VisitBinaryExpr(BinaryExpr &node)
         {
             m_LastValue = m_IRBuilder.CreateICmpNE(leftVal, rightVal, "ptrne");
         }
-        else if (leftVal->getType()->isIntegerTy() && rightVal->getType()->isIntegerTy())
+        else if (isFloat)
         {
-            m_LastValue = m_IRBuilder.CreateICmpNE(leftVal, rightVal, "ne");
+            m_LastValue = m_IRBuilder.CreateFCmpONE(leftVal, rightVal, "fne");
         }
         else
         {
-            JLANG_ERROR("Unsupported types for != comparison");
+            m_LastValue = m_IRBuilder.CreateICmpNE(leftVal, rightVal, "ne");
         }
     }
     else if (node.op == "<")
     {
-        m_LastValue = m_IRBuilder.CreateICmpSLT(leftVal, rightVal, "lt");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFCmpOLT(leftVal, rightVal, "flt")
+                              : m_IRBuilder.CreateICmpSLT(leftVal, rightVal, "lt");
     }
     else if (node.op == "<=")
     {
-        m_LastValue = m_IRBuilder.CreateICmpSLE(leftVal, rightVal, "le");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFCmpOLE(leftVal, rightVal, "fle")
+                              : m_IRBuilder.CreateICmpSLE(leftVal, rightVal, "le");
     }
     else if (node.op == ">")
     {
-        m_LastValue = m_IRBuilder.CreateICmpSGT(leftVal, rightVal, "gt");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFCmpOGT(leftVal, rightVal, "fgt")
+                              : m_IRBuilder.CreateICmpSGT(leftVal, rightVal, "gt");
     }
     else if (node.op == ">=")
     {
-        m_LastValue = m_IRBuilder.CreateICmpSGE(leftVal, rightVal, "ge");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFCmpOGE(leftVal, rightVal, "fge")
+                              : m_IRBuilder.CreateICmpSGE(leftVal, rightVal, "ge");
     }
     else if (node.op == "+")
     {
-        m_LastValue = m_IRBuilder.CreateAdd(leftVal, rightVal, "add");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFAdd(leftVal, rightVal, "fadd")
+                              : m_IRBuilder.CreateAdd(leftVal, rightVal, "add");
     }
     else if (node.op == "-")
     {
-        m_LastValue = m_IRBuilder.CreateSub(leftVal, rightVal, "sub");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFSub(leftVal, rightVal, "fsub")
+                              : m_IRBuilder.CreateSub(leftVal, rightVal, "sub");
     }
     else if (node.op == "*")
     {
-        m_LastValue = m_IRBuilder.CreateMul(leftVal, rightVal, "mul");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFMul(leftVal, rightVal, "fmul")
+                              : m_IRBuilder.CreateMul(leftVal, rightVal, "mul");
     }
     else if (node.op == "/")
     {
-        m_LastValue = m_IRBuilder.CreateSDiv(leftVal, rightVal, "div");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFDiv(leftVal, rightVal, "fdiv")
+                              : m_IRBuilder.CreateSDiv(leftVal, rightVal, "div");
     }
     else if (node.op == "%")
     {
-        m_LastValue = m_IRBuilder.CreateSRem(leftVal, rightVal, "mod");
+        m_LastValue = isFloat ? m_IRBuilder.CreateFRem(leftVal, rightVal, "fmod")
+                              : m_IRBuilder.CreateSRem(leftVal, rightVal, "mod");
     }
     else if (node.op == "&")
     {
