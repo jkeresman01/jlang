@@ -26,7 +26,7 @@ fn main() -> i32 {
     // foreach with break
     printf("Break at 200:\n");
     for item in v {
-        if item == 200 {
+        if (item == 200) {
             break;
         }
         printf("  %d\n", item);
@@ -35,7 +35,7 @@ fn main() -> i32 {
     // foreach with continue
     printf("Skip 200:\n");
     for item in v {
-        if item == 200 {
+        if (item == 200) {
             continue;
         }
         printf("  %d\n", item);
