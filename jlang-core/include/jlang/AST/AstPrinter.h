@@ -1,7 +1,7 @@
 #pragma once
 
-#include <jlang/CodeGen/AstVisitor.h>
 #include <jlang/AST/Ast.h>
+#include <jlang/CodeGen/AstVisitor.h>
 
 #include <memory>
 #include <string>
