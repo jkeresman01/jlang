@@ -8,7 +8,11 @@
     "ifcont",
     "ptreq",
     "ptrne",
-    "Unqual"
+    "Unqual",
+    "fadd",
+    "fsub",
+    "fmul",
+    "fdiv"
   ],
   "ignorePaths": [
     "build/**",
