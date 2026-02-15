@@ -14,6 +14,9 @@
 namespace jlang
 {
 
+struct FunctionDecl;
+struct StructDecl;
+
 struct FieldInfo
 {
     unsigned index;
@@ -144,6 +147,32 @@ class SymbolTable
 
     const std::unordered_map<std::string, InterfaceInfo> &GetAllInterfaces() const { return m_interfaces; }
 
+    void DefineGenericFunction(const std::string &name, FunctionDecl *decl)
+    {
+        m_genericFunctions[name] = decl;
+    }
+
+    FunctionDecl *LookupGenericFunction(const std::string &name)
+    {
+        auto it = m_genericFunctions.find(name);
+        return it != m_genericFunctions.end() ? it->second : nullptr;
+    }
+
+    void DefineGenericStruct(const std::string &name, StructDecl *decl) { m_genericStructs[name] = decl; }
+
+    StructDecl *LookupGenericStruct(const std::string &name)
+    {
+        auto it = m_genericStructs.find(name);
+        return it != m_genericStructs.end() ? it->second : nullptr;
+    }
+
+    bool IsInstantiated(const std::string &mangledName)
+    {
+        return m_instantiatedGenerics.count(mangledName) > 0;
+    }
+
+    void MarkInstantiated(const std::string &mangledName) { m_instantiatedGenerics.insert(mangledName); }
+
   private:
     std::unordered_map<std::string, VariableInfo> m_variables;
     std::unordered_map<std::string, StructInfo> m_structTypes;
@@ -151,6 +180,9 @@ class SymbolTable
     std::unordered_map<std::string, ResultTypeInfo> m_resultTypes;
     std::unordered_map<std::string, InterfaceInfo> m_interfaces;
     std::unordered_map<std::string, StructInterfaceInfo> m_structInterfaces;
+    std::unordered_map<std::string, FunctionDecl *> m_genericFunctions;
+    std::unordered_map<std::string, StructDecl *> m_genericStructs;
+    std::unordered_set<std::string> m_instantiatedGenerics;
 };
 
 } // namespace jlang

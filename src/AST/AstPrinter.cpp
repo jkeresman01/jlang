@@ -44,6 +44,17 @@ void AstPrinter::VisitChild(std::shared_ptr<AstNode> &node)
 std::string AstPrinter::FormatTypeRef(const TypeRef &typeRef)
 {
     std::string s = typeRef.name;
+    if (!typeRef.typeParameters.empty())
+    {
+        s += "<";
+        for (size_t i = 0; i < typeRef.typeParameters.size(); ++i)
+        {
+            if (i > 0)
+                s += ", ";
+            s += FormatTypeRef(typeRef.typeParameters[i]);
+        }
+        s += ">";
+    }
     if (typeRef.isArrayType())
         s += "[" + std::to_string(typeRef.arraySize) + "]";
     if (typeRef.isPointer)
@@ -56,7 +67,19 @@ std::string AstPrinter::FormatTypeRef(const TypeRef &typeRef)
 void AstPrinter::VisitFunctionDecl(FunctionDecl &node)
 {
     Indent();
-    m_result += "(FunctionDecl " + node.name + " [";
+    m_result += "(FunctionDecl " + node.name;
+    if (!node.typeParameters.empty())
+    {
+        m_result += "<";
+        for (size_t i = 0; i < node.typeParameters.size(); ++i)
+        {
+            if (i > 0)
+                m_result += ", ";
+            m_result += node.typeParameters[i];
+        }
+        m_result += ">";
+    }
+    m_result += " [";
     for (size_t i = 0; i < node.params.size(); ++i)
     {
         if (i > 0)
@@ -99,6 +122,17 @@ void AstPrinter::VisitStructDecl(StructDecl &node)
 {
     Indent();
     m_result += "(StructDecl " + node.name;
+    if (!node.typeParameters.empty())
+    {
+        m_result += "<";
+        for (size_t i = 0; i < node.typeParameters.size(); ++i)
+        {
+            if (i > 0)
+                m_result += ", ";
+            m_result += node.typeParameters[i];
+        }
+        m_result += ">";
+    }
     if (!node.interfaceImplemented.empty())
         m_result += " implements " + node.interfaceImplemented;
     m_result += " [";
@@ -229,7 +263,19 @@ void AstPrinter::VisitContinueStatement(ContinueStatement &)
 void AstPrinter::VisitCallExpr(CallExpr &node)
 {
     Indent();
-    m_result += "(CallExpr " + node.callee + "\n";
+    m_result += "(CallExpr " + node.callee;
+    if (!node.typeArguments.empty())
+    {
+        m_result += "<";
+        for (size_t i = 0; i < node.typeArguments.size(); ++i)
+        {
+            if (i > 0)
+                m_result += ", ";
+            m_result += FormatTypeRef(node.typeArguments[i]);
+        }
+        m_result += ">";
+    }
+    m_result += "\n";
 
     ++m_indent;
     for (auto &arg : node.arguments)

@@ -14,6 +14,7 @@ struct CallExpr : public Expression
 {
     std::string callee;
     std::vector<std::shared_ptr<AstNode>> arguments;
+    std::vector<TypeRef> typeArguments;
 
     CallExpr() { type = NodeType::CallExpr; }
 

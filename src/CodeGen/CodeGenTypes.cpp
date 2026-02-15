@@ -57,6 +57,18 @@ llvm::StructType *CodeGenerator::GetOrCreateResultType(const TypeRef &typeRef)
 
 llvm::Type *CodeGenerator::MapType(const TypeRef &typeRef)
 {
+    // Check if this type name is a type parameter being substituted
+    auto subst = m_typeSubstitutions.find(typeRef.name);
+    if (subst != m_typeSubstitutions.end())
+    {
+        TypeRef resolved = subst->second;
+        resolved.isPointer = typeRef.isPointer || resolved.isPointer;
+        resolved.isNullable = typeRef.isNullable;
+        resolved.isArray = typeRef.isArray;
+        resolved.arraySize = typeRef.arraySize;
+        return MapType(resolved);
+    }
+
     using TypeGetter = llvm::Type *(*)(llvm::LLVMContext &);
 
     static const std::unordered_map<std::string, TypeGetter> typeMap = {
@@ -110,16 +122,42 @@ llvm::Type *CodeGenerator::MapType(const TypeRef &typeRef)
             return ifaceInfo->fatPtrType;
         }
 
-        // Check if it's a registered struct type
-        StructInfo *structInfo = m_symbols.LookupStruct(typeRef.name);
-        if (structInfo)
+        // Check if this is a generic struct that needs instantiation
+        if (typeRef.isGeneric() && !typeRef.isResult())
         {
-            baseType = structInfo->llvmType;
+            std::string mangledName = typeRef.getMangledName();
+            StructInfo *si = m_symbols.LookupStruct(mangledName);
+            if (!si)
+            {
+                StructDecl *templ = m_symbols.LookupGenericStruct(typeRef.name);
+                if (templ)
+                {
+                    InstantiateGenericStruct(*templ, typeRef.typeParameters);
+                    si = m_symbols.LookupStruct(mangledName);
+                }
+            }
+            if (si)
+            {
+                baseType = si->llvmType;
+            }
+            else
+            {
+                baseType = llvm::Type::getInt8Ty(m_Context);
+            }
         }
         else
         {
-            // Unknown user-defined type - use i8 as placeholder
-            baseType = llvm::Type::getInt8Ty(m_Context);
+            // Check if it's a registered struct type
+            StructInfo *structInfo = m_symbols.LookupStruct(typeRef.name);
+            if (structInfo)
+            {
+                baseType = structInfo->llvmType;
+            }
+            else
+            {
+                // Unknown user-defined type - use i8 as placeholder
+                baseType = llvm::Type::getInt8Ty(m_Context);
+            }
         }
     }
 

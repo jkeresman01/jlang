@@ -73,6 +73,10 @@ class CodeGenerator : public AstVisitor
     void GenerateVtables();
     std::string DetermineStructTypeName(AstNode *node);
 
+    void InstantiateGenericFunction(FunctionDecl &templ, const std::vector<TypeRef> &typeArgs);
+    void InstantiateGenericStruct(StructDecl &templ, const std::vector<TypeRef> &typeArgs);
+    std::string MangleGenericName(const std::string &baseName, const std::vector<TypeRef> &typeArgs);
+
   private:
     llvm::LLVMContext m_Context;
     std::unique_ptr<llvm::Module> m_Module;
@@ -82,6 +86,7 @@ class CodeGenerator : public AstVisitor
     llvm::Value *m_LastValue = nullptr;
     std::vector<llvm::BasicBlock *> m_LoopExitStack;
     std::vector<llvm::BasicBlock *> m_LoopContinueStack;
+    std::unordered_map<std::string, TypeRef> m_typeSubstitutions;
 };
 
 } // namespace jlang

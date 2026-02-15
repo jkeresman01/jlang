@@ -7,6 +7,22 @@ namespace jlang
 
 void CodeGenerator::VisitCallExpr(CallExpr &node)
 {
+    // Handle generic function calls: instantiate if needed
+    if (!node.typeArguments.empty())
+    {
+        FunctionDecl *templ = m_symbols.LookupGenericFunction(node.callee);
+        if (templ)
+        {
+            std::string mangledName = MangleGenericName(node.callee, node.typeArguments);
+            if (!m_symbols.IsInstantiated(mangledName))
+            {
+                InstantiateGenericFunction(*templ, node.typeArguments);
+            }
+            // Redirect callee to mangled name
+            node.callee = mangledName;
+        }
+    }
+
     llvm::Function *callee = m_Module->getFunction(node.callee);
 
     // If not found, try mangled name based on first argument type

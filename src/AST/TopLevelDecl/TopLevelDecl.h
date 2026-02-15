@@ -41,6 +41,7 @@ struct StructDecl : public AstNode
     std::string name;
     std::string interfaceImplemented;
     std::vector<StructField> fields;
+    std::vector<std::string> typeParameters;
 
     StructDecl() { type = NodeType::StructDecl; }
 
@@ -53,6 +54,7 @@ struct FunctionDecl : public AstNode
     std::vector<Parameter> params;
     TypeRef returnType;
     std::shared_ptr<AstNode> body;
+    std::vector<std::string> typeParameters;
 
     FunctionDecl() { type = NodeType::FunctionDecl; }
 

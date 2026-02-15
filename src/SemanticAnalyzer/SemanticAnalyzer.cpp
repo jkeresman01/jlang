@@ -22,6 +22,10 @@ void SemanticAnalyzer::Analyze(std::vector<std::shared_ptr<AstNode>> &program)
 
 void SemanticAnalyzer::VisitFunctionDecl(FunctionDecl &node)
 {
+    // Skip generic function templates — they contain unresolved type parameters
+    if (!node.typeParameters.empty())
+        return;
+
     // Record function signature for interface validation
     // If first param is self: StructName*, register as StructName_methodName
     if (!node.params.empty() && node.params[0].name == "self" && node.params[0].type.isPointer)
@@ -64,6 +68,10 @@ void SemanticAnalyzer::VisitInterfaceDecl(InterfaceDecl &node)
 
 void SemanticAnalyzer::VisitStructDecl(StructDecl &node)
 {
+    // Skip generic struct templates
+    if (!node.typeParameters.empty())
+        return;
+
     if (!node.interfaceImplemented.empty())
     {
         m_structInterfaces[node.name] = node.interfaceImplemented;

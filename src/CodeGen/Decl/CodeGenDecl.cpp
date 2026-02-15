@@ -146,7 +146,19 @@ void CodeGenerator::VisitStructDecl(StructDecl &node)
         llvm::Type *fieldType = MapType(field.type);
         fieldTypes.push_back(fieldType);
 
-        structInfo.fields[field.name] = FieldInfo{i, field.type, field.isPublic};
+        // Resolve field type through substitution map (for generic instantiation)
+        TypeRef resolvedType = field.type;
+        auto subst = m_typeSubstitutions.find(field.type.name);
+        if (subst != m_typeSubstitutions.end())
+        {
+            resolvedType = subst->second;
+            resolvedType.isPointer = field.type.isPointer || resolvedType.isPointer;
+            resolvedType.isNullable = field.type.isNullable;
+            resolvedType.isArray = field.type.isArray;
+            resolvedType.arraySize = field.type.arraySize;
+        }
+
+        structInfo.fields[field.name] = FieldInfo{i, resolvedType, field.isPublic};
     }
 
     llvm::StructType *structType = llvm::StructType::create(m_Context, fieldTypes, node.name);

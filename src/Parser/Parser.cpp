@@ -227,6 +227,9 @@ std::shared_ptr<AstNode> Parser::ParseStruct()
 
     const std::string name = Previous().m_lexeme;
 
+    // Parse optional type parameters: struct Name<T, U>
+    std::vector<std::string> typeParams = ParseTypeParameterList();
+
     std::string implementedInterface;
 
     // Use colon for interface implementation: struct Name : Interface
@@ -248,6 +251,7 @@ std::shared_ptr<AstNode> Parser::ParseStruct()
     auto structDeclNode = std::make_shared<StructDecl>();
     structDeclNode->name = name;
     structDeclNode->interfaceImplemented = implementedInterface;
+    structDeclNode->typeParameters = typeParams;
 
     // Parse fields: fieldName: Type;
     while (!Check(TokenType::RBrace) && !IsEndReached())
@@ -278,9 +282,9 @@ std::shared_ptr<AstNode> Parser::ParseStruct()
             continue;
         }
 
-        // Parse field type
-        std::string typeName = ParseTypeName();
-        if (typeName.empty())
+        // Parse field type (supports type parameters, e.g. Result<T, E>)
+        TypeRef fieldType = ParseTypeWithParameters();
+        if (fieldType.name.empty())
         {
             JLANG_ERROR("Expected field type");
             while (!IsEndReached() && !Check(TokenType::Semicolon) && !Check(TokenType::RBrace))
@@ -291,39 +295,19 @@ std::shared_ptr<AstNode> Parser::ParseStruct()
             continue;
         }
 
-        bool isArray = false;
-        int arraySize = 0;
-
-        // Check for array type: Type[size]
-        if (IsMatched(TokenType::LBracket))
-        {
-            if (!IsMatched(TokenType::NumberLiteral))
-            {
-                JLANG_ERROR("Expected array size");
-            }
-            else
-            {
-                isArray = true;
-                arraySize = std::stoi(Previous().m_lexeme);
-            }
-
-            if (!IsMatched(TokenType::RBracket))
-            {
-                JLANG_ERROR("Expected ']' after array size");
-            }
-        }
-
         bool isPointer = IsMatched(TokenType::Star);
+        fieldType.isPointer = isPointer;
 
         bool isNullable = false;
         if (isPointer && IsMatched(TokenType::Question))
         {
             isNullable = true;
+            fieldType.isNullable = true;
         }
         else if (!isPointer && Check(TokenType::Question))
         {
-            JLANG_ERROR("Only pointer types can be nullable. Use '" + typeName + "*?' instead of '" +
-                        typeName + "?'");
+            JLANG_ERROR("Only pointer types can be nullable. Use '" + fieldType.name + "*?' instead of '" +
+                        fieldType.name + "?'");
             Advance();
         }
 
@@ -333,7 +317,6 @@ std::shared_ptr<AstNode> Parser::ParseStruct()
         }
 
         bool isPublic = !fieldName.empty() && std::isupper(static_cast<unsigned char>(fieldName[0]));
-        TypeRef fieldType{typeName, isPointer, isNullable, isArray, arraySize};
         StructField field{fieldName, fieldType, isPublic};
         structDeclNode->fields.push_back(field);
     }
@@ -356,6 +339,9 @@ std::shared_ptr<AstNode> Parser::ParseFunction()
     }
 
     const std::string &functionName = Previous().m_lexeme;
+
+    // Parse optional type parameters: fn name<T, U>(...)
+    std::vector<std::string> typeParams = ParseTypeParameterList();
 
     // Parse parameter list: (name: Type, name: Type, ...)
     if (!IsMatched(TokenType::LParen))
@@ -452,6 +438,7 @@ std::shared_ptr<AstNode> Parser::ParseFunction()
     functionDeclNode->params = params;
     functionDeclNode->returnType = returnType;
     functionDeclNode->body = body;
+    functionDeclNode->typeParameters = typeParams;
 
     return functionDeclNode;
 }
@@ -1322,7 +1309,7 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
             allocType.isPointer = true;
         }
 
-        if (!IsMatched(TokenType::Greater))
+        if (!MatchGreater())
         {
             JLANG_ERROR("Expected '>' after type in alloc<Type>");
             return nullptr;
@@ -1399,6 +1386,37 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
     if (IsMatched(TokenType::Identifier))
     {
         std::string name = Previous().m_lexeme;
+
+        // Check for generic function call: name<T, U>(args)
+        if (Check(TokenType::Less))
+        {
+            std::vector<TypeRef> typeArgs = TryParseTypeArguments();
+            if (!typeArgs.empty())
+            {
+                // This is a generic call — '(' must follow (guaranteed by TryParseTypeArguments)
+                Advance(); // consume '('
+                auto call = std::make_shared<CallExpr>();
+                call->callee = name;
+                call->typeArguments = typeArgs;
+
+                if (!Check(TokenType::RParen))
+                {
+                    do
+                    {
+                        auto arg = ParseExpression();
+                        call->arguments.push_back(arg);
+                    } while (IsMatched(TokenType::Comma));
+                }
+
+                if (!IsMatched(TokenType::RParen))
+                {
+                    JLANG_ERROR("Expected ')' after arguments");
+                }
+
+                return call;
+            }
+            // Backtracked — fall through to normal handling
+        }
 
         // Check for function call first (before member access)
         if (IsMatched(TokenType::LParen))
@@ -1586,13 +1604,115 @@ TypeRef Parser::ParseTypeWithParameters()
             typeRef.typeParameters.push_back(paramType);
         } while (IsMatched(TokenType::Comma));
 
-        if (!IsMatched(TokenType::Greater))
+        if (!MatchGreater())
         {
             JLANG_ERROR("Expected '>' after type parameters");
         }
     }
 
     return typeRef;
+}
+
+bool Parser::MatchGreater()
+{
+    if (m_PendingGreater > 0)
+    {
+        m_PendingGreater--;
+        return true;
+    }
+    if (Check(TokenType::Greater))
+    {
+        Advance();
+        return true;
+    }
+    // Handle >> (RightShift) as two > tokens
+    if (Check(TokenType::RightShift))
+    {
+        Advance();
+        m_PendingGreater++; // One > consumed, one pending
+        return true;
+    }
+    return false;
+}
+
+std::vector<std::string> Parser::ParseTypeParameterList()
+{
+    std::vector<std::string> typeParams;
+
+    if (!IsMatched(TokenType::Less))
+    {
+        return typeParams;
+    }
+
+    do
+    {
+        if (!IsMatched(TokenType::Identifier))
+        {
+            JLANG_ERROR("Expected type parameter name");
+            break;
+        }
+        typeParams.push_back(Previous().m_lexeme);
+    } while (IsMatched(TokenType::Comma));
+
+    if (!IsMatched(TokenType::Greater))
+    {
+        JLANG_ERROR("Expected '>' after type parameter list");
+    }
+
+    return typeParams;
+}
+
+std::vector<TypeRef> Parser::TryParseTypeArguments()
+{
+    std::vector<TypeRef> typeArgs;
+
+    // Save position and pending state for backtracking
+    size_t savedPos = m_CurrentPosition;
+    int savedPendingGreater = m_PendingGreater;
+
+    if (!IsMatched(TokenType::Less))
+    {
+        return typeArgs;
+    }
+
+    do
+    {
+        TypeRef argType = ParseTypeWithParameters();
+        if (argType.name.empty())
+        {
+            // Not a valid type argument list, backtrack
+            m_CurrentPosition = savedPos;
+            m_PendingGreater = savedPendingGreater;
+            return {};
+        }
+
+        // Check for pointer in type argument
+        if (IsMatched(TokenType::Star))
+        {
+            argType.isPointer = true;
+        }
+
+        typeArgs.push_back(argType);
+    } while (IsMatched(TokenType::Comma));
+
+    if (!MatchGreater())
+    {
+        // Not a valid type argument list (e.g., this was a comparison), backtrack
+        m_CurrentPosition = savedPos;
+        m_PendingGreater = savedPendingGreater;
+        return {};
+    }
+
+    // Verify that '(' follows — this confirms it's a generic call, not a comparison
+    if (!Check(TokenType::LParen))
+    {
+        // Backtrack — this was a comparison expression like `x < y > (z)`
+        m_CurrentPosition = savedPos;
+        m_PendingGreater = savedPendingGreater;
+        return {};
+    }
+
+    return typeArgs;
 }
 
 std::shared_ptr<AstNode> Parser::ParseOkExpr()

@@ -66,11 +66,15 @@ class Parser
     bool IsTypeKeyword() const;
     std::string ParseTypeName();
     TypeRef ParseTypeWithParameters();
+    std::vector<std::string> ParseTypeParameterList();
+    std::vector<TypeRef> TryParseTypeArguments();
+    bool MatchGreater();
 
   private:
     const std::vector<Token> &m_Tokens;
     size_t m_CurrentPosition;
     TypeRef m_CurrentFunctionReturnType;
+    int m_PendingGreater = 0;
 };
 
 } // namespace jlang
