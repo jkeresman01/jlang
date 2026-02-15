@@ -121,10 +121,7 @@ class SymbolTable
 
     void TrackFunctionLocal(const std::string &name) { m_currentFunctionVariables.insert(name); }
 
-    const NameSet &GetCurrentFunctionVariables() const
-    {
-        return m_currentFunctionVariables;
-    }
+    const NameSet &GetCurrentFunctionVariables() const { return m_currentFunctionVariables; }
 
     void DefineResultType(const std::string &mangledName, const ResultTypeInfo &info)
     {
@@ -167,10 +164,7 @@ class SymbolTable
         return it != m_structInterfaces.end() ? &it->second : nullptr;
     }
 
-    const StructInterfaceMap &GetAllStructInterfaces() const
-    {
-        return m_structInterfaces;
-    }
+    const StructInterfaceMap &GetAllStructInterfaces() const { return m_structInterfaces; }
 
     const InterfaceMap &GetAllInterfaces() const { return m_interfaces; }
 
