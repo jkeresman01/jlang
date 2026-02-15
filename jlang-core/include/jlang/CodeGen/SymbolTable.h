@@ -77,6 +77,16 @@ struct StructInterfaceInfo
     llvm::GlobalVariable *vtableGlobal;
 };
 
+using VariableMap = std::unordered_map<std::string, VariableInfo>;
+using StructMap = std::unordered_map<std::string, StructInfo>;
+using ResultTypeMap = std::unordered_map<std::string, ResultTypeInfo>;
+using VectorTypeMap = std::unordered_map<std::string, VectorTypeInfo>;
+using InterfaceMap = std::unordered_map<std::string, InterfaceInfo>;
+using StructInterfaceMap = std::unordered_map<std::string, StructInterfaceInfo>;
+using GenericFunctionMap = std::unordered_map<std::string, FunctionDecl *>;
+using GenericStructMap = std::unordered_map<std::string, StructDecl *>;
+using NameSet = std::unordered_set<std::string>;
+
 class SymbolTable
 {
   public:
@@ -111,7 +121,7 @@ class SymbolTable
 
     void TrackFunctionLocal(const std::string &name) { m_currentFunctionVariables.insert(name); }
 
-    const std::unordered_set<std::string> &GetCurrentFunctionVariables() const
+    const NameSet &GetCurrentFunctionVariables() const
     {
         return m_currentFunctionVariables;
     }
@@ -157,12 +167,12 @@ class SymbolTable
         return it != m_structInterfaces.end() ? &it->second : nullptr;
     }
 
-    const std::unordered_map<std::string, StructInterfaceInfo> &GetAllStructInterfaces() const
+    const StructInterfaceMap &GetAllStructInterfaces() const
     {
         return m_structInterfaces;
     }
 
-    const std::unordered_map<std::string, InterfaceInfo> &GetAllInterfaces() const { return m_interfaces; }
+    const InterfaceMap &GetAllInterfaces() const { return m_interfaces; }
 
     void DefineGenericFunction(const std::string &name, FunctionDecl *decl)
     {
@@ -191,16 +201,16 @@ class SymbolTable
     void MarkInstantiated(const std::string &mangledName) { m_instantiatedGenerics.insert(mangledName); }
 
   private:
-    std::unordered_map<std::string, VariableInfo> m_variables;
-    std::unordered_map<std::string, StructInfo> m_structTypes;
-    std::unordered_set<std::string> m_currentFunctionVariables;
-    std::unordered_map<std::string, ResultTypeInfo> m_resultTypes;
-    std::unordered_map<std::string, VectorTypeInfo> m_vectorTypes;
-    std::unordered_map<std::string, InterfaceInfo> m_interfaces;
-    std::unordered_map<std::string, StructInterfaceInfo> m_structInterfaces;
-    std::unordered_map<std::string, FunctionDecl *> m_genericFunctions;
-    std::unordered_map<std::string, StructDecl *> m_genericStructs;
-    std::unordered_set<std::string> m_instantiatedGenerics;
+    VariableMap m_variables;
+    StructMap m_structTypes;
+    NameSet m_currentFunctionVariables;
+    ResultTypeMap m_resultTypes;
+    VectorTypeMap m_vectorTypes;
+    InterfaceMap m_interfaces;
+    StructInterfaceMap m_structInterfaces;
+    GenericFunctionMap m_genericFunctions;
+    GenericStructMap m_genericStructs;
+    NameSet m_instantiatedGenerics;
 };
 
 } // namespace jlang
