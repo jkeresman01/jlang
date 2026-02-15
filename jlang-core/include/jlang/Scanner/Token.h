@@ -54,6 +54,7 @@ enum class TokenType
     RBracket,
     Semicolon,
     Colon,
+    ColonColon,
     Arrow,
     Assign,
     Star,

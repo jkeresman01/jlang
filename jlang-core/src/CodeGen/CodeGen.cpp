@@ -129,6 +129,35 @@ void CodeGenerator::DeclareExternalFunctions()
     llvm::FunctionType *freeType =
         llvm::FunctionType::get(llvm::Type::getVoidTy(m_Context), {ptrType}, false);
     llvm::Function::Create(freeType, llvm::Function::ExternalLinkage, "free", m_Module.get());
+
+    // Declare realloc: void* realloc(void*, size_t)
+    llvm::FunctionType *reallocType =
+        llvm::FunctionType::get(ptrType, {ptrType, llvm::Type::getInt64Ty(m_Context)}, false);
+    llvm::Function::Create(reallocType, llvm::Function::ExternalLinkage, "realloc", m_Module.get());
+
+    // Declare memcpy: void* memcpy(void*, const void*, size_t)
+    llvm::FunctionType *memcpyType =
+        llvm::FunctionType::get(ptrType, {ptrType, ptrType, llvm::Type::getInt64Ty(m_Context)}, false);
+    llvm::Function::Create(memcpyType, llvm::Function::ExternalLinkage, "memcpy", m_Module.get());
+
+    llvm::Type *i64Type = llvm::Type::getInt64Ty(m_Context);
+    llvm::Type *i64PtrType = llvm::PointerType::getUnqual(i64Type);
+
+    // jlang_vector_push: void*(void* data, i64* size, i64* cap, i64 elem_size, void* element)
+    llvm::FunctionType *pushType =
+        llvm::FunctionType::get(ptrType, {ptrType, i64PtrType, i64PtrType, i64Type, ptrType}, false);
+    llvm::Function::Create(pushType, llvm::Function::ExternalLinkage, "jlang_vector_push", m_Module.get());
+
+    // jlang_vector_reserve: void*(void* data, i64* cap, i64 elem_size, i64 new_cap)
+    llvm::FunctionType *reserveType =
+        llvm::FunctionType::get(ptrType, {ptrType, i64PtrType, i64Type, i64Type}, false);
+    llvm::Function::Create(reserveType, llvm::Function::ExternalLinkage, "jlang_vector_reserve",
+                           m_Module.get());
+
+    // jlang_vector_free: void(void* data)
+    llvm::FunctionType *vecFreeType =
+        llvm::FunctionType::get(llvm::Type::getVoidTy(m_Context), {ptrType}, false);
+    llvm::Function::Create(vecFreeType, llvm::Function::ExternalLinkage, "jlang_vector_free", m_Module.get());
 }
 
 void CodeGenerator::GenerateVtables()
@@ -179,6 +208,11 @@ std::string CodeGenerator::DetermineStructTypeName(AstNode *node)
         VariableInfo *info = m_symbols.LookupVariable(varExpr->name);
         if (info)
         {
+            // Vector types use their mangled name for lookup
+            if (info->type.isVector())
+            {
+                return info->type.getMangledName();
+            }
             // For generic types, return mangled name (e.g. Pair_i32_f64)
             if (info->type.isGeneric() && !info->type.isResult())
             {
@@ -317,7 +351,11 @@ bool CodeGenerator::EmitExecutable(const std::string &outputPath)
     dest.flush();
 
     // Link the object file into an executable using the system compiler
+#ifdef JLANG_STL_LIB_PATH
+    std::string linkCmd = "cc " + objPath + " " + JLANG_STL_LIB_PATH + " -o " + outputPath + " -lm";
+#else
     std::string linkCmd = "cc " + objPath + " -o " + outputPath + " -lm";
+#endif
     int result = std::system(linkCmd.c_str());
     std::remove(objPath.c_str());
 

@@ -55,6 +55,40 @@ llvm::StructType *CodeGenerator::GetOrCreateResultType(const TypeRef &typeRef)
     return resultType;
 }
 
+llvm::StructType *CodeGenerator::GetOrCreateVectorType(const TypeRef &typeRef)
+{
+    if (!typeRef.isVector())
+    {
+        return nullptr;
+    }
+
+    std::string mangledName = typeRef.getMangledName();
+
+    VectorTypeInfo *existing = m_symbols.LookupVectorType(mangledName);
+    if (existing)
+    {
+        return existing->llvmType;
+    }
+
+    const TypeRef &elemTypeRef = typeRef.typeParameters[0];
+    llvm::Type *elemType = MapType(elemTypeRef);
+
+    // Vector struct layout: { T* data, i64 size, i64 capacity }
+    llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+    llvm::Type *i64Type = llvm::Type::getInt64Ty(m_Context);
+
+    llvm::StructType *vecType =
+        llvm::StructType::create(m_Context, {elemPtrType, i64Type, i64Type}, mangledName);
+
+    VectorTypeInfo info;
+    info.llvmType = vecType;
+    info.elementType = elemTypeRef;
+
+    m_symbols.DefineVectorType(mangledName, info);
+
+    return vecType;
+}
+
 llvm::Type *CodeGenerator::MapType(const TypeRef &typeRef)
 {
     // Check if this type name is a type parameter being substituted
@@ -89,6 +123,17 @@ llvm::Type *CodeGenerator::MapType(const TypeRef &typeRef)
     if (typeRef.name == "void")
     {
         return llvm::Type::getVoidTy(m_Context);
+    }
+
+    // Handle std::Vector<T> types
+    if (typeRef.isVector())
+    {
+        llvm::Type *vecType = GetOrCreateVectorType(typeRef);
+        if (typeRef.isPointer)
+        {
+            return llvm::PointerType::getUnqual(vecType);
+        }
+        return vecType;
     }
 
     // Handle Result<T, E> types

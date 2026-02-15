@@ -30,6 +30,9 @@ target_link_libraries(jlang-core-lib PUBLIC
     zstd::libzstd_shared
 )
 
+add_dependencies(jlang-core-lib jlang-stl)
+target_compile_definitions(jlang-core-lib PRIVATE JLANG_STL_LIB_PATH="$<TARGET_FILE:jlang-stl>")
+
 add_executable(Jlang src/Main.cpp)
 target_link_libraries(Jlang PRIVATE jlang-core-lib)
 

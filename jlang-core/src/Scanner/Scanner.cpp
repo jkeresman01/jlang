@@ -97,7 +97,18 @@ void Scanner::ScanToken()
         AddToken(TokenType::Semicolon);
         break;
     case ':':
-        AddToken(IsMatched('=') ? TokenType::ColonEqual : TokenType::Colon);
+        if (IsMatched(':'))
+        {
+            AddToken(TokenType::ColonColon);
+        }
+        else if (IsMatched('='))
+        {
+            AddToken(TokenType::ColonEqual);
+        }
+        else
+        {
+            AddToken(TokenType::Colon);
+        }
         break;
     case ',':
         AddToken(TokenType::Comma);

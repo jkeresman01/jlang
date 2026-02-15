@@ -7,6 +7,66 @@ namespace jlang
 
 void CodeGenerator::VisitCallExpr(CallExpr &node)
 {
+    // Handle std::Vector<T>() constructor
+    if (node.callee == "std::Vector" && !node.typeArguments.empty())
+    {
+        TypeRef vecTypeRef;
+        vecTypeRef.name = "std::Vector";
+        vecTypeRef.typeParameters = node.typeArguments;
+
+        llvm::StructType *vecStructType = GetOrCreateVectorType(vecTypeRef);
+        if (!vecStructType)
+        {
+            JLANG_ERROR("Failed to create vector type");
+            return;
+        }
+
+        const TypeRef &elemTypeRef = node.typeArguments[0];
+        llvm::Type *elemType = MapType(elemTypeRef);
+        const llvm::DataLayout &dataLayout = m_Module->getDataLayout();
+        uint64_t elemSize = dataLayout.getTypeAllocSize(elemType);
+
+        // Determine initial capacity
+        int64_t initialCap = 8;
+        if (!node.arguments.empty())
+        {
+            node.arguments[0]->Accept(*this);
+            if (auto *constInt = llvm::dyn_cast<llvm::ConstantInt>(m_LastValue))
+            {
+                initialCap = constInt->getSExtValue();
+            }
+        }
+
+        // Allocate the vector struct on the stack
+        llvm::AllocaInst *vecAlloca = m_IRBuilder.CreateAlloca(vecStructType, nullptr, "vec");
+
+        // malloc initial buffer: capacity * elem_size
+        llvm::Function *mallocFunc = m_Module->getFunction("malloc");
+        llvm::Value *bufSize = llvm::ConstantInt::get(llvm::Type::getInt64Ty(m_Context),
+                                                      initialCap * static_cast<int64_t>(elemSize));
+        llvm::Value *dataBuf = m_IRBuilder.CreateCall(mallocFunc, {bufSize}, "vec_data");
+
+        // Cast to T*
+        llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+        llvm::Value *typedData = m_IRBuilder.CreateBitCast(dataBuf, elemPtrType, "vec_data_typed");
+
+        // Store data pointer (index 0)
+        llvm::Value *dataField = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 0, "vec_data_ptr");
+        m_IRBuilder.CreateStore(typedData, dataField);
+
+        // Store size = 0 (index 1)
+        llvm::Value *sizeField = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 1, "vec_size_ptr");
+        m_IRBuilder.CreateStore(llvm::ConstantInt::get(llvm::Type::getInt64Ty(m_Context), 0), sizeField);
+
+        // Store capacity (index 2)
+        llvm::Value *capField = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 2, "vec_cap_ptr");
+        m_IRBuilder.CreateStore(llvm::ConstantInt::get(llvm::Type::getInt64Ty(m_Context), initialCap),
+                                capField);
+
+        m_LastValue = vecAlloca;
+        return;
+    }
+
     // Handle generic function calls: instantiate if needed
     if (!node.typeArguments.empty())
     {

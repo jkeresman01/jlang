@@ -1387,6 +1387,111 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
     {
         std::string name = Previous().m_lexeme;
 
+        // Handle namespaced calls: std::Vector<T>(args)
+        if (IsMatched(TokenType::ColonColon))
+        {
+            if (!IsMatched(TokenType::Identifier))
+            {
+                JLANG_ERROR("Expected type name after '::'");
+                return nullptr;
+            }
+            name = name + "::" + Previous().m_lexeme;
+
+            // Parse type arguments: <T>
+            std::vector<TypeRef> typeArgs;
+            if (IsMatched(TokenType::Less))
+            {
+                do
+                {
+                    TypeRef argType = ParseTypeWithParameters();
+                    if (argType.name.empty())
+                    {
+                        JLANG_ERROR("Expected type argument");
+                        break;
+                    }
+                    if (IsMatched(TokenType::Star))
+                    {
+                        argType.isPointer = true;
+                    }
+                    typeArgs.push_back(argType);
+                } while (IsMatched(TokenType::Comma));
+
+                if (!MatchGreater())
+                {
+                    JLANG_ERROR("Expected '>' after type arguments");
+                }
+            }
+
+            // Parse constructor arguments: (args)
+            if (!IsMatched(TokenType::LParen))
+            {
+                JLANG_ERROR("Expected '(' after type");
+                return nullptr;
+            }
+
+            auto call = std::make_shared<CallExpr>();
+            call->callee = name;
+            call->typeArguments = typeArgs;
+
+            if (!Check(TokenType::RParen))
+            {
+                do
+                {
+                    auto arg = ParseExpression();
+                    call->arguments.push_back(arg);
+                } while (IsMatched(TokenType::Comma));
+            }
+
+            if (!IsMatched(TokenType::RParen))
+            {
+                JLANG_ERROR("Expected ')' after arguments");
+            }
+
+            // Allow member access / method calls on the result
+            std::shared_ptr<AstNode> expr = call;
+            while (IsMatched(TokenType::Dot))
+            {
+                if (!IsMatched(TokenType::Identifier))
+                {
+                    JLANG_ERROR("Expected member name after '.'");
+                    break;
+                }
+                std::string memberName = Previous().m_lexeme;
+
+                if (IsMatched(TokenType::LParen))
+                {
+                    auto methodCall = std::make_shared<MethodCallExpr>();
+                    methodCall->object = expr;
+                    methodCall->methodName = memberName;
+
+                    if (!Check(TokenType::RParen))
+                    {
+                        do
+                        {
+                            auto arg = ParseExpression();
+                            methodCall->arguments.push_back(arg);
+                        } while (IsMatched(TokenType::Comma));
+                    }
+
+                    if (!IsMatched(TokenType::RParen))
+                    {
+                        JLANG_ERROR("Expected ')' after method arguments");
+                    }
+
+                    expr = methodCall;
+                }
+                else
+                {
+                    auto memberAccess = std::make_shared<MemberAccessExpr>();
+                    memberAccess->object = expr;
+                    memberAccess->memberName = memberName;
+                    expr = memberAccess;
+                }
+            }
+
+            return expr;
+        }
+
         // Check for generic function call: name<T, U>(args)
         if (Check(TokenType::Less))
         {
@@ -1546,7 +1651,20 @@ std::string Parser::ParseTypeName()
     }
     else if (IsMatched(TokenType::Identifier))
     {
-        return Previous().m_lexeme;
+        std::string name = Previous().m_lexeme;
+
+        // Handle namespaced types: std::Vector
+        if (IsMatched(TokenType::ColonColon))
+        {
+            if (!IsMatched(TokenType::Identifier))
+            {
+                JLANG_ERROR("Expected type name after '::'");
+                return name;
+            }
+            name = name + "::" + Previous().m_lexeme;
+        }
+
+        return name;
     }
 
     return "";

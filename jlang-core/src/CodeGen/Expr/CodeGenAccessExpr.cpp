@@ -212,6 +212,210 @@ void CodeGenerator::VisitMethodCallExpr(MethodCallExpr &node)
         return;
     }
 
+    // Check if this is a Vector method call
+    VectorTypeInfo *vecInfo = m_symbols.LookupVectorType(typeName);
+    if (vecInfo)
+    {
+        // Get the alloca for the vector variable
+        std::string varName;
+        if (auto *varExpr = dynamic_cast<VarExpr *>(node.object.get()))
+        {
+            varName = varExpr->name;
+        }
+
+        VariableInfo *varInfo = nullptr;
+        if (!varName.empty())
+        {
+            varInfo = m_symbols.LookupVariable(varName);
+        }
+
+        if (!varInfo)
+        {
+            JLANG_ERROR("Cannot resolve vector variable for method call");
+            return;
+        }
+
+        varInfo->used = true;
+        llvm::AllocaInst *vecAlloca = llvm::dyn_cast<llvm::AllocaInst>(varInfo->value);
+        if (!vecAlloca)
+        {
+            JLANG_ERROR("Vector variable is not an alloca");
+            return;
+        }
+
+        llvm::StructType *vecStructType = vecInfo->llvmType;
+        llvm::Type *elemType = MapType(vecInfo->elementType);
+        const llvm::DataLayout &dataLayout = m_Module->getDataLayout();
+        uint64_t elemSize = dataLayout.getTypeAllocSize(elemType);
+
+        llvm::Type *i64Type = llvm::Type::getInt64Ty(m_Context);
+        llvm::Type *ptrType = llvm::PointerType::getUnqual(llvm::Type::getInt8Ty(m_Context));
+
+        if (node.methodName == "push")
+        {
+            if (node.arguments.empty())
+            {
+                JLANG_ERROR("push() requires one argument");
+                return;
+            }
+
+            // Evaluate the element to push
+            node.arguments[0]->Accept(*this);
+            llvm::Value *elemVal = m_LastValue;
+
+            // Store element to a temp alloca so we can pass its address
+            llvm::AllocaInst *elemTmp = m_IRBuilder.CreateAlloca(elemType, nullptr, "push_tmp");
+            m_IRBuilder.CreateStore(elemVal, elemTmp);
+
+            // Get pointers to data, size, capacity fields
+            llvm::Value *dataFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 0, "data_ptr");
+            llvm::Value *sizeFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 1, "size_ptr");
+            llvm::Value *capFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 2, "cap_ptr");
+
+            // Load current data pointer
+            llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+            llvm::Value *dataPtr = m_IRBuilder.CreateLoad(elemPtrType, dataFieldPtr, "data");
+            llvm::Value *dataPtrVoid = m_IRBuilder.CreateBitCast(dataPtr, ptrType, "data_void");
+
+            // Cast element tmp to void*
+            llvm::Value *elemPtrVoid = m_IRBuilder.CreateBitCast(elemTmp, ptrType, "elem_void");
+
+            // Call jlang_vector_push
+            llvm::Function *pushFunc = m_Module->getFunction("jlang_vector_push");
+            llvm::Value *elemSizeVal = llvm::ConstantInt::get(i64Type, elemSize);
+            llvm::Value *newData = m_IRBuilder.CreateCall(
+                pushFunc, {dataPtrVoid, sizeFieldPtr, capFieldPtr, elemSizeVal, elemPtrVoid}, "new_data");
+
+            // Cast back to T* and update data field
+            llvm::Value *newDataTyped = m_IRBuilder.CreateBitCast(newData, elemPtrType, "new_data_typed");
+            m_IRBuilder.CreateStore(newDataTyped, dataFieldPtr);
+
+            m_LastValue = nullptr;
+            return;
+        }
+        else if (node.methodName == "pop")
+        {
+            // Inline: size--; load data[size]
+            llvm::Value *sizeFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 1, "size_ptr");
+            llvm::Value *size = m_IRBuilder.CreateLoad(i64Type, sizeFieldPtr, "size");
+            llvm::Value *newSize =
+                m_IRBuilder.CreateSub(size, llvm::ConstantInt::get(i64Type, 1), "new_size");
+            m_IRBuilder.CreateStore(newSize, sizeFieldPtr);
+
+            // Load data[newSize]
+            llvm::Value *dataFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 0, "data_ptr");
+            llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+            llvm::Value *dataPtr = m_IRBuilder.CreateLoad(elemPtrType, dataFieldPtr, "data");
+            llvm::Value *elemPtr = m_IRBuilder.CreateGEP(elemType, dataPtr, newSize, "pop_elem_ptr");
+            m_LastValue = m_IRBuilder.CreateLoad(elemType, elemPtr, "popped");
+            return;
+        }
+        else if (node.methodName == "at")
+        {
+            if (node.arguments.empty())
+            {
+                JLANG_ERROR("at() requires one argument");
+                return;
+            }
+
+            node.arguments[0]->Accept(*this);
+            llvm::Value *idx = m_LastValue;
+
+            llvm::Value *dataFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 0, "data_ptr");
+            llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+            llvm::Value *dataPtr = m_IRBuilder.CreateLoad(elemPtrType, dataFieldPtr, "data");
+            llvm::Value *elemPtr = m_IRBuilder.CreateGEP(elemType, dataPtr, idx, "at_elem_ptr");
+            m_LastValue = m_IRBuilder.CreateLoad(elemType, elemPtr, "at_val");
+            return;
+        }
+        else if (node.methodName == "size")
+        {
+            llvm::Value *sizeFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 1, "size_ptr");
+            m_LastValue = m_IRBuilder.CreateLoad(i64Type, sizeFieldPtr, "size");
+            // Truncate to i32 for printf compatibility
+            m_LastValue = m_IRBuilder.CreateTrunc(m_LastValue, llvm::Type::getInt32Ty(m_Context), "size_i32");
+            return;
+        }
+        else if (node.methodName == "capacity")
+        {
+            llvm::Value *capFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 2, "cap_ptr");
+            m_LastValue = m_IRBuilder.CreateLoad(i64Type, capFieldPtr, "cap");
+            m_LastValue = m_IRBuilder.CreateTrunc(m_LastValue, llvm::Type::getInt32Ty(m_Context), "cap_i32");
+            return;
+        }
+        else if (node.methodName == "reserve")
+        {
+            if (node.arguments.empty())
+            {
+                JLANG_ERROR("reserve() requires one argument");
+                return;
+            }
+
+            node.arguments[0]->Accept(*this);
+            llvm::Value *newCap = m_LastValue;
+            // Extend to i64 if needed
+            if (newCap->getType() != i64Type)
+            {
+                newCap = m_IRBuilder.CreateSExt(newCap, i64Type, "new_cap_i64");
+            }
+
+            llvm::Value *dataFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 0, "data_ptr");
+            llvm::Value *capFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 2, "cap_ptr");
+
+            llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+            llvm::Value *dataPtr = m_IRBuilder.CreateLoad(elemPtrType, dataFieldPtr, "data");
+            llvm::Value *dataPtrVoid = m_IRBuilder.CreateBitCast(dataPtr, ptrType, "data_void");
+
+            llvm::Function *reserveFunc = m_Module->getFunction("jlang_vector_reserve");
+            llvm::Value *elemSizeVal = llvm::ConstantInt::get(i64Type, elemSize);
+            llvm::Value *newData = m_IRBuilder.CreateCall(
+                reserveFunc, {dataPtrVoid, capFieldPtr, elemSizeVal, newCap}, "new_data");
+
+            llvm::Value *newDataTyped = m_IRBuilder.CreateBitCast(newData, elemPtrType, "new_data_typed");
+            m_IRBuilder.CreateStore(newDataTyped, dataFieldPtr);
+
+            m_LastValue = nullptr;
+            return;
+        }
+        else if (node.methodName == "clear")
+        {
+            // Set size = 0
+            llvm::Value *sizeFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 1, "size_ptr");
+            m_IRBuilder.CreateStore(llvm::ConstantInt::get(i64Type, 0), sizeFieldPtr);
+            m_LastValue = nullptr;
+            return;
+        }
+        else if (node.methodName == "free")
+        {
+            // Free the data buffer
+            llvm::Value *dataFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 0, "data_ptr");
+            llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+            llvm::Value *dataPtr = m_IRBuilder.CreateLoad(elemPtrType, dataFieldPtr, "data");
+            llvm::Value *dataPtrVoid = m_IRBuilder.CreateBitCast(dataPtr, ptrType, "data_void");
+
+            llvm::Function *freeFunc = m_Module->getFunction("jlang_vector_free");
+            m_IRBuilder.CreateCall(freeFunc, {dataPtrVoid});
+
+            // Set data=null, size=0, capacity=0
+            llvm::Value *nullPtr = llvm::ConstantPointerNull::get(llvm::cast<llvm::PointerType>(elemPtrType));
+            m_IRBuilder.CreateStore(nullPtr, dataFieldPtr);
+
+            llvm::Value *sizeFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 1, "size_ptr");
+            m_IRBuilder.CreateStore(llvm::ConstantInt::get(i64Type, 0), sizeFieldPtr);
+
+            llvm::Value *capFieldPtr = m_IRBuilder.CreateStructGEP(vecStructType, vecAlloca, 2, "cap_ptr");
+            m_IRBuilder.CreateStore(llvm::ConstantInt::get(i64Type, 0), capFieldPtr);
+
+            m_LastValue = nullptr;
+            return;
+        }
+        else
+        {
+            JLANG_ERROR(STR("Unknown vector method: %s", node.methodName.c_str()));
+            return;
+        }
+    }
+
     // Check if the type is an interface (virtual dispatch)
     InterfaceInfo *ifaceInfo = m_symbols.LookupInterface(typeName);
     if (ifaceInfo)

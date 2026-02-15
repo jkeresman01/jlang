@@ -48,6 +48,12 @@ struct ResultTypeInfo
     size_t dataSize; // Size of the data field (max of ok and err types)
 };
 
+struct VectorTypeInfo
+{
+    llvm::StructType *llvmType;
+    TypeRef elementType;
+};
+
 struct InterfaceMethodInfo
 {
     std::string name;
@@ -121,6 +127,17 @@ class SymbolTable
         return it != m_resultTypes.end() ? &it->second : nullptr;
     }
 
+    void DefineVectorType(const std::string &mangledName, const VectorTypeInfo &info)
+    {
+        m_vectorTypes[mangledName] = info;
+    }
+
+    VectorTypeInfo *LookupVectorType(const std::string &mangledName)
+    {
+        auto it = m_vectorTypes.find(mangledName);
+        return it != m_vectorTypes.end() ? &it->second : nullptr;
+    }
+
     void DefineInterface(const std::string &name, const InterfaceInfo &info) { m_interfaces[name] = info; }
 
     InterfaceInfo *LookupInterface(const std::string &name)
@@ -178,6 +195,7 @@ class SymbolTable
     std::unordered_map<std::string, StructInfo> m_structTypes;
     std::unordered_set<std::string> m_currentFunctionVariables;
     std::unordered_map<std::string, ResultTypeInfo> m_resultTypes;
+    std::unordered_map<std::string, VectorTypeInfo> m_vectorTypes;
     std::unordered_map<std::string, InterfaceInfo> m_interfaces;
     std::unordered_map<std::string, StructInterfaceInfo> m_structInterfaces;
     std::unordered_map<std::string, FunctionDecl *> m_genericFunctions;

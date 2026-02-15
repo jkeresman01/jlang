@@ -19,11 +19,20 @@ struct TypeRef
 
     bool isResult() const { return name == "Result" && typeParameters.size() == 2; }
 
+    bool isVector() const { return name == "std::Vector" && typeParameters.size() == 1; }
+
     bool isArrayType() const { return isArray && arraySize > 0; }
 
     std::string getMangledName() const
     {
         std::string mangled = name;
+
+        // Replace :: with _ for mangled names
+        size_t pos = 0;
+        while ((pos = mangled.find("::", pos)) != std::string::npos)
+        {
+            mangled.replace(pos, 2, "_");
+        }
 
         if (isArrayType())
         {

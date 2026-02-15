@@ -84,6 +84,26 @@ void CodeGenerator::VisitIndexExpr(IndexExpr &node)
         }
 
         varInfo->used = true;
+
+        // Vector index access: v[i] -> load data ptr, GEP, load
+        if (varInfo->type.isVector())
+        {
+            VectorTypeInfo *vecInfo = m_symbols.LookupVectorType(varInfo->type.getMangledName());
+            if (vecInfo)
+            {
+                llvm::AllocaInst *vecAlloca = llvm::dyn_cast<llvm::AllocaInst>(varInfo->value);
+                llvm::Type *elemType = MapType(vecInfo->elementType);
+                llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+
+                llvm::Value *dataFieldPtr =
+                    m_IRBuilder.CreateStructGEP(vecInfo->llvmType, vecAlloca, 0, "data_ptr");
+                llvm::Value *dataPtr = m_IRBuilder.CreateLoad(elemPtrType, dataFieldPtr, "data");
+                llvm::Value *elemPtr = m_IRBuilder.CreateGEP(elemType, dataPtr, indexVal, "vec_idx");
+                m_LastValue = m_IRBuilder.CreateLoad(elemType, elemPtr, "vec_load");
+                return;
+            }
+        }
+
         llvm::Value *storedValue = varInfo->value;
 
         if (llvm::AllocaInst *alloca = llvm::dyn_cast<llvm::AllocaInst>(storedValue))
@@ -195,6 +215,27 @@ void CodeGenerator::VisitIndexAssignExpr(IndexAssignExpr &node)
         }
 
         varInfo->used = true;
+
+        // Vector index assign: v[i] = val
+        if (varInfo->type.isVector())
+        {
+            VectorTypeInfo *vecInfo = m_symbols.LookupVectorType(varInfo->type.getMangledName());
+            if (vecInfo)
+            {
+                llvm::AllocaInst *vecAlloca = llvm::dyn_cast<llvm::AllocaInst>(varInfo->value);
+                llvm::Type *elemType = MapType(vecInfo->elementType);
+                llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+
+                llvm::Value *dataFieldPtr =
+                    m_IRBuilder.CreateStructGEP(vecInfo->llvmType, vecAlloca, 0, "data_ptr");
+                llvm::Value *dataPtr = m_IRBuilder.CreateLoad(elemPtrType, dataFieldPtr, "data");
+                llvm::Value *elemPtr = m_IRBuilder.CreateGEP(elemType, dataPtr, indexVal, "vec_idx_assign");
+                m_IRBuilder.CreateStore(valueToStore, elemPtr);
+                m_LastValue = valueToStore;
+                return;
+            }
+        }
+
         llvm::Value *storedValue = varInfo->value;
 
         if (llvm::AllocaInst *alloca = llvm::dyn_cast<llvm::AllocaInst>(storedValue))

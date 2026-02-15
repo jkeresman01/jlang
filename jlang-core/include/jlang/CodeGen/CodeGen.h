@@ -70,6 +70,7 @@ class CodeGenerator : public AstVisitor
     llvm::Type *MapType(const TypeRef &typeRef);
     TypeRef InferTypeRef(llvm::Type *llvmType);
     llvm::StructType *GetOrCreateResultType(const TypeRef &typeRef);
+    llvm::StructType *GetOrCreateVectorType(const TypeRef &typeRef);
     void GenerateVtables();
     std::string DetermineStructTypeName(AstNode *node);
 

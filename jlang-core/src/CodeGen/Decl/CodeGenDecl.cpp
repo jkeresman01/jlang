@@ -199,7 +199,7 @@ void CodeGenerator::VisitVariableDecl(VariableDecl &node)
             return;
         }
 
-        // Check if the initializer produced an array alloca (from array literal)
+        // Check if the initializer produced an alloca (from array literal or vector constructor)
         if (llvm::AllocaInst *srcAlloca = llvm::dyn_cast<llvm::AllocaInst>(m_LastValue))
         {
             if (srcAlloca->getAllocatedType()->isArrayTy())
@@ -215,6 +215,30 @@ void CodeGenerator::VisitVariableDecl(VariableDecl &node)
                                          VariableInfo{alloca, inferredType, false, node.isMutable});
                 m_symbols.TrackFunctionLocal(node.name);
                 return;
+            }
+
+            // Check if this is a vector struct type
+            if (srcAlloca->getAllocatedType()->isStructTy())
+            {
+                llvm::StructType *structTy = llvm::cast<llvm::StructType>(srcAlloca->getAllocatedType());
+                if (structTy->hasName())
+                {
+                    std::string structName = structTy->getName().str();
+                    VectorTypeInfo *vecInfo = m_symbols.LookupVectorType(structName);
+                    if (vecInfo)
+                    {
+                        // Build the proper TypeRef for std::Vector<T>
+                        TypeRef vecTypeRef;
+                        vecTypeRef.name = "std::Vector";
+                        vecTypeRef.typeParameters.push_back(vecInfo->elementType);
+
+                        // The alloca already exists from the constructor, just register it
+                        m_symbols.DefineVariable(node.name,
+                                                 VariableInfo{srcAlloca, vecTypeRef, false, node.isMutable});
+                        m_symbols.TrackFunctionLocal(node.name);
+                        return;
+                    }
+                }
             }
         }
 
