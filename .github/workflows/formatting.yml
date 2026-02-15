@@ -19,7 +19,7 @@ jobs:
 
     - name: Check formatting
       run: |
-        files=$(find . -name '*.cpp' -o -name '*.h')
+        files=$(find jlang-shared jlang-preprocessor jlang-core jlang-stl -name '*.cpp' -o -name '*.h')
         for file in $files; do
           clang-format -n -Werror $file
         done

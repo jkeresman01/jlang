@@ -22,7 +22,10 @@ jobs:
         sudo apt-get install -y gcc g++ cmake llvm-20-dev libzstd-dev libgtest-dev
 
     - name: Configure CMake
-      run: cd test/ && mkdir build && cd build && cmake ..
+      run: cmake -B build
 
-    - name: Build and Run Tests
-      run: cd test/build && make && ./run-tests
+    - name: Build
+      run: cmake --build build
+
+    - name: Run Tests
+      run: ./build/jlang-core/jlang-core-tests
