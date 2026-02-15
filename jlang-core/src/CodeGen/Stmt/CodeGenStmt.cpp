@@ -168,6 +168,168 @@ void CodeGenerator::VisitForStatement(ForStatement &node)
     m_IRBuilder.SetInsertPoint(exitBlock);
 }
 
+void CodeGenerator::VisitForEachStatement(ForEachStatement &node)
+{
+    // Resolve the iterable variable
+    std::string varName;
+    if (auto *varExpr = dynamic_cast<VarExpr *>(node.iterable.get()))
+    {
+        varName = varExpr->name;
+    }
+
+    if (varName.empty())
+    {
+        JLANG_ERROR("foreach requires a variable as the iterable");
+        return;
+    }
+
+    VariableInfo *iterInfo = m_symbols.LookupVariable(varName);
+    if (!iterInfo)
+    {
+        JLANG_ERROR(STR("Undefined variable in foreach: %s", varName.c_str()));
+        return;
+    }
+    iterInfo->used = true;
+
+    llvm::Type *i64Type = llvm::Type::getInt64Ty(m_Context);
+    llvm::Type *elemType = nullptr;
+    llvm::Value *lengthVal = nullptr;
+
+    // Determine collection type and get element type + length
+    bool isArray = iterInfo->type.isArrayType();
+    bool isVector = iterInfo->type.isVector();
+
+    if (isArray)
+    {
+        TypeRef elemRef;
+        elemRef.name = iterInfo->type.name;
+        elemType = MapType(elemRef);
+        lengthVal = llvm::ConstantInt::get(i64Type, iterInfo->type.arraySize);
+    }
+    else if (isVector)
+    {
+        VectorTypeInfo *vecInfo = m_symbols.LookupVectorType(iterInfo->type.getMangledName());
+        if (!vecInfo)
+        {
+            JLANG_ERROR("Cannot find vector type info for foreach");
+            return;
+        }
+        elemType = MapType(vecInfo->elementType);
+
+        // Load size from vector struct (field index 1)
+        llvm::AllocaInst *vecAlloca = llvm::dyn_cast<llvm::AllocaInst>(iterInfo->value);
+        llvm::Value *sizePtr =
+            m_IRBuilder.CreateStructGEP(vecInfo->llvmType, vecAlloca, 1, "foreach_size_ptr");
+        lengthVal = m_IRBuilder.CreateLoad(i64Type, sizePtr, "foreach_len");
+    }
+    else
+    {
+        JLANG_ERROR("foreach requires an array or vector iterable");
+        return;
+    }
+
+    llvm::Function *parentFunction = m_IRBuilder.GetInsertBlock()->getParent();
+
+    // Create index variable: i = 0
+    llvm::AllocaInst *idxAlloca = m_IRBuilder.CreateAlloca(i64Type, nullptr, "foreach_idx");
+    m_IRBuilder.CreateStore(llvm::ConstantInt::get(i64Type, 0), idxAlloca);
+
+    // Create element variable alloca
+    llvm::AllocaInst *elemAlloca = m_IRBuilder.CreateAlloca(elemType, nullptr, node.elementName);
+
+    // Basic blocks
+    llvm::BasicBlock *condBlock = llvm::BasicBlock::Create(m_Context, "foreach.cond", parentFunction);
+    llvm::BasicBlock *bodyBlock = llvm::BasicBlock::Create(m_Context, "foreach.body");
+    llvm::BasicBlock *updateBlock = llvm::BasicBlock::Create(m_Context, "foreach.update");
+    llvm::BasicBlock *exitBlock = llvm::BasicBlock::Create(m_Context, "foreach.exit");
+
+    m_IRBuilder.CreateBr(condBlock);
+
+    // Condition: i < length
+    m_IRBuilder.SetInsertPoint(condBlock);
+    llvm::Value *idx = m_IRBuilder.CreateLoad(i64Type, idxAlloca, "i");
+
+    // For vectors, reload length each iteration (size may not change but this is correct)
+    llvm::Value *len = lengthVal;
+    if (isVector)
+    {
+        VectorTypeInfo *vecInfo = m_symbols.LookupVectorType(iterInfo->type.getMangledName());
+        llvm::AllocaInst *vecAlloca = llvm::dyn_cast<llvm::AllocaInst>(iterInfo->value);
+        llvm::Value *sizePtr =
+            m_IRBuilder.CreateStructGEP(vecInfo->llvmType, vecAlloca, 1, "foreach_size_ptr");
+        len = m_IRBuilder.CreateLoad(i64Type, sizePtr, "foreach_len");
+    }
+
+    llvm::Value *cond = m_IRBuilder.CreateICmpSLT(idx, len, "foreach_cond");
+    m_IRBuilder.CreateCondBr(cond, bodyBlock, exitBlock);
+
+    // Body: elem = collection[i]; execute body
+    bodyBlock->insertInto(parentFunction);
+    m_IRBuilder.SetInsertPoint(bodyBlock);
+
+    // Load element at index i
+    llvm::Value *elemVal = nullptr;
+    if (isArray)
+    {
+        llvm::AllocaInst *arrAlloca = llvm::dyn_cast<llvm::AllocaInst>(iterInfo->value);
+        llvm::Value *zero = llvm::ConstantInt::get(llvm::Type::getInt32Ty(m_Context), 0);
+        llvm::Value *elemPtr =
+            m_IRBuilder.CreateGEP(arrAlloca->getAllocatedType(), arrAlloca, {zero, idx}, "foreach_elem_ptr");
+        elemVal = m_IRBuilder.CreateLoad(elemType, elemPtr, "foreach_elem");
+    }
+    else if (isVector)
+    {
+        VectorTypeInfo *vecInfo = m_symbols.LookupVectorType(iterInfo->type.getMangledName());
+        llvm::AllocaInst *vecAlloca = llvm::dyn_cast<llvm::AllocaInst>(iterInfo->value);
+        llvm::Type *elemPtrType = llvm::PointerType::getUnqual(elemType);
+        llvm::Value *dataFieldPtr =
+            m_IRBuilder.CreateStructGEP(vecInfo->llvmType, vecAlloca, 0, "foreach_data_ptr");
+        llvm::Value *dataPtr = m_IRBuilder.CreateLoad(elemPtrType, dataFieldPtr, "foreach_data");
+        llvm::Value *elemPtr = m_IRBuilder.CreateGEP(elemType, dataPtr, idx, "foreach_vec_elem_ptr");
+        elemVal = m_IRBuilder.CreateLoad(elemType, elemPtr, "foreach_elem");
+    }
+
+    m_IRBuilder.CreateStore(elemVal, elemAlloca);
+
+    // Register element variable in symbol table
+    TypeRef elemTypeRef;
+    if (isArray)
+    {
+        elemTypeRef.name = iterInfo->type.name;
+    }
+    else if (isVector)
+    {
+        VectorTypeInfo *vecInfo = m_symbols.LookupVectorType(iterInfo->type.getMangledName());
+        elemTypeRef = vecInfo->elementType;
+    }
+    m_symbols.DefineVariable(node.elementName, VariableInfo{elemAlloca, elemTypeRef, false, false});
+    m_symbols.TrackFunctionLocal(node.elementName);
+
+    // Push loop stacks for break/continue
+    m_LoopExitStack.push_back(exitBlock);
+    m_LoopContinueStack.push_back(updateBlock);
+    node.body->Accept(*this);
+    m_LoopContinueStack.pop_back();
+    m_LoopExitStack.pop_back();
+
+    if (!m_IRBuilder.GetInsertBlock()->getTerminator())
+    {
+        m_IRBuilder.CreateBr(updateBlock);
+    }
+
+    // Update: i++
+    updateBlock->insertInto(parentFunction);
+    m_IRBuilder.SetInsertPoint(updateBlock);
+    llvm::Value *nextIdx = m_IRBuilder.CreateAdd(m_IRBuilder.CreateLoad(i64Type, idxAlloca, "i_cur"),
+                                                 llvm::ConstantInt::get(i64Type, 1), "i_next");
+    m_IRBuilder.CreateStore(nextIdx, idxAlloca);
+    m_IRBuilder.CreateBr(condBlock);
+
+    // Exit
+    exitBlock->insertInto(parentFunction);
+    m_IRBuilder.SetInsertPoint(exitBlock);
+}
+
 void CodeGenerator::VisitBlockStatement(BlockStatement &node)
 {
     for (auto &statement : node.statements)

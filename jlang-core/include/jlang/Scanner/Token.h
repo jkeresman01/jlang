@@ -24,6 +24,7 @@ enum class TokenType
     Continue,
     Null,
     Alloc,
+    In,
     True,
     False,
     Match,

@@ -37,6 +37,7 @@ class Parser
     std::shared_ptr<AstNode> ParseIfStatement();
     std::shared_ptr<AstNode> ParseWhileStatement();
     std::shared_ptr<AstNode> ParseForStatement();
+    std::shared_ptr<AstNode> ParseForEachStatement();
     std::shared_ptr<AstNode> ParseReturnStatement();
     std::shared_ptr<AstNode> ParseBreakStatement();
     std::shared_ptr<AstNode> ParseContinueStatement();

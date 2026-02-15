@@ -42,6 +42,17 @@ struct ForStatement : public Statement
     void Accept(AstVisitor &visitor) override { visitor.VisitForStatement(*this); }
 };
 
+struct ForEachStatement : public Statement
+{
+    std::string elementName;
+    std::shared_ptr<AstNode> iterable;
+    std::shared_ptr<AstNode> body;
+
+    ForEachStatement() { type = NodeType::ForEachStatement; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitForEachStatement(*this); }
+};
+
 struct BlockStatement : public Statement
 {
     std::vector<std::shared_ptr<AstNode>> statements;

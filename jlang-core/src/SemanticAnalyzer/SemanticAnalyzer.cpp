@@ -123,6 +123,16 @@ void SemanticAnalyzer::VisitForStatement(ForStatement &node)
     m_LoopDepth--;
 }
 
+void SemanticAnalyzer::VisitForEachStatement(ForEachStatement &node)
+{
+    if (node.iterable)
+        node.iterable->Accept(*this);
+    m_LoopDepth++;
+    if (node.body)
+        node.body->Accept(*this);
+    m_LoopDepth--;
+}
+
 void SemanticAnalyzer::VisitBlockStatement(BlockStatement &node)
 {
     for (auto &stmt : node.statements)

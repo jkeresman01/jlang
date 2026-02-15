@@ -41,6 +41,8 @@ static std::unordered_map<std::string, TokenType> s_Keywords = {
     {"false", TokenType::False},
     // Memory
     {"alloc", TokenType::Alloc},
+    // Iteration
+    {"in", TokenType::In},
     // Logical operators (non-short-circuit)
     {"and", TokenType::AndKeyword},
     {"or", TokenType::OrKeyword},

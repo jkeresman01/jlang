@@ -24,6 +24,7 @@ class AstPrinter : public AstVisitor
     void VisitIfStatement(IfStatement &) override;
     void VisitWhileStatement(WhileStatement &) override;
     void VisitForStatement(ForStatement &) override;
+    void VisitForEachStatement(ForEachStatement &) override;
     void VisitBlockStatement(BlockStatement &) override;
     void VisitExprStatement(ExprStatement &) override;
     void VisitReturnStatement(ReturnStatement &) override;

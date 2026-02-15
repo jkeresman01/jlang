@@ -744,9 +744,45 @@ std::shared_ptr<AstNode> Parser::ParseWhileStatement()
     return node;
 }
 
+std::shared_ptr<AstNode> Parser::ParseForEachStatement()
+{
+    // Already consumed 'for'. Current token is the element name identifier.
+    if (!IsMatched(TokenType::Identifier))
+    {
+        JLANG_ERROR("Expected element name after 'for'");
+        return nullptr;
+    }
+    std::string elementName = Previous().m_lexeme;
+
+    if (!IsMatched(TokenType::In))
+    {
+        JLANG_ERROR("Expected 'in' after element name in foreach");
+        return nullptr;
+    }
+
+    auto iterable = ParseExpression();
+
+    auto body = ParseBlock();
+
+    auto node = std::make_shared<ForEachStatement>();
+    node->elementName = elementName;
+    node->iterable = iterable;
+    node->body = body;
+
+    return node;
+}
+
 std::shared_ptr<AstNode> Parser::ParseForStatement()
 {
     Advance(); // consume 'for'
+
+    // Check for foreach syntax: for elem in collection { }
+    // Detect: current is Identifier, next is In
+    if (Check(TokenType::Identifier) && m_CurrentPosition + 1 < m_Tokens.size() &&
+        m_Tokens[m_CurrentPosition + 1].m_type == TokenType::In)
+    {
+        return ParseForEachStatement();
+    }
 
     if (!IsMatched(TokenType::LParen))
     {

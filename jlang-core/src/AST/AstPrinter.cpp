@@ -208,6 +208,20 @@ void AstPrinter::VisitForStatement(ForStatement &node)
     m_result += ")\n";
 }
 
+void AstPrinter::VisitForEachStatement(ForEachStatement &node)
+{
+    Indent();
+    m_result += "(ForEachStatement " + node.elementName + " in\n";
+
+    ++m_indent;
+    VisitChild(node.iterable);
+    VisitChild(node.body);
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
 void AstPrinter::VisitBlockStatement(BlockStatement &node)
 {
     Indent();

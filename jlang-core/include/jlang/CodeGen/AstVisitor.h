@@ -11,6 +11,7 @@ struct VariableDecl;
 struct IfStatement;
 struct WhileStatement;
 struct ForStatement;
+struct ForEachStatement;
 struct BlockStatement;
 struct ExprStatement;
 struct ReturnStatement;
@@ -49,6 +50,7 @@ class AstVisitor
     virtual void VisitIfStatement(IfStatement &) = 0;
     virtual void VisitWhileStatement(WhileStatement &) = 0;
     virtual void VisitForStatement(ForStatement &) = 0;
+    virtual void VisitForEachStatement(ForEachStatement &) = 0;
     virtual void VisitBlockStatement(BlockStatement &) = 0;
     virtual void VisitExprStatement(ExprStatement &) = 0;
     virtual void VisitReturnStatement(ReturnStatement &) = 0;
