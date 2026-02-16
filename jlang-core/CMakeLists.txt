@@ -43,6 +43,7 @@ if(GTest_FOUND)
     add_executable(jlang-core-tests
         test/Scanner/ScannerTests.cpp
         test/Parser/ParserTests.cpp
+        test/AST/AstPrinterTests.cpp
     )
 
     target_link_libraries(jlang-core-tests PRIVATE
