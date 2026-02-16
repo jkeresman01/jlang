@@ -8,6 +8,7 @@
     "bitnot",
     "ifcond",
     "immut",
+    "desugared",
     "Werror",
     "libgtest",
     "nums",
