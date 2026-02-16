@@ -4,6 +4,10 @@
 
 using namespace jlang;
 
+// ============================================================================
+// Basic tokenization
+// ============================================================================
+
 TEST(ScannerTest, TokenizesEmptySource)
 {
     // Given
@@ -93,7 +97,10 @@ TEST(ScannerTest, TokenizesStringLiterals)
     EXPECT_EQ(tokens[0].m_lexeme, "hello world");
 }
 
+// ============================================================================
 // Control flow keywords
+// ============================================================================
+
 TEST(ScannerTest, TokenizesIfKeyword)
 {
     // Given
@@ -150,7 +157,10 @@ TEST(ScannerTest, TokenizesReturnKeyword)
     EXPECT_EQ(tokens[0].m_lexeme, "return");
 }
 
+// ============================================================================
 // Declaration keywords
+// ============================================================================
+
 TEST(ScannerTest, TokenizesFnKeyword)
 {
     // Given
@@ -207,7 +217,10 @@ TEST(ScannerTest, TokenizesInterfaceKeyword)
     EXPECT_EQ(tokens[0].m_lexeme, "interface");
 }
 
+// ============================================================================
 // Memory and literal keywords
+// ============================================================================
+
 TEST(ScannerTest, TokenizesAllocKeyword)
 {
     // Given
@@ -236,7 +249,10 @@ TEST(ScannerTest, TokenizesNullKeyword)
     EXPECT_EQ(tokens[0].m_lexeme, "null");
 }
 
+// ============================================================================
 // Boolean literals
+// ============================================================================
+
 TEST(ScannerTest, TokenizesTrueKeyword)
 {
     // Given
@@ -265,7 +281,10 @@ TEST(ScannerTest, TokenizesFalseKeyword)
     EXPECT_EQ(tokens[0].m_lexeme, "false");
 }
 
-// Type keywords - signed integers
+// ============================================================================
+// Type keywords
+// ============================================================================
+
 TEST(ScannerTest, TokenizesI8Keyword)
 {
     // Given
@@ -322,7 +341,6 @@ TEST(ScannerTest, TokenizesI64Keyword)
     EXPECT_EQ(tokens[0].m_lexeme, "i64");
 }
 
-// Type keywords - unsigned integers
 TEST(ScannerTest, TokenizesU8Keyword)
 {
     // Given
@@ -379,7 +397,6 @@ TEST(ScannerTest, TokenizesU64Keyword)
     EXPECT_EQ(tokens[0].m_lexeme, "u64");
 }
 
-// Type keywords - floating point
 TEST(ScannerTest, TokenizesF32Keyword)
 {
     // Given
@@ -408,7 +425,6 @@ TEST(ScannerTest, TokenizesF64Keyword)
     EXPECT_EQ(tokens[0].m_lexeme, "f64");
 }
 
-// Type keywords - bool and char
 TEST(ScannerTest, TokenizesBoolKeyword)
 {
     // Given
@@ -437,7 +453,10 @@ TEST(ScannerTest, TokenizesCharKeyword)
     EXPECT_EQ(tokens[0].m_lexeme, "char");
 }
 
+// ============================================================================
 // Operators and symbols
+// ============================================================================
+
 TEST(ScannerTest, TokenizesSemicolon)
 {
     // Given
@@ -621,7 +640,10 @@ TEST(ScannerTest, TokenizesArrow)
     EXPECT_EQ(tokens[0].m_lexeme, "->");
 }
 
+// ============================================================================
 // Logical operators
+// ============================================================================
+
 TEST(ScannerTest, TokenizesNotOperator)
 {
     // Given
@@ -692,7 +714,10 @@ TEST(ScannerTest, TokenizesUnknownCharacter)
     EXPECT_EQ(tokens[0].m_lexeme, "@");
 }
 
+// ============================================================================
 // Identifier edge cases
+// ============================================================================
+
 TEST(ScannerTest, TokenizesIdentifierStartingWithUnderscore)
 {
     // Given
@@ -749,7 +774,10 @@ TEST(ScannerTest, TokenizesSingleUnderscoreAsIdentifier)
     EXPECT_EQ(tokens[0].m_lexeme, "_");
 }
 
+// ============================================================================
 // String literal edge cases
+// ============================================================================
+
 TEST(ScannerTest, TokenizesEmptyString)
 {
     // Given
@@ -791,7 +819,10 @@ TEST(ScannerTest, TokenizesMultilineString)
     EXPECT_EQ(tokens[0].m_lexeme, "hello\nworld");
 }
 
+// ============================================================================
 // Line number tracking
+// ============================================================================
+
 TEST(ScannerTest, TracksLineNumbersAcrossNewlines)
 {
     // Given
@@ -824,7 +855,10 @@ TEST(ScannerTest, TracksLineNumberInMultilineString)
     EXPECT_EQ(tokens[1].m_CurrentLine, 3);
 }
 
+// ============================================================================
 // Whitespace handling
+// ============================================================================
+
 TEST(ScannerTest, HandlesTabsAsWhitespace)
 {
     // Given
@@ -881,7 +915,10 @@ TEST(ScannerTest, HandlesMixedWhitespace)
     EXPECT_EQ(tokens[1].m_type, TokenType::Fn);
 }
 
-// Integration tests - complex scenarios
+// ============================================================================
+// Integration tests
+// ============================================================================
+
 TEST(ScannerTest, TokenizesFunctionSignature)
 {
     // Given
@@ -1187,7 +1224,10 @@ TEST(ScannerTest, TokenizesBooleanVariableDeclaration)
     EXPECT_EQ(tokens[7].m_type, TokenType::EndOfFile);
 }
 
+// ============================================================================
 // Compound assignment operators
+// ============================================================================
+
 TEST(ScannerTest, TokenizesPlusEqual)
 {
     Scanner scanner("+=");
@@ -1238,7 +1278,10 @@ TEST(ScannerTest, TokenizesPlusSpaceEqualAsSeparateTokens)
     EXPECT_EQ(tokens[1].m_type, TokenType::Equal);
 }
 
-// Missing keyword tests
+// ============================================================================
+// Additional keywords
+// ============================================================================
+
 TEST(ScannerTest, TokenizesValKeyword)
 {
     Scanner scanner("val");
@@ -1339,7 +1382,10 @@ TEST(ScannerTest, TokenizesOrKeyword)
     EXPECT_EQ(tokens[0].m_lexeme, "or");
 }
 
-// Missing symbol/operator tests
+// ============================================================================
+// Additional operators and symbols
+// ============================================================================
+
 TEST(ScannerTest, TokenizesBrackets)
 {
     Scanner scanner("[]");
@@ -1570,7 +1616,10 @@ TEST(ScannerTest, TokenizesFatArrow)
     EXPECT_EQ(tokens[0].m_lexeme, "=>");
 }
 
-// Literal tests
+// ============================================================================
+// Float and char literals
+// ============================================================================
+
 TEST(ScannerTest, TokenizesFloatLiteral)
 {
     Scanner scanner("3.14");
@@ -1661,7 +1710,10 @@ TEST(ScannerTest, EmptyCharLiteralProducesUnknown)
     EXPECT_NE(tokens[0].m_type, TokenType::EndOfFile);
 }
 
-// Comment tests
+// ============================================================================
+// Comments
+// ============================================================================
+
 TEST(ScannerTest, SkipsSingleLineComment)
 {
     std::string source = "var // this is a comment\nfn";
@@ -1718,7 +1770,10 @@ TEST(ScannerTest, SkipsBlockCommentAtEOF)
     EXPECT_EQ(tokens[1].m_type, TokenType::EndOfFile);
 }
 
+// ============================================================================
 // Number edge cases
+// ============================================================================
+
 TEST(ScannerTest, NumberFollowedByDotIdentifierIsNotFloat)
 {
     Scanner scanner("42.x");
@@ -1746,7 +1801,10 @@ TEST(ScannerTest, TokenizesMultipleFloatLiterals)
     EXPECT_EQ(tokens[2].m_lexeme, "99.99");
 }
 
-// Operator disambiguation tests
+// ============================================================================
+// Operator disambiguation
+// ============================================================================
+
 TEST(ScannerTest, DistinguishesMinusArrowMinusMinus)
 {
     Scanner scanner("- -> --");
@@ -1834,7 +1892,10 @@ TEST(ScannerTest, DistinguishesPipeOrPipeEqual)
     EXPECT_EQ(tokens[2].m_type, TokenType::PipeEqual);
 }
 
-// Integration: complex scenarios
+// ============================================================================
+// Complex integration tests
+// ============================================================================
+
 TEST(ScannerTest, TokenizesForEachStatement)
 {
     std::string source = "for x in items { break; }";
