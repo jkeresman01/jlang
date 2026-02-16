@@ -29,17 +29,24 @@ static std::string PrintExpr(const std::string &exprSource)
 
 TEST(AstPrinterTest, PrintsEmptyFunction)
 {
-    std::string result = PrintAST("fn main() -> void {}");
+    // Given
+    std::string source = "fn main() -> void {}";
     std::string expected = "(FunctionDecl main [] -> void\n"
                            "  (BlockStatement\n"
                            "  )\n"
                            ")\n";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_EQ(result, expected);
 }
 
 TEST(AstPrinterTest, PrintsFunctionWithParams)
 {
-    std::string result = PrintAST("fn add(a: i32, b: i32) -> i32 { return a; }");
+    // Given
+    std::string source = "fn add(a: i32, b: i32) -> i32 { return a; }";
     std::string expected = "(FunctionDecl add [a:i32, b:i32] -> i32\n"
                            "  (BlockStatement\n"
                            "    (ReturnStatement\n"
@@ -47,18 +54,30 @@ TEST(AstPrinterTest, PrintsFunctionWithParams)
                            "    )\n"
                            "  )\n"
                            ")\n";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_EQ(result, expected);
 }
 
 TEST(AstPrinterTest, PrintsFunctionWithPointerParam)
 {
-    std::string result = PrintAST("fn deref(p: i32*) -> i32 { return p; }");
+    // Given
+    std::string source = "fn deref(p: i32*) -> i32 { return p; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("[p:i32*]"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsGenericFunction)
 {
-    std::string result = PrintAST("fn identity<T>(x: T) -> T { return x; }");
+    // Given
+    std::string source = "fn identity<T>(x: T) -> T { return x; }";
     std::string expected = "(FunctionDecl identity<T> [x:T] -> T\n"
                            "  (BlockStatement\n"
                            "    (ReturnStatement\n"
@@ -66,32 +85,61 @@ TEST(AstPrinterTest, PrintsGenericFunction)
                            "    )\n"
                            "  )\n"
                            ")\n";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_EQ(result, expected);
 }
 
 TEST(AstPrinterTest, PrintsGenericFunctionMultipleTypeParams)
 {
-    std::string result = PrintAST("fn pair<T, U>(a: T, b: U) -> void {}");
+    // Given
+    std::string source = "fn pair<T, U>(a: T, b: U) -> void {}";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("pair<T, U>"), std::string::npos);
     EXPECT_NE(result.find("[a:T, b:U]"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsFunctionNullablePointerReturn)
 {
-    std::string result = PrintAST("fn find() -> Node*? { return null; }");
+    // Given
+    std::string source = "fn find() -> Node*? { return null; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("-> Node*?"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsStructDecl)
 {
-    std::string result = PrintAST("struct Point { x: f64; y: f64; }");
+    // Given
+    std::string source = "struct Point { x: f64; y: f64; }";
     std::string expected = "(StructDecl Point [x:f64, y:f64])\n";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_EQ(result, expected);
 }
 
 TEST(AstPrinterTest, PrintsStructFieldVisibility)
 {
-    std::string result = PrintAST("struct Foo { Name: i32; value: i32; }");
+    // Given
+    std::string source = "struct Foo { Name: i32; value: i32; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("Name:i32 pub"), std::string::npos);
     // Private fields have no suffix
     EXPECT_NE(result.find("value:i32]"), std::string::npos);
@@ -99,48 +147,90 @@ TEST(AstPrinterTest, PrintsStructFieldVisibility)
 
 TEST(AstPrinterTest, PrintsStructWithInterface)
 {
-    std::string result = PrintAST("struct Circle : Drawable { radius: f64; }");
+    // Given
+    std::string source = "struct Circle : Drawable { radius: f64; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("implements Drawable"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsGenericStruct)
 {
-    std::string result = PrintAST("struct Pair<T, U> { first: T; second: U; }");
+    // Given
+    std::string source = "struct Pair<T, U> { first: T; second: U; }";
     std::string expected = "(StructDecl Pair<T, U> [first:T, second:U])\n";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_EQ(result, expected);
 }
 
 TEST(AstPrinterTest, PrintsStructWithPointerField)
 {
-    std::string result = PrintAST("struct Node { next: Node*; }");
+    // Given
+    std::string source = "struct Node { next: Node*; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("next:Node*"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsStructWithNullablePointerField)
 {
-    std::string result = PrintAST("struct Node { next: Node*?; }");
+    // Given
+    std::string source = "struct Node { next: Node*?; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("next:Node*?"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsInterfaceDecl)
 {
-    std::string result = PrintAST("interface Drawable { fn draw(x: i32) -> void; }");
+    // Given
+    std::string source = "interface Drawable { fn draw(x: i32) -> void; }";
     std::string expected = "(InterfaceDecl Drawable\n"
                            "  fn draw(x:i32) -> void\n"
                            ")\n";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_EQ(result, expected);
 }
 
 TEST(AstPrinterTest, PrintsInterfaceMultipleMethods)
 {
-    std::string result = PrintAST("interface Shape { fn area() -> f64; fn name() -> i32; }");
+    // Given
+    std::string source = "interface Shape { fn area() -> f64; fn name() -> i32; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("fn area() -> f64"), std::string::npos);
     EXPECT_NE(result.find("fn name() -> i32"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsMultipleDeclarations)
 {
-    std::string result = PrintAST("struct Point { x: i32; } fn main() -> void {}");
+    // Given
+    std::string source = "struct Point { x: i32; } fn main() -> void {}";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("(StructDecl Point"), std::string::npos);
     EXPECT_NE(result.find("(FunctionDecl main"), std::string::npos);
 }
@@ -151,34 +241,63 @@ TEST(AstPrinterTest, PrintsMultipleDeclarations)
 
 TEST(AstPrinterTest, PrintsVarDeclMutable)
 {
-    std::string result = PrintExpr("var x: i32 = 42");
+    // Given
+    std::string source = "var x: i32 = 42";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(VariableDecl x : i32 mut"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 42)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsValDeclImmutable)
 {
-    std::string result = PrintExpr("val x: i32 = 10");
+    // Given
+    std::string source = "val x: i32 = 10";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(VariableDecl x : i32 immut"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsVarDeclNoInitializer)
 {
-    std::string result = PrintExpr("var x: i32");
+    // Given
+    std::string source = "var x: i32";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(VariableDecl x : i32 mut"), std::string::npos);
     EXPECT_NE(result.find("<null>"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsVarDeclArrayType)
 {
-    std::string result = PrintExpr("var arr: i32[10]");
+    // Given
+    std::string source = "var arr: i32[10]";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("i32[10]"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsVarDeclGenericType)
 {
-    std::string src = "fn test() -> void { var r: Result<i32, char*>; }";
-    std::string result = PrintAST(src);
+    // Given
+    std::string source = "fn test() -> void { var r: Result<i32, char*>; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("Result<i32, char*>"), std::string::npos);
 }
 
@@ -188,42 +307,76 @@ TEST(AstPrinterTest, PrintsVarDeclGenericType)
 
 TEST(AstPrinterTest, PrintsReturnWithValue)
 {
-    std::string result = PrintExpr("return 42");
+    // Given
+    std::string source = "return 42";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(ReturnStatement\n"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 42)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsReturnVoid)
 {
-    std::string result = PrintAST("fn test() -> void { return; }");
+    // Given
+    std::string source = "fn test() -> void { return; }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("(ReturnStatement\n"), std::string::npos);
     EXPECT_NE(result.find("<null>"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsBreakStatement)
 {
-    std::string result = PrintExpr("break");
+    // Given
+    std::string source = "break";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(BreakStatement)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsContinueStatement)
 {
-    std::string result = PrintExpr("continue");
+    // Given
+    std::string source = "continue";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(ContinueStatement)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsIfStatement)
 {
-    std::string result = PrintAST("fn test() -> void { if (x) { return; } }");
+    // Given
+    std::string source = "fn test() -> void { if (x) { return; } }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("(IfStatement\n"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr x)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsIfElseStatement)
 {
-    std::string src = "fn test() -> void { if (x) { return; } else { break; } }";
-    std::string result = PrintAST(src);
-    std::string ifStr = "(IfStatement\n";
+    // Given
+    std::string source = "fn test() -> void { if (x) { return; } else { break; } }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     // Should contain both then and else branches
     EXPECT_NE(result.find("(ReturnStatement"), std::string::npos);
     EXPECT_NE(result.find("(BreakStatement)"), std::string::npos);
@@ -231,7 +384,13 @@ TEST(AstPrinterTest, PrintsIfElseStatement)
 
 TEST(AstPrinterTest, PrintsWhileStatement)
 {
-    std::string result = PrintAST("fn test() -> void { while (x) { break; } }");
+    // Given
+    std::string source = "fn test() -> void { while (x) { break; } }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("(WhileStatement\n"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr x)"), std::string::npos);
     EXPECT_NE(result.find("(BreakStatement)"), std::string::npos);
@@ -239,8 +398,13 @@ TEST(AstPrinterTest, PrintsWhileStatement)
 
 TEST(AstPrinterTest, PrintsForStatement)
 {
-    std::string src = "fn test() -> void { for (var i: i32 = 0; i < 10; i++) {} }";
-    std::string result = PrintAST(src);
+    // Given
+    std::string source = "fn test() -> void { for (var i: i32 = 0; i < 10; i++) {} }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("(ForStatement\n"), std::string::npos);
     EXPECT_NE(result.find("(VariableDecl i"), std::string::npos);
     EXPECT_NE(result.find("(BinaryExpr <"), std::string::npos);
@@ -249,7 +413,13 @@ TEST(AstPrinterTest, PrintsForStatement)
 
 TEST(AstPrinterTest, PrintsForStatementEmptyClauses)
 {
-    std::string result = PrintAST("fn test() -> void { for (;;) { break; } }");
+    // Given
+    std::string source = "fn test() -> void { for (;;) { break; } }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("(ForStatement\n"), std::string::npos);
     // All three clauses should be <null>
     size_t pos = 0;
@@ -264,14 +434,26 @@ TEST(AstPrinterTest, PrintsForStatementEmptyClauses)
 
 TEST(AstPrinterTest, PrintsForEachStatement)
 {
-    std::string result = PrintAST("fn test() -> void { for elem in items {} }");
+    // Given
+    std::string source = "fn test() -> void { for elem in items {} }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_NE(result.find("(ForEachStatement elem in"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr items)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsBlockStatement)
 {
-    std::string result = PrintAST("fn test() -> void { { var x: i32 = 1; } }");
+    // Given
+    std::string source = "fn test() -> void { { var x: i32 = 1; } }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     // Outer block + inner block
     size_t first = result.find("(BlockStatement");
     size_t second = result.find("(BlockStatement", first + 1);
@@ -281,7 +463,13 @@ TEST(AstPrinterTest, PrintsBlockStatement)
 
 TEST(AstPrinterTest, PrintsExprStatement)
 {
-    std::string result = PrintExpr("foo()");
+    // Given
+    std::string source = "foo()";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(ExprStatement\n"), std::string::npos);
     EXPECT_NE(result.find("(CallExpr foo"), std::string::npos);
 }
@@ -292,39 +480,76 @@ TEST(AstPrinterTest, PrintsExprStatement)
 
 TEST(AstPrinterTest, PrintsIntegerLiteral)
 {
-    std::string result = PrintExpr("42");
+    // Given
+    std::string source = "42";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(LiteralExpr 42)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsFloatLiteral)
 {
-    std::string result = PrintExpr("3.14");
+    // Given
+    std::string source = "3.14";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(LiteralExpr 3.14)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsBoolLiterals)
 {
-    std::string t = PrintExpr("true");
-    std::string f = PrintExpr("false");
+    // Given
+    std::string sourceTrue = "true";
+    std::string sourceFalse = "false";
+
+    // When
+    std::string t = PrintExpr(sourceTrue);
+    std::string f = PrintExpr(sourceFalse);
+
+    // Then
     EXPECT_NE(t.find("(LiteralExpr true)"), std::string::npos);
     EXPECT_NE(f.find("(LiteralExpr false)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsNullLiteral)
 {
-    std::string result = PrintExpr("null");
+    // Given
+    std::string source = "null";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(LiteralExpr null)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsStringLiteral)
 {
-    std::string result = PrintExpr("\"hello\"");
+    // Given
+    std::string source = "\"hello\"";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(LiteralExpr \"hello\")"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsCharLiteral)
 {
-    std::string result = PrintExpr("'a'");
+    // Given
+    std::string source = "'a'";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(LiteralExpr 'a')"), std::string::npos);
 }
 
@@ -334,11 +559,13 @@ TEST(AstPrinterTest, PrintsCharLiteral)
 
 TEST(AstPrinterTest, PrintsBinaryExpr)
 {
-    std::string result = PrintExpr("a + b");
-    std::string expected_fragment = "(BinaryExpr +\n"
-                                    "        (VarExpr a)\n"
-                                    "        (VarExpr b)\n"
-                                    "      )";
+    // Given
+    std::string source = "a + b";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(BinaryExpr +"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr a)"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr b)"), std::string::npos);
@@ -346,8 +573,14 @@ TEST(AstPrinterTest, PrintsBinaryExpr)
 
 TEST(AstPrinterTest, PrintsNestedBinaryExpr)
 {
+    // Given
     // a + b * c => (+ a (* b c))
-    std::string result = PrintExpr("a + b * c");
+    std::string source = "a + b * c";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     // The outer op should be +, inner should be *
     size_t plusPos = result.find("(BinaryExpr +");
     size_t mulPos = result.find("(BinaryExpr *");
@@ -359,11 +592,13 @@ TEST(AstPrinterTest, PrintsNestedBinaryExpr)
 
 TEST(AstPrinterTest, PrintsAllBinaryOperators)
 {
+    // Given
     auto check = [](const std::string &op) {
         std::string result = PrintExpr("a " + op + " b");
         EXPECT_NE(result.find("(BinaryExpr " + op), std::string::npos) << "Failed for operator: " << op;
     };
 
+    // When / Then
     check("+");
     check("-");
     check("*");
@@ -386,7 +621,13 @@ TEST(AstPrinterTest, PrintsAllBinaryOperators)
 
 TEST(AstPrinterTest, PrintsElvisOperator)
 {
-    std::string result = PrintExpr("a ?: b");
+    // Given
+    std::string source = "a ?: b";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(BinaryExpr ?:"), std::string::npos);
 }
 
@@ -396,46 +637,88 @@ TEST(AstPrinterTest, PrintsElvisOperator)
 
 TEST(AstPrinterTest, PrintsUnaryNegation)
 {
-    std::string result = PrintExpr("-x");
+    // Given
+    std::string source = "-x";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(UnaryExpr -"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr x)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsUnaryNot)
 {
-    std::string result = PrintExpr("!x");
+    // Given
+    std::string source = "!x";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(UnaryExpr !"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsUnaryBitwiseNot)
 {
-    std::string result = PrintExpr("~x");
+    // Given
+    std::string source = "~x";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(UnaryExpr ~"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsPrefixIncrement)
 {
-    std::string result = PrintExpr("++x");
+    // Given
+    std::string source = "++x";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(PrefixExpr ++"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr x)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsPrefixDecrement)
 {
-    std::string result = PrintExpr("--x");
+    // Given
+    std::string source = "--x";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(PrefixExpr --"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsPostfixIncrement)
 {
-    std::string result = PrintExpr("x++");
+    // Given
+    std::string source = "x++";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(PostfixExpr ++"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr x)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsPostfixDecrement)
 {
-    std::string result = PrintExpr("x--");
+    // Given
+    std::string source = "x--";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(PostfixExpr --"), std::string::npos);
 }
 
@@ -445,22 +728,40 @@ TEST(AstPrinterTest, PrintsPostfixDecrement)
 
 TEST(AstPrinterTest, PrintsAssignExpr)
 {
-    std::string result = PrintExpr("x = 42");
+    // Given
+    std::string source = "x = 42";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(AssignExpr x"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 42)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsCompoundAssignment)
 {
+    // Given
     // x += 1 is desugared to x = x + 1
-    std::string result = PrintExpr("x += 1");
+    std::string source = "x += 1";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(AssignExpr x"), std::string::npos);
     EXPECT_NE(result.find("(BinaryExpr +"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsIndexAssignExpr)
 {
-    std::string result = PrintExpr("arr[0] = 42");
+    // Given
+    std::string source = "arr[0] = 42";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(IndexAssignExpr"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr arr)"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 0)"), std::string::npos);
@@ -469,7 +770,13 @@ TEST(AstPrinterTest, PrintsIndexAssignExpr)
 
 TEST(AstPrinterTest, PrintsMemberAssignExpr)
 {
-    std::string result = PrintExpr("obj.field = 42");
+    // Given
+    std::string source = "obj.field = 42";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(MemberAssignExpr .field ="), std::string::npos);
     EXPECT_NE(result.find("(VarExpr obj)"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 42)"), std::string::npos);
@@ -481,15 +788,25 @@ TEST(AstPrinterTest, PrintsMemberAssignExpr)
 
 TEST(AstPrinterTest, PrintsCallExprNoArgs)
 {
-    std::string result = PrintExpr("foo()");
-    std::string expected_fragment = "(CallExpr foo\n"
-                                    "      )\n";
+    // Given
+    std::string source = "foo()";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(CallExpr foo"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsCallExprWithArgs)
 {
-    std::string result = PrintExpr("add(1, 2)");
+    // Given
+    std::string source = "add(1, 2)";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(CallExpr add"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 1)"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 2)"), std::string::npos);
@@ -497,19 +814,37 @@ TEST(AstPrinterTest, PrintsCallExprWithArgs)
 
 TEST(AstPrinterTest, PrintsGenericCallExpr)
 {
-    std::string result = PrintExpr("identity<i32>(42)");
+    // Given
+    std::string source = "identity<i32>(42)";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(CallExpr identity<i32>"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsGenericCallMultipleTypeArgs)
 {
-    std::string result = PrintExpr("make<i32, f64>(1, 2)");
+    // Given
+    std::string source = "make<i32, f64>(1, 2)";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(CallExpr make<i32, f64>"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsMethodCallExpr)
 {
-    std::string result = PrintExpr("obj.method(1)");
+    // Given
+    std::string source = "obj.method(1)";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(MethodCallExpr .method"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr obj)"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 1)"), std::string::npos);
@@ -517,7 +852,13 @@ TEST(AstPrinterTest, PrintsMethodCallExpr)
 
 TEST(AstPrinterTest, PrintsChainedMethodCalls)
 {
-    std::string result = PrintExpr("obj.a().b()");
+    // Given
+    std::string source = "obj.a().b()";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(MethodCallExpr .b"), std::string::npos);
     EXPECT_NE(result.find("(MethodCallExpr .a"), std::string::npos);
 }
@@ -528,14 +869,26 @@ TEST(AstPrinterTest, PrintsChainedMethodCalls)
 
 TEST(AstPrinterTest, PrintsMemberAccessExpr)
 {
-    std::string result = PrintExpr("obj.field");
+    // Given
+    std::string source = "obj.field";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(MemberAccessExpr .field"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr obj)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsChainedMemberAccess)
 {
-    std::string result = PrintExpr("a.b.c");
+    // Given
+    std::string source = "a.b.c";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(MemberAccessExpr .c"), std::string::npos);
     EXPECT_NE(result.find("(MemberAccessExpr .b"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr a)"), std::string::npos);
@@ -543,7 +896,13 @@ TEST(AstPrinterTest, PrintsChainedMemberAccess)
 
 TEST(AstPrinterTest, PrintsIndexExpr)
 {
-    std::string result = PrintExpr("arr[0]");
+    // Given
+    std::string source = "arr[0]";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(IndexExpr"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr arr)"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 0)"), std::string::npos);
@@ -551,7 +910,13 @@ TEST(AstPrinterTest, PrintsIndexExpr)
 
 TEST(AstPrinterTest, PrintsNestedIndex)
 {
-    std::string result = PrintExpr("matrix[0][1]");
+    // Given
+    std::string source = "matrix[0][1]";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     // Outer IndexExpr contains inner IndexExpr
     size_t first = result.find("(IndexExpr");
     size_t second = result.find("(IndexExpr", first + 1);
@@ -565,26 +930,50 @@ TEST(AstPrinterTest, PrintsNestedIndex)
 
 TEST(AstPrinterTest, PrintsCastExpr)
 {
-    std::string result = PrintExpr("(i32) x");
+    // Given
+    std::string source = "(i32) x";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(CastExpr -> i32"), std::string::npos);
     EXPECT_NE(result.find("(VarExpr x)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsPointerCast)
 {
-    std::string result = PrintExpr("(Node*) ptr");
+    // Given
+    std::string source = "(Node*) ptr";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(CastExpr -> Node*"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsAllocExpr)
 {
-    std::string result = PrintExpr("alloc<Node>()");
+    // Given
+    std::string source = "alloc<Node>()";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(AllocExpr Node*)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsArrayLiteralExpr)
 {
-    std::string result = PrintExpr("[1, 2, 3]");
+    // Given
+    std::string source = "[1, 2, 3]";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(ArrayLiteralExpr [3]"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 1)"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 2)"), std::string::npos);
@@ -593,7 +982,13 @@ TEST(AstPrinterTest, PrintsArrayLiteralExpr)
 
 TEST(AstPrinterTest, PrintsEmptyArrayLiteral)
 {
-    std::string result = PrintExpr("[]");
+    // Given
+    std::string source = "[]";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(ArrayLiteralExpr [0]"), std::string::npos);
 }
 
@@ -603,22 +998,39 @@ TEST(AstPrinterTest, PrintsEmptyArrayLiteral)
 
 TEST(AstPrinterTest, PrintsOkExpr)
 {
-    std::string result = PrintExpr("Ok(42)");
+    // Given
+    std::string source = "Ok(42)";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(OkExpr"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 42)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsErrExpr)
 {
-    std::string result = PrintExpr("Err(1)");
+    // Given
+    std::string source = "Err(1)";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(ErrExpr"), std::string::npos);
     EXPECT_NE(result.find("(LiteralExpr 1)"), std::string::npos);
 }
 
 TEST(AstPrinterTest, PrintsMatchExpr)
 {
-    std::string src = "match result { Ok(v) => v, Err(e) => 0 }";
-    std::string result = PrintExpr(src);
+    // Given
+    std::string source = "match result { Ok(v) => v, Err(e) => 0 }";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(MatchExpr"), std::string::npos);
     EXPECT_NE(result.find("scrutinee:"), std::string::npos);
     EXPECT_NE(result.find("Ok(v) =>"), std::string::npos);
@@ -631,7 +1043,13 @@ TEST(AstPrinterTest, PrintsMatchExpr)
 
 TEST(AstPrinterTest, IndentationIncreasesWithNesting)
 {
-    std::string result = PrintAST("fn main() -> void { if (x) { return 1; } }");
+    // Given
+    std::string source = "fn main() -> void { if (x) { return 1; } }";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     // Top-level: no indent
     EXPECT_EQ(result.find("(FunctionDecl"), 0u);
     // Body block: 2 spaces
@@ -642,7 +1060,13 @@ TEST(AstPrinterTest, IndentationIncreasesWithNesting)
 
 TEST(AstPrinterTest, PrintsVarExpr)
 {
-    std::string result = PrintExpr("x");
+    // Given
+    std::string source = "x";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(VarExpr x)"), std::string::npos);
 }
 
@@ -652,7 +1076,13 @@ TEST(AstPrinterTest, PrintsVarExpr)
 
 TEST(AstPrinterTest, PrintsNamespacedConstructor)
 {
-    std::string result = PrintExpr("std::Vector<i32>()");
+    // Given
+    std::string source = "std::Vector<i32>()";
+
+    // When
+    std::string result = PrintExpr(source);
+
+    // Then
     EXPECT_NE(result.find("(CallExpr std::Vector<i32>"), std::string::npos);
 }
 
@@ -662,14 +1092,17 @@ TEST(AstPrinterTest, PrintsNamespacedConstructor)
 
 TEST(AstPrinterTest, PrintsCompleteProgram)
 {
+    // Given
     std::string source = "struct Point { x: f64; y: f64; } "
                          "fn distance(p: Point*) -> f64 { return 0; }";
+
+    // When
     std::string result = PrintAST(source);
 
+    // Then
     // Both declarations present
     EXPECT_NE(result.find("(StructDecl Point"), std::string::npos);
     EXPECT_NE(result.find("(FunctionDecl distance"), std::string::npos);
-
     // Struct printed before function
     size_t structPos = result.find("(StructDecl");
     size_t funcPos = result.find("(FunctionDecl");
@@ -678,6 +1111,12 @@ TEST(AstPrinterTest, PrintsCompleteProgram)
 
 TEST(AstPrinterTest, PrintsEmptyProgram)
 {
-    std::string result = PrintAST("");
+    // Given
+    std::string source = "";
+
+    // When
+    std::string result = PrintAST(source);
+
+    // Then
     EXPECT_EQ(result, "");
 }

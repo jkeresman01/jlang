@@ -49,10 +49,14 @@ static std::shared_ptr<AstNode> ParseExpr(const std::string &exprSource)
 
 TEST(ParserTest, ParsesEmptyFunction)
 {
+    // Given
     std::string source = "fn main() -> void {}";
-    auto node = ParseOne(source);
-    auto fn = std::dynamic_pointer_cast<FunctionDecl>(node);
 
+    // When
+    auto node = ParseOne(source);
+
+    // Then
+    auto fn = std::dynamic_pointer_cast<FunctionDecl>(node);
     ASSERT_NE(fn, nullptr);
     EXPECT_EQ(fn->name, "main");
     EXPECT_EQ(fn->params.size(), 0u);
@@ -67,9 +71,13 @@ TEST(ParserTest, ParsesEmptyFunction)
 
 TEST(ParserTest, ParsesFunctionWithParams)
 {
+    // Given
     std::string source = "fn add(a: i32, b: i32) -> i32 { return a; }";
+
+    // When
     auto fn = std::dynamic_pointer_cast<FunctionDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(fn, nullptr);
     EXPECT_EQ(fn->name, "add");
     ASSERT_EQ(fn->params.size(), 2u);
@@ -82,9 +90,13 @@ TEST(ParserTest, ParsesFunctionWithParams)
 
 TEST(ParserTest, ParsesFunctionWithPointerParam)
 {
+    // Given
     std::string source = "fn deref(p: i32*) -> i32 { return p; }";
+
+    // When
     auto fn = std::dynamic_pointer_cast<FunctionDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(fn, nullptr);
     ASSERT_EQ(fn->params.size(), 1u);
     EXPECT_EQ(fn->params[0].type.name, "i32");
@@ -93,9 +105,13 @@ TEST(ParserTest, ParsesFunctionWithPointerParam)
 
 TEST(ParserTest, ParsesFunctionWithPointerReturnType)
 {
+    // Given
     std::string source = "fn create() -> Node* { return null; }";
+
+    // When
     auto fn = std::dynamic_pointer_cast<FunctionDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(fn, nullptr);
     EXPECT_EQ(fn->returnType.name, "Node");
     EXPECT_TRUE(fn->returnType.isPointer);
@@ -103,9 +119,13 @@ TEST(ParserTest, ParsesFunctionWithPointerReturnType)
 
 TEST(ParserTest, ParsesGenericFunction)
 {
+    // Given
     std::string source = "fn identity<T>(x: T) -> T { return x; }";
+
+    // When
     auto fn = std::dynamic_pointer_cast<FunctionDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(fn, nullptr);
     EXPECT_EQ(fn->name, "identity");
     ASSERT_EQ(fn->typeParameters.size(), 1u);
@@ -117,9 +137,13 @@ TEST(ParserTest, ParsesGenericFunction)
 
 TEST(ParserTest, ParsesGenericFunctionMultipleParams)
 {
+    // Given
     std::string source = "fn pair<T, U>(a: T, b: U) -> void {}";
+
+    // When
     auto fn = std::dynamic_pointer_cast<FunctionDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(fn, nullptr);
     ASSERT_EQ(fn->typeParameters.size(), 2u);
     EXPECT_EQ(fn->typeParameters[0], "T");
@@ -128,18 +152,26 @@ TEST(ParserTest, ParsesGenericFunctionMultipleParams)
 
 TEST(ParserTest, ParsesFunctionDefaultVoidReturn)
 {
+    // Given
     std::string source = "fn noop() {}";
+
+    // When
     auto fn = std::dynamic_pointer_cast<FunctionDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(fn, nullptr);
     EXPECT_EQ(fn->returnType.name, "void");
 }
 
 TEST(ParserTest, ParsesFunctionNullablePointerReturn)
 {
+    // Given
     std::string source = "fn find() -> Node*? { return null; }";
+
+    // When
     auto fn = std::dynamic_pointer_cast<FunctionDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(fn, nullptr);
     EXPECT_EQ(fn->returnType.name, "Node");
     EXPECT_TRUE(fn->returnType.isPointer);
@@ -152,10 +184,14 @@ TEST(ParserTest, ParsesFunctionNullablePointerReturn)
 
 TEST(ParserTest, ParsesEmptyStruct)
 {
+    // Given
     std::string source = "struct Empty {}";
-    auto node = ParseOne(source);
-    auto s = std::dynamic_pointer_cast<StructDecl>(node);
 
+    // When
+    auto node = ParseOne(source);
+
+    // Then
+    auto s = std::dynamic_pointer_cast<StructDecl>(node);
     ASSERT_NE(s, nullptr);
     EXPECT_EQ(s->name, "Empty");
     EXPECT_EQ(s->fields.size(), 0u);
@@ -165,9 +201,13 @@ TEST(ParserTest, ParsesEmptyStruct)
 
 TEST(ParserTest, ParsesStructWithFields)
 {
+    // Given
     std::string source = "struct Point { x: f64; y: f64; }";
+
+    // When
     auto s = std::dynamic_pointer_cast<StructDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(s, nullptr);
     EXPECT_EQ(s->name, "Point");
     ASSERT_EQ(s->fields.size(), 2u);
@@ -179,9 +219,13 @@ TEST(ParserTest, ParsesStructWithFields)
 
 TEST(ParserTest, ParsesStructFieldVisibility)
 {
+    // Given
     std::string source = "struct Foo { Name: i32; value: i32; }";
+
+    // When
     auto s = std::dynamic_pointer_cast<StructDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(s, nullptr);
     ASSERT_EQ(s->fields.size(), 2u);
     EXPECT_TRUE(s->fields[0].isPublic);  // Uppercase = public
@@ -190,9 +234,13 @@ TEST(ParserTest, ParsesStructFieldVisibility)
 
 TEST(ParserTest, ParsesStructWithPointerField)
 {
+    // Given
     std::string source = "struct Node { next: Node*; }";
+
+    // When
     auto s = std::dynamic_pointer_cast<StructDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(s, nullptr);
     ASSERT_EQ(s->fields.size(), 1u);
     EXPECT_EQ(s->fields[0].type.name, "Node");
@@ -201,9 +249,13 @@ TEST(ParserTest, ParsesStructWithPointerField)
 
 TEST(ParserTest, ParsesStructWithNullableField)
 {
+    // Given
     std::string source = "struct Node { next: Node*?; }";
+
+    // When
     auto s = std::dynamic_pointer_cast<StructDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(s, nullptr);
     ASSERT_EQ(s->fields.size(), 1u);
     EXPECT_TRUE(s->fields[0].type.isPointer);
@@ -212,9 +264,13 @@ TEST(ParserTest, ParsesStructWithNullableField)
 
 TEST(ParserTest, ParsesStructWithInterface)
 {
+    // Given
     std::string source = "struct Circle : Drawable { radius: f64; }";
+
+    // When
     auto s = std::dynamic_pointer_cast<StructDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(s, nullptr);
     EXPECT_EQ(s->name, "Circle");
     EXPECT_EQ(s->interfaceImplemented, "Drawable");
@@ -222,9 +278,13 @@ TEST(ParserTest, ParsesStructWithInterface)
 
 TEST(ParserTest, ParsesGenericStruct)
 {
+    // Given
     std::string source = "struct Pair<T, U> { first: T; second: U; }";
+
+    // When
     auto s = std::dynamic_pointer_cast<StructDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(s, nullptr);
     ASSERT_EQ(s->typeParameters.size(), 2u);
     EXPECT_EQ(s->typeParameters[0], "T");
@@ -240,9 +300,13 @@ TEST(ParserTest, ParsesGenericStruct)
 
 TEST(ParserTest, ParsesInterface)
 {
+    // Given
     std::string source = "interface Drawable { fn draw(x: i32) -> void; }";
+
+    // When
     auto iface = std::dynamic_pointer_cast<InterfaceDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(iface, nullptr);
     EXPECT_EQ(iface->name, "Drawable");
     ASSERT_EQ(iface->methods.size(), 1u);
@@ -255,9 +319,13 @@ TEST(ParserTest, ParsesInterface)
 
 TEST(ParserTest, ParsesInterfaceMultipleMethods)
 {
+    // Given
     std::string source = "interface Shape { fn area() -> f64; fn name() -> i32; }";
+
+    // When
     auto iface = std::dynamic_pointer_cast<InterfaceDecl>(ParseOne(source));
 
+    // Then
     ASSERT_NE(iface, nullptr);
     ASSERT_EQ(iface->methods.size(), 2u);
     EXPECT_EQ(iface->methods[0].name, "area");
@@ -270,9 +338,14 @@ TEST(ParserTest, ParsesInterfaceMultipleMethods)
 
 TEST(ParserTest, ParsesVarDeclWithType)
 {
-    auto block = ParseFnBody("var x: i32 = 42;");
-    ASSERT_EQ(block->statements.size(), 1u);
+    // Given
+    std::string source = "var x: i32 = 42;";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    ASSERT_EQ(block->statements.size(), 1u);
     auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
     ASSERT_NE(varDecl, nullptr);
     EXPECT_EQ(varDecl->name, "x");
@@ -287,18 +360,28 @@ TEST(ParserTest, ParsesVarDeclWithType)
 
 TEST(ParserTest, ParsesValImmutableDecl)
 {
-    auto block = ParseFnBody("val x: i32 = 10;");
-    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
+    // Given
+    std::string source = "val x: i32 = 10;";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
     ASSERT_NE(varDecl, nullptr);
     EXPECT_FALSE(varDecl->isMutable);
 }
 
 TEST(ParserTest, ParsesVarDeclWithTypeInference)
 {
-    auto block = ParseFnBody("var x := 42;");
-    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
+    // Given
+    std::string source = "var x := 42;";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
     ASSERT_NE(varDecl, nullptr);
     EXPECT_EQ(varDecl->name, "x");
     EXPECT_TRUE(varDecl->varType.name.empty()); // inferred
@@ -307,9 +390,14 @@ TEST(ParserTest, ParsesVarDeclWithTypeInference)
 
 TEST(ParserTest, ParsesVarDeclWithPointerType)
 {
-    auto block = ParseFnBody("var p: Node* = null;");
-    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
+    // Given
+    std::string source = "var p: Node* = null;";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
     ASSERT_NE(varDecl, nullptr);
     EXPECT_EQ(varDecl->varType.name, "Node");
     EXPECT_TRUE(varDecl->varType.isPointer);
@@ -317,9 +405,14 @@ TEST(ParserTest, ParsesVarDeclWithPointerType)
 
 TEST(ParserTest, ParsesVarDeclWithNullablePointer)
 {
-    auto block = ParseFnBody("var p: Node*? = null;");
-    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
+    // Given
+    std::string source = "var p: Node*? = null;";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
     ASSERT_NE(varDecl, nullptr);
     EXPECT_TRUE(varDecl->varType.isPointer);
     EXPECT_TRUE(varDecl->varType.isNullable);
@@ -327,9 +420,14 @@ TEST(ParserTest, ParsesVarDeclWithNullablePointer)
 
 TEST(ParserTest, ParsesVarDeclWithArrayType)
 {
-    auto block = ParseFnBody("var arr: i32[10];");
-    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
+    // Given
+    std::string source = "var arr: i32[10];";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
     ASSERT_NE(varDecl, nullptr);
     EXPECT_EQ(varDecl->varType.name, "i32");
     EXPECT_TRUE(varDecl->varType.isArray);
@@ -338,11 +436,15 @@ TEST(ParserTest, ParsesVarDeclWithArrayType)
 
 TEST(ParserTest, ParsesVarDeclWithGenericType)
 {
+    // Given
     std::string source = "fn test() -> void { var r: Result<i32, char*>; }";
+
+    // When
     auto fn = std::dynamic_pointer_cast<FunctionDecl>(ParseOne(source));
+
+    // Then
     auto block = std::dynamic_pointer_cast<BlockStatement>(fn->body);
     auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
-
     ASSERT_NE(varDecl, nullptr);
     EXPECT_EQ(varDecl->varType.name, "Result");
     ASSERT_EQ(varDecl->varType.typeParameters.size(), 2u);
@@ -353,9 +455,14 @@ TEST(ParserTest, ParsesVarDeclWithGenericType)
 
 TEST(ParserTest, ParsesVarDeclWithoutInitializer)
 {
-    auto block = ParseFnBody("var x: i32;");
-    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
+    // Given
+    std::string source = "var x: i32;";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
     ASSERT_NE(varDecl, nullptr);
     EXPECT_EQ(varDecl->name, "x");
     EXPECT_EQ(varDecl->initializer, nullptr);
@@ -367,9 +474,14 @@ TEST(ParserTest, ParsesVarDeclWithoutInitializer)
 
 TEST(ParserTest, ParsesReturnWithValue)
 {
-    auto block = ParseFnBody("return 42;");
-    auto ret = std::dynamic_pointer_cast<ReturnStatement>(block->statements[0]);
+    // Given
+    std::string source = "return 42;";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto ret = std::dynamic_pointer_cast<ReturnStatement>(block->statements[0]);
     ASSERT_NE(ret, nullptr);
     ASSERT_NE(ret->value, nullptr);
     auto lit = std::dynamic_pointer_cast<LiteralExpr>(ret->value);
@@ -379,32 +491,54 @@ TEST(ParserTest, ParsesReturnWithValue)
 
 TEST(ParserTest, ParsesReturnVoid)
 {
-    auto block = ParseFnBody("return;");
-    auto ret = std::dynamic_pointer_cast<ReturnStatement>(block->statements[0]);
+    // Given
+    std::string source = "return;";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto ret = std::dynamic_pointer_cast<ReturnStatement>(block->statements[0]);
     ASSERT_NE(ret, nullptr);
     EXPECT_EQ(ret->value, nullptr);
 }
 
 TEST(ParserTest, ParsesBreakStatement)
 {
-    auto block = ParseFnBody("break;");
+    // Given
+    std::string source = "break;";
+
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
     auto brk = std::dynamic_pointer_cast<BreakStatement>(block->statements[0]);
     ASSERT_NE(brk, nullptr);
 }
 
 TEST(ParserTest, ParsesContinueStatement)
 {
-    auto block = ParseFnBody("continue;");
+    // Given
+    std::string source = "continue;";
+
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
     auto cont = std::dynamic_pointer_cast<ContinueStatement>(block->statements[0]);
     ASSERT_NE(cont, nullptr);
 }
 
 TEST(ParserTest, ParsesIfStatement)
 {
-    auto block = ParseFnBody("if (x) { return; }");
-    auto ifStmt = std::dynamic_pointer_cast<IfStatement>(block->statements[0]);
+    // Given
+    std::string source = "if (x) { return; }";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto ifStmt = std::dynamic_pointer_cast<IfStatement>(block->statements[0]);
     ASSERT_NE(ifStmt, nullptr);
     ASSERT_NE(ifStmt->condition, nullptr);
     ASSERT_NE(ifStmt->thenBranch, nullptr);
@@ -413,9 +547,14 @@ TEST(ParserTest, ParsesIfStatement)
 
 TEST(ParserTest, ParsesIfElseStatement)
 {
-    auto block = ParseFnBody("if (x) { return; } else { return; }");
-    auto ifStmt = std::dynamic_pointer_cast<IfStatement>(block->statements[0]);
+    // Given
+    std::string source = "if (x) { return; } else { return; }";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto ifStmt = std::dynamic_pointer_cast<IfStatement>(block->statements[0]);
     ASSERT_NE(ifStmt, nullptr);
     ASSERT_NE(ifStmt->thenBranch, nullptr);
     ASSERT_NE(ifStmt->elseBranch, nullptr);
@@ -423,10 +562,14 @@ TEST(ParserTest, ParsesIfElseStatement)
 
 TEST(ParserTest, ParsesIfElseIfChain)
 {
-    std::string src = "if (a) { return; } else if (b) { return; } else { return; }";
-    auto block = ParseFnBody(src);
-    auto ifStmt = std::dynamic_pointer_cast<IfStatement>(block->statements[0]);
+    // Given
+    std::string source = "if (a) { return; } else if (b) { return; } else { return; }";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto ifStmt = std::dynamic_pointer_cast<IfStatement>(block->statements[0]);
     ASSERT_NE(ifStmt, nullptr);
     // else branch is another IfStatement
     auto elseIf = std::dynamic_pointer_cast<IfStatement>(ifStmt->elseBranch);
@@ -436,9 +579,14 @@ TEST(ParserTest, ParsesIfElseIfChain)
 
 TEST(ParserTest, ParsesWhileStatement)
 {
-    auto block = ParseFnBody("while (x) { break; }");
-    auto whileStmt = std::dynamic_pointer_cast<WhileStatement>(block->statements[0]);
+    // Given
+    std::string source = "while (x) { break; }";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto whileStmt = std::dynamic_pointer_cast<WhileStatement>(block->statements[0]);
     ASSERT_NE(whileStmt, nullptr);
     ASSERT_NE(whileStmt->condition, nullptr);
     ASSERT_NE(whileStmt->body, nullptr);
@@ -446,10 +594,14 @@ TEST(ParserTest, ParsesWhileStatement)
 
 TEST(ParserTest, ParsesForStatement)
 {
-    std::string src = "for (var i: i32 = 0; i < 10; i++) {}";
-    auto block = ParseFnBody(src);
-    auto forStmt = std::dynamic_pointer_cast<ForStatement>(block->statements[0]);
+    // Given
+    std::string source = "for (var i: i32 = 0; i < 10; i++) {}";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto forStmt = std::dynamic_pointer_cast<ForStatement>(block->statements[0]);
     ASSERT_NE(forStmt, nullptr);
     ASSERT_NE(forStmt->init, nullptr);
     ASSERT_NE(forStmt->condition, nullptr);
@@ -464,9 +616,14 @@ TEST(ParserTest, ParsesForStatement)
 
 TEST(ParserTest, ParsesForStatementEmptyClauses)
 {
-    auto block = ParseFnBody("for (;;) { break; }");
-    auto forStmt = std::dynamic_pointer_cast<ForStatement>(block->statements[0]);
+    // Given
+    std::string source = "for (;;) { break; }";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto forStmt = std::dynamic_pointer_cast<ForStatement>(block->statements[0]);
     ASSERT_NE(forStmt, nullptr);
     EXPECT_EQ(forStmt->init, nullptr);
     EXPECT_EQ(forStmt->condition, nullptr);
@@ -475,9 +632,14 @@ TEST(ParserTest, ParsesForStatementEmptyClauses)
 
 TEST(ParserTest, ParsesForEachStatement)
 {
-    auto block = ParseFnBody("for elem in items {}");
-    auto forEach = std::dynamic_pointer_cast<ForEachStatement>(block->statements[0]);
+    // Given
+    std::string source = "for elem in items {}";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto forEach = std::dynamic_pointer_cast<ForEachStatement>(block->statements[0]);
     ASSERT_NE(forEach, nullptr);
     EXPECT_EQ(forEach->elementName, "elem");
     ASSERT_NE(forEach->iterable, nullptr);
@@ -488,9 +650,14 @@ TEST(ParserTest, ParsesForEachStatement)
 
 TEST(ParserTest, ParsesNestedBlocks)
 {
-    auto block = ParseFnBody("{ var x: i32 = 1; { var y: i32 = 2; } }");
-    ASSERT_EQ(block->statements.size(), 1u);
+    // Given
+    std::string source = "{ var x: i32 = 1; { var y: i32 = 2; } }";
 
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    ASSERT_EQ(block->statements.size(), 1u);
     auto inner = std::dynamic_pointer_cast<BlockStatement>(block->statements[0]);
     ASSERT_NE(inner, nullptr);
     ASSERT_EQ(inner->statements.size(), 2u);
@@ -502,7 +669,13 @@ TEST(ParserTest, ParsesNestedBlocks)
 
 TEST(ParserTest, ParsesIntegerLiteral)
 {
-    auto expr = ParseExpr("42");
+    // Given
+    std::string source = "42";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto lit = std::dynamic_pointer_cast<LiteralExpr>(expr);
     ASSERT_NE(lit, nullptr);
     EXPECT_EQ(lit->value, "42");
@@ -510,7 +683,13 @@ TEST(ParserTest, ParsesIntegerLiteral)
 
 TEST(ParserTest, ParsesFloatLiteral)
 {
-    auto expr = ParseExpr("3.14");
+    // Given
+    std::string source = "3.14";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto lit = std::dynamic_pointer_cast<LiteralExpr>(expr);
     ASSERT_NE(lit, nullptr);
     EXPECT_EQ(lit->value, "3.14");
@@ -518,8 +697,15 @@ TEST(ParserTest, ParsesFloatLiteral)
 
 TEST(ParserTest, ParsesBoolLiterals)
 {
-    auto t = std::dynamic_pointer_cast<LiteralExpr>(ParseExpr("true"));
-    auto f = std::dynamic_pointer_cast<LiteralExpr>(ParseExpr("false"));
+    // Given
+    std::string sourceTrue = "true";
+    std::string sourceFalse = "false";
+
+    // When
+    auto t = std::dynamic_pointer_cast<LiteralExpr>(ParseExpr(sourceTrue));
+    auto f = std::dynamic_pointer_cast<LiteralExpr>(ParseExpr(sourceFalse));
+
+    // Then
     ASSERT_NE(t, nullptr);
     ASSERT_NE(f, nullptr);
     EXPECT_EQ(t->value, "true");
@@ -528,7 +714,13 @@ TEST(ParserTest, ParsesBoolLiterals)
 
 TEST(ParserTest, ParsesNullLiteral)
 {
-    auto expr = ParseExpr("null");
+    // Given
+    std::string source = "null";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto lit = std::dynamic_pointer_cast<LiteralExpr>(expr);
     ASSERT_NE(lit, nullptr);
     EXPECT_EQ(lit->value, "null");
@@ -536,7 +728,13 @@ TEST(ParserTest, ParsesNullLiteral)
 
 TEST(ParserTest, ParsesStringLiteral)
 {
-    auto block = ParseFnBody("\"hello\";");
+    // Given
+    std::string source = "\"hello\";";
+
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
     auto exprStmt = std::dynamic_pointer_cast<ExprStatement>(block->statements[0]);
     auto lit = std::dynamic_pointer_cast<LiteralExpr>(exprStmt->expression);
     ASSERT_NE(lit, nullptr);
@@ -546,7 +744,13 @@ TEST(ParserTest, ParsesStringLiteral)
 
 TEST(ParserTest, ParsesCharLiteral)
 {
-    auto block = ParseFnBody("'a';");
+    // Given
+    std::string source = "'a';";
+
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
     auto exprStmt = std::dynamic_pointer_cast<ExprStatement>(block->statements[0]);
     auto lit = std::dynamic_pointer_cast<LiteralExpr>(exprStmt->expression);
     ASSERT_NE(lit, nullptr);
@@ -560,7 +764,13 @@ TEST(ParserTest, ParsesCharLiteral)
 
 TEST(ParserTest, ParsesAddition)
 {
-    auto expr = ParseExpr("a + b");
+    // Given
+    std::string source = "a + b";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto bin = std::dynamic_pointer_cast<BinaryExpr>(expr);
     ASSERT_NE(bin, nullptr);
     EXPECT_EQ(bin->op, "+");
@@ -575,8 +785,13 @@ TEST(ParserTest, ParsesAddition)
 
 TEST(ParserTest, ParsesMultiplicationHigherThanAddition)
 {
-    // a + b * c => a + (b * c)
-    auto expr = ParseExpr("a + b * c");
+    // Given
+    std::string source = "a + b * c"; // a + b * c => a + (b * c)
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto add = std::dynamic_pointer_cast<BinaryExpr>(expr);
     ASSERT_NE(add, nullptr);
     EXPECT_EQ(add->op, "+");
@@ -588,8 +803,13 @@ TEST(ParserTest, ParsesMultiplicationHigherThanAddition)
 
 TEST(ParserTest, ParsesParenthesizedExpression)
 {
-    // (a + b) * c should be grouped expression, not cast
-    auto expr = ParseExpr("(a + b) * c");
+    // Given
+    std::string source = "(a + b) * c"; // should be grouped expression, not cast
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto mul = std::dynamic_pointer_cast<BinaryExpr>(expr);
     ASSERT_NE(mul, nullptr);
     EXPECT_EQ(mul->op, "*");
@@ -601,8 +821,13 @@ TEST(ParserTest, ParsesParenthesizedExpression)
 
 TEST(ParserTest, ParsesParenthesizedVariable)
 {
-    // (a) should be grouped expression, not cast to type "a"
-    auto expr = ParseExpr("(a)");
+    // Given
+    std::string source = "(a)"; // should be grouped expression, not cast to type "a"
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto var = std::dynamic_pointer_cast<VarExpr>(expr);
     ASSERT_NE(var, nullptr);
     EXPECT_EQ(var->name, "a");
@@ -610,13 +835,23 @@ TEST(ParserTest, ParsesParenthesizedVariable)
 
 TEST(ParserTest, ParsesComparisonOperators)
 {
-    auto lt = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a < b"));
-    auto gt = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a > b"));
-    auto le = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a <= b"));
-    auto ge = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a >= b"));
-    auto eq = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a == b"));
-    auto ne = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a != b"));
+    // Given
+    std::string srcLt = "a < b";
+    std::string srcGt = "a > b";
+    std::string srcLe = "a <= b";
+    std::string srcGe = "a >= b";
+    std::string srcEq = "a == b";
+    std::string srcNe = "a != b";
 
+    // When
+    auto lt = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcLt));
+    auto gt = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcGt));
+    auto le = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcLe));
+    auto ge = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcGe));
+    auto eq = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcEq));
+    auto ne = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcNe));
+
+    // Then
     ASSERT_NE(lt, nullptr);
     EXPECT_EQ(lt->op, "<");
     ASSERT_NE(gt, nullptr);
@@ -633,8 +868,13 @@ TEST(ParserTest, ParsesComparisonOperators)
 
 TEST(ParserTest, ParsesLogicalOperators)
 {
-    // a && b || c => (a && b) || c
-    auto expr = ParseExpr("a && b || c");
+    // Given
+    std::string source = "a && b || c"; // a && b || c => (a && b) || c
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto orExpr = std::dynamic_pointer_cast<BinaryExpr>(expr);
     ASSERT_NE(orExpr, nullptr);
     EXPECT_EQ(orExpr->op, "||");
@@ -646,10 +886,17 @@ TEST(ParserTest, ParsesLogicalOperators)
 
 TEST(ParserTest, ParsesBitwiseOperators)
 {
-    auto ampersand = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a & b"));
-    auto pipe = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a | b"));
-    auto caret = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a ^ b"));
+    // Given
+    std::string srcAnd = "a & b";
+    std::string srcOr = "a | b";
+    std::string srcXor = "a ^ b";
 
+    // When
+    auto ampersand = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcAnd));
+    auto pipe = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcOr));
+    auto caret = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcXor));
+
+    // Then
     ASSERT_NE(ampersand, nullptr);
     EXPECT_EQ(ampersand->op, "&");
     ASSERT_NE(pipe, nullptr);
@@ -660,9 +907,15 @@ TEST(ParserTest, ParsesBitwiseOperators)
 
 TEST(ParserTest, ParsesShiftOperators)
 {
-    auto lsh = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a << b"));
-    auto rsh = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr("a >> b"));
+    // Given
+    std::string srcLsh = "a << b";
+    std::string srcRsh = "a >> b";
 
+    // When
+    auto lsh = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcLsh));
+    auto rsh = std::dynamic_pointer_cast<BinaryExpr>(ParseExpr(srcRsh));
+
+    // Then
     ASSERT_NE(lsh, nullptr);
     EXPECT_EQ(lsh->op, "<<");
     ASSERT_NE(rsh, nullptr);
@@ -671,8 +924,13 @@ TEST(ParserTest, ParsesShiftOperators)
 
 TEST(ParserTest, ParsesBitwisePrecedence)
 {
-    // a | b & c => a | (b & c) since & binds tighter than |
-    auto expr = ParseExpr("a | b & c");
+    // Given
+    std::string source = "a | b & c"; // a | b & c => a | (b & c) since & binds tighter than |
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto orExpr = std::dynamic_pointer_cast<BinaryExpr>(expr);
     ASSERT_NE(orExpr, nullptr);
     EXPECT_EQ(orExpr->op, "|");
@@ -684,7 +942,13 @@ TEST(ParserTest, ParsesBitwisePrecedence)
 
 TEST(ParserTest, ParsesElvisOperator)
 {
-    auto expr = ParseExpr("a ?: b");
+    // Given
+    std::string source = "a ?: b";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto elvis = std::dynamic_pointer_cast<BinaryExpr>(expr);
     ASSERT_NE(elvis, nullptr);
     EXPECT_EQ(elvis->op, "?:");
@@ -692,7 +956,13 @@ TEST(ParserTest, ParsesElvisOperator)
 
 TEST(ParserTest, ParsesModuloOperator)
 {
-    auto expr = ParseExpr("a % b");
+    // Given
+    std::string source = "a % b";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto mod = std::dynamic_pointer_cast<BinaryExpr>(expr);
     ASSERT_NE(mod, nullptr);
     EXPECT_EQ(mod->op, "%");
@@ -704,7 +974,13 @@ TEST(ParserTest, ParsesModuloOperator)
 
 TEST(ParserTest, ParsesUnaryNegation)
 {
-    auto expr = ParseExpr("-x");
+    // Given
+    std::string source = "-x";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto unary = std::dynamic_pointer_cast<UnaryExpr>(expr);
     ASSERT_NE(unary, nullptr);
     EXPECT_EQ(unary->op, "-");
@@ -716,7 +992,13 @@ TEST(ParserTest, ParsesUnaryNegation)
 
 TEST(ParserTest, ParsesUnaryNot)
 {
-    auto expr = ParseExpr("!x");
+    // Given
+    std::string source = "!x";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto unary = std::dynamic_pointer_cast<UnaryExpr>(expr);
     ASSERT_NE(unary, nullptr);
     EXPECT_EQ(unary->op, "!");
@@ -724,7 +1006,13 @@ TEST(ParserTest, ParsesUnaryNot)
 
 TEST(ParserTest, ParsesUnaryBitwiseNot)
 {
-    auto expr = ParseExpr("~x");
+    // Given
+    std::string source = "~x";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto unary = std::dynamic_pointer_cast<UnaryExpr>(expr);
     ASSERT_NE(unary, nullptr);
     EXPECT_EQ(unary->op, "~");
@@ -732,7 +1020,13 @@ TEST(ParserTest, ParsesUnaryBitwiseNot)
 
 TEST(ParserTest, ParsesPrefixIncrement)
 {
-    auto expr = ParseExpr("++x");
+    // Given
+    std::string source = "++x";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto prefix = std::dynamic_pointer_cast<PrefixExpr>(expr);
     ASSERT_NE(prefix, nullptr);
     EXPECT_EQ(prefix->op, "++");
@@ -740,7 +1034,13 @@ TEST(ParserTest, ParsesPrefixIncrement)
 
 TEST(ParserTest, ParsesPrefixDecrement)
 {
-    auto expr = ParseExpr("--x");
+    // Given
+    std::string source = "--x";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto prefix = std::dynamic_pointer_cast<PrefixExpr>(expr);
     ASSERT_NE(prefix, nullptr);
     EXPECT_EQ(prefix->op, "--");
@@ -748,7 +1048,13 @@ TEST(ParserTest, ParsesPrefixDecrement)
 
 TEST(ParserTest, ParsesPostfixIncrement)
 {
-    auto expr = ParseExpr("x++");
+    // Given
+    std::string source = "x++";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto postfix = std::dynamic_pointer_cast<PostfixExpr>(expr);
     ASSERT_NE(postfix, nullptr);
     EXPECT_EQ(postfix->op, "++");
@@ -760,7 +1066,13 @@ TEST(ParserTest, ParsesPostfixIncrement)
 
 TEST(ParserTest, ParsesPostfixDecrement)
 {
-    auto expr = ParseExpr("x--");
+    // Given
+    std::string source = "x--";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto postfix = std::dynamic_pointer_cast<PostfixExpr>(expr);
     ASSERT_NE(postfix, nullptr);
     EXPECT_EQ(postfix->op, "--");
@@ -772,7 +1084,13 @@ TEST(ParserTest, ParsesPostfixDecrement)
 
 TEST(ParserTest, ParsesSimpleAssignment)
 {
-    auto expr = ParseExpr("x = 42");
+    // Given
+    std::string source = "x = 42";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto assign = std::dynamic_pointer_cast<AssignExpr>(expr);
     ASSERT_NE(assign, nullptr);
     EXPECT_EQ(assign->name, "x");
@@ -784,7 +1102,13 @@ TEST(ParserTest, ParsesSimpleAssignment)
 
 TEST(ParserTest, ParsesCompoundAssignmentPlusEqual)
 {
-    auto expr = ParseExpr("x += 1");
+    // Given
+    std::string source = "x += 1";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto assign = std::dynamic_pointer_cast<AssignExpr>(expr);
     ASSERT_NE(assign, nullptr);
     EXPECT_EQ(assign->name, "x");
@@ -797,6 +1121,7 @@ TEST(ParserTest, ParsesCompoundAssignmentPlusEqual)
 
 TEST(ParserTest, ParsesCompoundAssignmentAllOps)
 {
+    // Given
     auto check = [](const std::string &src, const std::string &expectedOp) {
         auto expr = ParseExpr(src);
         auto assign = std::dynamic_pointer_cast<AssignExpr>(expr);
@@ -806,6 +1131,7 @@ TEST(ParserTest, ParsesCompoundAssignmentAllOps)
         EXPECT_EQ(bin->op, expectedOp) << "Failed for: " << src;
     };
 
+    // When / Then
     check("x -= 1", "-");
     check("x *= 2", "*");
     check("x /= 3", "/");
@@ -819,7 +1145,13 @@ TEST(ParserTest, ParsesCompoundAssignmentAllOps)
 
 TEST(ParserTest, ParsesIndexAssignment)
 {
-    auto expr = ParseExpr("arr[0] = 42");
+    // Given
+    std::string source = "arr[0] = 42";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto indexAssign = std::dynamic_pointer_cast<IndexAssignExpr>(expr);
     ASSERT_NE(indexAssign, nullptr);
     ASSERT_NE(indexAssign->value, nullptr);
@@ -827,7 +1159,13 @@ TEST(ParserTest, ParsesIndexAssignment)
 
 TEST(ParserTest, ParsesMemberAssignment)
 {
-    auto expr = ParseExpr("obj.field = 42");
+    // Given
+    std::string source = "obj.field = 42";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto memberAssign = std::dynamic_pointer_cast<MemberAssignExpr>(expr);
     ASSERT_NE(memberAssign, nullptr);
     EXPECT_EQ(memberAssign->memberName, "field");
@@ -839,7 +1177,13 @@ TEST(ParserTest, ParsesMemberAssignment)
 
 TEST(ParserTest, ParsesFunctionCallNoArgs)
 {
-    auto expr = ParseExpr("foo()");
+    // Given
+    std::string source = "foo()";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto call = std::dynamic_pointer_cast<CallExpr>(expr);
     ASSERT_NE(call, nullptr);
     EXPECT_EQ(call->callee, "foo");
@@ -848,7 +1192,13 @@ TEST(ParserTest, ParsesFunctionCallNoArgs)
 
 TEST(ParserTest, ParsesFunctionCallWithArgs)
 {
-    auto expr = ParseExpr("add(1, 2)");
+    // Given
+    std::string source = "add(1, 2)";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto call = std::dynamic_pointer_cast<CallExpr>(expr);
     ASSERT_NE(call, nullptr);
     EXPECT_EQ(call->callee, "add");
@@ -857,7 +1207,13 @@ TEST(ParserTest, ParsesFunctionCallWithArgs)
 
 TEST(ParserTest, ParsesGenericFunctionCall)
 {
-    auto expr = ParseExpr("identity<i32>(42)");
+    // Given
+    std::string source = "identity<i32>(42)";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto call = std::dynamic_pointer_cast<CallExpr>(expr);
     ASSERT_NE(call, nullptr);
     EXPECT_EQ(call->callee, "identity");
@@ -868,7 +1224,13 @@ TEST(ParserTest, ParsesGenericFunctionCall)
 
 TEST(ParserTest, ParsesMethodCall)
 {
-    auto expr = ParseExpr("obj.method(1)");
+    // Given
+    std::string source = "obj.method(1)";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto method = std::dynamic_pointer_cast<MethodCallExpr>(expr);
     ASSERT_NE(method, nullptr);
     EXPECT_EQ(method->methodName, "method");
@@ -881,7 +1243,13 @@ TEST(ParserTest, ParsesMethodCall)
 
 TEST(ParserTest, ParsesChainedMethodCalls)
 {
-    auto expr = ParseExpr("obj.a().b()");
+    // Given
+    std::string source = "obj.a().b()";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto b = std::dynamic_pointer_cast<MethodCallExpr>(expr);
     ASSERT_NE(b, nullptr);
     EXPECT_EQ(b->methodName, "b");
@@ -897,7 +1265,13 @@ TEST(ParserTest, ParsesChainedMethodCalls)
 
 TEST(ParserTest, ParsesMemberAccess)
 {
-    auto expr = ParseExpr("obj.field");
+    // Given
+    std::string source = "obj.field";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto member = std::dynamic_pointer_cast<MemberAccessExpr>(expr);
     ASSERT_NE(member, nullptr);
     EXPECT_EQ(member->memberName, "field");
@@ -909,7 +1283,13 @@ TEST(ParserTest, ParsesMemberAccess)
 
 TEST(ParserTest, ParsesChainedMemberAccess)
 {
-    auto expr = ParseExpr("a.b.c");
+    // Given
+    std::string source = "a.b.c";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto c = std::dynamic_pointer_cast<MemberAccessExpr>(expr);
     ASSERT_NE(c, nullptr);
     EXPECT_EQ(c->memberName, "c");
@@ -921,7 +1301,13 @@ TEST(ParserTest, ParsesChainedMemberAccess)
 
 TEST(ParserTest, ParsesIndexExpr)
 {
-    auto expr = ParseExpr("arr[0]");
+    // Given
+    std::string source = "arr[0]";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto index = std::dynamic_pointer_cast<IndexExpr>(expr);
     ASSERT_NE(index, nullptr);
 
@@ -932,7 +1318,13 @@ TEST(ParserTest, ParsesIndexExpr)
 
 TEST(ParserTest, ParsesNestedIndex)
 {
-    auto expr = ParseExpr("matrix[0][1]");
+    // Given
+    std::string source = "matrix[0][1]";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto outer = std::dynamic_pointer_cast<IndexExpr>(expr);
     ASSERT_NE(outer, nullptr);
 
@@ -946,7 +1338,13 @@ TEST(ParserTest, ParsesNestedIndex)
 
 TEST(ParserTest, ParsesCastExpression)
 {
-    auto expr = ParseExpr("(i32) x");
+    // Given
+    std::string source = "(i32) x";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
     ASSERT_NE(cast, nullptr);
     EXPECT_EQ(cast->targetType.name, "i32");
@@ -959,6 +1357,7 @@ TEST(ParserTest, ParsesCastExpression)
 
 TEST(ParserTest, ParsesCastWithAllTypeKeywords)
 {
+    // Given
     auto check = [](const std::string &src, const std::string &expectedType) {
         auto expr = ParseExpr(src);
         auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
@@ -966,6 +1365,7 @@ TEST(ParserTest, ParsesCastWithAllTypeKeywords)
         EXPECT_EQ(cast->targetType.name, expectedType) << "Failed for: " << src;
     };
 
+    // When / Then
     check("(i8) x", "i8");
     check("(i16) x", "i16");
     check("(i32) x", "i32");
@@ -982,7 +1382,13 @@ TEST(ParserTest, ParsesCastWithAllTypeKeywords)
 
 TEST(ParserTest, ParsesPointerCast)
 {
-    auto expr = ParseExpr("(Node*) ptr");
+    // Given
+    std::string source = "(Node*) ptr";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
     ASSERT_NE(cast, nullptr);
     EXPECT_EQ(cast->targetType.name, "Node");
@@ -991,7 +1397,13 @@ TEST(ParserTest, ParsesPointerCast)
 
 TEST(ParserTest, ParsesCastWithUnaryOperand)
 {
-    auto expr = ParseExpr("(i32) -x");
+    // Given
+    std::string source = "(i32) -x";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
     ASSERT_NE(cast, nullptr);
     EXPECT_EQ(cast->targetType.name, "i32");
@@ -1003,8 +1415,13 @@ TEST(ParserTest, ParsesCastWithUnaryOperand)
 
 TEST(ParserTest, ParsesStructCast)
 {
-    // (struct Type) expr — explicit struct cast
-    auto expr = ParseExpr("(struct MyType) x");
+    // Given
+    std::string source = "(struct MyType) x"; // explicit struct cast
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
     ASSERT_NE(cast, nullptr);
     EXPECT_EQ(cast->targetType.name, "MyType");
@@ -1013,7 +1430,13 @@ TEST(ParserTest, ParsesStructCast)
 
 TEST(ParserTest, ParsesAllocExpression)
 {
-    auto expr = ParseExpr("alloc<Node>()");
+    // Given
+    std::string source = "alloc<Node>()";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto alloc = std::dynamic_pointer_cast<AllocExpr>(expr);
     ASSERT_NE(alloc, nullptr);
     EXPECT_EQ(alloc->allocType.name, "Node");
@@ -1022,7 +1445,13 @@ TEST(ParserTest, ParsesAllocExpression)
 
 TEST(ParserTest, ParsesArrayLiteral)
 {
-    auto expr = ParseExpr("[1, 2, 3]");
+    // Given
+    std::string source = "[1, 2, 3]";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto arr = std::dynamic_pointer_cast<ArrayLiteralExpr>(expr);
     ASSERT_NE(arr, nullptr);
     ASSERT_EQ(arr->elements.size(), 3u);
@@ -1030,7 +1459,13 @@ TEST(ParserTest, ParsesArrayLiteral)
 
 TEST(ParserTest, ParsesEmptyArrayLiteral)
 {
-    auto expr = ParseExpr("[]");
+    // Given
+    std::string source = "[]";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto arr = std::dynamic_pointer_cast<ArrayLiteralExpr>(expr);
     ASSERT_NE(arr, nullptr);
     EXPECT_EQ(arr->elements.size(), 0u);
@@ -1042,7 +1477,13 @@ TEST(ParserTest, ParsesEmptyArrayLiteral)
 
 TEST(ParserTest, ParsesOkExpression)
 {
-    auto expr = ParseExpr("Ok(42)");
+    // Given
+    std::string source = "Ok(42)";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto ok = std::dynamic_pointer_cast<OkExpr>(expr);
     ASSERT_NE(ok, nullptr);
     ASSERT_NE(ok->value, nullptr);
@@ -1054,7 +1495,13 @@ TEST(ParserTest, ParsesOkExpression)
 
 TEST(ParserTest, ParsesErrExpression)
 {
-    auto expr = ParseExpr("Err(1)");
+    // Given
+    std::string source = "Err(1)";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto err = std::dynamic_pointer_cast<ErrExpr>(expr);
     ASSERT_NE(err, nullptr);
     ASSERT_NE(err->error, nullptr);
@@ -1062,8 +1509,13 @@ TEST(ParserTest, ParsesErrExpression)
 
 TEST(ParserTest, ParsesMatchExpression)
 {
-    std::string src = "match result { Ok(v) => v, Err(e) => 0 }";
-    auto expr = ParseExpr(src);
+    // Given
+    std::string source = "match result { Ok(v) => v, Err(e) => 0 }";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto matchExpr = std::dynamic_pointer_cast<MatchExpr>(expr);
     ASSERT_NE(matchExpr, nullptr);
 
@@ -1078,8 +1530,13 @@ TEST(ParserTest, ParsesMatchExpression)
 
 TEST(ParserTest, ParsesMatchWithBlockArms)
 {
-    std::string src = "match r { Ok(v) => { return v; }, Err(e) => { return 0; } }";
-    auto expr = ParseExpr(src);
+    // Given
+    std::string source = "match r { Ok(v) => { return v; }, Err(e) => { return 0; } }";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto matchExpr = std::dynamic_pointer_cast<MatchExpr>(expr);
     ASSERT_NE(matchExpr, nullptr);
 
@@ -1093,8 +1550,13 @@ TEST(ParserTest, ParsesMatchWithBlockArms)
 
 TEST(ParserTest, ParsesNamespacedConstructor)
 {
-    std::string src = "std::Vector<i32>()";
-    auto expr = ParseExpr(src);
+    // Given
+    std::string source = "std::Vector<i32>()";
+
+    // When
+    auto expr = ParseExpr(source);
+
+    // Then
     auto call = std::dynamic_pointer_cast<CallExpr>(expr);
     ASSERT_NE(call, nullptr);
     EXPECT_EQ(call->callee, "std::Vector");
@@ -1108,9 +1570,13 @@ TEST(ParserTest, ParsesNamespacedConstructor)
 
 TEST(ParserTest, ParsesMultipleDeclarations)
 {
+    // Given
     std::string source = "struct Point { x: i32; } fn main() -> void {}";
+
+    // When
     auto nodes = Parse(source);
 
+    // Then
     ASSERT_EQ(nodes.size(), 2u);
     ASSERT_NE(std::dynamic_pointer_cast<StructDecl>(nodes[0]), nullptr);
     ASSERT_NE(std::dynamic_pointer_cast<FunctionDecl>(nodes[1]), nullptr);
@@ -1118,11 +1584,15 @@ TEST(ParserTest, ParsesMultipleDeclarations)
 
 TEST(ParserTest, ParsesInterfaceStructFunction)
 {
+    // Given
     std::string source = "interface Shape { fn area() -> f64; } "
                          "struct Circle : Shape { r: f64; } "
                          "fn main() -> void {}";
+
+    // When
     auto nodes = Parse(source);
 
+    // Then
     ASSERT_EQ(nodes.size(), 3u);
     ASSERT_NE(std::dynamic_pointer_cast<InterfaceDecl>(nodes[0]), nullptr);
     ASSERT_NE(std::dynamic_pointer_cast<StructDecl>(nodes[1]), nullptr);
