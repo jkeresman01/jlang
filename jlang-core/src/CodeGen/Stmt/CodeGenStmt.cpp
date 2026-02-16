@@ -272,7 +272,7 @@ void CodeGenerator::VisitForEachStatement(ForEachStatement &node)
     if (isArray)
     {
         llvm::AllocaInst *arrAlloca = llvm::dyn_cast<llvm::AllocaInst>(iterInfo->value);
-        llvm::Value *zero = llvm::ConstantInt::get(llvm::Type::getInt32Ty(m_Context), 0);
+        llvm::Value *zero = llvm::ConstantInt::get(i64Type, 0);
         llvm::Value *elemPtr =
             m_IRBuilder.CreateGEP(arrAlloca->getAllocatedType(), arrAlloca, {zero, idx}, "foreach_elem_ptr");
         elemVal = m_IRBuilder.CreateLoad(elemType, elemPtr, "foreach_elem");

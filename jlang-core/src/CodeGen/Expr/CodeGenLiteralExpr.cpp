@@ -2,6 +2,8 @@
 
 #include <jlang/Common/Logger.h>
 
+#include <climits>
+
 namespace jlang
 {
 
@@ -103,6 +105,7 @@ void CodeGenerator::VisitCallExpr(CallExpr &node)
     if (!callee)
     {
         JLANG_ERROR(STR("Unknown function: %s", node.callee.c_str()));
+        return;
     }
 
     std::vector<llvm::Value *> args;
@@ -241,7 +244,14 @@ void CodeGenerator::VisitLiteralExpr(LiteralExpr &node)
         try
         {
             int64_t intValue = std::stoll(node.value);
-            m_LastValue = llvm::ConstantInt::get(llvm::Type::getInt32Ty(m_Context), intValue);
+            if (intValue > INT32_MAX || intValue < INT32_MIN)
+            {
+                m_LastValue = llvm::ConstantInt::get(llvm::Type::getInt64Ty(m_Context), intValue);
+            }
+            else
+            {
+                m_LastValue = llvm::ConstantInt::get(llvm::Type::getInt32Ty(m_Context), intValue);
+            }
         }
         catch (...)
         {

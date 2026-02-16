@@ -875,6 +875,7 @@ std::shared_ptr<AstNode> Parser::ParseExpression()
         else
         {
             JLANG_ERROR("Invalid assignment target");
+            return expr;
         }
     }
 
@@ -953,6 +954,7 @@ std::shared_ptr<AstNode> Parser::ParseExpression()
         else
         {
             JLANG_ERROR("Invalid compound assignment target");
+            return expr;
         }
     }
 
@@ -1399,7 +1401,7 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
                 return nullptr;
             }
 
-            auto expr = ParsePrimary();
+            auto expr = ParseUnary();
 
             auto cast = std::make_shared<CastExpr>();
             cast->targetType = TypeRef{typeName, isPointer, isNullable};
