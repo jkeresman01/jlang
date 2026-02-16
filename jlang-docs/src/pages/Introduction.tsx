@@ -47,20 +47,30 @@ export default function Introduction() {
 
       <h2>A Quick Taste</h2>
       <p>
-        Here is a small program that demonstrates variables, control flow, and
-        a simple loop in jlang:
+        Here is a small program that finds all prime numbers up to a given
+        limit using the Sieve of Eratosthenes:
       </p>
       <CodeBlock code={`fn main() -> i32 {
-    var name: char* = "jlang";
-    var count: i32 = 42;
-    val pi: f64 = 3.14159;
+    val limit: i32 = 100;
+    var sieve: bool[101];
 
-    if (count > 0) {
-        printf("Hello from %s!", name);
+    for (var i: i32 = 0; i <= limit; i++) {
+        sieve[i] = true;
     }
 
-    for (var i := 0; i < 5; i++) {
-        printf("i = %d", i);
+    for (var p: i32 = 2; p * p <= limit; p++) {
+        if (sieve[p]) {
+            for (var j: i32 = p * p; j <= limit; j += p) {
+                sieve[j] = false;
+            }
+        }
+    }
+
+    printf("Primes up to %d:\\n", limit);
+    for (var i: i32 = 2; i <= limit; i++) {
+        if (sieve[i]) {
+            printf("%d ", i);
+        }
     }
 
     return 0;
