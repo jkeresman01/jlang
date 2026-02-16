@@ -1365,22 +1365,48 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
         return allocExpr;
     }
 
-    // Handle cast expressions: (struct Type*) expr or (Type*) expr
+    // Handle cast expressions: (Type) expr, (Type*) expr, (struct Type) expr
+    // and grouped expressions: (expr)
     if (IsMatched(TokenType::LParen))
     {
-        // Check if this is a cast or a grouped expression
-        if (Check(TokenType::Struct) || Check(TokenType::Identifier))
+        bool isCast = false;
+
+        if (Check(TokenType::Struct) || IsTypeKeyword())
         {
-            // This is likely a cast expression
+            // (struct ...) or (i32 ...) — unambiguously a cast
+            isCast = true;
+        }
+        else if (Check(TokenType::Identifier))
+        {
+            // (Identifier ...) — only treat as cast if it's a pointer cast: (Type*) or (Type*?)
+            size_t saved = m_CurrentPosition;
+            Advance(); // skip identifier
+            if (Check(TokenType::Star))
+            {
+                Advance(); // skip *
+                if (Check(TokenType::Question))
+                    Advance(); // skip ?
+                if (Check(TokenType::RParen))
+                    isCast = true;
+            }
+            m_CurrentPosition = saved;
+        }
+
+        if (isCast)
+        {
             IsMatched(TokenType::Struct);
 
-            if (!IsMatched(TokenType::Identifier))
+            std::string typeName;
+            if (IsTypeKeyword())
             {
-                JLANG_ERROR("Expected type name in cast");
-                return nullptr;
+                typeName = Peek().m_lexeme;
+                Advance();
+            }
+            else if (IsMatched(TokenType::Identifier))
+            {
+                typeName = Previous().m_lexeme;
             }
 
-            std::string typeName = Previous().m_lexeme;
             bool isPointer = IsMatched(TokenType::Star);
 
             bool isNullable = false;

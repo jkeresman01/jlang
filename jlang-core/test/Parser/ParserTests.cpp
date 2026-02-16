@@ -588,8 +588,8 @@ TEST(ParserTest, ParsesMultiplicationHigherThanAddition)
 
 TEST(ParserTest, ParsesParenthesizedExpression)
 {
-    // Use literals to avoid triggering cast path (parser treats (Identifier...) as cast)
-    auto expr = ParseExpr("(1 + 2) * 3");
+    // (a + b) * c should be grouped expression, not cast
+    auto expr = ParseExpr("(a + b) * c");
     auto mul = std::dynamic_pointer_cast<BinaryExpr>(expr);
     ASSERT_NE(mul, nullptr);
     EXPECT_EQ(mul->op, "*");
@@ -597,6 +597,15 @@ TEST(ParserTest, ParsesParenthesizedExpression)
     auto add = std::dynamic_pointer_cast<BinaryExpr>(mul->left);
     ASSERT_NE(add, nullptr);
     EXPECT_EQ(add->op, "+");
+}
+
+TEST(ParserTest, ParsesParenthesizedVariable)
+{
+    // (a) should be grouped expression, not cast to type "a"
+    auto expr = ParseExpr("(a)");
+    auto var = std::dynamic_pointer_cast<VarExpr>(expr);
+    ASSERT_NE(var, nullptr);
+    EXPECT_EQ(var->name, "a");
 }
 
 TEST(ParserTest, ParsesComparisonOperators)
@@ -937,17 +946,38 @@ TEST(ParserTest, ParsesNestedIndex)
 
 TEST(ParserTest, ParsesCastExpression)
 {
-    // Parser only recognizes Identifier or 'struct' keyword in cast position,
-    // not type keywords like i32/i64. Use a user-defined type name instead.
-    auto expr = ParseExpr("(MyType) x");
+    auto expr = ParseExpr("(i32) x");
     auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
     ASSERT_NE(cast, nullptr);
-    EXPECT_EQ(cast->targetType.name, "MyType");
+    EXPECT_EQ(cast->targetType.name, "i32");
     EXPECT_FALSE(cast->targetType.isPointer);
 
     auto inner = std::dynamic_pointer_cast<VarExpr>(cast->expr);
     ASSERT_NE(inner, nullptr);
     EXPECT_EQ(inner->name, "x");
+}
+
+TEST(ParserTest, ParsesCastWithAllTypeKeywords)
+{
+    auto check = [](const std::string &src, const std::string &expectedType) {
+        auto expr = ParseExpr(src);
+        auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
+        ASSERT_NE(cast, nullptr) << "Failed for: " << src;
+        EXPECT_EQ(cast->targetType.name, expectedType) << "Failed for: " << src;
+    };
+
+    check("(i8) x", "i8");
+    check("(i16) x", "i16");
+    check("(i32) x", "i32");
+    check("(i64) x", "i64");
+    check("(u8) x", "u8");
+    check("(u16) x", "u16");
+    check("(u32) x", "u32");
+    check("(u64) x", "u64");
+    check("(f32) x", "f32");
+    check("(f64) x", "f64");
+    check("(char) x", "char");
+    check("(bool) x", "bool");
 }
 
 TEST(ParserTest, ParsesPointerCast)
@@ -961,15 +991,24 @@ TEST(ParserTest, ParsesPointerCast)
 
 TEST(ParserTest, ParsesCastWithUnaryOperand)
 {
-    // This tests the fix we made: cast now calls ParseUnary()
-    // Use a user-defined type name (parser doesn't handle type keywords in cast)
-    auto expr = ParseExpr("(MyType) -x");
+    auto expr = ParseExpr("(i32) -x");
     auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
     ASSERT_NE(cast, nullptr);
+    EXPECT_EQ(cast->targetType.name, "i32");
 
     auto unary = std::dynamic_pointer_cast<UnaryExpr>(cast->expr);
     ASSERT_NE(unary, nullptr);
     EXPECT_EQ(unary->op, "-");
+}
+
+TEST(ParserTest, ParsesStructCast)
+{
+    // (struct Type) expr — explicit struct cast
+    auto expr = ParseExpr("(struct MyType) x");
+    auto cast = std::dynamic_pointer_cast<CastExpr>(expr);
+    ASSERT_NE(cast, nullptr);
+    EXPECT_EQ(cast->targetType.name, "MyType");
+    EXPECT_FALSE(cast->targetType.isPointer);
 }
 
 TEST(ParserTest, ParsesAllocExpression)
