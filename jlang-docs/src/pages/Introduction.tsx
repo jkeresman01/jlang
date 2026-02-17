@@ -155,6 +155,60 @@ export default function Introduction() {
 }`} />
         </div>
       </details>
+
+      <h2>Fun Facts</h2>
+
+      <Callout type="note">
+        <strong>XOR swap trick</strong>
+        <br /><br />
+        A classic use of XOR is swapping two variables without a temporary:
+        <br /><br />
+        <code>a ^= b; b ^= a; a ^= b;</code>
+        <br /><br />
+        The XOR swap creates a serial data dependency chain &mdash; each step reads the
+        result of the previous one, which prevents the CPU from using instruction-level
+        parallelism. A straightforward temp-variable swap (<code>var tmp := a; a = b; b = tmp;</code>)
+        allows the two loads to execute in parallel and is actually faster on modern
+        out-of-order hardware. The XOR trick is a neat bit of trivia, not a performance
+        optimization.
+        <br /><br />
+        For a deeper dive, check out the explanation at 21:00:
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/ZusiKXcz_ac?start=1260"
+          title="XOR swap explained"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
+      <Callout type="note">
+        <strong>No performance difference between prefix and postfix increment</strong>
+        <br /><br />
+        Unlike C++ iterators, there is no performance benefit to using <code>++x</code> over{' '}
+        <code>x++</code> in jlang. Both generate the same three operations (load, add, store),
+        and the only difference is which already-computed register value gets returned.
+        No temporary copy is created.
+        <br /><br />
+        The &quot;prefer <code>++i</code> over <code>i++</code>&quot; advice comes from C++
+        where postfix on complex objects (like iterators) requires constructing a temporary copy:
+        <br /><br />
+        <code style={{ whiteSpace: 'pre', display: 'block', padding: '0.75rem 1rem', background: 'var(--bg-code)', borderRadius: '6px', fontSize: '0.835rem', lineHeight: '1.65' }}>
+{`// C++ iterator postfix - expensive!
+Iterator operator++(int) {
+    Iterator copy = *this;  // make a copy
+    ++(*this);              // increment original
+    return copy;            // return the copy
+}`}
+        </code>
+        <br />
+        For primitive types, modern compilers optimize both to identical machine code.
+        Choose based on semantics, not performance.
+      </Callout>
     </>
   )
 }
