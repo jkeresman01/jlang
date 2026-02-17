@@ -76,7 +76,7 @@ export default function Introduction() {
     return 0;
 }`} />
 
-      <h2>The Lottery Problem</h2>
+      <h2>Funny Lottery Example</h2>
       <p>
         You are running a lottery draw: <strong>7 out of 27</strong> balls.
         After drawing 6 balls, one ball accidentally jumps out of the machine
