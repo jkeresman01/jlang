@@ -86,7 +86,7 @@ export default function Introduction() {
       </p>
 
       <details className="details-block">
-        <summary>Answer #1 &mdash; The Mathematician</summary>
+        <summary>Funny Answer #1 &mdash; The Mathematician</summary>
         <div className="details-content">
           <p>
             Sum all numbers from 1 to 27, subtract the 6 drawn balls, subtract
@@ -110,7 +110,7 @@ export default function Introduction() {
       </details>
 
       <details className="details-block">
-        <summary>Answer #2 &mdash; The Programmer</summary>
+        <summary>Funny Answer #2 &mdash; The Programmer</summary>
         <div className="details-content">
           <p>
             XOR all numbers from 1 to 27, then XOR with every drawn and
@@ -138,7 +138,7 @@ export default function Introduction() {
       </details>
 
       <details className="details-block">
-        <summary>Answer #3 &mdash; The Correct One</summary>
+        <summary>The Correct Answer</summary>
         <div className="details-content">
           <p>
             You check the camera footage. Every lottery draw is recorded and
