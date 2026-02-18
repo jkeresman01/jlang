@@ -165,6 +165,92 @@ while (i < 10) {
         it jumps directly to the condition check.
       </p>
 
+      {/* ── Funny Example ── */}
+      <h2>Funny Parking Lot Example</h2>
+      <p>
+        You just landed after a two-week vacation. You're standing in a massive
+        airport parking lot with <strong>500 spots</strong> and you have
+        absolutely no memory of where you parked. Each spot either has a car
+        (identified by its license plate number) or is empty (0). You remember
+        your plate number. How do you find your car?
+      </p>
+
+      <details className="details-block">
+        <summary>Funny Answer #1 &mdash; The Mathematician</summary>
+        <div className="details-content">
+          <p>
+            Linear scan. Check every spot from 0 to 499. This is O(n), which is
+            provably optimal since the lot is unsorted. No spot is visited
+            twice. Elegant. Minimal. Perfect.
+          </p>
+          <CodeBlock code={`fn find_car(lot: i32[500], my_plate: i32) -> i32 {
+    for (var i: i32 = 0; i < 500; i++) {
+        if (lot[i] == my_plate) {
+            printf("Found it at spot %d\\n", i);
+            return i;
+        }
+    }
+
+    printf("Car not found. Call the police.\\n");
+    return -1;
+}`} />
+        </div>
+      </details>
+
+      <details className="details-block">
+        <summary>Funny Answer #2 &mdash; The Programmer</summary>
+        <div className="details-content">
+          <p>
+            Same linear scan, but with <em>enterprise-grade</em> optimizations:
+            skip empty spots with <code>continue</code>, handle the VIP section
+            separately, and add logging.
+          </p>
+          <CodeBlock code={`fn find_car(lot: i32[500], my_plate: i32) -> i32 {
+    // Skip VIP section (spots 0-9) — I drive a 2003 Honda Civic
+    for (var i: i32 = 10; i < 500; i++) {
+        if (lot[i] == 0) {
+            continue; // empty spot, skip
+        }
+
+        if (lot[i] == my_plate) {
+            printf("Found car at spot %d\\n", i);
+            printf("Time complexity: O(n)\\n");
+            printf("Emotional complexity: O(n!)\\n");
+            return i;
+        }
+    }
+
+    // Desperation: check VIP section anyway
+    for (var i: i32 = 0; i < 10; i++) {
+        if (lot[i] == my_plate) {
+            printf("It was in VIP? How?\\n");
+            return i;
+        }
+    }
+
+    return -1;
+}`} />
+        </div>
+      </details>
+
+      <details className="details-block">
+        <summary>The Correct Answer</summary>
+        <div className="details-content">
+          <p>
+            Press the key fob. Your car beeps. Walk toward the sound.
+            No algorithm required.
+          </p>
+          <CodeBlock code={`fn find_car() -> i32 {
+    // *click*
+    // *BEEP BEEP*
+    // Walk toward the sound
+
+    printf("*presses key fob*\\n");
+    return 0;
+}`} />
+        </div>
+      </details>
+
       {/* ── Programming Challenge ── */}
       <h2>A Slightly Unhinged Programming Challenge</h2>
       <p>
