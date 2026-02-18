@@ -42,6 +42,11 @@
     "BOOP",
     "Bitcast",
     "bitcast",
-    "vcall"
+    "vcall",
+    "specialised",
+    "optimised",
+    "parameterised",
+    "monomorphization",
+    "Metaprogramming"
   ]
 }
