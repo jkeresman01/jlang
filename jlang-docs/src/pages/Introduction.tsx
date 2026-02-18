@@ -41,19 +41,6 @@ export default function Introduction() {
         what it says.
       </p>
       <p>
-        Variables are declared with <code>var</code> for mutable bindings and{' '}
-        <code>val</code> for immutable ones. Types are written after the name,
-        separated by a colon, keeping declarations easy to read at a glance.
-        Functions use the <code>fn</code> keyword and specify their return type
-        with an arrow (<code>{'->'}</code>).
-      </p>
-      <p>
-        Memory management is explicit. You allocate with <code>alloc</code> and
-        free with <code>free</code> &mdash; no runtime overhead, no surprises. This
-        gives you full control over when and how resources are acquired and
-        released.
-      </p>
-      <p>
         Writing in jlang is an act of craftsmanship. The language asks something
         of you &mdash; <strong>discipline</strong>. Every byte you allocate is a
         promise you make to eventually return it. Every variable you declare is a
