@@ -35,8 +35,8 @@ export default function Introduction() {
       <p>
         A programming language should respect the programmer. No magic behind
         the scenes, no decisions made on your behalf, no runtime quietly managing
-        your memory. jlang is built on a simple belief &mdash; if you wrote it,
-        you should understand exactly what it does. Every allocation is yours to
+        your memory. jlang is built on a simple belief &mdash; <strong>if you wrote it,
+        you should understand exactly what it does</strong>. Every allocation is yours to
         make, every free is yours to call, and every line of code means precisely
         what it says.
       </p>
