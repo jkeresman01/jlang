@@ -53,6 +53,34 @@ export default function Introduction() {
         gives you full control over when and how resources are acquired and
         released.
       </p>
+      <p>
+        Writing in jlang is an act of craftsmanship. The language asks something
+        of you &mdash; <strong>discipline</strong>. Every byte you allocate is a
+        promise you make to eventually return it. Every variable you declare is a
+        statement of intent: that this name matters, that it will be used, that it
+        earns its place on the stack. There is no room for clutter, no tolerance
+        for loose ends. A declared variable that serves no purpose is not just
+        waste &mdash; it is a lie in your code, a name given to nothing. jlang
+        believes that good software is built by programmers who care about every
+        line they write. At its core, jlang is about <strong>understanding</strong>.
+        But do you really know the difference between understanding what your code
+        does and merely following a stack of recipes until something compiles?
+      </p>
+
+      <Callout type="note">
+        <strong>Understanding vs. performing</strong>
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/Nb2tebYAaOA?start=1373&end=1560"
+          title="Understanding vs. performing"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
 
       <h2>A Quick Taste</h2>
       <p>
