@@ -17,7 +17,7 @@ export default function Memory() {
 
       <CodeBlock code={`var p: Person* = alloc<Person>();
 
-p.Name = "Alice";
+p.Name = "Robert MeDiro";
 p.Age = 30;
 
 printf("Name: %s, Age: %d", p.Name, p.Age);
@@ -64,9 +64,9 @@ free(config);`} />
 }
 
 fn main() -> i32 {
-    var alice: Person* = createPerson("Alice", 30);
-    printf("Name: %s", alice.Name);
-    free(alice);
+    var robert: Person* = createPerson("Robert MeDiro", 30);
+    printf("Name: %s", robert.Name);
+    free(robert);
     return 0;
 }`} />
 
