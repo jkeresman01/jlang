@@ -84,6 +84,9 @@ export default function Introduction() {
         to keep things interesting and maybe teach you something unexpected
         along the way.
       </Callout>
+      <p>
+        Here are a few examples of how this might look:
+      </p>
 
       <h2>Funny Lottery Example</h2>
       <p>
