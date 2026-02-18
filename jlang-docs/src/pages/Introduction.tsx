@@ -76,6 +76,15 @@ export default function Introduction() {
     return 0;
 }`} />
 
+      <h2>About This Document</h2>
+      <Callout type="tip">
+        Throughout this documentation you will find small programming puzzles,
+        fun facts, and video materials sprinkled between the chapters. Let's be
+        honest &mdash; language docs are usually painfully dry, so we added these
+        to keep things interesting and maybe teach you something unexpected
+        along the way.
+      </Callout>
+
       <h2>Funny Lottery Example</h2>
       <p>
         You are running a lottery draw: <strong>7 out of 27</strong> balls.
