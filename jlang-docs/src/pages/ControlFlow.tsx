@@ -5,6 +5,17 @@ export default function ControlFlow() {
     <>
       <h1>Control Flow</h1>
 
+      <blockquote>
+        <p>
+          "Logic, like whiskey, loses its beneficial effect when taken in too
+          large quantities."
+        </p>
+        <footer>
+          — Edward John Moreton Drax Plunkett, Lord Dunsany, quoted in{' '}
+          <em>Crafting Interpreters</em> by Robert Nystrom
+        </footer>
+      </blockquote>
+
       {/* ── Section 1: If/Else ── */}
       <h2>If / Else</h2>
       <p>
