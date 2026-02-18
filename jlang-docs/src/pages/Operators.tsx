@@ -94,6 +94,45 @@ if (logAttempt() or notifyAdmin()) {
         </tbody>
       </table>
 
+      <Callout type="note">
+        <strong>Bentley Rules for Optimizing Work</strong>
+        <br /><br />
+        Jon Bentley catalogued a set of rules for reducing the work a program does.
+        Short-circuiting &mdash; the idea behind <code>&&</code> and <code>||</code> &mdash; is
+        one of them. Here is the full list, organized by category:
+        <br /><br />
+        <em>Data Structures</em>
+        <br />
+        1. Packing and Encoding &bull; 2. Augmentation &bull; 3. Precomputation &bull;
+        4. Compile-Time Initialization &bull; 5. Caching &bull; 6. Sparsity
+        <br /><br />
+        <em>Logic</em>
+        <br />
+        7. Constant Folding and Propagation &bull; 8. Common Subexpression Elimination &bull;
+        9. Algebraic Identities &bull; <strong>10. Short-Circuiting</strong> &bull;
+        11. Ordering Tests &bull; 12. Creating a Fast Path &bull; 13. Combining Tests
+        <br /><br />
+        <em>Loops</em>
+        <br />
+        14. Hoisting &bull; 15. Sentinels &bull; 16. Loop Unrolling &bull;
+        17. Loop Fusion &bull; 18. Eliminating Wasted Iterations
+        <br /><br />
+        <em>Functions</em>
+        <br />
+        19. Inlining &bull; 20. Tail-Recursion Elimination &bull; 21. Coarsening Recursion
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/H-1-X9bkop8?start=2890"
+          title="Bentley Rules for Optimizing Work"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       {/* ── Section 3: Increment and Decrement ── */}
       <h2>Increment and Decrement</h2>
       <p>
@@ -141,10 +180,27 @@ x--;    // postfix: x becomes 6
       </table>
 
       <Callout type="note">
-        There is no performance difference between prefix and postfix increment
-        or decrement in jlang. Unlike C++ iterators, where postfix may create a
-        temporary copy, jlang treats both forms identically in terms of
-        performance. Choose whichever reads better in context.
+        <strong>No performance difference between prefix and postfix increment</strong>
+        <br /><br />
+        Unlike C++ iterators, there is no performance benefit to using <code>++x</code> over{' '}
+        <code>x++</code> in jlang. Both generate the same three operations (load, add, store),
+        and the only difference is which already-computed register value gets returned.
+        No temporary copy is created.
+        <br /><br />
+        The &quot;prefer <code>++i</code> over <code>i++</code>&quot; advice comes from C++
+        where postfix on complex objects (like iterators) requires constructing a temporary copy:
+        <br /><br />
+        <code style={{ whiteSpace: 'pre', display: 'block', padding: '0.75rem 1rem', background: 'var(--bg-code)', borderRadius: '6px', fontSize: '0.835rem', lineHeight: '1.65' }}>
+{`// C++ iterator postfix - expensive!
+Iterator operator++(int) {
+    Iterator copy = *this;  // make a copy
+    ++(*this);              // increment original
+    return copy;            // return the copy
+}`}
+        </code>
+        <br />
+        For primitive types, modern compilers optimize both to identical machine code.
+        Choose based on semantics, not performance.
       </Callout>
 
       {/* ── Section 4: Bitwise Operators ── */}
@@ -194,11 +250,31 @@ x ^= y;
 // x is now 20, y is now 10`} />
 
       <Callout type="note">
-        The XOR swap trick is a well-known technique, but on modern hardware it
-        is typically <strong>slower</strong> than using a temporary variable. The
-        CPU pipeline stalls on the data dependencies between the three XOR
-        operations. Prefer a straightforward temp-variable swap for clarity and
-        performance.
+        <strong>XOR swap trick</strong>
+        <br /><br />
+        A classic use of XOR is swapping two variables without a temporary:
+        <br /><br />
+        <code>a ^= b; b ^= a; a ^= b;</code>
+        <br /><br />
+        The XOR swap creates a serial data dependency chain &mdash; each step reads the
+        result of the previous one, which prevents the CPU from using instruction-level
+        parallelism. A straightforward temp-variable swap (<code>var tmp := a; a = b; b = tmp;</code>)
+        allows the two loads to execute in parallel and is actually faster on modern
+        out-of-order hardware. The XOR trick is a neat bit of trivia, not a performance
+        optimization.
+        <br /><br />
+        For a deeper dive, check out the explanation at 21:00:
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/ZusiKXcz_ac?start=1260"
+          title="XOR swap explained"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
       </Callout>
 
       {/* ── Section 5: Semicolons ── */}
@@ -211,6 +287,80 @@ x ^= y;
       <CodeBlock code={`var x: i32 = 10;
 x = x + 1;
 printf("x = %d", x);`} />
+
+      {/* ── Puzzle ── */}
+      <h2>Puzzle: The Mysterious Output</h2>
+      <p>
+        Your colleague wrote the following function and swears the output
+        is <code>42</code>. Without running the code, what does it actually print?
+      </p>
+
+      <CodeBlock code={`fn main() -> i32 {
+    var a: i32 = 10;
+    var b: i32 = 20;
+    var c: i32 = a++ + ++b + a-- - --b;
+
+    printf("%d\\n", c);
+    return 0;
+}`} />
+
+      <details className="details-block">
+        <summary>Answer #1 &mdash; The Overthinker</summary>
+        <div className="details-content">
+          <p>
+            Let me trace through every side effect in evaluation order&hellip;
+          </p>
+          <CodeBlock code={`// a starts at 10, b starts at 20
+// a++ -> yields 10, a becomes 11
+// ++b -> b becomes 21, yields 21
+// a-- -> yields 11, a becomes 10
+// --b -> b becomes 20, yields 20
+// c = 10 + 21 + 11 - 20 = 22
+
+printf("%d\\n", c);  // prints 22`} />
+        </div>
+      </details>
+
+      <details className="details-block">
+        <summary>Answer #2 &mdash; The Language Lawyer</summary>
+        <div className="details-content">
+          <p>
+            Actually, modifying and reading the same variable multiple times in
+            one expression without a sequence point is <strong>undefined behavior</strong> in
+            C/C++. The result could be anything &mdash; 22, 42, or your program
+            ordering pizza. The compiler is under no obligation to evaluate
+            sub-expressions in any particular order.
+          </p>
+          <CodeBlock code={`// The C++ standard says:
+// "If a side effect on a scalar object is
+//  unsequenced relative to another side effect
+//  on the same scalar object, the behavior
+//  is undefined."
+//
+// So the answer is: nobody knows.`} />
+        </div>
+      </details>
+
+      <details className="details-block">
+        <summary>The Correct Answer</summary>
+        <div className="details-content">
+          <p>
+            You ask your colleague to rewrite it. Code that requires a
+            whiteboard session to figure out what it prints has no business
+            being in a codebase. The correct output is a cleaner version:
+          </p>
+          <CodeBlock code={`fn main() -> i32 {
+    var a: i32 = 10;
+    var b: i32 = 20;
+
+    // Just say what you mean
+    val sum: i32 = a + b + 1 + (a + 1) - b;
+    printf("%d\\n", sum);  // 22, obviously
+
+    return 0;
+}`} />
+        </div>
+      </details>
     </>
   )
 }
