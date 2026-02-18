@@ -24,6 +24,13 @@ export default function Introduction() {
         may change.
       </Callout>
 
+      <Callout type="warning">
+        jlang is in its early stages &mdash; things may not work as expected or
+        may be outright broken. As the language evolves, parts of this
+        documentation can fall out of date or become inaccurate. If something
+        looks off, it probably is. Corrections and feedback are always welcome.
+      </Callout>
+
       <h2>Jlang Philosophy</h2>
       <p>
         A programming language should respect the programmer. No magic behind
