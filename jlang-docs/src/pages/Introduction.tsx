@@ -24,12 +24,14 @@ export default function Introduction() {
         may change.
       </Callout>
 
-      <h2>Syntax Design Decisions</h2>
+      <h2>Jlang Philosophy</h2>
       <p>
-        jlang aims to be a language that feels familiar to developers coming
-        from C, Go, or Rust while introducing its own conventions for clarity
-        and safety. The syntax is intentionally minimal &mdash; there are no hidden
-        control flows, no implicit conversions, and no garbage collector.
+        A programming language should respect the programmer. No magic behind
+        the scenes, no decisions made on your behalf, no runtime quietly managing
+        your memory. jlang is built on a simple belief &mdash; if you wrote it,
+        you should understand exactly what it does. Every allocation is yours to
+        make, every free is yours to call, and every line of code means precisely
+        what it says.
       </p>
       <p>
         Variables are declared with <code>var</code> for mutable bindings and{' '}
