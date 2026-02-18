@@ -27,7 +27,6 @@ const chapters = [
     items: [
       { label: 'Structs', path: '/structs' },
       { label: 'Arrays', path: '/arrays' },
-      { label: 'Generics', path: '/generics' },
     ],
   },
   {
