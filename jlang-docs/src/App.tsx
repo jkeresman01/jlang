@@ -11,6 +11,7 @@ import ErrorHandling from './pages/ErrorHandling'
 import Operators from './pages/Operators'
 import Arrays from './pages/Arrays'
 import Memory from './pages/Memory'
+import Generics from './pages/Generics'
 import GettingStarted from './pages/GettingStarted'
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/error-handling" element={<ErrorHandling />} />
         <Route path="/operators" element={<Operators />} />
         <Route path="/arrays" element={<Arrays />} />
+        <Route path="/generics" element={<Generics />} />
         <Route path="/memory" element={<Memory />} />
         <Route path="/getting-started" element={<GettingStarted />} />
         <Route path="*" element={<Navigate to="/" replace />} />
