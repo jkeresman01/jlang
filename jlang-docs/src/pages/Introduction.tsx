@@ -49,7 +49,7 @@ export default function Introduction() {
         <iframe
           width="100%"
           height="315"
-          src="https://www.youtube.com/embed/uTxRF5ag27A?start=2546"
+          src="https://www.youtube.com/embed/uTxRF5ag27A?start=2550"
           title="Bjarne Stroustrup on C++ not being just OOP"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
