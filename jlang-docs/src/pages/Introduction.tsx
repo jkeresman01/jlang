@@ -45,17 +45,14 @@ export default function Introduction() {
         Bjarne Stroustrup himself disagrees. He has repeatedly said that C++ is a
         <em>multi-paradigm</em> language and that forcing everything into classes is
         a misuse of it. Here he is, making exactly that point:
-        <br /><br />
-        <iframe
-          width="100%"
-          height="315"
-          src="https://www.youtube.com/embed/uTxRF5ag27A?start=2550"
-          title="Bjarne Stroustrup on C++ not being just OOP"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
-        ></iframe>
+        {' '}
+        <a
+          href="https://www.youtube.com/watch?v=uTxRF5ag27A&t=2550"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Watch on YouTube (42:30)
+        </a>
       </Callout>
 
       <h2>Jlang Philosophy</h2>
