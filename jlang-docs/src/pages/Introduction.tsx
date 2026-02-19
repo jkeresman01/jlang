@@ -31,6 +31,33 @@ export default function Introduction() {
         looks off, it probably is. Corrections and feedback are always welcome.
       </Callout>
 
+      <h2>Why Procedural?</h2>
+      <p>
+        jlang is a <strong>procedural</strong> language &mdash; no classes, no inheritance,
+        no method overloading. Just functions, structs, and data you control. Languages
+        like Go and Rust have shown that you can build serious, large-scale software
+        without classical OOP, and jlang follows that same spirit: keep it simple,
+        keep it explicit.
+      </p>
+
+      <Callout type="tip">
+        <strong>Fun fact:</strong> Most people call C++ an object-oriented language, but
+        Bjarne Stroustrup himself disagrees. He has repeatedly said that C++ is a
+        <em>multi-paradigm</em> language and that forcing everything into classes is
+        a misuse of it. Here he is, making exactly that point:
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/uTxRF5ag27A?start=2546"
+          title="Bjarne Stroustrup on C++ not being just OOP"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       <h2>Jlang Philosophy</h2>
       <p>
         A programming language should respect the programmer. No magic behind
