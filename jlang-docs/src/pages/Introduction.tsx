@@ -57,6 +57,17 @@ export default function Introduction() {
         bundled alongside a language that gave me an excuse to put them all in one place.
       </p>
       <p>
+        I have been reading <em>UNIX: A History and a Memoir</em> by Brian Kernighan,
+        and it reminded me of something worth saying out loud: by reading a book you can
+        gain knowledge and insights into the thoughts of some truly inspiring people &mdash;
+        people who poured their whole lives, their mistakes, and the things they learned the
+        hard way into those pages. And yet there will always be someone who dismisses them as
+        outdated or no longer relevant. That is a shame, because a book is one of the few
+        places where decades of hard-won experience are handed to you for the price of your
+        attention. The tools change, the languages change, but the thinking behind them rarely
+        does.
+      </p>
+      <p>
         We call them <em>funny</em> challenges for a reason &mdash; not because they are
         jokes, but because each one can be solved in a completely different way depending
         on your background. A mathematician will reach for a formula, a systems programmer
