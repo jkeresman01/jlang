@@ -205,6 +205,13 @@ Iterator operator++(int) {
 
       {/* ── Section 4: Bitwise Operators ── */}
       <h2>Bitwise Operators</h2>
+      <blockquote>
+        <p>
+          &ldquo;The cost of software maintenance increases with the square of the
+          programmer&rsquo;s creativity.&rdquo;
+        </p>
+        <footer>&mdash; Robert D. Bliss, 1992, as quoted in <cite>Hacker&rsquo;s Delight</cite> by Henry S. Warren, Jr.</footer>
+      </blockquote>
       <p>
         jlang provides the full set of bitwise operators for working with
         individual bits in integer values.
