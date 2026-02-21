@@ -31,6 +31,50 @@ export default function Introduction() {
         looks off, it probably is. Corrections and feedback are always welcome.
       </Callout>
 
+      <h2>About This Document</h2>
+      <p>
+        This is less of a traditional language reference and more of a small book.
+        Beyond the usual syntax and semantics, you will find a collection of useful
+        materials, cool tricks, and insights gathered from a wide range of educational
+        resources over the years. Sprinkled between the chapters are fun facts, video
+        deep-dives, and programming challenges that are meant to keep things interesting
+        and maybe teach you something unexpected along the way.
+      </p>
+      <p>
+        Many of these materials I found extremely valuable &mdash; and increasingly rare.
+        In an era of vibe-coding, where shipping fast matters more than understanding
+        deeply, we have quietly forgotten the core concepts, the foundational books, and
+        the hard-won lessons that this craft was built on. Some of the videos featured here
+        contain words and thoughts from people like Ken Thompson, Dennis Ritchie, and
+        Bjarne Stroustrup &mdash; programmers whose work we all stand on, whether we
+        realize it or not.
+      </p>
+      <p>
+        Of course, calling this a &ldquo;book&rdquo; or a &ldquo;reference&rdquo; is
+        generous &mdash; for that to be true, it would need at least one reader. There are
+        far better authors and far better books that deserve your time first. Consider this
+        more of a curated collection of things I wish someone had shown me earlier,
+        bundled alongside a language that gave me an excuse to put them all in one place.
+      </p>
+      <p>
+        We call them <em>funny</em> challenges for a reason &mdash; not because they are
+        jokes, but because each one can be solved in a completely different way depending
+        on your background. A mathematician will reach for a formula, a systems programmer
+        will reach for bitwise tricks, and an engineer will wonder why you are not just
+        checking the logs. Everyone is convinced their approach is the right one, and
+        they will defend it stubbornly. That is exactly what makes them fun.
+      </p>
+      <Callout type="tip">
+        <strong>Fun fact:</strong> Some of these challenges are also known to show up in
+        technical interviews &mdash; the kind of LeetCode-style questions that catch you off
+        guard at a whiteboard at various IT companies. A few of them I remember being asked
+        myself. Array rotation was one. The Sieve of Eratosthenes was another &mdash; and I
+        still remember how unreasonably long it took me to work through it when I was just
+        starting out. The interviewer was patient enough to walk me through the algorithm
+        afterward, and that conversation taught me more than any textbook explanation could
+        have. Those moments tend to stick with you.
+      </Callout>
+
       <h2>Why Procedural?</h2>
       <p>
         jlang is a <strong>procedural</strong> language &mdash; no classes, no inheritance,
@@ -93,9 +137,52 @@ export default function Introduction() {
         ></iframe>
       </Callout>
 
+      <Callout type="note">
+        <strong>Every language has a philosophy &mdash; and they rarely agree.</strong>
+        <br /><br />
+        jlang says: <em>you own your memory, you own your mistakes</em>.
+        C++ says: <em>you can do anything, but we won&rsquo;t stop you from shooting
+        yourself in the foot</em>. Rust says: <em>we will stop you from shooting yourself
+        in the foot, even if you really want to</em>. Go says: <em>here are 3 ways to do
+        it, pick one and move on</em>. And then there is Erlang, which takes a completely
+        different stance: <strong>let it crash</strong>. Instead of trying to prevent every
+        possible failure, Erlang assumes things <em>will</em> go wrong and builds
+        supervision trees that detect crashes and restart processes automatically. The
+        philosophy is not about writing code that never fails &mdash; it is about writing
+        systems that recover gracefully when it does.
+        <br /><br />
+        For a deeper dive into Erlang&rsquo;s philosophy:
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/SOqQVoVai6s"
+          title="Erlang - Let it crash philosophy"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       <h2>A Quick Taste</h2>
       <p>
-        Here is a small program that finds all prime numbers up to a given
+        Every language starts the same way:
+      </p>
+      <CodeBlock code={`fn main() -> i32 {
+    printf("Hello, World!\\n");
+    return 0;
+}`} />
+
+      <Callout type="note">
+        <strong>Fun fact:</strong> The tradition of using &ldquo;Hello, World!&rdquo; as the
+        first example program was started by Brian Kernighan in{' '}
+        <em>The C Programming Language</em> (1978), co-authored with Dennis Ritchie. Every
+        language since has followed suit, and at this point it would feel wrong not to.
+      </Callout>
+
+      <p>
+        Here is something a bit more involved &mdash; finding all prime numbers up to a given
         limit using the Sieve of Eratosthenes:
       </p>
       <CodeBlock code={`fn main() -> i32 {
@@ -123,18 +210,6 @@ export default function Introduction() {
 
     return 0;
 }`} />
-
-      <h2>About This Document</h2>
-      <Callout type="tip">
-        Throughout this documentation you will find small programming puzzles,
-        fun facts, and video materials sprinkled between the chapters. Let's be
-        honest &mdash; language docs are usually painfully dry, so we added these
-        to keep things interesting and maybe teach you something unexpected
-        along the way.
-      </Callout>
-      <p>
-        Here are a few examples of how this might look:
-      </p>
 
       <h2>Funny Lottery Example</h2>
       <p>
@@ -219,26 +294,20 @@ export default function Introduction() {
       <h2>Fun Facts</h2>
 
       <Callout type="note">
-        <strong>XOR swap trick</strong>
+        <strong>The <code>inline</code> keyword in C++ doesn't guarantee inlining</strong>
         <br /><br />
-        A classic use of XOR is swapping two variables without a temporary:
+        A common misconception is that marking a function <code>inline</code> in C++ guarantees
+        the compiler will inline it. In reality, <code>inline</code> is just a hint &mdash; the
+        compiler is free to ignore it. Modern compilers decide on their own whether to inline
+        based on heuristics like function size, call frequency, and optimization level.
         <br /><br />
-        <code>a ^= b; b ^= a; a ^= b;</code>
-        <br /><br />
-        The XOR swap creates a serial data dependency chain &mdash; each step reads the
-        result of the previous one, which prevents the CPU from using instruction-level
-        parallelism. A straightforward temp-variable swap (<code>var tmp := a; a = b; b = tmp;</code>)
-        allows the two loads to execute in parallel and is actually faster on modern
-        out-of-order hardware. The XOR trick is a neat bit of trivia, not a performance
-        optimization.
-        <br /><br />
-        For a deeper dive, check out the explanation at 21:00:
+        For a deeper dive, check out the explanation at 55:30:
         <br /><br />
         <iframe
           width="100%"
           height="315"
-          src="https://www.youtube.com/embed/ZusiKXcz_ac?start=1260"
-          title="XOR swap explained"
+          src="https://www.youtube.com/embed/ulJm7_aTiQM?start=3330"
+          title="Inline keyword in C++ explained"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
