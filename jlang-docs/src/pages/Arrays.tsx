@@ -254,6 +254,87 @@ free(heap);`} />
         </div>
       </details>
 
+      {/* ── Funny Example 2 ── */}
+      <h2>Funny Lottery Example</h2>
+      <p>
+        You are running a lottery draw: <strong>7 out of 27</strong> balls.
+        After drawing 6 balls, one ball accidentally jumps out of the machine
+        and rolls under a table. You still have the remaining 20 balls in the
+        machine, so you know their numbers. How do you figure out which ball
+        escaped?
+      </p>
+
+      <details className="details-block">
+        <summary>Funny Answer #1 &mdash; The Mathematician</summary>
+        <div className="details-content">
+          <p>
+            Sum all numbers from 1 to 27, subtract the 6 drawn balls, subtract
+            the 20 remaining balls. Whatever is left is the missing ball.
+          </p>
+          <CodeBlock code={`fn find_missing_ball(drawn: i32[6], remaining: i32[20]) -> i32 {
+    // Sum of 1..27 = 27 * 28 / 2 = 378
+    var total: i32 = 378;
+
+    for (var i: i32 = 0; i < 6; i++) {
+        total -= drawn[i];
+    }
+
+    for (var i: i32 = 0; i < 20; i++) {
+        total -= remaining[i];
+    }
+
+    return total;
+}`} />
+        </div>
+      </details>
+
+      <details className="details-block">
+        <summary>Funny Answer #2 &mdash; The Programmer</summary>
+        <div className="details-content">
+          <p>
+            XOR all numbers from 1 to 27, then XOR with every drawn and
+            remaining ball. Since <code>x ^ x = 0</code>, all known balls
+            cancel out and only the missing one survives.
+          </p>
+          <CodeBlock code={`fn find_missing_ball(drawn: i32[6], remaining: i32[20]) -> i32 {
+    var result: i32 = 0;
+
+    for (var i: i32 = 1; i <= 27; i++) {
+        result = result ^ i;
+    }
+
+    for (var i: i32 = 0; i < 6; i++) {
+        result = result ^ drawn[i];
+    }
+
+    for (var i: i32 = 0; i < 20; i++) {
+        result = result ^ remaining[i];
+    }
+
+    return result;
+}`} />
+        </div>
+      </details>
+
+      <details className="details-block">
+        <summary>The Correct Answer</summary>
+        <div className="details-content">
+          <p>
+            You check the camera footage. Every lottery draw is recorded and
+            supervised by officials. The escaped ball's number was documented
+            the moment it left the machine. No code required.
+          </p>
+          <CodeBlock code={`fn find_missing_ball() -> i32 {
+    // Ask the supervisor
+    // Check the camera footage
+    // Read the official protocol
+
+    printf("Just check the recording.\\n");
+    return 0;
+}`} />
+        </div>
+      </details>
+
       {/* ── Fun Facts ── */}
       <h2>Fun Facts</h2>
 

@@ -222,85 +222,27 @@ export default function Introduction() {
     return 0;
 }`} />
 
-      <h2>Funny Lottery Example</h2>
+      <h2>Why Implement a Language from Scratch?</h2>
       <p>
-        You are running a lottery draw: <strong>7 out of 27</strong> balls.
-        After drawing 6 balls, one ball accidentally jumps out of the machine
-        and rolls under a table. You still have the remaining 20 balls in the
-        machine, so you know their numbers. How do you figure out which ball
-        escaped?
+        Long distance runners sometimes train with weights strapped to their ankles or at high
+        altitudes where the atmosphere is thin. When they later unburden themselves, the new
+        relative ease of light limbs and oxygen-rich air enables them to run farther and faster.
       </p>
-
-      <details className="details-block">
-        <summary>Funny Answer #1 &mdash; The Mathematician</summary>
-        <div className="details-content">
-          <p>
-            Sum all numbers from 1 to 27, subtract the 6 drawn balls, subtract
-            the 20 remaining balls. Whatever is left is the missing ball.
-          </p>
-          <CodeBlock code={`fn find_missing_ball(drawn: i32[6], remaining: i32[20]) -> i32 {
-    // Sum of 1..27 = 27 * 28 / 2 = 378
-    var total: i32 = 378;
-
-    for (var i: i32 = 0; i < 6; i++) {
-        total -= drawn[i];
-    }
-
-    for (var i: i32 = 0; i < 20; i++) {
-        total -= remaining[i];
-    }
-
-    return total;
-}`} />
-        </div>
-      </details>
-
-      <details className="details-block">
-        <summary>Funny Answer #2 &mdash; The Programmer</summary>
-        <div className="details-content">
-          <p>
-            XOR all numbers from 1 to 27, then XOR with every drawn and
-            remaining ball. Since <code>x ^ x = 0</code>, all known balls
-            cancel out and only the missing one survives.
-          </p>
-          <CodeBlock code={`fn find_missing_ball(drawn: i32[6], remaining: i32[20]) -> i32 {
-    var result: i32 = 0;
-
-    for (var i: i32 = 1; i <= 27; i++) {
-        result = result ^ i;
-    }
-
-    for (var i: i32 = 0; i < 6; i++) {
-        result = result ^ drawn[i];
-    }
-
-    for (var i: i32 = 0; i < 20; i++) {
-        result = result ^ remaining[i];
-    }
-
-    return result;
-}`} />
-        </div>
-      </details>
-
-      <details className="details-block">
-        <summary>The Correct Answer</summary>
-        <div className="details-content">
-          <p>
-            You check the camera footage. Every lottery draw is recorded and
-            supervised by officials. The escaped ball's number was documented
-            the moment it left the machine. No code required.
-          </p>
-          <CodeBlock code={`fn find_missing_ball() -> i32 {
-    // Ask the supervisor
-    // Check the camera footage
-    // Read the official protocol
-
-    printf("Just check the recording.\\n");
-    return 0;
-}`} />
-        </div>
-      </details>
+      <p>
+        Implementing a language is a real test of programming skill. The code is complex and
+        performance critical. You must master recursion, dynamic arrays, trees, graphs, and hash
+        tables. You probably use hash tables at least in your day-to-day programming, but do you
+        really understand them? Well, after we've crafted our own from scratch, I guarantee you
+        will.
+      </p>
+      <p>
+        While I intend to show you that an interpreter isn't as daunting as you might believe,
+        implementing one well is still a challenge. Rise to it, and you'll come away a stronger
+        programmer, and smarter about how you use data structures and algorithms in your day job.
+      </p>
+      <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.7 }}>
+        &mdash; Robert Nystrom, <em>Crafting Interpreters</em>
+      </p>
 
       <h2>Fun Facts</h2>
 
