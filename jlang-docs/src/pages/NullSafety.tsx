@@ -146,6 +146,35 @@ var cfg: Config* = primary ?: getDefaultConfig();
         name comes from the resemblance of <code>?:</code> to Elvis Presley's
         hairstyle when viewed sideways.
       </Callout>
+
+      {/* ── Fun Fact ── */}
+      <h2>Fun Fact</h2>
+
+      <Callout type="note">
+        <strong>The billion-dollar mistake</strong>
+        <br /><br />
+        In 2009, Tony Hoare &mdash; the inventor of the null reference &mdash;
+        stood in front of a room full of software engineers at QCon London and
+        said: <em>"I call it my billion-dollar mistake. It was the invention of
+        the null reference in 1965."</em> He had added it to ALGOL W simply
+        because it was easy to implement. That single shortcut went on to
+        infect nearly every language that followed &mdash; C, C++, Java, C# &mdash;
+        and has been responsible for countless crashes, security vulnerabilities,
+        and late-night debugging sessions ever since.
+        <br /><br />
+        Robert C. Martin retells this story in <em>Clean Code: A Handbook of
+        Agile Software Craftsmanship</em>, Chapter 7 &mdash; "Error Handling",
+        where he lays down two rules: <strong>Don't Return Null</strong> and{' '}
+        <strong>Don't Pass Null</strong>. His argument is simple &mdash; every{' '}
+        <code>null</code> you return is a null-check someone will forget to
+        write, and every <code>null</code> you pass is a crash waiting to happen.
+        <br /><br />
+        Jlang takes this advice to its logical conclusion: pointers are
+        non-nullable by default. If a value might be absent, you must say so
+        explicitly with <code>*?</code>. The compiler won't let you forget.
+        Hoare needed fifty years and a public apology. You just need a question
+        mark.
+      </Callout>
     </>
   )
 }
