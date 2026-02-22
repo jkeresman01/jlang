@@ -335,6 +335,132 @@ free(heap);`} />
         </div>
       </details>
 
+      {/* ── Funny Example 3 ── */}
+      <h2>Funny Edit Distance Example</h2>
+      <p>
+        Your autocorrect keeps "fixing" your perfectly valid variable names.
+        You type <code>cnt</code> and it helpfully suggests something
+        unprintable. You type <code>idx</code> and it changes it to "index
+        fund". You decide to fight back: compute the{' '}
+        <strong>edit distance</strong> (minimum number of insertions,
+        deletions, and substitutions) between what you typed and what
+        autocorrect <em>thinks</em> you meant, so you can quantify exactly how
+        wrong it is.
+      </p>
+
+      <details className="details-block">
+        <summary>Funny Answer #1 &mdash; The Mathematician</summary>
+        <div className="details-content">
+          <p>
+            Levenshtein distance. Build a 2D matrix, fill it with the classic
+            dynamic programming recurrence. Mathematically optimal. Named after
+            Vladimir Levenshtein, who published it in 1965 &mdash; back when
+            autocorrect wasn't even a nightmare yet.
+          </p>
+          <CodeBlock code={`fn edit_distance(a: i32[100], a_len: i32, b: i32[100], b_len: i32) -> i32 {
+    var dp: i32[101][101];
+
+    for (var i: i32 = 0; i <= a_len; i++) {
+        dp[i][0] = i;
+    }
+    for (var j: i32 = 0; j <= b_len; j++) {
+        dp[0][j] = j;
+    }
+
+    for (var i: i32 = 1; i <= a_len; i++) {
+        for (var j: i32 = 1; j <= b_len; j++) {
+            if (a[i - 1] == b[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                var del: i32 = dp[i - 1][j] + 1;
+                var ins: i32 = dp[i][j - 1] + 1;
+                var sub: i32 = dp[i - 1][j - 1] + 1;
+
+                dp[i][j] = del;
+                if (ins < dp[i][j]) {
+                    dp[i][j] = ins;
+                }
+                if (sub < dp[i][j]) {
+                    dp[i][j] = sub;
+                }
+            }
+        }
+    }
+
+    return dp[a_len][b_len];
+}`} />
+        </div>
+      </details>
+
+      <details className="details-block">
+        <summary>Funny Answer #2 &mdash; The Programmer</summary>
+        <div className="details-content">
+          <p>
+            Same algorithm, but space-optimized to use only two rows instead of
+            a full matrix. Because if autocorrect is going to ruin your day, at
+            least your memory usage should be respectable.
+          </p>
+          <CodeBlock code={`fn edit_distance(a: i32[100], a_len: i32, b: i32[100], b_len: i32) -> i32 {
+    var prev: i32[101];
+    var curr: i32[101];
+
+    for (var j: i32 = 0; j <= b_len; j++) {
+        prev[j] = j;
+    }
+
+    for (var i: i32 = 1; i <= a_len; i++) {
+        curr[0] = i;
+        for (var j: i32 = 1; j <= b_len; j++) {
+            if (a[i - 1] == b[j - 1]) {
+                curr[j] = prev[j - 1];
+            } else {
+                var del: i32 = prev[j] + 1;
+                var ins: i32 = curr[j - 1] + 1;
+                var sub: i32 = prev[j - 1] + 1;
+
+                curr[j] = del;
+                if (ins < curr[j]) {
+                    curr[j] = ins;
+                }
+                if (sub < curr[j]) {
+                    curr[j] = sub;
+                }
+            }
+        }
+
+        // Swap rows
+        for (var j: i32 = 0; j <= b_len; j++) {
+            prev[j] = curr[j];
+        }
+    }
+
+    return prev[b_len];
+}`} />
+        </div>
+      </details>
+
+      <details className="details-block">
+        <summary>The Correct Answer</summary>
+        <div className="details-content">
+          <p>
+            You turn off autocorrect. Edit distance: zero. Problem solved.
+            The best algorithm is the one you never have to run.
+          </p>
+          <CodeBlock code={`fn fix_autocorrect() -> i32 {
+    // Settings > Keyboard > Autocorrect > OFF
+    // Edit distance between what you type and what appears: 0
+    // Peace of mind: restored
+
+    printf("Autocorrect disabled. Freedom achieved.\\n");
+    return 0;
+}`} />
+        </div>
+      </details>
+
+      <Callout type="tip">
+        Solution coming soon!
+      </Callout>
+
       {/* ── Fun Facts ── */}
       <h2>Fun Facts</h2>
 

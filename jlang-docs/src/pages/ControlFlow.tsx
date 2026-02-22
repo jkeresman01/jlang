@@ -295,6 +295,45 @@ while (i < 10) {
       <Callout type="tip">
         Solution coming soon!
       </Callout>
+
+      {/* ── Programming Challenge 2 ── */}
+      <h2>A Slightly Unhinged Programming Challenge #2</h2>
+      <p>
+        You are a delivery driver. You have <strong>N cities</strong> to visit,
+        each connected by roads of various lengths. You must visit every city
+        exactly once and return home. Your goal: find the shortest possible
+        route.
+      </p>
+      <p>
+        This is the{' '}
+        <strong>Travelling Salesman Problem (TSP)</strong>, one of the most
+        famous problems in computer science. It's NP-hard, which is academic
+        shorthand for "your laptop will catch fire before it finds the optimal
+        answer for large N." For small N, brute-force works. For large N,
+        mathematicians have been arguing about it since 1930 and still haven't
+        fully agreed.
+      </p>
+      <p>
+        Your task: given a distance matrix of N cities (say, N&nbsp;=&nbsp;6),
+        try every permutation of cities and find the shortest round trip. Use
+        nested loops, swaps, or any approach you like &mdash; just visit them
+        all and come back home.
+      </p>
+
+      <Callout type="note">
+        <strong>Why TSP matters</strong>
+        <br /><br />
+        TSP isn't just a toy problem. It shows up in circuit board drilling,
+        DNA sequencing, logistics, and even telescope scheduling. The current
+        world record for an exact solution is 85,900 cities, computed by
+        the Concorde TSP solver &mdash; and it took years of CPU time.
+        <br /><br />
+        For 6 cities, though, you'll be fine. Probably.
+      </Callout>
+
+      <Callout type="tip">
+        Solution coming soon!
+      </Callout>
     </>
   )
 }
