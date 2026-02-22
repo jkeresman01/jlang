@@ -83,7 +83,9 @@ export default function Introduction() {
         still remember how unreasonably long it took me to work through it when I was just
         starting out. The interviewer was patient enough to walk me through the algorithm
         afterward, and that conversation taught me more than any textbook explanation could
-        have. Those moments tend to stick with you.
+        have. Edit distance was yet another &mdash; the kind of problem that looks deceptively
+        simple until you sit down and realize you need a 2D matrix and a recurrence relation
+        you definitely didn't have memorized. Those moments tend to stick with you.
       </Callout>
 
       <h2>Why Procedural?</h2>
