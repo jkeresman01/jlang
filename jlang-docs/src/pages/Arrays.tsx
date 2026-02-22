@@ -457,8 +457,12 @@ free(heap);`} />
         </div>
       </details>
 
-      <Callout type="tip">
-        Solution coming soon!
+      <Callout type="warning">
+        <strong>Heads up:</strong> Jlang does not support 2D arrays yet. The
+        mathematician's solution above uses <code>i32[101][101]</code>, which
+        won't compile. The programmer's space-optimized version using two
+        separate 1D arrays (<code>prev</code> and <code>curr</code>) is the
+        one that actually works today.
       </Callout>
 
       {/* ── Fun Facts ── */}

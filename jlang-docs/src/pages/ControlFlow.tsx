@@ -331,6 +331,13 @@ while (i < 10) {
         For 6 cities, though, you'll be fine. Probably.
       </Callout>
 
+      <Callout type="warning">
+        <strong>Heads up:</strong> A proper distance matrix would be a 2D
+        array, but Jlang does not support 2D arrays yet. You'll need to
+        flatten it into a 1D array and index it
+        as <code>dist[i * N + j]</code> instead of <code>dist[i][j]</code>.
+      </Callout>
+
       <Callout type="tip">
         Solution coming soon!
       </Callout>
