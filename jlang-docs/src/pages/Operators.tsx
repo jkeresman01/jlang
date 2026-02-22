@@ -294,11 +294,11 @@ x ^= y;
       </p>
 
       <CodeBlock code={`// Swap the 4 bytes of a 32-bit integer
-fn swapEndian32(val: i32) -> i32 {
-    var b0: i32 = (val >> 24) & 255;        // 0xFF
-    var b1: i32 = (val >> 8)  & 65280;      // 0xFF00
-    var b2: i32 = (val << 8)  & 16711680;   // 0xFF0000
-    var b3: i32 = (val << 24);
+fn swapEndian32(value: i32) -> i32 {
+    var b0: i32 = (value >> 24) & 255;        // 0xFF
+    var b1: i32 = (value >> 8)  & 65280;      // 0xFF00
+    var b2: i32 = (value << 8)  & 16711680;   // 0xFF0000
+    var b3: i32 = (value << 24);
     return b0 | b1 | b2 | b3;
 }
 
@@ -314,7 +314,7 @@ fn main() -> i32 {
         Bitwise code like this is much more readable with hexadecimal
         literals &mdash; e.g. <code>& 0xFF</code> instead
         of <code>& 255</code>. Hex literal support (<code>0x</code> prefix)
-        is not yet available in jlang but is planned for a future release.
+        is not yet available in jlang.
       </Callout>
 
       <Callout type="tip">
