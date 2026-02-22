@@ -67,6 +67,22 @@ export default function Introduction() {
         attention. The tools change, the languages change, but the thinking behind them rarely
         does.
       </p>
+
+      <Callout type="note">
+        <strong>AT&T Archives: The UNIX Operating System</strong>
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/tc4ROCJYbm0"
+          title="AT&T Archives: The UNIX Operating System"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       <p>
         We call them <em>funny</em> challenges for a reason &mdash; not because they are
         jokes, but because each one can be solved in a completely different way depending
