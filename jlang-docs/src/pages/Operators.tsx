@@ -284,6 +284,71 @@ x ^= y;
         ></iframe>
       </Callout>
 
+      {/* ── Section 4b: Endianness & Byte Swap ── */}
+      <h3>Endian Swap</h3>
+      <p>
+        When working at the bit level you will inevitably run into <strong>byte
+        order</strong>. An endian swap reverses the bytes of a multi-byte integer,
+        converting between <em>big-endian</em> (most-significant byte first) and{' '}
+        <em>little-endian</em> (least-significant byte first) representations.
+      </p>
+
+      <CodeBlock code={`// Swap the 4 bytes of a 32-bit integer
+fn swapEndian32(val: i32) -> i32 {
+    var b0: i32 = (val >> 24) & 255;        // 0xFF
+    var b1: i32 = (val >> 8)  & 65280;      // 0xFF00
+    var b2: i32 = (val << 8)  & 16711680;   // 0xFF0000
+    var b3: i32 = (val << 24);
+    return b0 | b1 | b2 | b3;
+}
+
+fn main() -> i32 {
+    var x: i32 = 16909060;  // 0x01020304
+    var swapped: i32 = swapEndian32(x);
+    printf("%d -> %d\\n", x, swapped);
+    // prints: 16909060 -> 67305985
+    return 0;
+}`} />
+
+      <Callout type="important">
+        Bitwise code like this is much more readable with hexadecimal
+        literals &mdash; e.g. <code>& 0xFF</code> instead
+        of <code>& 255</code>. Hex literal support (<code>0x</code> prefix)
+        is not yet available in jlang but is planned for a future release.
+      </Callout>
+
+      <Callout type="tip">
+        <strong>Fun fact &mdash; Gulliver&rsquo;s Eggs</strong>
+        <br /><br />
+        The terms <em>big-endian</em> and <em>little-endian</em> were coined by
+        Danny Cohen in his 1980 paper{' '}
+        <em>&ldquo;On Holy Wars and a Plea for Peace&rdquo;</em>, borrowing
+        from Jonathan Swift&rsquo;s <em>Gulliver&rsquo;s Travels</em> (1726).
+        In the novel, the empires of Lilliput and Blefuscu wage a bloody war
+        over which end of a soft-boiled egg you should crack open &mdash; the
+        big end or the little end. Cohen drew the parallel to computer
+        architects arguing over byte order, suggesting the debate is just as
+        absurd. Nearly 300 years after Swift and 45 years after Cohen, we
+        still haven&rsquo;t settled it.
+        <br /><br />
+        <strong>How the swap works, step by step:</strong>
+        <br /><br />
+        <code style={{ whiteSpace: 'pre', display: 'block', padding: '0.75rem 1rem', background: 'var(--bg-code)', borderRadius: '6px', fontSize: '0.835rem', lineHeight: '1.65' }}>
+{`Original (big-endian):    0x01 02 03 04
+                          [B3] [B2] [B1] [B0]
+
+(val >> 24) & 0xFF          ->  0x00 00 00 01  (B3 moves to B0)
+(val >>  8) & 0xFF00        ->  0x00 00 02 00  (B2 moves to B1)
+(val <<  8) & 0xFF0000      ->  0x00 03 00 00  (B1 moves to B2)
+(val << 24) & 0xFF000000    ->  0x04 00 00 00  (B0 moves to B3)
+                               ──────────────
+OR them together:              0x04 03 02 01`}
+        </code>
+        <br />
+        Each shift isolates one byte and moves it to its mirrored position;
+        the OR combines all four into the swapped result.
+      </Callout>
+
       {/* ── Section 5: Semicolons ── */}
       <h2>Semicolons</h2>
       <p>
