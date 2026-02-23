@@ -102,24 +102,38 @@ if (logAttempt() or notifyAdmin()) {
         one of them. Here is the full list, organized by category:
         <br /><br />
         <em>Data Structures</em>
-        <br />
-        1. Packing and Encoding &bull; 2. Augmentation &bull; 3. Precomputation &bull;
-        4. Compile-Time Initialization &bull; 5. Caching &bull; 6. Sparsity
-        <br /><br />
+        <ul style={{ margin: '4px 0 8px 0' }}>
+          <li>1. Packing and Encoding</li>
+          <li>2. Augmentation</li>
+          <li>3. Precomputation</li>
+          <li>4. Compile-Time Initialization</li>
+          <li>5. Caching</li>
+          <li>6. Sparsity</li>
+        </ul>
         <em>Logic</em>
-        <br />
-        7. Constant Folding and Propagation &bull; 8. Common Subexpression Elimination &bull;
-        9. Algebraic Identities &bull; <strong>10. Short-Circuiting</strong> &bull;
-        11. Ordering Tests &bull; 12. Creating a Fast Path &bull; 13. Combining Tests
-        <br /><br />
+        <ul style={{ margin: '4px 0 8px 0' }}>
+          <li>7. Constant Folding and Propagation</li>
+          <li>8. Common Subexpression Elimination</li>
+          <li>9. Algebraic Identities</li>
+          <li><strong>10. Short-Circuiting</strong></li>
+          <li>11. Ordering Tests</li>
+          <li>12. Creating a Fast Path</li>
+          <li>13. Combining Tests</li>
+        </ul>
         <em>Loops</em>
-        <br />
-        14. Hoisting &bull; 15. Sentinels &bull; 16. Loop Unrolling &bull;
-        17. Loop Fusion &bull; 18. Eliminating Wasted Iterations
-        <br /><br />
+        <ul style={{ margin: '4px 0 8px 0' }}>
+          <li>14. Hoisting</li>
+          <li>15. Sentinels</li>
+          <li>16. Loop Unrolling</li>
+          <li>17. Loop Fusion</li>
+          <li>18. Eliminating Wasted Iterations</li>
+        </ul>
         <em>Functions</em>
-        <br />
-        19. Inlining &bull; 20. Tail-Recursion Elimination &bull; 21. Coarsening Recursion
+        <ul style={{ margin: '4px 0 8px 0' }}>
+          <li>19. Inlining</li>
+          <li>20. Tail-Recursion Elimination</li>
+          <li>21. Coarsening Recursion</li>
+        </ul>
         <br /><br />
         <iframe
           width="100%"
