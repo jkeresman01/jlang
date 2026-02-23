@@ -31,6 +31,104 @@ export default function Introduction() {
         looks off, it probably is. Corrections and feedback are always welcome.
       </Callout>
 
+      <h2>About Me</h2>
+      <p>
+        I am a clueless twenty-five-year-old who programs every day and is now,
+        for reasons I cannot fully explain, writing this. If you ever see me in
+        person, you will probably see me in a black hoodie, staring at nothing in
+        particular, and you might wonder what is going on in that guy&rsquo;s
+        head &mdash; or why he codes every day, or why he thinks he can write
+        something that people would actually read. Truth be told, I do not know
+        the answer to that last one. But I can try to answer the rest.
+      </p>
+      <p>
+        I code every day because it is an escape. An escape from this cruel world
+        of judgment, fear, and wars. An escape from your everyday troubles, from
+        the fight with someone you love. An escape into a world of thoughts,
+        creation, and innovation. When you are deep enough inside a problem, the
+        rest of the world simply stops existing.
+      </p>
+      <p>
+        And why write this? Truth be told, because I am terrified. Terrified that
+        my obsession is coming to an end. I have done every programming project I
+        have ever wanted to do, and now I am terrified that I will drift back into
+        the world of reality. So this seemed like the next natural step &mdash;
+        one more thing to keep me in this world a little longer.
+      </p>
+
+      <p>
+        In programming, you can get stuck on a problem and keep thinking about it
+        for days. I sometimes walk for half an hour to find my car because I have
+        completely forgotten where I parked it &mdash; too deep inside this
+        wonderful world to notice something as trivial as where I left a two-ton
+        piece of metal. Sometimes I walk right past it, more than once, without
+        realizing it is sitting right in front of my nose. Sometimes I walk down
+        the street and hit a traffic light pole. It is probably a good thing that
+        every week or two I get a parking ticket &mdash; I have started to
+        remember spots by the tickets I have collected there, and at this point
+        they have become almost enjoyable to pay. In fact, I got one just today
+        &mdash; or yesterday, I am not sure if it was before or after midnight.
+      </p>
+      <p>
+        I have also realized that the best books and the best authors are those
+        who speak out of their own experience &mdash; the ones in whose skin you
+        can walk, the ones who can make you feel something. Sometimes it is
+        frustration. Sometimes it is admiration. Sometimes it is hate. Sometimes
+        your eyes fill with tears of joy. But the thing about people like that is
+        that you can feel their passion and their dedication bleeding through
+        every page.
+      </p>
+      <p>
+        Robert Nystrom, in the acknowledgements
+        of <em>Crafting Interpreters</em>, writes:
+      </p>
+      <blockquote style={{ borderLeft: '3px solid var(--border)', paddingLeft: '1rem', margin: '1.5rem 0', fontStyle: 'italic', opacity: 0.85 }}>
+        Finally, the deepest thanks go to my wife Megan and my daughters Lily and
+        Gretchen. You patiently endured the time I had to sink into the book, and
+        my stress while writing it. There&rsquo;s no one I&rsquo;d rather be
+        stuck at home with.
+      </blockquote>
+      <p>
+        You can feel his obsession and his love toward the thing he is talking
+        about &mdash; and toward the people who gave him the space to pursue it.
+      </p>
+      <p>
+        So here are my apologies. I am sorry that I have been so absent to my
+        family while doing all of this. I am sorry to the police officer who had
+        to let me go when he asked for my identity card &mdash; I had not found
+        enough time in the last two years to renew it. And I am sorry to the
+        parking ticket guy.
+      </p>
+      <p>
+        People with that kind of passion &mdash; the ability to move others, to
+        make them feel something real &mdash; are extremely rare. You can glorify
+        them or vilify them, but the only thing you cannot do is ignore them.
+        Because the people who are crazy enough to think they can change the world
+        are the ones who do.
+      </p>
+
+      <Callout type="note">
+        <strong>Here&rsquo;s to the crazy ones</strong>
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/keCwRdbwNQY?start=198"
+          title="Here's to the crazy ones"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
+      <p>
+        So in this book I will try to make you feel &mdash; to look at
+        programming through my eyes and see the core beliefs that, through my
+        experiences, have shaped me into the person I am today: craftsmanship,
+        discipline, dedication, integrity, and passion.
+      </p>
+
       <h2>About This Document</h2>
       <p>
         This is less of a traditional language reference and more of a small book.
