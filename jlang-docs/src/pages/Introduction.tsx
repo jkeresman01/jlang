@@ -7,11 +7,11 @@ export default function Introduction() {
       <section className="hero">
         <h1>jlang</h1>
         <p className="tagline">
-          A procedural programming language mostly inspired by Go/Rust
+          Journey Through a 25-Year-Old&rsquo;s Thoughts, Bundled with a Language
         </p>
         <p className="sub-tagline">
-          Clean syntax, explicit memory management, and modern language features
-          compiled to native code via LLVM.
+          A procedural programming language mostly inspired by Go/Rust &mdash; clean syntax,
+          explicit memory management, and modern language features compiled to native code via LLVM.
         </p>
         <div className="hero-badges">
           <span className="hero-badge">C++</span>
