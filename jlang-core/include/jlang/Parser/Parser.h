@@ -58,6 +58,8 @@ class Parser
     std::shared_ptr<AstNode> ParsePostfix();
     std::shared_ptr<AstNode> ParseExprStatement();
     std::shared_ptr<AstNode> ParsePrimary();
+    std::shared_ptr<AstNode> ParseSwitchStatement();
+    std::shared_ptr<AstNode> ParseSwitchExpr();
     std::shared_ptr<AstNode> ParseMatchExpr();
     std::shared_ptr<AstNode> ParseOkExpr();
     std::shared_ptr<AstNode> ParseErrExpr();

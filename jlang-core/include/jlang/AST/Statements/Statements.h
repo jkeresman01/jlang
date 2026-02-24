@@ -92,4 +92,21 @@ struct ContinueStatement : public Statement
     void Accept(AstVisitor &visitor) override { visitor.VisitContinueStatement(*this); }
 };
 
+struct SwitchCase
+{
+    std::vector<std::shared_ptr<AstNode>> values; // empty = default
+    std::shared_ptr<AstNode> body;                 // BlockStatement
+    bool isDefault = false;
+};
+
+struct SwitchStatement : public Statement
+{
+    std::shared_ptr<AstNode> expr;
+    std::vector<SwitchCase> cases;
+
+    SwitchStatement() { type = NodeType::SwitchStatement; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitSwitchStatement(*this); }
+};
+
 } // namespace jlang

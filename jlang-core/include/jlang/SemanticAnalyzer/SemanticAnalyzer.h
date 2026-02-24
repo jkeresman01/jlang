@@ -35,6 +35,7 @@ class SemanticAnalyzer : public AstVisitor
     void VisitReturnStatement(ReturnStatement &) override;
     void VisitBreakStatement(BreakStatement &) override;
     void VisitContinueStatement(ContinueStatement &) override;
+    void VisitSwitchStatement(SwitchStatement &) override;
 
     void VisitCallExpr(CallExpr &) override;
     void VisitBinaryExpr(BinaryExpr &) override;
@@ -55,6 +56,7 @@ class SemanticAnalyzer : public AstVisitor
     void VisitIndexAssignExpr(IndexAssignExpr &) override;
     void VisitMethodCallExpr(MethodCallExpr &) override;
     void VisitMemberAssignExpr(MemberAssignExpr &) override;
+    void VisitSwitchExpr(SwitchExpr &) override;
 
     void CheckUnusedVariables();
     void ValidateInterfaceImplementations();
@@ -63,6 +65,7 @@ class SemanticAnalyzer : public AstVisitor
     std::unordered_map<std::string, bool> m_declaredVariables; // name -> used
     std::unordered_set<std::string> m_currentFunctionVariables;
     int m_LoopDepth = 0;
+    int m_SwitchDepth = 0;
 
     // Interface/struct/function registries for validation
     std::unordered_map<std::string, std::vector<InterfaceMethodDecl>> m_declaredInterfaces;

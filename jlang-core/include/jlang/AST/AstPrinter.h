@@ -30,6 +30,7 @@ class AstPrinter : public AstVisitor
     void VisitReturnStatement(ReturnStatement &) override;
     void VisitBreakStatement(BreakStatement &) override;
     void VisitContinueStatement(ContinueStatement &) override;
+    void VisitSwitchStatement(SwitchStatement &) override;
 
     void VisitCallExpr(CallExpr &) override;
     void VisitBinaryExpr(BinaryExpr &) override;
@@ -50,6 +51,7 @@ class AstPrinter : public AstVisitor
     void VisitIndexAssignExpr(IndexAssignExpr &) override;
     void VisitMethodCallExpr(MethodCallExpr &) override;
     void VisitMemberAssignExpr(MemberAssignExpr &) override;
+    void VisitSwitchExpr(SwitchExpr &) override;
 
   private:
     void Indent();

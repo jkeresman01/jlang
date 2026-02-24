@@ -538,4 +538,78 @@ void AstPrinter::VisitMemberAssignExpr(MemberAssignExpr &node)
     m_result += ")\n";
 }
 
+void AstPrinter::VisitSwitchStatement(SwitchStatement &node)
+{
+    Indent();
+    m_result += "(SwitchStatement\n";
+
+    ++m_indent;
+    Indent();
+    m_result += "expr:\n";
+    ++m_indent;
+    VisitChild(node.expr);
+    --m_indent;
+
+    for (auto &c : node.cases)
+    {
+        Indent();
+        if (c.isDefault)
+        {
+            m_result += "default:\n";
+        }
+        else
+        {
+            m_result += "case:\n";
+            ++m_indent;
+            for (auto &v : c.values)
+                VisitChild(v);
+            --m_indent;
+        }
+        ++m_indent;
+        VisitChild(c.body);
+        --m_indent;
+    }
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
+void AstPrinter::VisitSwitchExpr(SwitchExpr &node)
+{
+    Indent();
+    m_result += "(SwitchExpr\n";
+
+    ++m_indent;
+    Indent();
+    m_result += "expr:\n";
+    ++m_indent;
+    VisitChild(node.expr);
+    --m_indent;
+
+    for (auto &arm : node.arms)
+    {
+        Indent();
+        if (arm.isDefault)
+        {
+            m_result += "default =>\n";
+        }
+        else
+        {
+            m_result += "case =>\n";
+            ++m_indent;
+            for (auto &v : arm.values)
+                VisitChild(v);
+            --m_indent;
+        }
+        ++m_indent;
+        VisitChild(arm.body);
+        --m_indent;
+    }
+    --m_indent;
+
+    Indent();
+    m_result += ")\n";
+}
+
 } // namespace jlang

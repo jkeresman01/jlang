@@ -17,6 +17,7 @@ struct ExprStatement;
 struct ReturnStatement;
 struct BreakStatement;
 struct ContinueStatement;
+struct SwitchStatement;
 struct CallExpr;
 struct BinaryExpr;
 struct UnaryExpr;
@@ -36,6 +37,7 @@ struct IndexExpr;
 struct IndexAssignExpr;
 struct MethodCallExpr;
 struct MemberAssignExpr;
+struct SwitchExpr;
 
 class AstVisitor
 {
@@ -56,6 +58,7 @@ class AstVisitor
     virtual void VisitReturnStatement(ReturnStatement &) = 0;
     virtual void VisitBreakStatement(BreakStatement &) = 0;
     virtual void VisitContinueStatement(ContinueStatement &) = 0;
+    virtual void VisitSwitchStatement(SwitchStatement &) = 0;
 
     virtual void VisitCallExpr(CallExpr &) = 0;
     virtual void VisitBinaryExpr(BinaryExpr &) = 0;
@@ -76,5 +79,6 @@ class AstVisitor
     virtual void VisitIndexAssignExpr(IndexAssignExpr &) = 0;
     virtual void VisitMethodCallExpr(MethodCallExpr &) = 0;
     virtual void VisitMemberAssignExpr(MemberAssignExpr &) = 0;
+    virtual void VisitSwitchExpr(SwitchExpr &) = 0;
 };
 } // namespace jlang

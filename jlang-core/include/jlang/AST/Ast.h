@@ -25,6 +25,7 @@ enum class NodeType
     ReturnStatement,
     BreakStatement,
     ContinueStatement,
+    SwitchStatement,
 
     CallExpr,
     BinaryExpr,
@@ -44,7 +45,8 @@ enum class NodeType
     IndexExpr,
     IndexAssignExpr,
     MethodCallExpr,
-    MemberAssignExpr
+    MemberAssignExpr,
+    SwitchExpr
 };
 
 struct AstNode

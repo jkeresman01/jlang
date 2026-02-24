@@ -15,6 +15,9 @@ static std::unordered_map<std::string, TokenType> s_Keywords = {
     {"return", TokenType::Return},
     {"break", TokenType::Break},
     {"continue", TokenType::Continue},
+    {"switch", TokenType::Switch},
+    {"case", TokenType::Case},
+    {"default", TokenType::Default},
     // Declarations
     {"fn", TokenType::Fn},
     {"var", TokenType::Var},

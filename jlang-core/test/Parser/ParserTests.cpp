@@ -1582,6 +1582,82 @@ TEST(ParserTest, ParsesMultipleDeclarations)
     ASSERT_NE(std::dynamic_pointer_cast<FunctionDecl>(nodes[1]), nullptr);
 }
 
+// ============================================================================
+// Switch statement and expression
+// ============================================================================
+
+TEST(ParserTest, ParsesSwitchStatement)
+{
+    // Given
+    std::string source = "switch (x) { case 1: break; case 2: break; default: break; }";
+
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    ASSERT_EQ(block->statements.size(), 1u);
+    auto switchStmt = std::dynamic_pointer_cast<SwitchStatement>(block->statements[0]);
+    ASSERT_NE(switchStmt, nullptr);
+    ASSERT_NE(switchStmt->expr, nullptr);
+    ASSERT_EQ(switchStmt->cases.size(), 3u);
+
+    // case 1
+    EXPECT_FALSE(switchStmt->cases[0].isDefault);
+    ASSERT_EQ(switchStmt->cases[0].values.size(), 1u);
+
+    // case 2
+    EXPECT_FALSE(switchStmt->cases[1].isDefault);
+    ASSERT_EQ(switchStmt->cases[1].values.size(), 1u);
+
+    // default
+    EXPECT_TRUE(switchStmt->cases[2].isDefault);
+    EXPECT_TRUE(switchStmt->cases[2].values.empty());
+}
+
+TEST(ParserTest, ParsesSwitchStatementWithMultipleCases)
+{
+    // Given
+    std::string source = "switch (x) { case 1: case 2: break; default: break; }";
+
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto switchStmt = std::dynamic_pointer_cast<SwitchStatement>(block->statements[0]);
+    ASSERT_NE(switchStmt, nullptr);
+    // case 1 has empty body (falls through), case 2 has break, default has break
+    ASSERT_EQ(switchStmt->cases.size(), 3u);
+}
+
+TEST(ParserTest, ParsesSwitchExpression)
+{
+    // Given
+    std::string source = "var y: i32 = switch (x) { case 1 => 10, case 2, 3 => 20, default => 0 };";
+
+    // When
+    auto block = ParseFnBody(source);
+
+    // Then
+    auto varDecl = std::dynamic_pointer_cast<VariableDecl>(block->statements[0]);
+    ASSERT_NE(varDecl, nullptr);
+    auto switchExpr = std::dynamic_pointer_cast<SwitchExpr>(varDecl->initializer);
+    ASSERT_NE(switchExpr, nullptr);
+    ASSERT_NE(switchExpr->expr, nullptr);
+    ASSERT_EQ(switchExpr->arms.size(), 3u);
+
+    // case 1 => 10
+    EXPECT_FALSE(switchExpr->arms[0].isDefault);
+    ASSERT_EQ(switchExpr->arms[0].values.size(), 1u);
+
+    // case 2, 3 => 20
+    EXPECT_FALSE(switchExpr->arms[1].isDefault);
+    ASSERT_EQ(switchExpr->arms[1].values.size(), 2u);
+
+    // default => 0
+    EXPECT_TRUE(switchExpr->arms[2].isDefault);
+    EXPECT_TRUE(switchExpr->arms[2].values.empty());
+}
+
 TEST(ParserTest, ParsesInterfaceStructFunction)
 {
     // Given

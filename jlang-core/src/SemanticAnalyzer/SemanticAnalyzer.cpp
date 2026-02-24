@@ -154,11 +154,29 @@ void SemanticAnalyzer::VisitReturnStatement(ReturnStatement &node)
         node.value->Accept(*this);
 }
 
+void SemanticAnalyzer::VisitSwitchStatement(SwitchStatement &node)
+{
+    if (node.expr)
+        node.expr->Accept(*this);
+    m_SwitchDepth++;
+    for (auto &c : node.cases)
+    {
+        for (auto &v : c.values)
+        {
+            if (v)
+                v->Accept(*this);
+        }
+        if (c.body)
+            c.body->Accept(*this);
+    }
+    m_SwitchDepth--;
+}
+
 void SemanticAnalyzer::VisitBreakStatement(BreakStatement &)
 {
-    if (m_LoopDepth == 0)
+    if (m_LoopDepth == 0 && m_SwitchDepth == 0)
     {
-        std::cerr << "Error: 'break' used outside of a loop" << std::endl;
+        std::cerr << "Error: 'break' used outside of a loop or switch" << std::endl;
     }
 }
 
@@ -344,6 +362,22 @@ void SemanticAnalyzer::VisitMemberAssignExpr(MemberAssignExpr &node)
         node.object->Accept(*this);
     if (node.value)
         node.value->Accept(*this);
+}
+
+void SemanticAnalyzer::VisitSwitchExpr(SwitchExpr &node)
+{
+    if (node.expr)
+        node.expr->Accept(*this);
+    for (auto &arm : node.arms)
+    {
+        for (auto &v : arm.values)
+        {
+            if (v)
+                v->Accept(*this);
+        }
+        if (arm.body)
+            arm.body->Accept(*this);
+    }
 }
 
 void SemanticAnalyzer::ValidateInterfaceImplementations()

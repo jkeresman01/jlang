@@ -209,4 +209,21 @@ struct MemberAssignExpr : public Expression
     void Accept(AstVisitor &visitor) override { visitor.VisitMemberAssignExpr(*this); }
 };
 
+struct SwitchArm
+{
+    std::vector<std::shared_ptr<AstNode>> values; // empty = default
+    std::shared_ptr<AstNode> body;                 // single expression or block
+    bool isDefault = false;
+};
+
+struct SwitchExpr : public Expression
+{
+    std::shared_ptr<AstNode> expr;
+    std::vector<SwitchArm> arms;
+
+    SwitchExpr() { type = NodeType::SwitchExpr; }
+
+    void Accept(AstVisitor &visitor) override { visitor.VisitSwitchExpr(*this); }
+};
+
 } // namespace jlang

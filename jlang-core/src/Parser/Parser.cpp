@@ -502,6 +502,11 @@ std::shared_ptr<AstNode> Parser::ParseStatement()
         return ParseContinueStatement();
     }
 
+    if (Check(TokenType::Switch))
+    {
+        return ParseSwitchStatement();
+    }
+
     if (Check(TokenType::Return))
     {
         return ParseReturnStatement();
@@ -1307,6 +1312,12 @@ std::shared_ptr<AstNode> Parser::ParsePrimary()
         return ParseMatchExpr();
     }
 
+    // Handle switch expression
+    if (IsMatched(TokenType::Switch))
+    {
+        return ParseSwitchExpr();
+    }
+
     // Handle Ok() expression
     if (IsMatched(TokenType::Ok))
     {
@@ -1960,6 +1971,174 @@ std::shared_ptr<AstNode> Parser::ParseArrayLiteral()
     }
 
     return arrayLiteral;
+}
+
+std::shared_ptr<AstNode> Parser::ParseSwitchStatement()
+{
+    Advance(); // consume 'switch'
+
+    if (!IsMatched(TokenType::LParen))
+    {
+        JLANG_ERROR("Expected '(' after 'switch'");
+    }
+
+    auto switchExpr = ParseExpression();
+
+    if (!IsMatched(TokenType::RParen))
+    {
+        JLANG_ERROR("Expected ')' after switch expression");
+    }
+
+    if (!IsMatched(TokenType::LBrace))
+    {
+        JLANG_ERROR("Expected '{' after switch condition");
+    }
+
+    auto switchStmt = std::make_shared<SwitchStatement>();
+    switchStmt->expr = switchExpr;
+
+    while (!Check(TokenType::RBrace) && !IsEndReached())
+    {
+        SwitchCase switchCase;
+
+        if (IsMatched(TokenType::Case))
+        {
+            // Parse one or more case values (fallthrough grouping: case 1: case 2:)
+            auto caseValue = ParseExpression();
+            switchCase.values.push_back(caseValue);
+
+            if (!IsMatched(TokenType::Colon))
+            {
+                JLANG_ERROR("Expected ':' after case value");
+            }
+        }
+        else if (IsMatched(TokenType::Default))
+        {
+            switchCase.isDefault = true;
+
+            if (!IsMatched(TokenType::Colon))
+            {
+                JLANG_ERROR("Expected ':' after 'default'");
+            }
+        }
+        else
+        {
+            JLANG_ERROR("Expected 'case' or 'default' in switch");
+            Advance();
+            continue;
+        }
+
+        // Collect statements until the next case/default/rbrace
+        auto block = std::make_shared<BlockStatement>();
+        while (!Check(TokenType::Case) && !Check(TokenType::Default) && !Check(TokenType::RBrace) &&
+               !IsEndReached())
+        {
+            auto stmt = ParseStatement();
+            if (stmt)
+            {
+                block->statements.push_back(stmt);
+            }
+        }
+        switchCase.body = block;
+        switchStmt->cases.push_back(switchCase);
+    }
+
+    if (!IsMatched(TokenType::RBrace))
+    {
+        JLANG_ERROR("Expected '}' at end of switch statement");
+    }
+
+    return switchStmt;
+}
+
+std::shared_ptr<AstNode> Parser::ParseSwitchExpr()
+{
+    // 'switch' already consumed
+    if (!IsMatched(TokenType::LParen))
+    {
+        JLANG_ERROR("Expected '(' after 'switch'");
+    }
+
+    auto switchExpr = ParseExpression();
+
+    if (!IsMatched(TokenType::RParen))
+    {
+        JLANG_ERROR("Expected ')' after switch expression");
+    }
+
+    if (!IsMatched(TokenType::LBrace))
+    {
+        JLANG_ERROR("Expected '{' after switch condition");
+    }
+
+    auto switchNode = std::make_shared<SwitchExpr>();
+    switchNode->expr = switchExpr;
+
+    while (!Check(TokenType::RBrace) && !IsEndReached())
+    {
+        SwitchArm arm;
+
+        if (IsMatched(TokenType::Case))
+        {
+            // Parse comma-separated values: case 1, 2, 3 =>
+            auto val = ParseExpression();
+            arm.values.push_back(val);
+
+            while (IsMatched(TokenType::Comma))
+            {
+                // Check if next token is 'case' or 'default' or '=>' — that means
+                // the comma was a trailing comma or arm separator
+                if (Check(TokenType::Case) || Check(TokenType::Default) || Check(TokenType::RBrace))
+                {
+                    break;
+                }
+                auto nextVal = ParseExpression();
+                arm.values.push_back(nextVal);
+            }
+
+            if (!IsMatched(TokenType::FatArrow))
+            {
+                JLANG_ERROR("Expected '=>' after case value(s)");
+            }
+        }
+        else if (IsMatched(TokenType::Default))
+        {
+            arm.isDefault = true;
+
+            if (!IsMatched(TokenType::FatArrow))
+            {
+                JLANG_ERROR("Expected '=>' after 'default'");
+            }
+        }
+        else
+        {
+            JLANG_ERROR("Expected 'case' or 'default' in switch expression");
+            Advance();
+            continue;
+        }
+
+        // Parse body - either a block or a single expression
+        if (Check(TokenType::LBrace))
+        {
+            arm.body = ParseBlock();
+        }
+        else
+        {
+            arm.body = ParseExpression();
+        }
+
+        switchNode->arms.push_back(arm);
+
+        // Consume optional comma between arms
+        IsMatched(TokenType::Comma);
+    }
+
+    if (!IsMatched(TokenType::RBrace))
+    {
+        JLANG_ERROR("Expected '}' at end of switch expression");
+    }
+
+    return switchNode;
 }
 
 MatchArm Parser::ParseMatchArm()

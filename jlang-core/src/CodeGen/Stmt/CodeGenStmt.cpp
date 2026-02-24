@@ -362,11 +362,120 @@ void CodeGenerator::VisitReturnStatement(ReturnStatement &node)
     }
 }
 
+void CodeGenerator::VisitSwitchStatement(SwitchStatement &node)
+{
+    // 1. Evaluate switch expression
+    node.expr->Accept(*this);
+    llvm::Value *switchValue = m_LastValue;
+    if (!switchValue)
+    {
+        JLANG_ERROR("Invalid switch expression");
+        return;
+    }
+
+    llvm::Function *parentFunction = m_IRBuilder.GetInsertBlock()->getParent();
+
+    // 2. Create exit block (merge point)
+    llvm::BasicBlock *exitBlock = llvm::BasicBlock::Create(m_Context, "switch.exit");
+
+    // 3. Find or create default block
+    llvm::BasicBlock *defaultBlock = nullptr;
+    int defaultIndex = -1;
+    for (size_t i = 0; i < node.cases.size(); ++i)
+    {
+        if (node.cases[i].isDefault)
+        {
+            defaultIndex = static_cast<int>(i);
+            break;
+        }
+    }
+
+    // 4. Create a basic block for each case
+    std::vector<llvm::BasicBlock *> caseBlocks;
+    for (size_t i = 0; i < node.cases.size(); ++i)
+    {
+        std::string name = node.cases[i].isDefault ? "switch.default" : "switch.case";
+        caseBlocks.push_back(llvm::BasicBlock::Create(m_Context, name));
+    }
+
+    if (defaultIndex >= 0)
+    {
+        defaultBlock = caseBlocks[defaultIndex];
+    }
+    else
+    {
+        defaultBlock = exitBlock; // no default => jump to exit
+    }
+
+    // 5. Count total case values
+    unsigned numCaseValues = 0;
+    for (auto &c : node.cases)
+    {
+        if (!c.isDefault)
+            numCaseValues += c.values.size();
+    }
+
+    // 6. Create switch instruction
+    llvm::SwitchInst *switchInst = m_IRBuilder.CreateSwitch(switchValue, defaultBlock, numCaseValues);
+
+    // 7. Add case values
+    for (size_t i = 0; i < node.cases.size(); ++i)
+    {
+        if (node.cases[i].isDefault)
+            continue;
+
+        for (auto &val : node.cases[i].values)
+        {
+            val->Accept(*this);
+            llvm::ConstantInt *constVal = llvm::dyn_cast<llvm::ConstantInt>(m_LastValue);
+            if (!constVal)
+            {
+                JLANG_ERROR("Switch case value must be a compile-time constant");
+                continue;
+            }
+            switchInst->addCase(constVal, caseBlocks[i]);
+        }
+    }
+
+    // 8. Push exit block for break support
+    m_LoopExitStack.push_back(exitBlock);
+
+    // 9. Generate code for each case body
+    for (size_t i = 0; i < node.cases.size(); ++i)
+    {
+        caseBlocks[i]->insertInto(parentFunction);
+        m_IRBuilder.SetInsertPoint(caseBlocks[i]);
+
+        if (node.cases[i].body)
+        {
+            node.cases[i].body->Accept(*this);
+        }
+
+        // If no terminator (no break/return), fall through to next block
+        if (!m_IRBuilder.GetInsertBlock()->getTerminator())
+        {
+            if (i + 1 < node.cases.size())
+            {
+                m_IRBuilder.CreateBr(caseBlocks[i + 1]); // fallthrough
+            }
+            else
+            {
+                m_IRBuilder.CreateBr(exitBlock); // last case falls to exit
+            }
+        }
+    }
+
+    // 10. Pop exit stack and set insert point to exit block
+    m_LoopExitStack.pop_back();
+    exitBlock->insertInto(parentFunction);
+    m_IRBuilder.SetInsertPoint(exitBlock);
+}
+
 void CodeGenerator::VisitBreakStatement(BreakStatement &)
 {
     if (m_LoopExitStack.empty())
     {
-        JLANG_ERROR("'break' used outside of a loop");
+        JLANG_ERROR("'break' used outside of a loop or switch");
         return;
     }
 

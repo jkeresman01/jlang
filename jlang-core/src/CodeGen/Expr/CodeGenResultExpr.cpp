@@ -235,4 +235,117 @@ void CodeGenerator::VisitMatchExpr(MatchExpr &node)
     }
 }
 
+void CodeGenerator::VisitSwitchExpr(SwitchExpr &node)
+{
+    // 1. Evaluate switch expression
+    node.expr->Accept(*this);
+    llvm::Value *switchValue = m_LastValue;
+    if (!switchValue)
+    {
+        JLANG_ERROR("Invalid switch expression");
+        return;
+    }
+
+    llvm::Function *parentFunc = m_IRBuilder.GetInsertBlock()->getParent();
+
+    // 2. Create exit block (merge point)
+    llvm::BasicBlock *exitBlock = llvm::BasicBlock::Create(m_Context, "switchexpr.exit");
+
+    // 3. Find default arm index
+    int defaultIndex = -1;
+    for (size_t i = 0; i < node.arms.size(); ++i)
+    {
+        if (node.arms[i].isDefault)
+        {
+            defaultIndex = static_cast<int>(i);
+            break;
+        }
+    }
+
+    // 4. Create basic blocks for each arm
+    std::vector<llvm::BasicBlock *> armBlocks;
+    for (size_t i = 0; i < node.arms.size(); ++i)
+    {
+        std::string name = node.arms[i].isDefault ? "switchexpr.default" : "switchexpr.arm";
+        armBlocks.push_back(llvm::BasicBlock::Create(m_Context, name));
+    }
+
+    llvm::BasicBlock *defaultBlock = (defaultIndex >= 0) ? armBlocks[defaultIndex] : exitBlock;
+
+    // 5. Count case values and create switch
+    unsigned numCaseValues = 0;
+    for (auto &arm : node.arms)
+    {
+        if (!arm.isDefault)
+            numCaseValues += arm.values.size();
+    }
+
+    llvm::SwitchInst *switchInst = m_IRBuilder.CreateSwitch(switchValue, defaultBlock, numCaseValues);
+
+    // 6. Add case values
+    for (size_t i = 0; i < node.arms.size(); ++i)
+    {
+        if (node.arms[i].isDefault)
+            continue;
+
+        for (auto &val : node.arms[i].values)
+        {
+            val->Accept(*this);
+            llvm::ConstantInt *constVal = llvm::dyn_cast<llvm::ConstantInt>(m_LastValue);
+            if (!constVal)
+            {
+                JLANG_ERROR("Switch expression case value must be a compile-time constant");
+                continue;
+            }
+            switchInst->addCase(constVal, armBlocks[i]);
+        }
+    }
+
+    // 7. Generate code for each arm, collect results for PHI
+    std::vector<std::pair<llvm::Value *, llvm::BasicBlock *>> phiIncoming;
+
+    for (size_t i = 0; i < node.arms.size(); ++i)
+    {
+        armBlocks[i]->insertInto(parentFunc);
+        m_IRBuilder.SetInsertPoint(armBlocks[i]);
+
+        if (node.arms[i].body)
+        {
+            node.arms[i].body->Accept(*this);
+        }
+
+        llvm::Value *armResult = m_LastValue;
+        llvm::BasicBlock *armExitBlock = m_IRBuilder.GetInsertBlock();
+
+        if (!armExitBlock->getTerminator())
+        {
+            m_IRBuilder.CreateBr(exitBlock);
+        }
+
+        if (armResult)
+        {
+            phiIncoming.push_back({armResult, armExitBlock});
+        }
+    }
+
+    // 8. Create PHI node in exit block
+    exitBlock->insertInto(parentFunc);
+    m_IRBuilder.SetInsertPoint(exitBlock);
+
+    if (!phiIncoming.empty())
+    {
+        llvm::PHINode *phi =
+            m_IRBuilder.CreatePHI(phiIncoming[0].first->getType(), phiIncoming.size(), "switch_result");
+        for (auto &[val, block] : phiIncoming)
+        {
+            phi->addIncoming(val, block);
+        }
+        m_LastValue = phi;
+    }
+    else
+    {
+        m_LastValue = nullptr;
+    }
+}
+
 } // namespace jlang
