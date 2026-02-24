@@ -95,7 +95,7 @@ struct ContinueStatement : public Statement
 struct SwitchCase
 {
     std::vector<std::shared_ptr<AstNode>> values; // empty = default
-    std::shared_ptr<AstNode> body;                 // BlockStatement
+    std::shared_ptr<AstNode> body;                // BlockStatement
     bool isDefault = false;
 };
 

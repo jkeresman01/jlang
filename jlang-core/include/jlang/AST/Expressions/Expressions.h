@@ -212,7 +212,7 @@ struct MemberAssignExpr : public Expression
 struct SwitchArm
 {
     std::vector<std::shared_ptr<AstNode>> values; // empty = default
-    std::shared_ptr<AstNode> body;                 // single expression or block
+    std::shared_ptr<AstNode> body;                // single expression or block
     bool isDefault = false;
 };
 
