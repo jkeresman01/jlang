@@ -128,6 +128,22 @@ export default function Introduction() {
         experiences, have shaped me into the person I am today: craftsmanship,
         discipline, dedication, integrity, and passion.
       </p>
+      <p>
+        But passion is not the only thing that makes us feel. Our insecurities
+        do too &mdash; sometimes even more so. Throughout this book you will find
+        examples that were born not from confidence, but from moments where I had
+        none. Moments of imposter syndrome, of not knowing something I felt I
+        should have known. In the chapter on operators you
+        will find an example about endian swapping. It earned its place there
+        because I still remember filing my first bug report &mdash; a crash
+        during an endian swap &mdash; and not being entirely clear on what an
+        endian even was. The embarrassment of that moment has never fully left
+        me. There are many more examples like that scattered across these pages.
+        They are here because they are honest, and because the things that
+        embarrass us tend to be the things that teach us the most. If anything,
+        they have taught me that you should never compare yourself to others
+        &mdash; only to who you were yesterday.
+      </p>
 
       <h2>About This Document</h2>
       <p>
