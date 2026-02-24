@@ -165,6 +165,127 @@ while (i < 10) {
         it jumps directly to the condition check.
       </p>
 
+      {/* ── Section 5: Switch Statement ── */}
+      <h2>Switch Statement</h2>
+      <p>
+        The <code>switch</code> statement selects a branch based on the value of
+        an expression. It uses familiar C-style syntax with <code>case</code> labels
+        and an optional <code>default</code>. Unlike some languages, cases
+        <strong> fall through</strong> by default &mdash; use <code>break</code> to
+        exit.
+      </p>
+
+      <CodeBlock
+        code={`var x: i32 = 2;
+switch (x) {
+    case 1:
+        printf("one");
+        break;
+    case 2:
+        printf("two");
+        break;
+    case 3:
+        printf("three");
+        break;
+    default:
+        printf("other");
+}`}
+      />
+
+      <h3>Fallthrough Grouping</h3>
+      <p>
+        Because cases fall through, you can stack multiple <code>case</code> labels
+        to handle several values with the same code:
+      </p>
+
+      <CodeBlock
+        code={`var y: i32 = 1;
+switch (y) {
+    case 1:
+    case 2:
+        printf("one or two");
+        break;
+    case 3:
+        printf("three");
+        break;
+    default:
+        printf("default");
+}`}
+      />
+
+      <Callout type="warning">
+        <strong>Heads up:</strong> Forgetting <code>break</code> means execution
+        continues into the next case. This is intentional for grouping, but a
+        common source of bugs otherwise.
+      </Callout>
+
+      {/* ── Section 6: Switch Expression ── */}
+      <h2>Switch Expression</h2>
+      <p>
+        When you need a switch that <em>produces a value</em>, use the switch
+        expression. It uses <code>{'=>'}</code> (fat arrow) syntax instead of colons,
+        and each arm is separated by a comma. No <code>break</code> needed &mdash;
+        there is no fallthrough.
+      </p>
+
+      <CodeBlock
+        code={`var z: i32 = 3;
+var result: i32 = switch (z) {
+    case 1 => 10,
+    case 2 => 20,
+    case 3 => 30,
+    default => 0
+};
+printf("result = %d", result); // result = 30`}
+      />
+
+      <h3>Multiple Values Per Arm</h3>
+      <p>
+        You can match several values in one arm by separating them with commas
+        after <code>case</code>:
+      </p>
+
+      <CodeBlock
+        code={`var w: i32 = 5;
+var category: i32 = switch (w) {
+    case 1, 2, 3 => 1,
+    case 4, 5, 6 => 2,
+    default => 0
+};
+printf("category = %d", category); // category = 2`}
+      />
+
+      <table className="doc-table">
+        <thead>
+          <tr>
+            <th>Form</th>
+            <th>Syntax</th>
+            <th>Fallthrough?</th>
+            <th>Returns a value?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Statement</td>
+            <td><code>case X:</code></td>
+            <td>Yes (use <code>break</code>)</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Expression</td>
+            <td><code>{'case X => value'}</code></td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <Callout type="tip">
+        Prefer the switch <strong>expression</strong> when you're assigning a
+        value based on a condition &mdash; it's more concise and eliminates the
+        risk of missing a <code>break</code>.
+      </Callout>
+
       {/* ── Funny Example ── */}
       <h2>Funny Parking Lot Example</h2>
       <p>
