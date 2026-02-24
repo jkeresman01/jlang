@@ -12,7 +12,9 @@
     "fadd",
     "fsub",
     "fmul",
-    "fdiv"
+    "fdiv",
+    "inlines",
+    "monomorphizes"
   ],
   "ignorePaths": [
     "build/**",
