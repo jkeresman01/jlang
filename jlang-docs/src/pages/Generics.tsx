@@ -121,6 +121,71 @@ fn main() -> i32 {
         </a>{' '}
         by Tristan Hume.
       </Callout>
+
+      {/* ── Section 4: How Other Languages Do It ── */}
+      <h2>How Other Languages Do It</h2>
+
+      <h3>Java — Type Erasure</h3>
+      <p>
+        Java takes the opposite approach to monomorphization. When you write{' '}
+        <code>List&lt;String&gt;</code> in Java, the compiler checks the types at
+        compile time but then <strong>erases</strong> them — the compiled bytecode
+        just sees a raw <code>List</code> of <code>Object</code>. This means there
+        is only a single version of the generic class at runtime, regardless of how
+        many different type arguments you use.
+      </p>
+      <p>The practical consequences are:</p>
+      <ul>
+        <li>
+          You cannot inspect type parameters at runtime —{' '}
+          <code>if (x instanceof List&lt;String&gt;)</code> is a compile error in
+          Java because that information is gone.
+        </li>
+        <li>
+          You cannot write <code>new T()</code> or <code>new T[]</code> inside a
+          generic class because the JVM doesn't know what <code>T</code> actually
+          is.
+        </li>
+        <li>
+          Primitives like <code>int</code> must be boxed into{' '}
+          <code>Integer</code> to be used with generics, adding allocations and
+          indirection.
+        </li>
+      </ul>
+      <p>
+        The upside is smaller compiled output — one copy of the code serves all
+        types — but the trade-off is less type information at runtime and extra
+        overhead from boxing and casts.
+      </p>
+
+      <h3>Kotlin — <code>reified</code> Type Parameters</h3>
+      <p>
+        Kotlin runs on the JVM so it inherits Java's type erasure by default. But
+        it has a clever escape hatch: the <code>reified</code> keyword. When you
+        mark a type parameter as <code>reified</code> on an{' '}
+        <code>inline</code> function, the compiler inlines the function body at
+        every call site and substitutes the real type — giving you access to the
+        type argument at runtime:
+      </p>
+      <CodeBlock language="kotlin" code={`inline fun <reified T> isType(value: Any): Boolean {
+    return value is T   // works! T is known at runtime
+}`} />
+      <p>
+        This is essentially <strong>monomorphization for a single function</strong>{' '}
+        — the compiler copies the function body and plugs in the concrete type,
+        just like jlang and C++ do for all generics. The limitation is that{' '}
+        <code>reified</code> only works on <code>inline</code> functions, not on
+        classes or regular methods, so it's a targeted fix rather than a
+        language-wide strategy.
+      </p>
+
+      <Callout type="note">
+        <strong>TL;DR:</strong> Java erases generic types at compile time (one
+        shared implementation, no runtime type info). Kotlin's{' '}
+        <code>reified</code> brings type info back for inline functions via
+        copy-paste monomorphization. jlang monomorphizes everything — every generic
+        usage becomes its own fully specialised, zero-overhead version.
+      </Callout>
     </>
   )
 }
