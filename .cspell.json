@@ -65,6 +65,12 @@
     "Subexpression",
     "Blefuscu",
     "Overthinker",
-    "unsequenced"
+    "unsequenced",
+    "fadd",
+    "fsub",
+    "fmul",
+    "fdiv",
+    "inlines",
+    "monomorphizes"
   ]
 }
