@@ -159,8 +159,8 @@ export default function Introduction() {
         In an era of vibe-coding, where shipping fast matters more than understanding
         deeply, we have quietly forgotten the core concepts, the foundational books, and
         the hard-won lessons that this craft was built on. Some of the videos featured here
-        contain words and thoughts from people like Ken Thompson, Dennis Ritchie, and
-        Bjarne Stroustrup &mdash; programmers whose work we all stand on, whether we
+        contain words and thoughts from people like Ken Thompson, Dennis Ritchie,
+        Bjarne Stroustrup, and James Gosling &mdash; programmers whose work we all stand on, whether we
         realize it or not.
       </p>
       <p>
