@@ -62,9 +62,6 @@ export default function Sidebar({ open, onClose }: Props) {
       {open && <div className="sidebar-overlay" onClick={onClose} />}
       <aside className={`sidebar ${open ? 'sidebar--open' : ''}`}>
         <div className="sidebar-header">
-          <NavLink to="/" className="sidebar-logo" onClick={onClose}>
-            <span className="sidebar-logo-text">25 Years of Thoughts, Compiled into a Language</span>
-          </NavLink>
         </div>
         <nav className="sidebar-nav">
           {chapters.map((chapter) => (
