@@ -92,7 +92,7 @@ export default function Sidebar({ open, onClose }: Props) {
         </nav>
         <div className="sidebar-footer">
           <a
-            href="https://github.com/jlang"
+            href="https://github.com/jkeresman01/jlang"
             target="_blank"
             rel="noopener noreferrer"
             className="sidebar-github"
