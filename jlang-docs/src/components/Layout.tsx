@@ -27,7 +27,7 @@ export default function Layout() {
               <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           </button>
-          <span className="header-title">jlang documentation</span>
+          <span className="header-title">25 Years of Thoughts, Compiled into a Language</span>
           <div className="header-spacer" />
           <ThemeToggle />
         </header>
