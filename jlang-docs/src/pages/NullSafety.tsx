@@ -37,6 +37,48 @@ export default function NullSafety() {
         mark.
       </p>
 
+      <Callout type="important">
+        <strong>Why pointers earn their place here</strong>
+        <br /><br />
+        Java was created in large part because of pointer bugs. James Gosling
+        looked at the damage C and C++ caused &mdash; dangling pointers, wild
+        arithmetic, entire systems undone by a single bad address &mdash; and
+        ripped pointers out entirely. But they kept <code>null</code>. They
+        removed the gun and left the bullet.{' '}
+        <code>NullPointerException</code> became the most thrown exception in
+        Java&rsquo;s history. If pointers were dangerous enough to kill,{' '}
+        <em>why did null survive?</em>
+        <br /><br />
+        Pointers were the first concept that truly broke my brain. That feeling where
+        someone is drawing boxes and arrows on a whiteboard, explaining how this
+        address points to that address, and you&rsquo;re nodding but nothing is
+        clicking &mdash; just a wall of fog between you and the idea. The second time
+        that happened was Kotlin&rsquo;s <code>reified</code> keyword and the whole
+        rabbit hole of covariance, contravariance, and type erasure vs. reification.
+        Two concepts that made me feel genuinely stupid before they finally made me
+        better. That&rsquo;s why they earn their place in this language and in this
+        book.
+        <br /><br />
+        And then there&rsquo;s Go. Go proved that pointers don&rsquo;t have to be the
+        nightmare that C made them. Go has pointers &mdash; real, honest pointers &mdash;
+        but no pointer arithmetic. You can take the address of a variable, you can
+        dereference it, but you cannot walk through memory like a drunk cowboy with a
+        loaded revolver. Go showed the world that if you forbid the dangerous parts
+        and keep the useful parts, pointers become a tool instead of a time bomb.
+        That&rsquo;s exactly the bet Jlang makes.
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/RrMptmNYkSw"
+          title="James Gosling on why Java removed pointers"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       {/* ── Section 1: Non-nullable by Default ── */}
       <h2>Non-nullable by Default</h2>
       <p>
