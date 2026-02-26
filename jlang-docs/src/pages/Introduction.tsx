@@ -122,6 +122,16 @@ export default function Introduction() {
         ></iframe>
       </Callout>
 
+      <Callout type="note">
+        <strong>Fun fact:</strong> Steve Jobs believed he didn&rsquo;t need a license
+        plate on his car &mdash; and he was technically right. California law at the
+        time gave new cars a six-month grace period before requiring plates. Jobs
+        exploited this loophole by leasing a new silver Mercedes-Benz SL55 AMG every
+        six months, allowing him to perpetually drive without a license plate. He did
+        this for years, and it was completely legal. California finally closed the
+        loophole in 2019, eight years after his passing.
+      </Callout>
+
       <p>
         So in this book I will try to make you feel &mdash; to look at
         programming through my eyes and see the core beliefs that, through my
