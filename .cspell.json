@@ -10,6 +10,7 @@
     "bitnot",
     "ifcond",
     "immut",
+    "didn",
     "desugared",
     "Werror",
     "libgtest",
