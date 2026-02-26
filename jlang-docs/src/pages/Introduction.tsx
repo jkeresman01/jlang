@@ -120,16 +120,6 @@ export default function Introduction() {
           allowFullScreen
           style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
         ></iframe>
-        <br />
-        <p style={{ color: '#4caf50', margin: 0 }}>
-          <strong>Fun fact:</strong> Steve Jobs believed he didn&rsquo;t need a license
-          plate on his car &mdash; and he was technically right. California law at the
-          time gave new cars a six-month grace period before requiring plates. Jobs
-          exploited this loophole by leasing a new silver Mercedes-Benz SL55 AMG every
-          six months, allowing him to perpetually drive without a license plate. He did
-          this for years, and it was completely legal. California finally closed the
-          loophole in 2019, eight years after his passing.
-        </p>
       </Callout>
 
       <p>
@@ -154,6 +144,16 @@ export default function Introduction() {
         they have taught me that you should never compare yourself to others
         &mdash; only to who you were yesterday.
       </p>
+
+      <Callout type="tip">
+        <strong>Fun fact:</strong> Steve Jobs believed he didn&rsquo;t need a license
+        plate on his car &mdash; and he was technically right. California law at the
+        time gave new cars a six-month grace period before requiring plates. Jobs
+        exploited this loophole by leasing a new silver Mercedes-Benz SL55 AMG every
+        six months, allowing him to perpetually drive without a license plate. He did
+        this for years, and it was completely legal. California finally closed the
+        loophole in 2019, eight years after his passing.
+      </Callout>
 
       <h2>About This Document</h2>
       <p>
