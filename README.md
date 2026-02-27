@@ -13,7 +13,10 @@
 
 ## About
 
-Book/Docs: https://jkeresman01.github.io/jlang/ **(25 Years of tought compiled into a language)** - Journey trough my toughts, bundled with a language
+**Book/Docs:** https://jkeresman01.github.io/jlang/  
+**(25 Years of Thought Compiled into a Language)**  
+A journey through my thoughts, bundled into a language.
 
 > [!NOTE]
-> This project and the small book is something that I'm activly working on, things might change over time or be inaccurate.
+> This project and the accompanying book are actively being developed.
+> Things may change over time and some parts might be inaccurate.
