@@ -43,8 +43,7 @@ export default function NullSafety() {
         Java was created in large part because of pointer bugs. James Gosling
         looked at the damage C and C++ caused &mdash; dangling pointers, wild
         arithmetic, entire systems undone by a single bad address &mdash; and
-        ripped pointers out entirely. But they kept <code>null</code>. They
-        removed the gun and left the bullet.{' '}
+        ripped pointers out entirely. But they kept <code>null</code>.{' '}
         <code>NullPointerException</code> became the most thrown exception in
         Java&rsquo;s history. If pointers were dangerous enough to kill,{' '}
         <em>why did null survive?</em>
