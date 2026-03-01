@@ -74,6 +74,9 @@
     "fmul",
     "fdiv",
     "inlines",
-    "monomorphizes"
+    "monomorphizes",
+    "Proračun",
+    "Grada",
+    "Zagreba"
   ]
 }
