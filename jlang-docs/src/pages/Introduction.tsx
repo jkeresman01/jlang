@@ -239,6 +239,14 @@ export default function Introduction() {
         checking the logs. Everyone is convinced their approach is the right one, and
         they will defend it stubbornly. That is exactly what makes them fun.
       </p>
+      <Callout type="warning">
+        <strong>Life lesson:</strong> I owe 60 euros in parking fines to Proračun Grada
+        Zagreba from last week for the way I park my car &mdash; haven&rsquo;t paid them yet.
+        Will I stop parking there? Absolutely not. But these tickets are getting unreasonably
+        expensive, and at this rate I might end up funding an entire city block renovation
+        with my violations alone.
+      </Callout>
+
       <Callout type="tip">
         <strong>Fun fact:</strong> Some of these challenges are also known to show up in
         technical interviews &mdash; the kind of LeetCode-style questions that catch you off
