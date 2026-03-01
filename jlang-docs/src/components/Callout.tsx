@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 interface Props {
-  type: 'note' | 'tip' | 'important' | 'warning'
+  type: 'note' | 'tip' | 'important' | 'warning' | 'life-lesson'
   children: ReactNode
 }
 
@@ -10,6 +10,7 @@ const labels: Record<Props['type'], string> = {
   tip: 'Tip',
   important: 'Important',
   warning: 'Warning',
+  'life-lesson': 'Life Lesson',
 }
 
 export default function Callout({ type, children }: Props) {

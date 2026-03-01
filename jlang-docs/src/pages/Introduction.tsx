@@ -145,6 +145,30 @@ export default function Introduction() {
         &mdash; only to who you were yesterday.
       </p>
 
+      <Callout type="life-lesson">
+        <strong>Life lesson:</strong> I have been listening to that one crazy dude
+        that you might or might not know, depending on the place from where you
+        know me, just some day ago. And you should probably be listening more
+        carefully, since he just wants what is best for you. I remembered him
+        saying something
+        along the lines of: <em>how do you know that you are doing a good
+        job?</em> And the answer was &mdash; <strong>when the job finds you,
+        and not you the job</strong>. So I dug up one email from last year:
+        <br /><br />
+        <img
+          src={`${import.meta.env.BASE_URL}assets/email-dev.png`}
+          alt="Unsolicited recruiter email — the job found me"
+          style={{ width: '100%', borderRadius: '8px', border: '1px solid var(--border)' }}
+        />
+        <br />
+        This one is a scam by the way.
+        <br /><br />
+        And yes &mdash; dude, your domain is &ldquo;cryptoguru.digital&rdquo;.
+        <br /><br />
+        Do not act out of emotion &mdash; act out of logic. Do background
+        checks, check the facts, and seek the truth.
+      </Callout>
+
       <Callout type="tip">
         <strong>Fun fact:</strong> Steve Jobs believed he didn&rsquo;t need a license
         plate on his car &mdash; and he was technically right. California law at the

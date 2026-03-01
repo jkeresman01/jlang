@@ -414,6 +414,10 @@
   border-left-color: var(--callout-warning);
 }
 
+.callout--life-lesson {
+  border-left-color: var(--callout-life-lesson);
+}
+
 .callout-title {
   font-size: 0.8rem;
   font-weight: 600;
@@ -426,6 +430,7 @@
 .callout--tip .callout-title { color: var(--callout-tip); }
 .callout--important .callout-title { color: var(--callout-important); }
 .callout--warning .callout-title { color: var(--callout-warning); }
+.callout--life-lesson .callout-title { color: var(--callout-life-lesson); }
 
 .callout-body {
   color: var(--text-secondary);
