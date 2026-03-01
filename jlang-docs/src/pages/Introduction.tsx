@@ -239,7 +239,7 @@ export default function Introduction() {
         checking the logs. Everyone is convinced their approach is the right one, and
         they will defend it stubbornly. That is exactly what makes them fun.
       </p>
-      <Callout type="warning">
+      <Callout type="life-lesson">
         <strong>Life lesson:</strong> I owe 60 euros in parking fines to Proračun Grada
         Zagreba from last week for the way I park my car &mdash; haven&rsquo;t paid them yet.
         Will I stop parking there? Absolutely not. But these tickets are getting unreasonably
