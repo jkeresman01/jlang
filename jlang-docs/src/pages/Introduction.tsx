@@ -260,6 +260,26 @@ export default function Introduction() {
         you definitely didn't have memorized. Those moments tend to stick with you.
       </Callout>
 
+      <Callout type="important">
+        Every example throughout this book is here because, at some point, it made
+        me feel embarrassed or insecure &mdash; I didn&rsquo;t know the answer, and I
+        felt like I should have. But instead of letting that feeling sit, I wrote it
+        down. That simple habit &mdash; noting things down &mdash; became the beginning
+        of a journey to patch every insecurity I could name. Over the years I collected
+        answers to those questions, and with time I became composed, patient, and full of
+        understanding &mdash; probably because I stopped pretending I already knew
+        everything and started being honest about what I didn&rsquo;t.
+        <br /><br />
+        Every programming project I have ever built was, in some way, a response to an
+        insecurity. And now that I have collected enough answers to sit down and write
+        about them, I realize this is exactly how we should handle the moments where we
+        act irrationally or irresponsibly: note them down, learn from them, and make sure
+        they do not happen again &mdash; while being honest and transparent, because only
+        through honesty can we move forward.
+        <br /><br />
+        Be better than you were yesterday.
+      </Callout>
+
       <h2>Why Procedural?</h2>
       <p>
         jlang is a <strong>procedural</strong> language &mdash; no classes, no inheritance,
