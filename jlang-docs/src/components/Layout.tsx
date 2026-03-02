@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import ThemeToggle from './ThemeToggle'
+import Paywall from './Paywall'
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -37,6 +38,7 @@ export default function Layout() {
           </div>
         </main>
       </div>
+      <Paywall />
     </div>
   )
 }
