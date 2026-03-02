@@ -11,6 +11,7 @@ const chapters = [
   {
     title: 'Language Basics',
     items: [
+      { label: 'Comments', path: '/comments' },
       { label: 'Variables', path: '/variables' },
       { label: 'Types', path: '/types' },
       { label: 'Functions', path: '/functions' },

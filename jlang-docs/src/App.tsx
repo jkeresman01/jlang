@@ -13,6 +13,7 @@ import Arrays from './pages/Arrays'
 import Memory from './pages/Memory'
 import Generics from './pages/Generics'
 import GettingStarted from './pages/GettingStarted'
+import Comments from './pages/Comments'
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/generics" element={<Generics />} />
         <Route path="/memory" element={<Memory />} />
         <Route path="/getting-started" element={<GettingStarted />} />
+        <Route path="/comments" element={<Comments />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
