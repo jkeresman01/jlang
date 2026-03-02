@@ -84,13 +84,12 @@ fn main() -> i32 {
       </Callout>
 
       <Callout type="life-lesson">
-        "There are rare times when it makes sense to gather certain functions
-        together beneath a banner like this. But in general, they are clutter
-        that should be eliminated — especially the startling train of slashes at
-        the end."
-        <br />
-        <br />
-        — Robert C. Martin, <em>Clean Code</em>
+        <strong>Banner comments are a relic of the past</strong>
+        <p>
+          You may encounter code that uses long decorative comment lines — often
+          called <em>banner comments</em> — to visually group functions into
+          sections:
+        </p>
 
         <CodeBlock
           code={`// Actions //////////////////////////////////
@@ -111,6 +110,67 @@ fn helperB() -> i32 {
     return 0;
 }`}
         />
+
+        <p>
+          This practice originates from the early days of C and C++, where it
+          actually served a purpose. In C++ implementation files (<code>.cpp</code>),
+          all methods are written at the top level — there is no visual
+          distinction between public, private, or protected members. Banners
+          helped developers mentally map which section of the class they were
+          working in:
+        </p>
+
+        <CodeBlock
+          code={`///////////////////////////////////////////////////////
+// Public
+///////////////////////////////////////////////////////
+
+void Player::move(float dx, float dy) {
+    x += dx;
+    y += dy;
+}
+
+void Player::jump() {
+    velocity.y = jumpForce;
+}
+
+///////////////////////////////////////////////////////
+// Private
+///////////////////////////////////////////////////////
+
+void Player::applyGravity() {
+    velocity.y -= gravity;
+}
+
+void Player::clampPosition() {
+    if (y < 0) y = 0;
+}`}
+        />
+
+        <p>
+          In modern languages — including Jlang — this reason no longer applies.
+          Access modifiers are declared directly on the members, the structure is
+          visible at a glance, and any decent editor lets you jump to a symbol
+          instantly. Banners just add noise.
+        </p>
+
+        <blockquote>
+          <p>
+            "There are rare times when it makes sense to gather certain
+            functions together beneath a banner like this. But in general, they
+            are clutter that should be eliminated — especially the startling
+            train of slashes at the end."
+          </p>
+          <footer>
+            — Robert C. Martin, <em>Clean Code</em>
+          </footer>
+        </blockquote>
+
+        <p>
+          If you feel the need to separate your code into labeled sections,
+          it is usually a sign that your file is doing too much.
+          Split it into smaller, well-named files instead.
+        </p>
       </Callout>
     </>
   )
