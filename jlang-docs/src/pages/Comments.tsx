@@ -19,6 +19,15 @@ export default function Comments() {
         </footer>
       </blockquote>
 
+      <blockquote>
+        <p>
+          "Truth can only be found in one place: the code."
+        </p>
+        <footer>
+          — Robert C. Martin, <em>Clean Code</em>
+        </footer>
+      </blockquote>
+
       {/* ── Section 1: Single-line comments ── */}
       <h2>Single-line comments</h2>
       <p>
