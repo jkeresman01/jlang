@@ -150,7 +150,7 @@ export default function Introduction() {
         that you might or might not know, depending on the place from where you
         know me, just some day ago. And you should probably be listening more
         carefully, since he just wants what is best for you. I remembered him
-        saying something
+        saying something, some time ago (not that day),
         along the lines of: <em>how do you know that you are doing a good
         job?</em> And the answer was &mdash; <strong>when the job finds you,
         and not you the job</strong>. So I dug up one email from last year:
