@@ -277,6 +277,11 @@ export default function Introduction() {
         they do not happen again &mdash; while being honest and transparent, because only
         through honesty can we move forward.
         <br /><br />
+        Most of the examples throughout this book also come from Java and C++ &mdash;
+        the two languages I have spent the most time with. If you check my stats you
+        will see around 55% Java and around 25% C++, so it only felt natural to draw
+        from the worlds I know best.
+        <br /><br />
         Be better than you were yesterday.
       </Callout>
 
