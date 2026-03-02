@@ -82,6 +82,36 @@ fn main() -> i32 {
         Prefer single-line comments for brief notes and block comments for
         disabling larger sections of code during debugging.
       </Callout>
+
+      <Callout type="life-lesson">
+        "There are rare times when it makes sense to gather certain functions
+        together beneath a banner like this. But in general, they are clutter
+        that should be eliminated — especially the startling train of slashes at
+        the end."
+        <br />
+        <br />
+        — Robert C. Martin, <em>Clean Code</em>
+
+        <CodeBlock
+          code={`// Actions //////////////////////////////////
+
+fn doSomething() -> void {
+}
+
+fn doSomethingElse() -> void {
+}
+
+// Utilities /////////////////////////////////
+
+fn helperA() -> i32 {
+    return 0;
+}
+
+fn helperB() -> i32 {
+    return 0;
+}`}
+        />
+      </Callout>
     </>
   )
 }
