@@ -208,6 +208,22 @@ void Player::clampPosition() {
           style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
         ></iframe>
       </Callout>
+
+      <Callout type="tip">
+        <strong>Java vs C#:</strong> If you ever doubt whether C# is better than
+        Java, listen to what Scala Johansson has to say:
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/RnqAXuLZlaE"
+          title="Java vs C#"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
     </>
   )
 }
