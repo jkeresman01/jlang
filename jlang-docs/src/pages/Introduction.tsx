@@ -188,6 +188,24 @@ export default function Introduction() {
         deep-dives, and programming challenges that are meant to keep things interesting
         and maybe teach you something unexpected along the way.
       </p>
+
+      <Callout type="tip">
+        <strong>Fun fact:</strong> If this were a book on a shelf, it would not be
+        filed under drama &mdash; it would be a comedy. And every comedy needs a
+        protagonist. Here is Jos&eacute; Mourinho talking about his most problematic player:
+        <br /><br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/AwXgfBzK_L4?start=26"
+          title="Mourinho on his most problematic player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       <p>
         Many of these materials I found extremely valuable &mdash; and increasingly rare.
         In an era of vibe-coding, where shipping fast matters more than understanding
