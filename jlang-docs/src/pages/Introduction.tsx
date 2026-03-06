@@ -208,7 +208,7 @@ export default function Introduction() {
 
       <p>
         Many of these materials I found extremely valuable &mdash; and increasingly rare.
-        In an era of vibe-coding, where shipping fast matters more than understanding
+        In an era of vibes, where shipping fast matters more than understanding
         deeply, we have quietly forgotten the core concepts, the foundational books, and
         the hard-won lessons that this craft was built on. Some of the videos featured here
         contain words and thoughts from people like Ken Thompson, Dennis Ritchie,
