@@ -184,6 +184,24 @@ void Player::clampPosition() {
         </p>
       </Callout>
 
+      <Callout type="life-lesson">
+        <blockquote>
+          <p>
+            "A rumor ends when it reaches a wise man's ear."
+          </p>
+        </blockquote>
+        <p>
+          Not every piece of information deserves to be repeated. A wise person
+          hears a rumor and lets it die — they don't pass it along, amplify it,
+          or treat it as fact. The same principle applies to code comments: not
+          every thought that crosses your mind while coding needs to be written
+          down. A comment that restates the obvious, spreads a misunderstanding,
+          or echoes outdated reasoning is the code equivalent of passing along a
+          rumor. Let noise die where it lands. Only propagate what is true,
+          useful, and necessary.
+        </p>
+      </Callout>
+
       <Callout type="tip">
         <strong>Fun fact:</strong> If you should know any language, it should
         probably be Java. Over <strong>3 billion devices</strong> run Java
