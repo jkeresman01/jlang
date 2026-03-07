@@ -30,6 +30,24 @@ export default function Comments() {
         </blockquote>
       </Callout>
 
+      <Callout type="life-lesson">
+        <blockquote>
+          <p>
+            "A rumor ends when it reaches a wise man's ear."
+          </p>
+        </blockquote>
+        <p>
+          Not every piece of information deserves to be repeated. A wise person
+          hears a rumor and lets it die — they don't pass it along, amplify it,
+          or treat it as fact. The same principle applies to code comments: not
+          every thought that crosses your mind while coding needs to be written
+          down. A comment that restates the obvious, spreads a misunderstanding,
+          or echoes outdated reasoning is the code equivalent of passing along a
+          rumor. Let noise die where it lands. Only propagate what is true,
+          useful, and necessary.
+        </p>
+      </Callout>
+
       {/* ── Section 1: Single-line comments ── */}
       <h2>Single-line comments</h2>
       <p>
@@ -181,24 +199,6 @@ void Player::clampPosition() {
           If you feel the need to separate your code into labeled sections,
           it is usually a sign that your file is doing too much.
           Split it into smaller, well-named files instead.
-        </p>
-      </Callout>
-
-      <Callout type="life-lesson">
-        <blockquote>
-          <p>
-            "A rumor ends when it reaches a wise man's ear."
-          </p>
-        </blockquote>
-        <p>
-          Not every piece of information deserves to be repeated. A wise person
-          hears a rumor and lets it die — they don't pass it along, amplify it,
-          or treat it as fact. The same principle applies to code comments: not
-          every thought that crosses your mind while coding needs to be written
-          down. A comment that restates the obvious, spreads a misunderstanding,
-          or echoes outdated reasoning is the code equivalent of passing along a
-          rumor. Let noise die where it lands. Only propagate what is true,
-          useful, and necessary.
         </p>
       </Callout>
 
