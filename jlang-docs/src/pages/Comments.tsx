@@ -276,7 +276,7 @@ var adults = from p in people
 List<Person> adults = people.stream()
     .filter(p -> p.getAge() >= 18)
     .sorted(Comparator.comparing(Person::getName))
-    .collect(Collectors.toList());`}
+    .toList();`}
         </code>
         <br />
         <strong>Async/await:</strong> C# had <code>async</code>/<code>await</code> since
