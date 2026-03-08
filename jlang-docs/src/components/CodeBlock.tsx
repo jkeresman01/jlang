@@ -8,18 +8,26 @@ Prism.languages['jlang'] = {
     { pattern: /\/\/.*/, greedy: true },
     { pattern: /\/\*[\s\S]*?\*\//, greedy: true },
   ],
+  preprocessor: {
+    pattern: /^#\s*(?:include|define|ifdef|ifndef|else|endif|undef)\b.*/m,
+    greedy: true,
+    alias: 'property',
+  },
   string: [
     { pattern: /"(?:\\.|[^"\\])*"/, greedy: true },
     { pattern: /'(?:\\.|[^'\\])'/, greedy: true },
   ],
   keyword:
-    /\b(?:fn|var|val|return|if|else|while|for|struct|break|continue|match|alloc|free|null|true|false|and|or|Ok|Err|Result)\b/,
+    /\b(?:fn|var|val|return|if|else|while|for|in|struct|interface|switch|case|default|break|continue|match|alloc|free|null|true|false|and|or|Ok|Err|Result)\b/,
   builtin: /\b(?:printf|sizeof)\b/,
-  'class-name':
-    /\b(?:i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|bool|char|void|Person|Config|IPrintable)\b/,
+  'class-name': [
+    /\b(?:i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|bool|char|void)\b/,
+    /\bstd::Vector\b/,
+    /\b[A-Z][a-zA-Z0-9]*\b/,
+  ],
   number: /\b\d+(?:\.\d+)?\b/,
   operator:
-    /->|:=|\?\:|\+\+|--|&&|\|\||[+\-*/%=<>!&|^~]=?|<<|>>/,
+    /=>|->|:=|\?\:|\+\+|--|&&|\|\||[+\-*/%=<>!&|^~]=?|<<=?|>>=?|::/,
   punctuation: /[{}[\]();,.:]/,
 }
 
