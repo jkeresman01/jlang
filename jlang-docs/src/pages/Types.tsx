@@ -5,6 +5,16 @@ export default function Types() {
     <>
       <h1>Types &amp; Literals</h1>
 
+      <blockquote>
+        <p>
+          "The most important property of a program is whether it accomplishes
+          the intention of its user."
+        </p>
+        <footer>
+          — C.A.R. Hoare, <em>Hints on Programming Language Design</em>, 1973
+        </footer>
+      </blockquote>
+
       <h2>Integer Sizes</h2>
       <p>
         Jlang supports all standard integer types: <code>i8</code>, <code>i16</code>,{' '}
@@ -23,6 +33,16 @@ var g: u32 = 100;
 var h: u64 = 18446744073709551615;`}
       />
 
+      <blockquote>
+        <p>
+          "There are only two kinds of languages: the ones people complain
+          about and the ones nobody uses."
+        </p>
+        <footer>
+          — Bjarne Stroustrup, <em>The C++ Programming Language</em>
+        </footer>
+      </blockquote>
+
       <h2>Floating Point</h2>
       <p>
         Single-precision (<code>f32</code>) and double-precision (<code>f64</code>)
@@ -32,6 +52,19 @@ var h: u64 = 18446744073709551615;`}
         code={`var pi: f32 = 3.14;
 var precise: f64 = 3.141592653589793;`}
       />
+
+      <blockquote>
+        <p>
+          "Floating-point arithmetic is considered an esoteric subject by many
+          people. This is rather surprising because floating-point is
+          ubiquitous in computer systems."
+        </p>
+        <footer>
+          — David Goldberg,{' '}
+          <em>What Every Computer Scientist Should Know About Floating-Point Arithmetic</em>,
+          1991
+        </footer>
+      </blockquote>
 
       <h2>Character Literals</h2>
       <p>
