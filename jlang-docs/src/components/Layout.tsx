@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import ThemeToggle from './ThemeToggle'
 import Paywall from './Paywall'
+import PageNav from './PageNav'
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(
@@ -40,6 +41,7 @@ export default function Layout() {
         <main className="content">
           <div className="content-inner">
             <Outlet />
+            <PageNav />
           </div>
         </main>
       </div>
