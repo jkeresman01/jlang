@@ -1,5 +1,6 @@
 import CodeBlock from '../components/CodeBlock'
 import Callout from '../components/Callout'
+import ParkingAd from '../components/ParkingAd'
 
 export default function Introduction() {
   return (
@@ -264,6 +265,8 @@ export default function Introduction() {
         expensive, and at this rate I might end up funding an entire city block renovation
         with my violations alone.
       </Callout>
+
+      <ParkingAd />
 
       <Callout type="tip">
         <strong>Fun fact:</strong> Some of these challenges are also known to show up in
