@@ -11,6 +11,8 @@ export default function Layout() {
   )
   const location = useLocation()
 
+  const [scrollProgress, setScrollProgress] = useState(0)
+
   useEffect(() => {
     window.scrollTo(0, 0)
     if (window.innerWidth <= 860) {
@@ -18,10 +20,21 @@ export default function Layout() {
     }
   }, [location.pathname])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+      const progress = scrollHeight <= clientHeight ? 0 : scrollTop / (scrollHeight - clientHeight)
+      setScrollProgress(progress)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className={`layout ${sidebarOpen ? 'layout--sidebar-open' : ''}`}>
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="layout-main">
+        <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} />
         <header className="header">
           <button
             className="header-menu-btn"
