@@ -5,15 +5,20 @@ import ThemeToggle from './ThemeToggle'
 import Paywall from './Paywall'
 
 export default function Layout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth > 860
+  )
   const location = useLocation()
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    if (window.innerWidth <= 860) {
+      setSidebarOpen(false)
+    }
   }, [location.pathname])
 
   return (
-    <div className="layout">
+    <div className={`layout ${sidebarOpen ? 'layout--sidebar-open' : ''}`}>
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="layout-main">
         <header className="header">

@@ -80,7 +80,9 @@ export default function Sidebar({ open, onClose }: Props) {
                       className={({ isActive }) =>
                         `sidebar-link ${isActive ? 'sidebar-link--active' : ''}`
                       }
-                      onClick={onClose}
+                      onClick={() => {
+                        if (window.innerWidth <= 860) onClose()
+                      }}
                     >
                       {item.label}
                     </NavLink>
