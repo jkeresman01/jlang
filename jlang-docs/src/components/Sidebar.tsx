@@ -1,6 +1,18 @@
 import { NavLink } from 'react-router-dom'
 import { chapters } from '../chapters'
 
+const romanNumerals: [number, string][] = [
+  [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
+]
+
+function toRoman(n: number): string {
+  let result = ''
+  for (const [value, numeral] of romanNumerals) {
+    while (n >= value) { result += numeral; n -= value }
+  }
+  return result
+}
+
 interface Props {
   open: boolean
   onClose: () => void
@@ -17,9 +29,12 @@ export default function Sidebar({ open, onClose }: Props) {
           </a>
         </div>
         <nav className="sidebar-nav">
-          {chapters.map((chapter) => (
+          {chapters.map((chapter, chapterIdx) => (
             <div key={chapter.title} className="sidebar-section">
-              <h3 className="sidebar-section-title">{chapter.title}</h3>
+              <h3 className="sidebar-section-title">
+                <span className="sidebar-section-numeral">{toRoman(chapterIdx + 1)}</span>
+                {chapter.title}
+              </h3>
               <ul className="sidebar-list">
                 {chapter.items.map((item) => (
                   <li key={item.path}>
