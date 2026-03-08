@@ -207,11 +207,8 @@ void Player::clampPosition() {
         probably be Java. Over <strong>3 billion devices</strong> run Java
         worldwide, with more than <strong>73 billion Java Virtual Machines</strong>{' '}
         running globally. Over <strong>90% of Fortune 500 companies</strong> use
-        Java for their software development, and there are an estimated{' '}
-        <strong>9 million Java developers</strong> employed today &mdash; with
-        projections showing 18.7 million new Java developer positions emerging
-        by 2026. If there is one language worth knowing inside and out, Java is
-        a pretty safe bet.
+        Java for their software development. If there is one language worth knowing inside and out, 
+        Java is a pretty safe bet.
         <br /><br />
         But that&rsquo;s just my opinion. Here is what Bjarne Stroustrup thinks:
         <br /><br />
