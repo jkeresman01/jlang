@@ -37,15 +37,21 @@ export default function Layout() {
         <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} />
         <header className="header">
           <button
-            className="header-menu-btn"
+            className={`header-menu-btn ${sidebarOpen ? 'header-menu-btn--open' : ''}`}
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-label="Toggle menu"
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
+            {sidebarOpen ? (
+              <svg className="menu-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
           </button>
           <span className="header-title">25 Years of Thoughts, Compiled into a Language</span>
           <div className="header-spacer" />
