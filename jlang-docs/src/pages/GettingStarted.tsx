@@ -49,6 +49,41 @@ export default function GettingStarted() {
         example programs in the <code>samples/</code> directory to get a feel
         for the language.
       </p>
+
+      {/* ── Section 4: Compiler Flags ── */}
+      <h2>Compiler Flags</h2>
+
+      <h3><code>-o &lt;file&gt;</code></h3>
+      <p>
+        Specify the output executable path. If omitted, the compiler
+        defaults to <code>a.out</code>.
+      </p>
+      <CodeBlock language="bash" code={`./build/Jlang samples/sample.j -o myprogram
+./myprogram`} />
+
+      <h3><code>--dump-ast</code></h3>
+      <p>
+        Print the Abstract Syntax Tree and exit. The compiler will parse your
+        source file, print the AST to stdout, then stop — no code generation,
+        no executable. Useful for debugging the parser or understanding how
+        the compiler sees your code.
+      </p>
+      <CodeBlock language="bash" code={`./build/Jlang samples/sample.j --dump-ast`} />
+
+      <h3><code>--emit-ir</code></h3>
+      <p>
+        Print the generated LLVM IR to stdout and exit. The compiler runs
+        parsing, semantic analysis, and code generation, but skips producing
+        an executable. Useful for inspecting the IR that gets fed into LLVM's
+        optimization and linking pipeline.
+      </p>
+      <CodeBlock language="bash" code={`./build/Jlang samples/sample.j --emit-ir`} />
+
+      <Callout type="tip">
+        You can combine <code>-o</code> with the other flags — but{' '}
+        <code>--dump-ast</code> and <code>--emit-ir</code> will exit before
+        producing an executable, so the output path is effectively ignored.
+      </Callout>
     </>
   )
 }
