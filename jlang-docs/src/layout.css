@@ -628,6 +628,68 @@
   color: var(--accent);
 }
 
+/* Scroll hints — colored markers on right side */
+.scroll-hints {
+  position: fixed;
+  top: 0;
+  right: 6px;
+  bottom: 0;
+  width: 14px;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.scroll-hint {
+  position: absolute;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  transform: translateY(-50%);
+  transition: transform 0.15s, box-shadow 0.15s;
+  padding: 0;
+}
+
+.scroll-hint:hover {
+  transform: translateY(-50%) scale(1.4);
+}
+
+.scroll-hint--life-lesson {
+  background: var(--callout-life-lesson);
+  box-shadow: 0 0 6px var(--callout-life-lesson);
+}
+
+.scroll-hint--tip {
+  background: var(--callout-tip);
+  box-shadow: 0 0 6px var(--callout-tip);
+}
+
+.scroll-hint-label {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.scroll-hint-label--visible {
+  opacity: 1;
+}
+
 @media (max-width: 860px) {
   .layout--sidebar-open .sidebar {
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
@@ -651,6 +713,10 @@
 
   .hero h1 {
     font-size: 2.25rem;
+  }
+
+  .scroll-hints {
+    display: none;
   }
 }
 

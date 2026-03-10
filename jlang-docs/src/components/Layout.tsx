@@ -4,6 +4,7 @@ import Sidebar from './Sidebar'
 import ThemeToggle from './ThemeToggle'
 import Paywall from './Paywall'
 import PageNav from './PageNav'
+import ScrollHints from './ScrollHints'
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(
@@ -65,6 +66,7 @@ export default function Layout() {
         </main>
       </div>
       <Paywall />
+      <ScrollHints />
     </div>
   )
 }
