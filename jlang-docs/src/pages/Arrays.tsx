@@ -1,5 +1,5 @@
-import CodeBlock from '../components/CodeBlock'
-import Callout from '../components/Callout'
+import CodeBlock from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function Arrays() {
   return (
@@ -8,46 +8,58 @@ export default function Arrays() {
 
       <blockquote>
         <p>
-          "There are only two hard things in Computer Science: cache invalidation,
-          naming things, and off-by-one errors."
+          "There are only two hard things in Computer Science: cache
+          invalidation, naming things, and off-by-one errors."
         </p>
         <footer>— Every programmer, at some point</footer>
       </blockquote>
 
       <Callout type="note">
-        <strong>Bonus &mdash; Dijkstra: "Programmer? No such profession."</strong>
-        <br /><br />
+        <strong>
+          Bonus &mdash; Dijkstra: "Programmer? No such profession."
+        </strong>
+        <br />
+        <br />
         In 1957, Edsger Dijkstra got married. Dutch marriage rites required him
         to state his profession. He said he was a programmer. The municipal
         authorities of Amsterdam refused &mdash; there was no such profession.
         His marriage certificate instead lists him as a{' '}
         <strong>theoretical physicist</strong>.
-        <br /><br />
-        In his own words: <em>"Believe it or not, but under the heading
-        'profession' my marriage act shows the ridiculous entry 'theoretical
-        physicist'!"</em>
-        <br /><br />
-        This story is told by Dijkstra himself in his 1972 Turing Award
-        lecture, <em>"The Humble Programmer"</em> (EWD 340), and is retold
-        by Robert C. Martin in <em>Clean Architecture: A Craftsman's Guide
-        to Software Structure and Design</em>, Chapter 4
-        &mdash; "Structured Programming".
+        <br />
+        <br />
+        In his own words:{' '}
+        <em>
+          "Believe it or not, but under the heading 'profession' my marriage act
+          shows the ridiculous entry 'theoretical physicist'!"
+        </em>
+        <br />
+        <br />
+        This story is told by Dijkstra himself in his 1972 Turing Award lecture,{' '}
+        <em>"The Humble Programmer"</em> (EWD 340), and is retold by Robert C.
+        Martin in{' '}
+        <em>
+          Clean Architecture: A Craftsman's Guide to Software Structure and
+          Design
+        </em>
+        , Chapter 4 &mdash; "Structured Programming".
       </Callout>
 
       <Callout type="note">
         <strong>Fun Fact &mdash; Why do arrays start at 0?</strong>
-        <br /><br />
+        <br />
+        <br />
         In 1982, Edsger Dijkstra wrote a memo titled{' '}
         <em>"Why numbering should start at zero"</em>, arguing that zero-based
         indexing is the most natural convention for half-open ranges. But the
         real reason? In C, <code>arr[i]</code> is literally{' '}
-        <code>*(arr + i)</code> &mdash; pointer arithmetic. The first element
-        is at offset 0 from the base address. It's not philosophy, it's just
-        math. Every language that inherited C's memory model inherited its
-        indexing. Including this one.
-        <br /><br />
-        Dijkstra's memo is worth reading &mdash; it's only one page and
-        he handwrote it, because of course he did.
+        <code>*(arr + i)</code> &mdash; pointer arithmetic. The first element is
+        at offset 0 from the base address. It's not philosophy, it's just math.
+        Every language that inherited C's memory model inherited its indexing.
+        Including this one.
+        <br />
+        <br />
+        Dijkstra's memo is worth reading &mdash; it's only one page and he
+        handwrote it, because of course he did.
       </Callout>
 
       {/* ── Section 1: Stack-allocated Arrays ── */}
@@ -66,8 +78,10 @@ export default function Arrays() {
         variable nor its elements can be modified after initialization.
       </p>
 
-      <CodeBlock code={`val constants: i32[3] = [1, 2, 3];
-// constants[0] = 99;  // ERROR: cannot modify element of immutable array`} />
+      <CodeBlock
+        code={`val constants: i32[3] = [1, 2, 3];
+// constants[0] = 99;  // ERROR: cannot modify element of immutable array`}
+      />
 
       <h3>Type Inference</h3>
       <p>
@@ -84,7 +98,8 @@ export default function Arrays() {
         square brackets.
       </p>
 
-      <CodeBlock code={`var arr: i32[5] = [10, 20, 30, 40, 50];
+      <CodeBlock
+        code={`var arr: i32[5] = [10, 20, 30, 40, 50];
 
 // Reading elements
 var first := arr[0];   // 10
@@ -92,7 +107,8 @@ var third := arr[2];   // 30
 
 // Writing elements
 arr[1] = 99;
-printf("arr[1] = %d", arr[1]);  // arr[1] = 99`} />
+printf("arr[1] = %d", arr[1]);  // arr[1] = 99`}
+      />
 
       {/* ── Section 3: Heap-allocated Arrays ── */}
       <h2>Heap-allocated Arrays</h2>
@@ -101,27 +117,31 @@ printf("arr[1] = %d", arr[1]);  // arr[1] = 99`} />
         large for the stack, allocate on the heap with <code>alloc</code>:
       </p>
 
-      <CodeBlock code={`var heap: i32[10]* = alloc<i32[10]>();
+      <CodeBlock
+        code={`var heap: i32[10]* = alloc<i32[10]>();
 
 heap[0] = 100;
 heap[9] = 999;
 
 printf("First: %d, Last: %d", heap[0], heap[9]);
 
-free(heap);`} />
+free(heap);`}
+      />
 
       {/* ── Section 4: Immutability Applies to Elements ── */}
       <h2>Immutability Applies to Elements</h2>
       <p>
-        When an array is declared with <code>val</code>, immutability extends
-        to the individual elements. You cannot modify any element of an
-        immutable array.
+        When an array is declared with <code>val</code>, immutability extends to
+        the individual elements. You cannot modify any element of an immutable
+        array.
       </p>
 
-      <CodeBlock code={`val scores: i32[3] = [90, 85, 92];
+      <CodeBlock
+        code={`val scores: i32[3] = [90, 85, 92];
 
 // scores[0] = 100;  // ERROR: cannot modify element of immutable array
-// scores = [1,2,3]; // ERROR: cannot assign to immutable variable 'scores'`} />
+// scores = [1,2,3]; // ERROR: cannot assign to immutable variable 'scores'`}
+      />
 
       {/* ── Section 5: Comparison Table ── */}
       <h2>Array Types</h2>
@@ -136,14 +156,20 @@ free(heap);`} />
         </thead>
         <tbody>
           <tr>
-            <td><code>Type[size]</code></td>
+            <td>
+              <code>Type[size]</code>
+            </td>
             <td>Stack</td>
             <td>Current scope</td>
           </tr>
           <tr>
-            <td><code>Type[size]*</code></td>
+            <td>
+              <code>Type[size]*</code>
+            </td>
             <td>Heap</td>
-            <td>Until <code>free()</code> is called</td>
+            <td>
+              Until <code>free()</code> is called
+            </td>
           </tr>
         </tbody>
       </table>
@@ -172,7 +198,8 @@ free(heap);`} />
             Sum the 9 known distances, subtract from 1000. Done. O(n), one pass,
             no wasted steps. Optimal and elegant.
           </p>
-          <CodeBlock code={`fn find_missing(distances: i32[10], smudged_idx: i32) -> i32 {
+          <CodeBlock
+            code={`fn find_missing(distances: i32[10], smudged_idx: i32) -> i32 {
     val total: i32 = 1000;
     var sum: i32 = 0;
 
@@ -183,7 +210,8 @@ free(heap);`} />
     }
 
     return total - sum;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -191,11 +219,12 @@ free(heap);`} />
         <summary>Funny Answer #2 &mdash; The Programmer</summary>
         <div className="details-content">
           <p>
-            Same subtraction trick, but with <em>production-grade</em>{' '}
-            paranoia: validate every entry, handle negative distances (you never
-            know with pirates), and add extensive logging for the captain.
+            Same subtraction trick, but with <em>production-grade</em> paranoia:
+            validate every entry, handle negative distances (you never know with
+            pirates), and add extensive logging for the captain.
           </p>
-          <CodeBlock code={`fn find_missing(distances: i32[10], smudged_idx: i32) -> i32 {
+          <CodeBlock
+            code={`fn find_missing(distances: i32[10], smudged_idx: i32) -> i32 {
     val total: i32 = 1000;
     var sum: i32 = 0;
     var suspicious_islands: i32 = 0;
@@ -230,7 +259,8 @@ free(heap);`} />
     printf("Confidence level: mass of the parrot squared\\n");
 
     return missing;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -243,14 +273,16 @@ free(heap);`} />
             excellent visual memory. Also, it's <em>your</em> fault for not
             laminating the map.
           </p>
-          <CodeBlock code={`fn find_missing() -> i32 {
+          <CodeBlock
+            code={`fn find_missing() -> i32 {
     // "Polly, what was island 4?"
     // "BRAWWK! 73 paces northwest! BRAWWK!"
     // "...good bird."
 
     printf("The parrot remembers everything.\\n");
     return 73;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -271,7 +303,8 @@ free(heap);`} />
             Sum all numbers from 1 to 27, subtract the 6 drawn balls, subtract
             the 20 remaining balls. Whatever is left is the missing ball.
           </p>
-          <CodeBlock code={`fn find_missing_ball(drawn: i32[6], remaining: i32[20]) -> i32 {
+          <CodeBlock
+            code={`fn find_missing_ball(drawn: i32[6], remaining: i32[20]) -> i32 {
     // Sum of 1..27 = 27 * 28 / 2 = 378
     var total: i32 = 378;
 
@@ -284,7 +317,8 @@ free(heap);`} />
     }
 
     return total;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -293,10 +327,11 @@ free(heap);`} />
         <div className="details-content">
           <p>
             XOR all numbers from 1 to 27, then XOR with every drawn and
-            remaining ball. Since <code>x ^ x = 0</code>, all known balls
-            cancel out and only the missing one survives.
+            remaining ball. Since <code>x ^ x = 0</code>, all known balls cancel
+            out and only the missing one survives.
           </p>
-          <CodeBlock code={`fn find_missing_ball(drawn: i32[6], remaining: i32[20]) -> i32 {
+          <CodeBlock
+            code={`fn find_missing_ball(drawn: i32[6], remaining: i32[20]) -> i32 {
     var result: i32 = 0;
 
     for (var i: i32 = 1; i <= 27; i++) {
@@ -312,7 +347,8 @@ free(heap);`} />
     }
 
     return result;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -324,28 +360,29 @@ free(heap);`} />
             supervised by officials. The escaped ball's number was documented
             the moment it left the machine. No code required.
           </p>
-          <CodeBlock code={`fn find_missing_ball() -> i32 {
+          <CodeBlock
+            code={`fn find_missing_ball() -> i32 {
     // Ask the supervisor
     // Check the camera footage
     // Read the official protocol
 
     printf("Just check the recording.\\n");
     return 0;
-}`} />
+}`}
+          />
         </div>
       </details>
 
       {/* ── Funny Example 3 ── */}
       <h2>Funny Edit Distance Example</h2>
       <p>
-        Your autocorrect keeps "fixing" your perfectly valid variable names.
-        You type <code>cnt</code> and it helpfully suggests something
-        unprintable. You type <code>idx</code> and it changes it to "index
-        fund". You decide to fight back: compute the{' '}
-        <strong>edit distance</strong> (minimum number of insertions,
-        deletions, and substitutions) between what you typed and what
-        autocorrect <em>thinks</em> you meant, so you can quantify exactly how
-        wrong it is.
+        Your autocorrect keeps "fixing" your perfectly valid variable names. You
+        type <code>cnt</code> and it helpfully suggests something unprintable.
+        You type <code>idx</code> and it changes it to "index fund". You decide
+        to fight back: compute the <strong>edit distance</strong> (minimum
+        number of insertions, deletions, and substitutions) between what you
+        typed and what autocorrect <em>thinks</em> you meant, so you can
+        quantify exactly how wrong it is.
       </p>
 
       <details className="details-block">
@@ -357,7 +394,8 @@ free(heap);`} />
             Vladimir Levenshtein, who published it in 1965 &mdash; back when
             autocorrect wasn't even a nightmare yet.
           </p>
-          <CodeBlock code={`fn edit_distance(a: i32[100], a_len: i32, b: i32[100], b_len: i32) -> i32 {
+          <CodeBlock
+            code={`fn edit_distance(a: i32[100], a_len: i32, b: i32[100], b_len: i32) -> i32 {
     var dp: i32[101][101];
 
     for (var i: i32 = 0; i <= a_len; i++) {
@@ -388,7 +426,8 @@ free(heap);`} />
     }
 
     return dp[a_len][b_len];
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -400,7 +439,8 @@ free(heap);`} />
             a full matrix. Because if autocorrect is going to ruin your day, at
             least your memory usage should be respectable.
           </p>
-          <CodeBlock code={`fn edit_distance(a: i32[100], a_len: i32, b: i32[100], b_len: i32) -> i32 {
+          <CodeBlock
+            code={`fn edit_distance(a: i32[100], a_len: i32, b: i32[100], b_len: i32) -> i32 {
     var prev: i32[101];
     var curr: i32[101];
 
@@ -435,7 +475,8 @@ free(heap);`} />
     }
 
     return prev[b_len];
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -443,17 +484,19 @@ free(heap);`} />
         <summary>The Correct Answer</summary>
         <div className="details-content">
           <p>
-            You turn off autocorrect. Edit distance: zero. Problem solved.
-            The best algorithm is the one you never have to run.
+            You turn off autocorrect. Edit distance: zero. Problem solved. The
+            best algorithm is the one you never have to run.
           </p>
-          <CodeBlock code={`fn fix_autocorrect() -> i32 {
+          <CodeBlock
+            code={`fn fix_autocorrect() -> i32 {
     // Settings > Keyboard > Autocorrect > OFF
     // Edit distance between what you type and what appears: 0
     // Peace of mind: restored
 
     printf("Autocorrect disabled. Freedom achieved.\\n");
     return 0;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -461,8 +504,8 @@ free(heap);`} />
         <strong>Heads up:</strong> Jlang does not support 2D arrays yet. The
         mathematician's solution above uses <code>i32[101][101]</code>, which
         won't compile. The programmer's space-optimized version using two
-        separate 1D arrays (<code>prev</code> and <code>curr</code>) is the
-        one that actually works today.
+        separate 1D arrays (<code>prev</code> and <code>curr</code>) is the one
+        that actually works today.
       </Callout>
 
       {/* ── Fun Facts ── */}
@@ -470,38 +513,45 @@ free(heap);`} />
 
       <Callout type="note">
         <strong>The billion-dollar fence post</strong>
-        <br /><br />
+        <br />
+        <br />
         Off-by-one errors are so common they have their own name: the{' '}
         <strong>fencepost error</strong>. If you need a 100-meter fence with a
-        post every 10 meters, how many posts do you need? 10? No &mdash; 11.
-        You always need one more post than the number of gaps between them.
-        <br /><br />
-        This exact mistake has caused countless bugs in loop boundaries.
-        When you write <code>{'for (var i: i32 = 0; i < n; i++)'}</code>,
-        that <code>&lt;</code> vs <code>&lt;=</code> decision is the most
+        post every 10 meters, how many posts do you need? 10? No &mdash; 11. You
+        always need one more post than the number of gaps between them.
+        <br />
+        <br />
+        This exact mistake has caused countless bugs in loop boundaries. When
+        you write <code>{'for (var i: i32 = 0; i < n; i++)'}</code>, that{' '}
+        <code>&lt;</code> vs <code>&lt;=</code> decision is the most
         consequential character in your entire program.
       </Callout>
 
       <Callout type="note">
         <strong>Fortran started at 1, and chaos followed</strong>
-        <br /><br />
+        <br />
+        <br />
         Fortran (1957) used 1-based indexing because mathematicians wrote the
         spec. C (1972) used 0-based indexing because systems programmers did.
         Lua uses 1. Python uses 0. MATLAB uses 1. JavaScript uses 0. PHP arrays
         are actually hash maps wearing a trench coat pretending to be arrays.
-        <br /><br />
+        <br />
+        <br />
         There has never been universal agreement on this topic, and there never
         will be. Choose your side and defend it with unreasonable conviction.
       </Callout>
 
       <Callout type="note">
         <strong>Arrays vs. linked lists &mdash; the eternal debate</strong>
-        <br /><br />
-        Computer science textbooks will tell you linked lists have O(1) insertion.
-        What they don't tell you is that the cache miss penalty of chasing
-        pointers across memory is so brutal that a simple array with O(n)
-        insertion often wins in practice &mdash; even for surprisingly large n.
-        <br /><br />
+        <br />
+        <br />
+        Computer science textbooks will tell you linked lists have O(1)
+        insertion. What they don't tell you is that the cache miss penalty of
+        chasing pointers across memory is so brutal that a simple array with
+        O(n) insertion often wins in practice &mdash; even for surprisingly
+        large n.
+        <br />
+        <br />
         Bjarne Stroustrup (creator of C++) gave a famous talk demonstrating that{' '}
         <code>std::vector</code> beats <code>std::list</code> in virtually every
         real-world benchmark. The CPU cache is king. Arrays are contiguous in
@@ -512,13 +562,11 @@ free(heap);`} />
 
       {/* ── Programming Challenge ── */}
       <h2>A Slightly Unhinged Programming Challenge</h2>
+      <p>Now that you know arrays, let's put them to work.</p>
       <p>
-        Now that you know arrays, let's put them to work.
-      </p>
-      <p>
-        <strong>Rotate an array</strong> &mdash; given an array of <code>n</code>{' '}
-        integers and a number <code>k</code>, rotate the array to the right
-        by <code>k</code> positions. For example, rotating{' '}
+        <strong>Rotate an array</strong> &mdash; given an array of{' '}
+        <code>n</code> integers and a number <code>k</code>, rotate the array to
+        the right by <code>k</code> positions. For example, rotating{' '}
         <code>[1, 2, 3, 4, 5]</code> by 2 gives <code>[4, 5, 1, 2, 3]</code>.
       </p>
       <p>
@@ -527,9 +575,7 @@ free(heap);`} />
         feel like a magic trick. If you have, it still kind of does.
       </p>
 
-      <Callout type="tip">
-        Solution coming soon!
-      </Callout>
+      <Callout type="tip">Solution coming soon!</Callout>
     </>
-  )
+  );
 }

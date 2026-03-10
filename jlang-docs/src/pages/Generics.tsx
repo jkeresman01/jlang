@@ -1,5 +1,5 @@
-import CodeBlock from '../components/CodeBlock'
-import Callout from '../components/Callout'
+import CodeBlock from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function Generics() {
   return (
@@ -8,10 +8,10 @@ export default function Generics() {
 
       <p>
         Generics let you write functions and structs that work with any type,
-        without duplicating code. You declare one or more <strong>type
-        parameters</strong> inside angle brackets (<code>&lt;T&gt;</code>) and
-        the compiler generates specialised versions for each concrete type you
-        use.
+        without duplicating code. You declare one or more{' '}
+        <strong>type parameters</strong> inside angle brackets (
+        <code>&lt;T&gt;</code>) and the compiler generates specialised versions
+        for each concrete type you use.
       </p>
 
       {/* ── Section 1: Generic Functions ── */}
@@ -21,20 +21,25 @@ export default function Generics() {
         parameter types, the return type, or both.
       </p>
 
-      <CodeBlock code={`fn max<T>(a: T, b: T) -> T {
+      <CodeBlock
+        code={`fn max<T>(a: T, b: T) -> T {
     if (a > b) { return a; }
     return b;
-}`} />
+}`}
+      />
 
       <p>
-        Call a generic function by providing the concrete type in angle brackets:
+        Call a generic function by providing the concrete type in angle
+        brackets:
       </p>
 
-      <CodeBlock code={`var a: i32 = max<i32>(10, 20);
+      <CodeBlock
+        code={`var a: i32 = max<i32>(10, 20);
 printf("max<i32>(10, 20) = %d", a);
 
 var b: f64 = max<f64>(3.14, 2.71);
-printf("max<f64>(3.14, 2.71) = %f", b);`} />
+printf("max<f64>(3.14, 2.71) = %f", b);`}
+      />
 
       <p>
         Each call site like <code>max&lt;i32&gt;</code> and{' '}
@@ -49,20 +54,22 @@ printf("max<f64>(3.14, 2.71) = %f", b);`} />
         parameters lets you build flexible, reusable data containers.
       </p>
 
-      <CodeBlock code={`struct Pair<T, U> {
+      <CodeBlock
+        code={`struct Pair<T, U> {
     First: T;
     Second: U;
-}`} />
+}`}
+      />
 
-      <p>
-        Use the concrete type when allocating and accessing the struct:
-      </p>
+      <p>Use the concrete type when allocating and accessing the struct:</p>
 
-      <CodeBlock code={`var p: Pair<i32, f64>* = alloc<Pair<i32, f64>>();
+      <CodeBlock
+        code={`var p: Pair<i32, f64>* = alloc<Pair<i32, f64>>();
 p.First = 42;
 p.Second = 3.14;
 printf("Pair: (%d, %f)", p.First, p.Second);
-free(p);`} />
+free(p);`}
+      />
 
       <Callout type="note">
         Generic structs are always allocated on the heap with{' '}
@@ -77,7 +84,8 @@ free(p);`} />
         single program:
       </p>
 
-      <CodeBlock code={`fn max<T>(a: T, b: T) -> T {
+      <CodeBlock
+        code={`fn max<T>(a: T, b: T) -> T {
     if (a > b) { return a; }
     return b;
 }
@@ -101,15 +109,16 @@ fn main() -> i32 {
     free(p);
 
     return 0;
-}`} />
+}`}
+      />
 
       <Callout type="tip">
         <strong>Fun fact:</strong> Under the hood, jlang implements generics
         through <strong>monomorphization</strong> — instead of producing a
         single "generic" function at runtime, the compiler generates completely
-        separate, type-specialised versions for each concrete type you use.
-        That means <strong>zero runtime overhead</strong>: every call is direct
-        and every struct access uses a known memory layout. This is the same
+        separate, type-specialised versions for each concrete type you use. That
+        means <strong>zero runtime overhead</strong>: every call is direct and
+        every struct access uses a known memory layout. This is the same
         strategy used by C++ templates and Rust generics. For a great overview
         of different approaches, see{' '}
         <a
@@ -128,23 +137,23 @@ fn main() -> i32 {
       <h3>Java — Type Erasure</h3>
       <p>
         Java takes the opposite approach to monomorphization. When you write{' '}
-        <code>List&lt;String&gt;</code> in Java, the compiler checks the types at
-        compile time but then <strong>erases</strong> them — the compiled bytecode
-        just sees a raw <code>List</code> of <code>Object</code>. This means there
-        is only a single version of the generic class at runtime, regardless of how
-        many different type arguments you use.
+        <code>List&lt;String&gt;</code> in Java, the compiler checks the types
+        at compile time but then <strong>erases</strong> them — the compiled
+        bytecode just sees a raw <code>List</code> of <code>Object</code>. This
+        means there is only a single version of the generic class at runtime,
+        regardless of how many different type arguments you use.
       </p>
       <p>The practical consequences are:</p>
       <ul>
         <li>
           You cannot inspect type parameters at runtime —{' '}
-          <code>if (x instanceof List&lt;String&gt;)</code> is a compile error in
-          Java because that information is gone.
+          <code>if (x instanceof List&lt;String&gt;)</code> is a compile error
+          in Java because that information is gone.
         </li>
         <li>
           You cannot write <code>new T()</code> or <code>new T[]</code> inside a
-          generic class because the JVM doesn't know what <code>T</code> actually
-          is.
+          generic class because the JVM doesn't know what <code>T</code>{' '}
+          actually is.
         </li>
         <li>
           Primitives like <code>int</code> must be boxed into{' '}
@@ -158,34 +167,39 @@ fn main() -> i32 {
         overhead from boxing and casts.
       </p>
 
-      <h3>Kotlin — <code>reified</code> Type Parameters</h3>
+      <h3>
+        Kotlin — <code>reified</code> Type Parameters
+      </h3>
       <p>
-        Kotlin runs on the JVM so it inherits Java's type erasure by default. But
-        it has a clever escape hatch: the <code>reified</code> keyword. When you
-        mark a type parameter as <code>reified</code> on an{' '}
+        Kotlin runs on the JVM so it inherits Java's type erasure by default.
+        But it has a clever escape hatch: the <code>reified</code> keyword. When
+        you mark a type parameter as <code>reified</code> on an{' '}
         <code>inline</code> function, the compiler inlines the function body at
         every call site and substitutes the real type — giving you access to the
         type argument at runtime:
       </p>
-      <CodeBlock language="kotlin" code={`inline fun <reified T> isType(value: Any): Boolean {
+      <CodeBlock
+        language="kotlin"
+        code={`inline fun <reified T> isType(value: Any): Boolean {
     return value is T   // works! T is known at runtime
-}`} />
+}`}
+      />
       <p>
-        This is essentially <strong>monomorphization for a single function</strong>{' '}
-        — the compiler copies the function body and plugs in the concrete type,
-        just like jlang and C++ do for all generics. The limitation is that{' '}
-        <code>reified</code> only works on <code>inline</code> functions, not on
-        classes or regular methods, so it's a targeted fix rather than a
-        language-wide strategy.
+        This is essentially{' '}
+        <strong>monomorphization for a single function</strong> — the compiler
+        copies the function body and plugs in the concrete type, just like jlang
+        and C++ do for all generics. The limitation is that <code>reified</code>{' '}
+        only works on <code>inline</code> functions, not on classes or regular
+        methods, so it's a targeted fix rather than a language-wide strategy.
       </p>
 
       <Callout type="note">
         <strong>TL;DR:</strong> Java erases generic types at compile time (one
         shared implementation, no runtime type info). Kotlin's{' '}
         <code>reified</code> brings type info back for inline functions via
-        copy-paste monomorphization. jlang monomorphizes everything — every generic
-        usage becomes its own fully specialised, zero-overhead version.
+        copy-paste monomorphization. jlang monomorphizes everything — every
+        generic usage becomes its own fully specialised, zero-overhead version.
       </Callout>
     </>
-  )
+  );
 }

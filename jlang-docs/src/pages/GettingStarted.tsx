@@ -1,5 +1,5 @@
-import CodeBlock from '../components/CodeBlock'
-import Callout from '../components/Callout'
+import CodeBlock from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function GettingStarted() {
   return (
@@ -24,17 +24,21 @@ export default function GettingStarted() {
 
       {/* ── Section 2: Building from Source ── */}
       <h2>Building from Source</h2>
-      <p>
-        Clone the repository and build the compiler using CMake:
-      </p>
+      <p>Clone the repository and build the compiler using CMake:</p>
 
-      <CodeBlock language="bash" code={`mkdir -p build && cd build && cmake .. && make`} />
+      <CodeBlock
+        language="bash"
+        code={`mkdir -p build && cd build && cmake .. && make`}
+      />
 
       <Callout type="tip">
         You can also use the CMake one-liner that avoids changing directories:
       </Callout>
 
-      <CodeBlock language="bash" code={`cmake -B build && cmake --build build`} />
+      <CodeBlock
+        language="bash"
+        code={`cmake -B build && cmake --build build`}
+      />
 
       {/* ── Section 3: Running a Program ── */}
       <h2>Running a Program</h2>
@@ -53,31 +57,46 @@ export default function GettingStarted() {
       {/* ── Section 4: Compiler Flags ── */}
       <h2>Compiler Flags</h2>
 
-      <h3><code>-o &lt;file&gt;</code></h3>
+      <h3>
+        <code>-o &lt;file&gt;</code>
+      </h3>
       <p>
-        Specify the output executable path. If omitted, the compiler
-        defaults to <code>a.out</code>.
+        Specify the output executable path. If omitted, the compiler defaults to{' '}
+        <code>a.out</code>.
       </p>
-      <CodeBlock language="bash" code={`./build/Jlang samples/sample.j -o myprogram
-./myprogram`} />
+      <CodeBlock
+        language="bash"
+        code={`./build/Jlang samples/sample.j -o myprogram
+./myprogram`}
+      />
 
-      <h3><code>--dump-ast</code></h3>
+      <h3>
+        <code>--dump-ast</code>
+      </h3>
       <p>
         Print the Abstract Syntax Tree and exit. The compiler will parse your
-        source file, print the AST to stdout, then stop — no code generation,
-        no executable. Useful for debugging the parser or understanding how
-        the compiler sees your code.
+        source file, print the AST to stdout, then stop — no code generation, no
+        executable. Useful for debugging the parser or understanding how the
+        compiler sees your code.
       </p>
-      <CodeBlock language="bash" code={`./build/Jlang samples/sample.j --dump-ast`} />
+      <CodeBlock
+        language="bash"
+        code={`./build/Jlang samples/sample.j --dump-ast`}
+      />
 
-      <h3><code>--emit-ir</code></h3>
+      <h3>
+        <code>--emit-ir</code>
+      </h3>
       <p>
         Print the generated LLVM IR to stdout and exit. The compiler runs
-        parsing, semantic analysis, and code generation, but skips producing
-        an executable. Useful for inspecting the IR that gets fed into LLVM's
+        parsing, semantic analysis, and code generation, but skips producing an
+        executable. Useful for inspecting the IR that gets fed into LLVM's
         optimization and linking pipeline.
       </p>
-      <CodeBlock language="bash" code={`./build/Jlang samples/sample.j --emit-ir`} />
+      <CodeBlock
+        language="bash"
+        code={`./build/Jlang samples/sample.j --emit-ir`}
+      />
 
       <Callout type="tip">
         You can combine <code>-o</code> with the other flags — but{' '}
@@ -85,5 +104,5 @@ export default function GettingStarted() {
         producing an executable, so the output path is effectively ignored.
       </Callout>
     </>
-  )
+  );
 }

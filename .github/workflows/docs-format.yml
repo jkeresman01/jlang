@@ -1,0 +1,31 @@
+name: Docs formatting check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'jlang-docs/**'
+
+jobs:
+  docs-format:
+    name: Docs Format
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: npm
+        cache-dependency-path: jlang-docs/package-lock.json
+
+    - name: Install dependencies
+      working-directory: jlang-docs
+      run: npm ci
+
+    - name: Check formatting
+      working-directory: jlang-docs
+      run: npm run format:check

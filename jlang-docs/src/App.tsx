@@ -1,19 +1,19 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import Layout from './components/Layout'
-import Introduction from './pages/Introduction'
-import Variables from './pages/Variables'
-import Types from './pages/Types'
-import ControlFlow from './pages/ControlFlow'
-import Functions from './pages/Functions'
-import Structs from './pages/Structs'
-import NullSafety from './pages/NullSafety'
-import ErrorHandling from './pages/ErrorHandling'
-import Operators from './pages/Operators'
-import Arrays from './pages/Arrays'
-import Memory from './pages/Memory'
-import Generics from './pages/Generics'
-import GettingStarted from './pages/GettingStarted'
-import Comments from './pages/Comments'
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout';
+import Introduction from './pages/Introduction';
+import Variables from './pages/Variables';
+import Types from './pages/Types';
+import ControlFlow from './pages/ControlFlow';
+import Functions from './pages/Functions';
+import Structs from './pages/Structs';
+import NullSafety from './pages/NullSafety';
+import ErrorHandling from './pages/ErrorHandling';
+import Operators from './pages/Operators';
+import Arrays from './pages/Arrays';
+import Memory from './pages/Memory';
+import Generics from './pages/Generics';
+import GettingStarted from './pages/GettingStarted';
+import Comments from './pages/Comments';
 
 export default function App() {
   return (
@@ -36,5 +36,5 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
-  )
+  );
 }

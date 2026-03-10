@@ -1,5 +1,5 @@
-import CodeBlock from '../components/CodeBlock'
-import Callout from '../components/Callout'
+import CodeBlock from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function Structs() {
   return (
@@ -14,18 +14,20 @@ export default function Structs() {
         interface, use a colon after the struct name.
       </p>
 
-      <CodeBlock code={`struct Person : IPrintable {
+      <CodeBlock
+        code={`struct Person : IPrintable {
     Name: char*;
     age: i32;
-}`} />
+}`}
+      />
 
       {/* ── Section 2: Field Visibility ── */}
       <h2>Field Visibility</h2>
       <p>
         Field visibility is determined by the case of the first character of the
-        field name. Fields that start with an <strong>uppercase</strong> letter are
-        public; fields that start with a <strong>lowercase</strong> letter are
-        private. This convention is inspired by Go.
+        field name. Fields that start with an <strong>uppercase</strong> letter
+        are public; fields that start with a <strong>lowercase</strong> letter
+        are private. This convention is inspired by Go.
       </p>
 
       <table className="doc-table">
@@ -38,12 +40,16 @@ export default function Structs() {
         </thead>
         <tbody>
           <tr>
-            <td>Uppercase (<code>A</code>&ndash;<code>Z</code>)</td>
+            <td>
+              Uppercase (<code>A</code>&ndash;<code>Z</code>)
+            </td>
             <td>Public</td>
             <td>Accessible from any module</td>
           </tr>
           <tr>
-            <td>Lowercase (<code>a</code>&ndash;<code>z</code>)</td>
+            <td>
+              Lowercase (<code>a</code>&ndash;<code>z</code>)
+            </td>
             <td>Private</td>
             <td>Accessible only within the declaring module</td>
           </tr>
@@ -51,11 +57,10 @@ export default function Structs() {
       </table>
 
       <h3>Full Example</h3>
-      <p>
-        The following struct demonstrates both public and private fields:
-      </p>
+      <p>The following struct demonstrates both public and private fields:</p>
 
-      <CodeBlock code={`struct Person : IPrintable {
+      <CodeBlock
+        code={`struct Person : IPrintable {
     // Public fields (uppercase first letter)
     Name: char*;
     Age: i32;
@@ -63,12 +68,13 @@ export default function Structs() {
     // Private fields (lowercase first letter)
     id: i32;
     cache: char*;
-}`} />
+}`}
+      />
 
       <p>
         External code can read and write <code>Name</code> and <code>Age</code>,
-        but <code>id</code> and <code>cache</code> are only accessible within the
-        module that defines <code>Person</code>.
+        but <code>id</code> and <code>cache</code> are only accessible within
+        the module that defines <code>Person</code>.
       </p>
 
       <Callout type="tip">
@@ -84,7 +90,8 @@ export default function Structs() {
         parameter pointing to the struct instance.
       </p>
 
-      <CodeBlock code={`fn print(self: Person*) {
+      <CodeBlock
+        code={`fn print(self: Person*) {
     printf("Name: %s, Age: %d", self.Name, self.Age);
 }
 
@@ -94,7 +101,8 @@ fn getName(self: Person*) -> char* {
 
 fn setAge(self: Person*, newAge: i32) -> void {
     self.Age = newAge;
-}`} />
+}`}
+      />
 
       <Callout type="note">
         There is no implicit <code>this</code> pointer. The receiver is always
@@ -102,5 +110,5 @@ fn setAge(self: Person*, newAge: i32) -> void {
         on. This follows the same philosophy as Python and Rust.
       </Callout>
     </>
-  )
+  );
 }

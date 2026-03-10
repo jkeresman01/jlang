@@ -1,5 +1,5 @@
-import CodeBlock from '../components/CodeBlock'
-import Callout from '../components/Callout'
+import CodeBlock from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function Variables() {
   return (
@@ -7,7 +7,9 @@ export default function Variables() {
       <h1>Variables</h1>
 
       {/* ── Section 1: Variables with var ── */}
-      <h2>Variables with <code>var</code></h2>
+      <h2>
+        Variables with <code>var</code>
+      </h2>
       <p>
         Variables are declared with the <code>var</code> keyword using
         colon-separated type annotations. The identifier comes first, followed
@@ -24,10 +26,12 @@ export default function Variables() {
       </Callout>
 
       {/* ── Section 2: Type Inference with := ── */}
-      <h2>Type Inference with <code>:=</code></h2>
+      <h2>
+        Type Inference with <code>:=</code>
+      </h2>
       <p>
-        When the type can be determined from the initializer, use the
-        walrus operator <code>:=</code> to let the compiler infer it for you.
+        When the type can be determined from the initializer, use the walrus
+        operator <code>:=</code> to let the compiler infer it for you.
       </p>
 
       <CodeBlock
@@ -39,15 +43,17 @@ var isPositive := x > 0;  // bool`}
       />
 
       <Callout type="note">
-        Type inference reduces verbosity while maintaining type safety.
-        The type is resolved at compile-time with no runtime overhead.
+        Type inference reduces verbosity while maintaining type safety. The type
+        is resolved at compile-time with no runtime overhead.
       </Callout>
 
       {/* ── Section 3: Immutable variables with val ── */}
-      <h2>Immutable variables with <code>val</code></h2>
+      <h2>
+        Immutable variables with <code>val</code>
+      </h2>
       <p>
-        Use <code>val</code> to declare variables that cannot be reassigned after
-        initialization. All mutation operations are rejected at compile
+        Use <code>val</code> to declare variables that cannot be reassigned
+        after initialization. All mutation operations are rejected at compile
         time: <code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>,{' '}
         <code>/=</code>, <code>%=</code>, <code>++</code>, <code>--</code>.
       </p>
@@ -71,12 +77,16 @@ counter = counter + 1;  // OK
         </thead>
         <tbody>
           <tr>
-            <td><code>var</code></td>
+            <td>
+              <code>var</code>
+            </td>
             <td>Mutable</td>
             <td>Loop counters, accumulators, state that changes</td>
           </tr>
           <tr>
-            <td><code>val</code></td>
+            <td>
+              <code>val</code>
+            </td>
             <td>Immutable</td>
             <td>Constants, configuration, values that shouldn't change</td>
           </tr>
@@ -90,8 +100,8 @@ counter = counter + 1;  // OK
 
       <Callout type="tip">
         Prefer <code>val</code> over <code>var</code> when possible. Immutable
-        bindings make code easier to reason about and prevent accidental mutation
-        bugs.
+        bindings make code easier to reason about and prevent accidental
+        mutation bugs.
       </Callout>
 
       {/* ── Section 4: Unused variables are compile-time errors ── */}
@@ -116,5 +126,5 @@ counter = counter + 1;  // OK
         variable at all.
       </Callout>
     </>
-  )
+  );
 }

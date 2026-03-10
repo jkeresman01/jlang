@@ -1,21 +1,28 @@
-import { NavLink } from 'react-router-dom'
-import { chapters } from '../chapters'
+import { NavLink } from 'react-router-dom';
+import { chapters } from '../chapters';
 
 const romanNumerals: [number, string][] = [
-  [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
-]
+  [10, 'X'],
+  [9, 'IX'],
+  [5, 'V'],
+  [4, 'IV'],
+  [1, 'I'],
+];
 
 function toRoman(n: number): string {
-  let result = ''
+  let result = '';
   for (const [value, numeral] of romanNumerals) {
-    while (n >= value) { result += numeral; n -= value }
+    while (n >= value) {
+      result += numeral;
+      n -= value;
+    }
   }
-  return result
+  return result;
 }
 
 interface Props {
-  open: boolean
-  onClose: () => void
+  open: boolean;
+  onClose: () => void;
 }
 
 export default function Sidebar({ open, onClose }: Props) {
@@ -32,7 +39,9 @@ export default function Sidebar({ open, onClose }: Props) {
           {chapters.map((chapter, chapterIdx) => (
             <div key={chapter.title} className="sidebar-section">
               <h3 className="sidebar-section-title">
-                <span className="sidebar-section-numeral">{toRoman(chapterIdx + 1)}</span>
+                <span className="sidebar-section-numeral">
+                  {toRoman(chapterIdx + 1)}
+                </span>
                 {chapter.title}
               </h3>
               <ul className="sidebar-list">
@@ -45,7 +54,7 @@ export default function Sidebar({ open, onClose }: Props) {
                         `sidebar-link ${isActive ? 'sidebar-link--active' : ''}`
                       }
                       onClick={() => {
-                        if (window.innerWidth <= 860) onClose()
+                        if (window.innerWidth <= 860) onClose();
                       }}
                     >
                       {item.label}
@@ -71,5 +80,5 @@ export default function Sidebar({ open, onClose }: Props) {
         </div>
       </aside>
     </>
-  )
+  );
 }

@@ -17,9 +17,7 @@ export const chapters = [
   },
   {
     title: 'Control Flow',
-    items: [
-      { label: 'If / Else / Loops', path: '/control-flow' },
-    ],
+    items: [{ label: 'If / Else / Loops', path: '/control-flow' }],
   },
   {
     title: 'Data Structures',
@@ -38,16 +36,12 @@ export const chapters = [
   },
   {
     title: 'Operators',
-    items: [
-      { label: 'Operators', path: '/operators' },
-    ],
+    items: [{ label: 'Operators', path: '/operators' }],
   },
   {
     title: 'Memory',
-    items: [
-      { label: 'Memory Management', path: '/memory' },
-    ],
+    items: [{ label: 'Memory Management', path: '/memory' }],
   },
-]
+];
 
-export const allPages = chapters.flatMap((ch) => ch.items)
+export const allPages = chapters.flatMap((ch) => ch.items);

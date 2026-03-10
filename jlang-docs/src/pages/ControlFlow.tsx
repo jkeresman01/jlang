@@ -1,5 +1,5 @@
-import CodeBlock from '../components/CodeBlock'
-import Callout from '../components/Callout'
+import CodeBlock from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function ControlFlow() {
   return (
@@ -19,13 +19,16 @@ export default function ControlFlow() {
 
       <Callout type="note">
         <strong>Fun Fact</strong>
-        <br /><br />
+        <br />
+        <br />
         Turing called his inventions "a-machines" for "automatic". He wasn't so
         self-aggrandizing as to put his own name on them. Later mathematicians
-        did that for him. <strong>That's how you get famous while still retaining some
-        modesty.</strong>
-        <br /><br />
-        — From <em>Crafting Interpreters</em> by Robert Nystrom
+        did that for him.{' '}
+        <strong>
+          That's how you get famous while still retaining some modesty.
+        </strong>
+        <br />
+        <br />— From <em>Crafting Interpreters</em> by Robert Nystrom
       </Callout>
 
       {/* ── Section 1: If/Else ── */}
@@ -33,8 +36,8 @@ export default function ControlFlow() {
       <p>
         Conditional branching uses familiar C-style syntax. Conditions are
         wrapped in parentheses and the body is enclosed in braces. There is no
-        special <code>elseif</code> or <code>elif</code> keyword; chain
-        standard <code>else if</code> instead.
+        special <code>elseif</code> or <code>elif</code> keyword; chain standard{' '}
+        <code>else if</code> instead.
       </p>
 
       <CodeBlock
@@ -70,9 +73,9 @@ while (i < 10) {
       {/* ── Section 3: For Loops ── */}
       <h2>For Loops</h2>
       <p>
-        The <code>for</code> loop has three semicolon-separated clauses:
-        an initializer (variable declaration or expression), a condition, and
-        an update expression. All three clauses are optional.
+        The <code>for</code> loop has three semicolon-separated clauses: an
+        initializer (variable declaration or expression), a condition, and an
+        update expression. All three clauses are optional.
       </p>
 
       <CodeBlock
@@ -100,7 +103,9 @@ while (i < 10) {
       {/* ── Section 4: Break and Continue ── */}
       <h2>Break and Continue</h2>
 
-      <h3><code>break</code></h3>
+      <h3>
+        <code>break</code>
+      </h3>
       <p>
         The <code>break</code> statement immediately exits the innermost
         enclosing loop.
@@ -116,7 +121,9 @@ while (i < 10) {
 // prints: i = 0, i = 1, i = 2`}
       />
 
-      <h3><code>continue</code></h3>
+      <h3>
+        <code>continue</code>
+      </h3>
       <p>
         The <code>continue</code> statement skips the rest of the current
         iteration and jumps to the next one.
@@ -147,14 +154,22 @@ while (i < 10) {
         </thead>
         <tbody>
           <tr>
-            <td><code>break</code></td>
+            <td>
+              <code>break</code>
+            </td>
             <td>Exits the innermost loop</td>
-            <td><code>for</code>, <code>while</code></td>
+            <td>
+              <code>for</code>, <code>while</code>
+            </td>
           </tr>
           <tr>
-            <td><code>continue</code></td>
+            <td>
+              <code>continue</code>
+            </td>
             <td>Skips to next iteration</td>
-            <td><code>for</code>, <code>while</code></td>
+            <td>
+              <code>for</code>, <code>while</code>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -169,10 +184,11 @@ while (i < 10) {
       <h2>Switch Statement</h2>
       <p>
         The <code>switch</code> statement selects a branch based on the value of
-        an expression. It uses familiar C-style syntax with <code>case</code> labels
-        and an optional <code>default</code>. Unlike some languages, cases
-        <strong> fall through</strong> by default &mdash; use <code>break</code> to
-        exit.
+        an expression. It uses familiar C-style syntax with <code>case</code>{' '}
+        labels and an optional <code>default</code>. Unlike some languages,
+        cases
+        <strong> fall through</strong> by default &mdash; use <code>break</code>{' '}
+        to exit.
       </p>
 
       <CodeBlock
@@ -194,8 +210,8 @@ switch (x) {
 
       <h3>Fallthrough Grouping</h3>
       <p>
-        Because cases fall through, you can stack multiple <code>case</code> labels
-        to handle several values with the same code:
+        Because cases fall through, you can stack multiple <code>case</code>{' '}
+        labels to handle several values with the same code:
       </p>
 
       <CodeBlock
@@ -223,9 +239,9 @@ switch (y) {
       <h2>Switch Expression</h2>
       <p>
         When you need a switch that <em>produces a value</em>, use the switch
-        expression. It uses <code>{'=>'}</code> (fat arrow) syntax instead of colons,
-        and each arm is separated by a comma. No <code>break</code> needed &mdash;
-        there is no fallthrough.
+        expression. It uses <code>{'=>'}</code> (fat arrow) syntax instead of
+        colons, and each arm is separated by a comma. No <code>break</code>{' '}
+        needed &mdash; there is no fallthrough.
       </p>
 
       <CodeBlock
@@ -267,13 +283,19 @@ printf("category = %d", category); // category = 2`}
         <tbody>
           <tr>
             <td>Statement</td>
-            <td><code>case X:</code></td>
-            <td>Yes (use <code>break</code>)</td>
+            <td>
+              <code>case X:</code>
+            </td>
+            <td>
+              Yes (use <code>break</code>)
+            </td>
             <td>No</td>
           </tr>
           <tr>
             <td>Expression</td>
-            <td><code>{'case X => value'}</code></td>
+            <td>
+              <code>{'case X => value'}</code>
+            </td>
             <td>No</td>
             <td>Yes</td>
           </tr>
@@ -304,7 +326,8 @@ printf("category = %d", category); // category = 2`}
             provably optimal since the lot is unsorted. No spot is visited
             twice. Elegant. Minimal. Perfect.
           </p>
-          <CodeBlock code={`fn find_car(lot: i32[500], my_plate: i32) -> i32 {
+          <CodeBlock
+            code={`fn find_car(lot: i32[500], my_plate: i32) -> i32 {
     for (var i: i32 = 0; i < 500; i++) {
         if (lot[i] == my_plate) {
             printf("Found it at spot %d\\n", i);
@@ -314,7 +337,8 @@ printf("category = %d", category); // category = 2`}
 
     printf("Car not found. Call the police.\\n");
     return -1;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -326,7 +350,8 @@ printf("category = %d", category); // category = 2`}
             skip empty spots with <code>continue</code>, handle the VIP section
             separately, and add logging.
           </p>
-          <CodeBlock code={`fn find_car(lot: i32[500], my_plate: i32) -> i32 {
+          <CodeBlock
+            code={`fn find_car(lot: i32[500], my_plate: i32) -> i32 {
     // Skip VIP section (spots 0-9) — I drive a 2003 Honda Civic
     for (var i: i32 = 10; i < 500; i++) {
         if (lot[i] == 0) {
@@ -350,7 +375,8 @@ printf("category = %d", category); // category = 2`}
     }
 
     return -1;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -358,17 +384,19 @@ printf("category = %d", category); // category = 2`}
         <summary>The Correct Answer</summary>
         <div className="details-content">
           <p>
-            Press the key fob. Your car beeps. Walk toward the sound.
-            No algorithm required.
+            Press the key fob. Your car beeps. Walk toward the sound. No
+            algorithm required.
           </p>
-          <CodeBlock code={`fn find_car() -> i32 {
+          <CodeBlock
+            code={`fn find_car() -> i32 {
     // *click*
     // *BEEP BEEP*
     // Walk toward the sound
 
     printf("*presses key fob*\\n");
     return 0;
-}`} />
+}`}
+          />
         </div>
       </details>
 
@@ -388,19 +416,28 @@ printf("category = %d", category); // category = 2`}
         <li>A live cell with fewer than 2 neighbors dies (underpopulation).</li>
         <li>A live cell with 2 or 3 neighbors survives.</li>
         <li>A live cell with more than 3 neighbors dies (overpopulation).</li>
-        <li>A dead cell with exactly 3 neighbors becomes alive (reproduction).</li>
+        <li>
+          A dead cell with exactly 3 neighbors becomes alive (reproduction).
+        </li>
       </ol>
       <p>
         That's it. Four rules, and somehow you get self-replicating patterns,
         gliders, and even Turing-complete computation. Your task: implement it
-        on an 8&times;8 grid in Jlang. Seed it with a
-        {' '}<a href="https://en.wikipedia.org/wiki/Glider_(Conway%27s_Game_of_Life)" target="_blank" rel="noopener noreferrer">glider</a>{' '}
+        on an 8&times;8 grid in Jlang. Seed it with a{' '}
+        <a
+          href="https://en.wikipedia.org/wiki/Glider_(Conway%27s_Game_of_Life)"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          glider
+        </a>{' '}
         and run it for 20 generations. Print the grid each step.
       </p>
 
       <Callout type="note">
         <strong>Conway's Game of Life visualized</strong>
-        <br /><br />
+        <br />
+        <br />
         <iframe
           width="100%"
           height="315"
@@ -413,9 +450,7 @@ printf("category = %d", category); // category = 2`}
         ></iframe>
       </Callout>
 
-      <Callout type="tip">
-        Solution coming soon!
-      </Callout>
+      <Callout type="tip">Solution coming soon!</Callout>
 
       {/* ── Programming Challenge 2 ── */}
       <h2>A Slightly Unhinged Programming Challenge #2</h2>
@@ -426,13 +461,12 @@ printf("category = %d", category); // category = 2`}
         route.
       </p>
       <p>
-        This is the{' '}
-        <strong>Travelling Salesman Problem (TSP)</strong>, one of the most
-        famous problems in computer science. It's NP-hard, which is academic
-        shorthand for "your laptop will catch fire before it finds the optimal
-        answer for large N." For small N, brute-force works. For large N,
-        mathematicians have been arguing about it since 1930 and still haven't
-        fully agreed.
+        This is the <strong>Travelling Salesman Problem (TSP)</strong>, one of
+        the most famous problems in computer science. It's NP-hard, which is
+        academic shorthand for "your laptop will catch fire before it finds the
+        optimal answer for large N." For small N, brute-force works. For large
+        N, mathematicians have been arguing about it since 1930 and still
+        haven't fully agreed.
       </p>
       <p>
         Your task: given a distance matrix of N cities (say, N&nbsp;=&nbsp;6),
@@ -443,25 +477,25 @@ printf("category = %d", category); // category = 2`}
 
       <Callout type="note">
         <strong>Why TSP matters</strong>
-        <br /><br />
-        TSP isn't just a toy problem. It shows up in circuit board drilling,
-        DNA sequencing, logistics, and even telescope scheduling. The current
-        world record for an exact solution is 85,900 cities, computed by
-        the Concorde TSP solver &mdash; and it took years of CPU time.
-        <br /><br />
+        <br />
+        <br />
+        TSP isn't just a toy problem. It shows up in circuit board drilling, DNA
+        sequencing, logistics, and even telescope scheduling. The current world
+        record for an exact solution is 85,900 cities, computed by the Concorde
+        TSP solver &mdash; and it took years of CPU time.
+        <br />
+        <br />
         For 6 cities, though, you'll be fine. Probably.
       </Callout>
 
       <Callout type="warning">
-        <strong>Heads up:</strong> A proper distance matrix would be a 2D
-        array, but Jlang does not support 2D arrays yet. You'll need to
-        flatten it into a 1D array and index it
-        as <code>dist[i * N + j]</code> instead of <code>dist[i][j]</code>.
+        <strong>Heads up:</strong> A proper distance matrix would be a 2D array,
+        but Jlang does not support 2D arrays yet. You'll need to flatten it into
+        a 1D array and index it as <code>dist[i * N + j]</code> instead of{' '}
+        <code>dist[i][j]</code>.
       </Callout>
 
-      <Callout type="tip">
-        Solution coming soon!
-      </Callout>
+      <Callout type="tip">Solution coming soon!</Callout>
     </>
-  )
+  );
 }

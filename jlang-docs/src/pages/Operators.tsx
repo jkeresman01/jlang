@@ -1,5 +1,5 @@
-import CodeBlock from '../components/CodeBlock'
-import Callout from '../components/Callout'
+import CodeBlock from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function Operators() {
   return (
@@ -15,7 +15,8 @@ export default function Operators() {
         evaluated if necessary.
       </p>
 
-      <CodeBlock code={`if (x > 0 && y > 0) {
+      <CodeBlock
+        code={`if (x > 0 && y > 0) {
     printf("Both positive");
 }
 
@@ -25,14 +26,16 @@ if (a == 0 || b == 0) {
 
 if (!isReady) {
     printf("Not ready yet");
-}`} />
+}`}
+      />
 
       <h3>Short-circuit Examples</h3>
       <p>
         Short-circuit evaluation is useful for guard conditions and null checks:
       </p>
 
-      <CodeBlock code={`// Guard: division is never performed if b is zero
+      <CodeBlock
+        code={`// Guard: division is never performed if b is zero
 if (b != 0 && a / b > 10) {
     printf("Ratio exceeds 10");
 }
@@ -40,17 +43,22 @@ if (b != 0 && a / b > 10) {
 // Fallback: loadFromDisk() only runs if hasData is false
 if (hasData || loadFromDisk()) {
     printf("Data available");
-}`} />
+}`}
+      />
 
       {/* ── Section 2: Non-short-circuit Operators ── */}
-      <h2>Non-short-circuit: <code>and</code> / <code>or</code></h2>
+      <h2>
+        Non-short-circuit: <code>and</code> / <code>or</code>
+      </h2>
       <p>
         The keyword operators <code>and</code> and <code>or</code> always
         evaluate <strong>both</strong> sides, regardless of the left-hand
-        result. Use these when both operands have side effects that must execute.
+        result. Use these when both operands have side effects that must
+        execute.
       </p>
 
-      <CodeBlock code={`// Both validate() and authorize() always run
+      <CodeBlock
+        code={`// Both validate() and authorize() always run
 if (validate() and authorize()) {
     printf("Proceed");
 }
@@ -58,7 +66,8 @@ if (validate() and authorize()) {
 // Both logAttempt() and notifyAdmin() always run
 if (logAttempt() or notifyAdmin()) {
     printf("Action recorded");
-}`} />
+}`}
+      />
 
       <h3>Comparison</h3>
 
@@ -72,22 +81,34 @@ if (logAttempt() or notifyAdmin()) {
         </thead>
         <tbody>
           <tr>
-            <td><code>&&</code></td>
+            <td>
+              <code>&&</code>
+            </td>
             <td>Yes</td>
-            <td>Only if left is <code>true</code></td>
+            <td>
+              Only if left is <code>true</code>
+            </td>
           </tr>
           <tr>
-            <td><code>||</code></td>
+            <td>
+              <code>||</code>
+            </td>
             <td>Yes</td>
-            <td>Only if left is <code>false</code></td>
+            <td>
+              Only if left is <code>false</code>
+            </td>
           </tr>
           <tr>
-            <td><code>and</code></td>
+            <td>
+              <code>and</code>
+            </td>
             <td>No</td>
             <td>Always</td>
           </tr>
           <tr>
-            <td><code>or</code></td>
+            <td>
+              <code>or</code>
+            </td>
             <td>No</td>
             <td>Always</td>
           </tr>
@@ -96,11 +117,14 @@ if (logAttempt() or notifyAdmin()) {
 
       <Callout type="note">
         <strong>Bentley Rules for Optimizing Work</strong>
-        <br /><br />
-        Jon Bentley catalogued a set of rules for reducing the work a program does.
-        Short-circuiting &mdash; the idea behind <code>&&</code> and <code>||</code> &mdash; is
-        one of them. Here is the full list, organized by category:
-        <br /><br />
+        <br />
+        <br />
+        Jon Bentley catalogued a set of rules for reducing the work a program
+        does. Short-circuiting &mdash; the idea behind <code>&&</code> and{' '}
+        <code>||</code> &mdash; is one of them. Here is the full list, organized
+        by category:
+        <br />
+        <br />
         <em>Data Structures</em>
         <ul style={{ margin: '4px 0 8px 0' }}>
           <li>1. Packing and Encoding</li>
@@ -115,7 +139,9 @@ if (logAttempt() or notifyAdmin()) {
           <li>7. Constant Folding and Propagation</li>
           <li>8. Common Subexpression Elimination</li>
           <li>9. Algebraic Identities</li>
-          <li><strong>10. Short-Circuiting</strong></li>
+          <li>
+            <strong>10. Short-Circuiting</strong>
+          </li>
           <li>11. Ordering Tests</li>
           <li>12. Creating a Fast Path</li>
           <li>13. Combining Tests</li>
@@ -134,7 +160,8 @@ if (logAttempt() or notifyAdmin()) {
           <li>20. Tail-Recursion Elimination</li>
           <li>21. Coarsening Recursion</li>
         </ul>
-        <br /><br />
+        <br />
+        <br />
         <iframe
           width="100%"
           height="315"
@@ -154,12 +181,14 @@ if (logAttempt() or notifyAdmin()) {
         decrement (<code>--</code>) operators.
       </p>
 
-      <CodeBlock code={`var x: i32 = 5;
+      <CodeBlock
+        code={`var x: i32 = 5;
 
 x++;    // postfix: x becomes 6
 ++x;    // prefix:  x becomes 7
 x--;    // postfix: x becomes 6
---x;    // prefix:  x becomes 5`} />
+--x;    // prefix:  x becomes 5`}
+      />
 
       <table className="doc-table">
         <thead>
@@ -171,41 +200,74 @@ x--;    // postfix: x becomes 6
         </thead>
         <tbody>
           <tr>
-            <td><code>++x</code></td>
+            <td>
+              <code>++x</code>
+            </td>
             <td>New value (after increment)</td>
-            <td>Increments <code>x</code> by 1</td>
+            <td>
+              Increments <code>x</code> by 1
+            </td>
           </tr>
           <tr>
-            <td><code>x++</code></td>
+            <td>
+              <code>x++</code>
+            </td>
             <td>Old value (before increment)</td>
-            <td>Increments <code>x</code> by 1</td>
+            <td>
+              Increments <code>x</code> by 1
+            </td>
           </tr>
           <tr>
-            <td><code>--x</code></td>
+            <td>
+              <code>--x</code>
+            </td>
             <td>New value (after decrement)</td>
-            <td>Decrements <code>x</code> by 1</td>
+            <td>
+              Decrements <code>x</code> by 1
+            </td>
           </tr>
           <tr>
-            <td><code>x--</code></td>
+            <td>
+              <code>x--</code>
+            </td>
             <td>Old value (before decrement)</td>
-            <td>Decrements <code>x</code> by 1</td>
+            <td>
+              Decrements <code>x</code> by 1
+            </td>
           </tr>
         </tbody>
       </table>
 
       <Callout type="note">
-        <strong>No performance difference between prefix and postfix increment</strong>
-        <br /><br />
-        Unlike C++ iterators, there is no performance benefit to using <code>++x</code> over{' '}
-        <code>x++</code> in jlang. Both generate the same three operations (load, add, store),
-        and the only difference is which already-computed register value gets returned.
-        No temporary copy is created.
-        <br /><br />
-        The &quot;prefer <code>++i</code> over <code>i++</code>&quot; advice comes from C++
-        where postfix on complex objects (like iterators) requires constructing a temporary copy:
-        <br /><br />
-        <code style={{ whiteSpace: 'pre', display: 'block', padding: '0.75rem 1rem', background: 'var(--bg-code)', borderRadius: '6px', fontSize: '0.835rem', lineHeight: '1.65' }}>
-{`// C++ iterator postfix - expensive!
+        <strong>
+          No performance difference between prefix and postfix increment
+        </strong>
+        <br />
+        <br />
+        Unlike C++ iterators, there is no performance benefit to using{' '}
+        <code>++x</code> over <code>x++</code> in jlang. Both generate the same
+        three operations (load, add, store), and the only difference is which
+        already-computed register value gets returned. No temporary copy is
+        created.
+        <br />
+        <br />
+        The &quot;prefer <code>++i</code> over <code>i++</code>&quot; advice
+        comes from C++ where postfix on complex objects (like iterators)
+        requires constructing a temporary copy:
+        <br />
+        <br />
+        <code
+          style={{
+            whiteSpace: 'pre',
+            display: 'block',
+            padding: '0.75rem 1rem',
+            background: 'var(--bg-code)',
+            borderRadius: '6px',
+            fontSize: '0.835rem',
+            lineHeight: '1.65',
+          }}
+        >
+          {`// C++ iterator postfix - expensive!
 Iterator operator++(int) {
     Iterator copy = *this;  // make a copy
     ++(*this);              // increment original
@@ -213,25 +275,29 @@ Iterator operator++(int) {
 }`}
         </code>
         <br />
-        For primitive types, modern compilers optimize both to identical machine code.
-        Choose based on semantics, not performance.
+        For primitive types, modern compilers optimize both to identical machine
+        code. Choose based on semantics, not performance.
       </Callout>
 
       {/* ── Section 4: Bitwise Operators ── */}
       <h2>Bitwise Operators</h2>
       <blockquote>
         <p>
-          &ldquo;The cost of software maintenance increases with the square of the
-          programmer&rsquo;s creativity.&rdquo;
+          &ldquo;The cost of software maintenance increases with the square of
+          the programmer&rsquo;s creativity.&rdquo;
         </p>
-        <footer>&mdash; Robert D. Bliss, 1992, as quoted in <cite>Hacker&rsquo;s Delight</cite> by Henry S. Warren, Jr.</footer>
+        <footer>
+          &mdash; Robert D. Bliss, 1992, as quoted in{' '}
+          <cite>Hacker&rsquo;s Delight</cite> by Henry S. Warren, Jr.
+        </footer>
       </blockquote>
       <p>
         jlang provides the full set of bitwise operators for working with
         individual bits in integer values.
       </p>
 
-      <CodeBlock code={`var a: i32 = 0b1100;  // 12
+      <CodeBlock
+        code={`var a: i32 = 0b1100;  // 12
 var b: i32 = 0b1010;  // 10
 
 var bitwiseAnd := a & b;   // 0b1000 = 8
@@ -239,21 +305,22 @@ var bitwiseOr  := a | b;   // 0b1110 = 14
 var bitwiseXor := a ^ b;   // 0b0110 = 6
 var complement := ~a;      // bitwise NOT
 var leftShift  := a << 2;  // 0b110000 = 48
-var rightShift := a >> 1;  // 0b0110 = 6`} />
+var rightShift := a >> 1;  // 0b0110 = 6`}
+      />
 
       <h3>Compound Assignment</h3>
-      <p>
-        All bitwise operators have compound assignment forms:
-      </p>
+      <p>All bitwise operators have compound assignment forms:</p>
 
-      <CodeBlock code={`var flags: i32 = 0;
+      <CodeBlock
+        code={`var flags: i32 = 0;
 
 flags |= 0b0001;   // set bit 0
 flags |= 0b0100;   // set bit 2
 flags &= ~0b0001;  // clear bit 0
 flags ^= 0b0100;   // toggle bit 2
 flags <<= 1;       // shift all bits left
-flags >>= 1;       // shift all bits right`} />
+flags >>= 1;       // shift all bits right`}
+      />
 
       <h3>XOR Swap</h3>
       <p>
@@ -261,31 +328,39 @@ flags >>= 1;       // shift all bits right`} />
         variable:
       </p>
 
-      <CodeBlock code={`var x: i32 = 10;
+      <CodeBlock
+        code={`var x: i32 = 10;
 var y: i32 = 20;
 
 x ^= y;
 y ^= x;
 x ^= y;
 
-// x is now 20, y is now 10`} />
+// x is now 20, y is now 10`}
+      />
 
       <Callout type="note">
         <strong>XOR swap trick</strong>
-        <br /><br />
+        <br />
+        <br />
         A classic use of XOR is swapping two variables without a temporary:
-        <br /><br />
+        <br />
+        <br />
         <code>a ^= b; b ^= a; a ^= b;</code>
-        <br /><br />
-        The XOR swap creates a serial data dependency chain &mdash; each step reads the
-        result of the previous one, which prevents the CPU from using instruction-level
-        parallelism. A straightforward temp-variable swap (<code>var tmp := a; a = b; b = tmp;</code>)
-        allows the two loads to execute in parallel and is actually faster on modern
-        out-of-order hardware. The XOR trick is a neat bit of trivia, not a performance
+        <br />
+        <br />
+        The XOR swap creates a serial data dependency chain &mdash; each step
+        reads the result of the previous one, which prevents the CPU from using
+        instruction-level parallelism. A straightforward temp-variable swap (
+        <code>var tmp := a; a = b; b = tmp;</code>) allows the two loads to
+        execute in parallel and is actually faster on modern out-of-order
+        hardware. The XOR trick is a neat bit of trivia, not a performance
         optimization.
-        <br /><br />
+        <br />
+        <br />
         For a deeper dive, check out the explanation at 21:00:
-        <br /><br />
+        <br />
+        <br />
         <iframe
           width="100%"
           height="315"
@@ -301,13 +376,15 @@ x ^= y;
       {/* ── Section 4b: Endianness & Byte Swap ── */}
       <h3>Endian Swap</h3>
       <p>
-        When working at the bit level you will inevitably run into <strong>byte
-        order</strong>. An endian swap reverses the bytes of a multi-byte integer,
-        converting between <em>big-endian</em> (most-significant byte first) and{' '}
-        <em>little-endian</em> (least-significant byte first) representations.
+        When working at the bit level you will inevitably run into{' '}
+        <strong>byte order</strong>. An endian swap reverses the bytes of a
+        multi-byte integer, converting between <em>big-endian</em>{' '}
+        (most-significant byte first) and <em>little-endian</em>{' '}
+        (least-significant byte first) representations.
       </p>
 
-      <CodeBlock code={`// Swap the 4 bytes of a 32-bit integer
+      <CodeBlock
+        code={`// Swap the 4 bytes of a 32-bit integer
 fn swapEndian32(value: i32) -> i32 {
     var b0: i32 = (value >> 24) & 255;        // 0xFF
     var b1: i32 = (value >> 8)  & 65280;      // 0xFF00
@@ -322,33 +399,46 @@ fn main() -> i32 {
     printf("%d -> %d\\n", x, swapped);
     // prints: 16909060 -> 67305985
     return 0;
-}`} />
+}`}
+      />
 
       <Callout type="important">
-        Bitwise code like this is much more readable with hexadecimal
-        literals &mdash; e.g. <code>& 0xFF</code> instead
-        of <code>& 255</code>. Hex literal support (<code>0x</code> prefix)
-        is not yet available in jlang.
+        Bitwise code like this is much more readable with hexadecimal literals
+        &mdash; e.g. <code>& 0xFF</code> instead of <code>& 255</code>. Hex
+        literal support (<code>0x</code> prefix) is not yet available in jlang.
       </Callout>
 
       <Callout type="tip">
         <strong>Fun fact &mdash; Gulliver&rsquo;s Eggs</strong>
-        <br /><br />
+        <br />
+        <br />
         The terms <em>big-endian</em> and <em>little-endian</em> were coined by
         Danny Cohen in his 1980 paper{' '}
-        <em>&ldquo;On Holy Wars and a Plea for Peace&rdquo;</em>, borrowing
-        from Jonathan Swift&rsquo;s <em>Gulliver&rsquo;s Travels</em> (1726).
-        In the novel, the empires of Lilliput and Blefuscu wage a bloody war
-        over which end of a soft-boiled egg you should crack open &mdash; the
-        big end or the little end. Cohen drew the parallel to computer
-        architects arguing over byte order, suggesting the debate is just as
-        absurd. Nearly 300 years after Swift and 45 years after Cohen, we
-        still haven&rsquo;t settled it.
-        <br /><br />
+        <em>&ldquo;On Holy Wars and a Plea for Peace&rdquo;</em>, borrowing from
+        Jonathan Swift&rsquo;s <em>Gulliver&rsquo;s Travels</em> (1726). In the
+        novel, the empires of Lilliput and Blefuscu wage a bloody war over which
+        end of a soft-boiled egg you should crack open &mdash; the big end or
+        the little end. Cohen drew the parallel to computer architects arguing
+        over byte order, suggesting the debate is just as absurd. Nearly 300
+        years after Swift and 45 years after Cohen, we still haven&rsquo;t
+        settled it.
+        <br />
+        <br />
         <strong>How the swap works, step by step:</strong>
-        <br /><br />
-        <code style={{ whiteSpace: 'pre', display: 'block', padding: '0.75rem 1rem', background: 'var(--bg-code)', borderRadius: '6px', fontSize: '0.835rem', lineHeight: '1.65' }}>
-{`Original (big-endian):    0x01 02 03 04
+        <br />
+        <br />
+        <code
+          style={{
+            whiteSpace: 'pre',
+            display: 'block',
+            padding: '0.75rem 1rem',
+            background: 'var(--bg-code)',
+            borderRadius: '6px',
+            fontSize: '0.835rem',
+            lineHeight: '1.65',
+          }}
+        >
+          {`Original (big-endian):    0x01 02 03 04
                           [B3] [B2] [B1] [B0]
 
 (val >> 24) & 0xFF          ->  0x00 00 00 01  (B3 moves to B0)
@@ -359,8 +449,8 @@ fn main() -> i32 {
 OR them together:              0x04 03 02 01`}
         </code>
         <br />
-        Each shift isolates one byte and moves it to its mirrored position;
-        the OR combines all four into the swapped result.
+        Each shift isolates one byte and moves it to its mirrored position; the
+        OR combines all four into the swapped result.
       </Callout>
 
       {/* ── Section 5: Semicolons ── */}
@@ -370,25 +460,29 @@ OR them together:              0x04 03 02 01`}
         end with a semicolon. There is no automatic semicolon insertion.
       </p>
 
-      <CodeBlock code={`var x: i32 = 10;
+      <CodeBlock
+        code={`var x: i32 = 10;
 x = x + 1;
-printf("x = %d", x);`} />
+printf("x = %d", x);`}
+      />
 
       {/* ── Puzzle ── */}
       <h2>Puzzle: The Mysterious Output</h2>
       <p>
-        Your colleague wrote the following function and swears the output
-        is <code>42</code>. Without running the code, what does it actually print?
+        Your colleague wrote the following function and swears the output is{' '}
+        <code>42</code>. Without running the code, what does it actually print?
       </p>
 
-      <CodeBlock code={`fn main() -> i32 {
+      <CodeBlock
+        code={`fn main() -> i32 {
     var a: i32 = 10;
     var b: i32 = 20;
     var c: i32 = a++ + ++b + a-- - --b;
 
     printf("%d\\n", c);
     return 0;
-}`} />
+}`}
+      />
 
       <details className="details-block">
         <summary>Answer #1 &mdash; The Overthinker</summary>
@@ -396,14 +490,16 @@ printf("x = %d", x);`} />
           <p>
             Let me trace through every side effect in evaluation order&hellip;
           </p>
-          <CodeBlock code={`// a starts at 10, b starts at 20
+          <CodeBlock
+            code={`// a starts at 10, b starts at 20
 // a++ -> yields 10, a becomes 11
 // ++b -> b becomes 21, yields 21
 // a-- -> yields 11, a becomes 10
 // --b -> b becomes 20, yields 20
 // c = 10 + 21 + 11 - 20 = 22
 
-printf("%d\\n", c);  // prints 22`} />
+printf("%d\\n", c);  // prints 22`}
+          />
         </div>
       </details>
 
@@ -412,18 +508,21 @@ printf("%d\\n", c);  // prints 22`} />
         <div className="details-content">
           <p>
             Actually, modifying and reading the same variable multiple times in
-            one expression without a sequence point is <strong>undefined behavior</strong> in
-            C/C++. The result could be anything &mdash; 22, 42, or your program
-            ordering pizza. The compiler is under no obligation to evaluate
-            sub-expressions in any particular order.
+            one expression without a sequence point is{' '}
+            <strong>undefined behavior</strong> in C/C++. The result could be
+            anything &mdash; 22, 42, or your program ordering pizza. The
+            compiler is under no obligation to evaluate sub-expressions in any
+            particular order.
           </p>
-          <CodeBlock code={`// The C++ standard says:
+          <CodeBlock
+            code={`// The C++ standard says:
 // "If a side effect on a scalar object is
 //  unsequenced relative to another side effect
 //  on the same scalar object, the behavior
 //  is undefined."
 //
-// So the answer is: nobody knows.`} />
+// So the answer is: nobody knows.`}
+          />
         </div>
       </details>
 
@@ -435,7 +534,8 @@ printf("%d\\n", c);  // prints 22`} />
             whiteboard session to figure out what it prints has no business
             being in a codebase. The correct output is a cleaner version:
           </p>
-          <CodeBlock code={`fn main() -> i32 {
+          <CodeBlock
+            code={`fn main() -> i32 {
     var a: i32 = 10;
     var b: i32 = 20;
 
@@ -444,9 +544,10 @@ printf("%d\\n", c);  // prints 22`} />
     printf("%d\\n", sum);  // 22, obviously
 
     return 0;
-}`} />
+}`}
+          />
         </div>
       </details>
     </>
-  )
+  );
 }

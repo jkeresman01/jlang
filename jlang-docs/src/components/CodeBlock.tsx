@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react'
-import Prism from 'prismjs'
-import 'prismjs/themes/prism-tomorrow.css'
+import { useEffect, useRef } from 'react';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
 
 // Register a custom jlang grammar based on C-like syntax
 Prism.languages['jlang'] = {
@@ -26,27 +26,26 @@ Prism.languages['jlang'] = {
     /\b[A-Z][a-zA-Z0-9]*\b/,
   ],
   number: /\b\d+(?:\.\d+)?\b/,
-  operator:
-    /=>|->|:=|\?\:|\+\+|--|&&|\|\||[+\-*/%=<>!&|^~]=?|<<=?|>>=?|::/,
+  operator: /=>|->|:=|\?\:|\+\+|--|&&|\|\||[+\-*/%=<>!&|^~]=?|<<=?|>>=?|::/,
   punctuation: /[{}[\]();,.:]/,
-}
+};
 
 // Alias so ```rust blocks also use our grammar
-Prism.languages['rust'] = Prism.languages['jlang']
+Prism.languages['rust'] = Prism.languages['jlang'];
 
 interface Props {
-  code: string
-  language?: string
+  code: string;
+  language?: string;
 }
 
 export default function CodeBlock({ code, language = 'jlang' }: Props) {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (ref.current) {
-      Prism.highlightElement(ref.current)
+      Prism.highlightElement(ref.current);
     }
-  }, [code])
+  }, [code]);
 
   return (
     <div className="code-block">
@@ -56,5 +55,5 @@ export default function CodeBlock({ code, language = 'jlang' }: Props) {
         </code>
       </pre>
     </div>
-  )
+  );
 }

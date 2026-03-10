@@ -1,24 +1,24 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 
 export default function ParkingAd() {
-  const [visible, setVisible] = useState(false)
-  const [dismissed, setDismissed] = useState(false)
-  const sentinelRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (dismissed) return
-    const el = sentinelRef.current
-    if (!el) return
+    if (dismissed) return;
+    const el = sentinelRef.current;
+    if (!el) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setVisible(true)
+        if (entry.isIntersecting) setVisible(true);
       },
       { threshold: 0.3 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [dismissed])
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [dismissed]);
 
   return (
     <>
@@ -36,7 +36,8 @@ export default function ParkingAd() {
             borderRadius: '12px',
             padding: '20px',
             boxShadow: '0 12px 40px rgba(0, 0, 0, 0.35)',
-            animation: 'parking-ad-slide-in 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+            animation:
+              'parking-ad-slide-in 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
             fontFamily: "'Inter', sans-serif",
           }}
         >
@@ -63,9 +64,7 @@ export default function ParkingAd() {
           >
             x
           </button>
-          <div style={{ fontSize: '28px', marginBottom: '8px' }}>
-            🅿️
-          </div>
+          <div style={{ fontSize: '28px', marginBottom: '8px' }}>🅿️</div>
           <div
             style={{
               fontSize: '0.95rem',
@@ -86,9 +85,10 @@ export default function ParkingAd() {
               margin: '0 0 12px 0',
             }}
           >
-            The author of this documentation owes <strong style={{ color: 'var(--text-primary)' }}>60 euros</strong> in
-            parking fines to Prora&#x10D;un Grada Zagreba. Any donations toward keeping him out of
-            debt collections are appreciated.
+            The author of this documentation owes{' '}
+            <strong style={{ color: 'var(--text-primary)' }}>60 euros</strong>{' '}
+            in parking fines to Prora&#x10D;un Grada Zagreba. Any donations
+            toward keeping him out of debt collections are appreciated.
           </p>
           <div
             style={{
@@ -97,10 +97,11 @@ export default function ParkingAd() {
               fontStyle: 'italic',
             }}
           >
-            This ad will self-destruct once the fines are paid. So probably never.
+            This ad will self-destruct once the fines are paid. So probably
+            never.
           </div>
         </div>
       )}
     </>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 interface Props {
-  type: 'note' | 'tip' | 'important' | 'warning' | 'life-lesson'
-  children: ReactNode
+  type: 'note' | 'tip' | 'important' | 'warning' | 'life-lesson';
+  children: ReactNode;
 }
 
 const labels: Record<Props['type'], string> = {
@@ -11,7 +11,7 @@ const labels: Record<Props['type'], string> = {
   important: 'Important',
   warning: 'Warning',
   'life-lesson': 'Life Lesson',
-}
+};
 
 export default function Callout({ type, children }: Props) {
   return (
@@ -19,5 +19,5 @@ export default function Callout({ type, children }: Props) {
       <div className="callout-title">{labels[type]}</div>
       <div className="callout-body">{children}</div>
     </div>
-  )
+  );
 }

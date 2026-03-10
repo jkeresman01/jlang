@@ -1,5 +1,5 @@
-import CodeBlock from '../components/CodeBlock'
-import Callout from '../components/Callout'
+import CodeBlock from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function Memory() {
   return (
@@ -15,14 +15,16 @@ export default function Memory() {
         ownership or borrow-checking system.
       </p>
 
-      <CodeBlock code={`var p: Person* = alloc<Person>();
+      <CodeBlock
+        code={`var p: Person* = alloc<Person>();
 
 p.Name = "Robert MeDiro";
 p.Age = 30;
 
 printf("Name: %s, Age: %d", p.Name, p.Age);
 
-free(p);`} />
+free(p);`}
+      />
 
       <h3>Allocation and Deallocation</h3>
       <p>
@@ -32,31 +34,34 @@ free(p);`} />
         <code>free()</code> to release it back to the system.
       </p>
 
-      <CodeBlock code={`// Allocate
+      <CodeBlock
+        code={`// Allocate
 var config: Config* = alloc<Config>();
 
 // Use the allocated memory
 config.Name = "Production";
 
 // Free when done
-free(config);`} />
+free(config);`}
+      />
 
       <Callout type="important">
-        You are responsible for freeing all allocated memory. Forgetting to
-        call <code>free()</code> leads to memory leaks. Using a pointer after
-        calling <code>free()</code> on it is undefined behavior.
+        You are responsible for freeing all allocated memory. Forgetting to call{' '}
+        <code>free()</code> leads to memory leaks. Using a pointer after calling{' '}
+        <code>free()</code> on it is undefined behavior.
       </Callout>
 
       {/* ── Section 2: Design Philosophy ── */}
       <h2>Design Philosophy</h2>
       <p>
-        jlang deliberately keeps memory management simple and explicit. There
-        is no garbage collector pausing your program, no reference counting
+        jlang deliberately keeps memory management simple and explicit. There is
+        no garbage collector pausing your program, no reference counting
         overhead, and no complex ownership rules to learn. You allocate, you
         use, you free.
       </p>
 
-      <CodeBlock code={`fn createPerson(name: char*, age: i32) -> Person* {
+      <CodeBlock
+        code={`fn createPerson(name: char*, age: i32) -> Person* {
     var p: Person* = alloc<Person>();
     p.Name = name;
     p.Age = age;
@@ -68,7 +73,8 @@ fn main() -> i32 {
     printf("Name: %s", robert.Name);
     free(robert);
     return 0;
-}`} />
+}`}
+      />
 
       <Callout type="note">
         This model is similar to C's <code>malloc</code> and <code>free</code>,
@@ -76,5 +82,5 @@ fn main() -> i32 {
         returns a <code>Person*</code>, so there is no need for manual casting.
       </Callout>
     </>
-  )
+  );
 }

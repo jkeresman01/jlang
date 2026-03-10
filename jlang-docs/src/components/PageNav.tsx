@@ -1,14 +1,14 @@
-import { Link, useLocation } from 'react-router-dom'
-import { allPages } from '../chapters'
+import { Link, useLocation } from 'react-router-dom';
+import { allPages } from '../chapters';
 
 export default function PageNav() {
-  const { pathname } = useLocation()
-  const index = allPages.findIndex((p) => p.path === pathname)
+  const { pathname } = useLocation();
+  const index = allPages.findIndex((p) => p.path === pathname);
 
-  if (index === -1) return null
+  if (index === -1) return null;
 
-  const prev = index > 0 ? allPages[index - 1] : null
-  const next = index < allPages.length - 1 ? allPages[index + 1] : null
+  const prev = index > 0 ? allPages[index - 1] : null;
+  const next = index < allPages.length - 1 ? allPages[index + 1] : null;
 
   return (
     <nav className="page-nav">
@@ -29,5 +29,5 @@ export default function PageNav() {
         <span />
       )}
     </nav>
-  )
+  );
 }

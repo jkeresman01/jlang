@@ -48,7 +48,9 @@
   padding: 0.5rem;
   margin-right: 0.75rem;
   border-radius: 6px;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .header-menu-btn:hover {
@@ -61,8 +63,13 @@
 }
 
 @keyframes nudge-left {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(-3px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
 }
 
 .header-title {
@@ -87,7 +94,10 @@
   border-radius: 8px;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
 }
 
 .theme-toggle:hover {
@@ -140,7 +150,12 @@
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 50%, #f472b6 100%);
+  background: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    #a78bfa 50%,
+    #f472b6 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -196,7 +211,9 @@
   font-size: 0.875rem;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
   border-left: 2px solid transparent;
 }
 
@@ -310,7 +327,8 @@
   text-decoration: underline;
 }
 
-.content-inner ul, .content-inner ol {
+.content-inner ul,
+.content-inner ol {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
   color: var(--text-secondary);
@@ -466,11 +484,21 @@
   margin-bottom: 0.375rem;
 }
 
-.callout--note .callout-title { color: var(--callout-note); }
-.callout--tip .callout-title { color: var(--callout-tip); }
-.callout--important .callout-title { color: var(--callout-important); }
-.callout--warning .callout-title { color: var(--callout-warning); }
-.callout--life-lesson .callout-title { color: var(--callout-life-lesson); }
+.callout--note .callout-title {
+  color: var(--callout-note);
+}
+.callout--tip .callout-title {
+  color: var(--callout-tip);
+}
+.callout--important .callout-title {
+  color: var(--callout-important);
+}
+.callout--warning .callout-title {
+  color: var(--callout-warning);
+}
+.callout--life-lesson .callout-title {
+  color: var(--callout-life-lesson);
+}
 
 .callout-body {
   color: var(--text-secondary);
@@ -497,7 +525,12 @@
   font-weight: 700;
   letter-spacing: -0.04em;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 50%, #f472b6 100%);
+  background: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    #a78bfa 50%,
+    #f472b6 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -535,7 +568,9 @@
   color: var(--text-secondary);
   background: var(--bg-secondary);
   text-decoration: none;
-  transition: border-color 0.15s, color 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .hero-badge:hover {
@@ -599,7 +634,9 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   text-decoration: none;
-  transition: border-color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
   min-width: 0;
 }
 
@@ -649,7 +686,9 @@
   cursor: pointer;
   pointer-events: auto;
   transform: translateY(-50%);
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
   padding: 0;
 }
 
