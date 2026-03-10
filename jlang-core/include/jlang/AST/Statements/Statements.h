@@ -2,111 +2,97 @@
 
 #include <jlang/AST/Ast.h>
 
-namespace jlang
-{
+namespace jlang {
 
-struct Statement : public AstNode
-{
+struct Statement : public AstNode {};
+
+struct IfStatement : public Statement {
+  std::shared_ptr<AstNode> condition;
+  std::shared_ptr<AstNode> thenBranch;
+  std::shared_ptr<AstNode> elseBranch;
+
+  IfStatement() { type = NodeType::IfStatement; }
+
+  void Accept(AstVisitor &visitor) override { visitor.VisitIfStatement(*this); }
 };
 
-struct IfStatement : public Statement
-{
-    std::shared_ptr<AstNode> condition;
-    std::shared_ptr<AstNode> thenBranch;
-    std::shared_ptr<AstNode> elseBranch;
+struct WhileStatement : public Statement {
+  std::shared_ptr<AstNode> condition;
+  std::shared_ptr<AstNode> body;
 
-    IfStatement() { type = NodeType::IfStatement; }
+  WhileStatement() { type = NodeType::WhileStatement; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitIfStatement(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitWhileStatement(*this); }
 };
 
-struct WhileStatement : public Statement
-{
-    std::shared_ptr<AstNode> condition;
-    std::shared_ptr<AstNode> body;
+struct ForStatement : public Statement {
+  std::shared_ptr<AstNode> init;
+  std::shared_ptr<AstNode> condition;
+  std::shared_ptr<AstNode> update;
+  std::shared_ptr<AstNode> body;
 
-    WhileStatement() { type = NodeType::WhileStatement; }
+  ForStatement() { type = NodeType::ForStatement; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitWhileStatement(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitForStatement(*this); }
 };
 
-struct ForStatement : public Statement
-{
-    std::shared_ptr<AstNode> init;
-    std::shared_ptr<AstNode> condition;
-    std::shared_ptr<AstNode> update;
-    std::shared_ptr<AstNode> body;
+struct ForEachStatement : public Statement {
+  std::string elementName;
+  std::shared_ptr<AstNode> iterable;
+  std::shared_ptr<AstNode> body;
 
-    ForStatement() { type = NodeType::ForStatement; }
+  ForEachStatement() { type = NodeType::ForEachStatement; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitForStatement(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitForEachStatement(*this); }
 };
 
-struct ForEachStatement : public Statement
-{
-    std::string elementName;
-    std::shared_ptr<AstNode> iterable;
-    std::shared_ptr<AstNode> body;
+struct BlockStatement : public Statement {
+  std::vector<std::shared_ptr<AstNode>> statements;
 
-    ForEachStatement() { type = NodeType::ForEachStatement; }
+  BlockStatement() { type = NodeType::BlockStatement; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitForEachStatement(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitBlockStatement(*this); }
 };
 
-struct BlockStatement : public Statement
-{
-    std::vector<std::shared_ptr<AstNode>> statements;
+struct ExprStatement : public Statement {
+  std::shared_ptr<AstNode> expression;
 
-    BlockStatement() { type = NodeType::BlockStatement; }
+  ExprStatement() { type = NodeType::ExprStatement; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitBlockStatement(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitExprStatement(*this); }
 };
 
-struct ExprStatement : public Statement
-{
-    std::shared_ptr<AstNode> expression;
+struct ReturnStatement : public Statement {
+  std::shared_ptr<AstNode> value;
 
-    ExprStatement() { type = NodeType::ExprStatement; }
+  ReturnStatement() { type = NodeType::ReturnStatement; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitExprStatement(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitReturnStatement(*this); }
 };
 
-struct ReturnStatement : public Statement
-{
-    std::shared_ptr<AstNode> value;
-
-    ReturnStatement() { type = NodeType::ReturnStatement; }
-
-    void Accept(AstVisitor &visitor) override { visitor.VisitReturnStatement(*this); }
+struct BreakStatement : public Statement {
+  BreakStatement() { type = NodeType::BreakStatement; }
+  void Accept(AstVisitor &visitor) override { visitor.VisitBreakStatement(*this); }
 };
 
-struct BreakStatement : public Statement
-{
-    BreakStatement() { type = NodeType::BreakStatement; }
-    void Accept(AstVisitor &visitor) override { visitor.VisitBreakStatement(*this); }
+struct ContinueStatement : public Statement {
+  ContinueStatement() { type = NodeType::ContinueStatement; }
+  void Accept(AstVisitor &visitor) override { visitor.VisitContinueStatement(*this); }
 };
 
-struct ContinueStatement : public Statement
-{
-    ContinueStatement() { type = NodeType::ContinueStatement; }
-    void Accept(AstVisitor &visitor) override { visitor.VisitContinueStatement(*this); }
+struct SwitchCase {
+  std::vector<std::shared_ptr<AstNode>> values; // empty = default
+  std::shared_ptr<AstNode> body;                // BlockStatement
+  bool isDefault = false;
 };
 
-struct SwitchCase
-{
-    std::vector<std::shared_ptr<AstNode>> values; // empty = default
-    std::shared_ptr<AstNode> body;                // BlockStatement
-    bool isDefault = false;
-};
+struct SwitchStatement : public Statement {
+  std::shared_ptr<AstNode> expr;
+  std::vector<SwitchCase> cases;
 
-struct SwitchStatement : public Statement
-{
-    std::shared_ptr<AstNode> expr;
-    std::vector<SwitchCase> cases;
+  SwitchStatement() { type = NodeType::SwitchStatement; }
 
-    SwitchStatement() { type = NodeType::SwitchStatement; }
-
-    void Accept(AstVisitor &visitor) override { visitor.VisitSwitchStatement(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitSwitchStatement(*this); }
 };
 
 } // namespace jlang

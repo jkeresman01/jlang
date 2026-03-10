@@ -3,8 +3,7 @@
 #include <cctype>
 #include <unordered_map>
 
-namespace jlang
-{
+namespace jlang {
 
 static std::unordered_map<std::string, TokenType> s_Keywords = {
     // Control flow
@@ -57,431 +56,338 @@ static std::unordered_map<std::string, TokenType> s_Keywords = {
 
 Scanner::Scanner(const std::string &source) : m_Source(source) {}
 
-std::vector<Token> Scanner::Tokenize()
-{
-    while (!IsEndReached())
-    {
-        SkipWhitespace();
-        if (IsEndReached())
-        {
+std::vector<Token> Scanner::Tokenize() {
+  while (!IsEndReached()) {
+    SkipWhitespace();
+    if (IsEndReached()) {
+      break;
+    }
+    m_Start = m_CurrentPosition;
+    ScanToken();
+  }
+
+  m_Tokens.emplace_back(TokenType::EndOfFile, "", m_CurrentLine);
+  return m_Tokens;
+}
+
+void Scanner::ScanToken() {
+  char c = Advance();
+
+  switch (c) {
+  case '{':
+    AddToken(TokenType::LBrace);
+    break;
+  case '}':
+    AddToken(TokenType::RBrace);
+    break;
+  case '(':
+    AddToken(TokenType::LParen);
+    break;
+  case ')':
+    AddToken(TokenType::RParen);
+    break;
+  case '[':
+    AddToken(TokenType::LBracket);
+    break;
+  case ']':
+    AddToken(TokenType::RBracket);
+    break;
+  case ';':
+    AddToken(TokenType::Semicolon);
+    break;
+  case ':':
+    if (IsMatched(':')) {
+      AddToken(TokenType::ColonColon);
+    } else if (IsMatched('=')) {
+      AddToken(TokenType::ColonEqual);
+    } else {
+      AddToken(TokenType::Colon);
+    }
+    break;
+  case ',':
+    AddToken(TokenType::Comma);
+    break;
+  case '.':
+    AddToken(TokenType::Dot);
+    break;
+  case '*':
+    AddToken(IsMatched('=') ? TokenType::StarEqual : TokenType::Star);
+    break;
+  case '+':
+    if (IsMatched('+')) {
+      AddToken(TokenType::PlusPlus);
+    } else if (IsMatched('=')) {
+      AddToken(TokenType::PlusEqual);
+    } else {
+      AddToken(TokenType::Plus);
+    }
+    break;
+  case '/':
+    AddToken(IsMatched('=') ? TokenType::SlashEqual : TokenType::Slash);
+    break;
+  case '%':
+    AddToken(IsMatched('=') ? TokenType::PercentEqual : TokenType::Percent);
+    break;
+  case '=':
+    if (IsMatched('=')) {
+      AddToken(TokenType::EqualEqual);
+    } else if (IsMatched('>')) {
+      AddToken(TokenType::FatArrow);
+    } else {
+      AddToken(TokenType::Equal);
+    }
+    break;
+  case '!':
+    AddToken(IsMatched('=') ? TokenType::NotEqual : TokenType::Not);
+    break;
+  case '&':
+    if (IsMatched('&')) {
+      AddToken(TokenType::And);
+    } else if (IsMatched('=')) {
+      AddToken(TokenType::AmpersandEqual);
+    } else {
+      AddToken(TokenType::Ampersand);
+    }
+    break;
+  case '|':
+    if (IsMatched('|')) {
+      AddToken(TokenType::Or);
+    } else if (IsMatched('=')) {
+      AddToken(TokenType::PipeEqual);
+    } else {
+      AddToken(TokenType::Pipe);
+    }
+    break;
+  case '^':
+    AddToken(IsMatched('=') ? TokenType::CaretEqual : TokenType::Caret);
+    break;
+  case '~':
+    AddToken(TokenType::Tilde);
+    break;
+  case '<':
+    if (IsMatched('<')) {
+      AddToken(IsMatched('=') ? TokenType::LeftShiftEqual : TokenType::LeftShift);
+    } else {
+      AddToken(IsMatched('=') ? TokenType::LessEqual : TokenType::Less);
+    }
+    break;
+  case '>':
+    if (IsMatched('>')) {
+      AddToken(IsMatched('=') ? TokenType::RightShiftEqual : TokenType::RightShift);
+    } else {
+      AddToken(IsMatched('=') ? TokenType::GreaterEqual : TokenType::Greater);
+    }
+    break;
+  case '?':
+    AddToken(IsMatched(':') ? TokenType::QuestionColon : TokenType::Question);
+    break;
+  case '-':
+    if (IsMatched('-')) {
+      AddToken(TokenType::MinusMinus);
+    } else if (IsMatched('>')) {
+      AddToken(TokenType::Arrow);
+    } else if (IsMatched('=')) {
+      AddToken(TokenType::MinusEqual);
+    } else {
+      AddToken(TokenType::Minus);
+    }
+    break;
+  case '"':
+    AddStringLiteral();
+    break;
+  case '\'':
+    AddCharLiteral();
+    break;
+  default:
+    if (std::isdigit(c)) {
+      AddNumber();
+    } else if (std::isalpha(c) || c == '_') {
+      AddIdentifier();
+    } else {
+      AddToken(TokenType::Unknown);
+    }
+  }
+}
+
+void Scanner::SkipWhitespace() {
+  while (!IsEndReached()) {
+    char c = Peek();
+
+    if (c == ' ' || c == '\r' || c == '\t') {
+      Advance();
+    } else if (c == '\n') {
+      m_CurrentLine++;
+      Advance();
+    } else if (c == '/') {
+      if (PeekNext() == '/') {
+        // Single-line comment: skip until end of line
+        while (Peek() != '\n' && !IsEndReached()) {
+          Advance();
+        }
+      } else if (PeekNext() == '*') {
+        // Block comment: skip until */
+        Advance(); // consume '/'
+        Advance(); // consume '*'
+        while (!IsEndReached()) {
+          if (Peek() == '*' && PeekNext() == '/') {
+            Advance(); // consume '*'
+            Advance(); // consume '/'
             break;
-        }
-        m_Start = m_CurrentPosition;
-        ScanToken();
-    }
-
-    m_Tokens.emplace_back(TokenType::EndOfFile, "", m_CurrentLine);
-    return m_Tokens;
-}
-
-void Scanner::ScanToken()
-{
-    char c = Advance();
-
-    switch (c)
-    {
-    case '{':
-        AddToken(TokenType::LBrace);
-        break;
-    case '}':
-        AddToken(TokenType::RBrace);
-        break;
-    case '(':
-        AddToken(TokenType::LParen);
-        break;
-    case ')':
-        AddToken(TokenType::RParen);
-        break;
-    case '[':
-        AddToken(TokenType::LBracket);
-        break;
-    case ']':
-        AddToken(TokenType::RBracket);
-        break;
-    case ';':
-        AddToken(TokenType::Semicolon);
-        break;
-    case ':':
-        if (IsMatched(':'))
-        {
-            AddToken(TokenType::ColonColon);
-        }
-        else if (IsMatched('='))
-        {
-            AddToken(TokenType::ColonEqual);
-        }
-        else
-        {
-            AddToken(TokenType::Colon);
-        }
-        break;
-    case ',':
-        AddToken(TokenType::Comma);
-        break;
-    case '.':
-        AddToken(TokenType::Dot);
-        break;
-    case '*':
-        AddToken(IsMatched('=') ? TokenType::StarEqual : TokenType::Star);
-        break;
-    case '+':
-        if (IsMatched('+'))
-        {
-            AddToken(TokenType::PlusPlus);
-        }
-        else if (IsMatched('='))
-        {
-            AddToken(TokenType::PlusEqual);
-        }
-        else
-        {
-            AddToken(TokenType::Plus);
-        }
-        break;
-    case '/':
-        AddToken(IsMatched('=') ? TokenType::SlashEqual : TokenType::Slash);
-        break;
-    case '%':
-        AddToken(IsMatched('=') ? TokenType::PercentEqual : TokenType::Percent);
-        break;
-    case '=':
-        if (IsMatched('='))
-        {
-            AddToken(TokenType::EqualEqual);
-        }
-        else if (IsMatched('>'))
-        {
-            AddToken(TokenType::FatArrow);
-        }
-        else
-        {
-            AddToken(TokenType::Equal);
-        }
-        break;
-    case '!':
-        AddToken(IsMatched('=') ? TokenType::NotEqual : TokenType::Not);
-        break;
-    case '&':
-        if (IsMatched('&'))
-        {
-            AddToken(TokenType::And);
-        }
-        else if (IsMatched('='))
-        {
-            AddToken(TokenType::AmpersandEqual);
-        }
-        else
-        {
-            AddToken(TokenType::Ampersand);
-        }
-        break;
-    case '|':
-        if (IsMatched('|'))
-        {
-            AddToken(TokenType::Or);
-        }
-        else if (IsMatched('='))
-        {
-            AddToken(TokenType::PipeEqual);
-        }
-        else
-        {
-            AddToken(TokenType::Pipe);
-        }
-        break;
-    case '^':
-        AddToken(IsMatched('=') ? TokenType::CaretEqual : TokenType::Caret);
-        break;
-    case '~':
-        AddToken(TokenType::Tilde);
-        break;
-    case '<':
-        if (IsMatched('<'))
-        {
-            AddToken(IsMatched('=') ? TokenType::LeftShiftEqual : TokenType::LeftShift);
-        }
-        else
-        {
-            AddToken(IsMatched('=') ? TokenType::LessEqual : TokenType::Less);
-        }
-        break;
-    case '>':
-        if (IsMatched('>'))
-        {
-            AddToken(IsMatched('=') ? TokenType::RightShiftEqual : TokenType::RightShift);
-        }
-        else
-        {
-            AddToken(IsMatched('=') ? TokenType::GreaterEqual : TokenType::Greater);
-        }
-        break;
-    case '?':
-        AddToken(IsMatched(':') ? TokenType::QuestionColon : TokenType::Question);
-        break;
-    case '-':
-        if (IsMatched('-'))
-        {
-            AddToken(TokenType::MinusMinus);
-        }
-        else if (IsMatched('>'))
-        {
-            AddToken(TokenType::Arrow);
-        }
-        else if (IsMatched('='))
-        {
-            AddToken(TokenType::MinusEqual);
-        }
-        else
-        {
-            AddToken(TokenType::Minus);
-        }
-        break;
-    case '"':
-        AddStringLiteral();
-        break;
-    case '\'':
-        AddCharLiteral();
-        break;
-    default:
-        if (std::isdigit(c))
-        {
-            AddNumber();
-        }
-        else if (std::isalpha(c) || c == '_')
-        {
-            AddIdentifier();
-        }
-        else
-        {
-            AddToken(TokenType::Unknown);
-        }
-    }
-}
-
-void Scanner::SkipWhitespace()
-{
-    while (!IsEndReached())
-    {
-        char c = Peek();
-
-        if (c == ' ' || c == '\r' || c == '\t')
-        {
-            Advance();
-        }
-        else if (c == '\n')
-        {
+          }
+          if (Peek() == '\n') {
             m_CurrentLine++;
-            Advance();
+          }
+          Advance();
         }
-        else if (c == '/')
-        {
-            if (PeekNext() == '/')
-            {
-                // Single-line comment: skip until end of line
-                while (Peek() != '\n' && !IsEndReached())
-                {
-                    Advance();
-                }
-            }
-            else if (PeekNext() == '*')
-            {
-                // Block comment: skip until */
-                Advance(); // consume '/'
-                Advance(); // consume '*'
-                while (!IsEndReached())
-                {
-                    if (Peek() == '*' && PeekNext() == '/')
-                    {
-                        Advance(); // consume '*'
-                        Advance(); // consume '/'
-                        break;
-                    }
-                    if (Peek() == '\n')
-                    {
-                        m_CurrentLine++;
-                    }
-                    Advance();
-                }
-            }
-            else
-            {
-                break; // It's a division operator, not a comment
-            }
-        }
-        else
-        {
-            break;
-        }
+      } else {
+        break; // It's a division operator, not a comment
+      }
+    } else {
+      break;
     }
+  }
 }
 
-char Scanner::Advance()
-{
-    return m_Source[m_CurrentPosition++];
+char Scanner::Advance() {
+  return m_Source[m_CurrentPosition++];
 }
 
-char Scanner::Peek() const
-{
-    return IsEndReached() ? '\0' : m_Source[m_CurrentPosition];
+char Scanner::Peek() const {
+  return IsEndReached() ? '\0' : m_Source[m_CurrentPosition];
 }
 
-char Scanner::PeekNext() const
-{
-    if (m_CurrentPosition + 1 >= m_Source.length())
-    {
-        return '\0';
-    }
-    return m_Source[m_CurrentPosition + 1];
+char Scanner::PeekNext() const {
+  if (m_CurrentPosition + 1 >= m_Source.length()) {
+    return '\0';
+  }
+  return m_Source[m_CurrentPosition + 1];
 }
 
-bool Scanner::IsMatched(char expected)
-{
-    if (IsEndReached() || m_Source[m_CurrentPosition] != expected)
-    {
-        return false;
-    }
+bool Scanner::IsMatched(char expected) {
+  if (IsEndReached() || m_Source[m_CurrentPosition] != expected) {
+    return false;
+  }
 
-    m_CurrentPosition++;
-    return true;
+  m_CurrentPosition++;
+  return true;
 }
 
-bool Scanner::IsEndReached() const
-{
-    return m_CurrentPosition >= m_Source.length();
+bool Scanner::IsEndReached() const {
+  return m_CurrentPosition >= m_Source.length();
 }
 
-void Scanner::AddToken(TokenType type)
-{
-    AddToken(type, m_Source.substr(m_Start, m_CurrentPosition - m_Start));
+void Scanner::AddToken(TokenType type) {
+  AddToken(type, m_Source.substr(m_Start, m_CurrentPosition - m_Start));
 }
 
-void Scanner::AddToken(TokenType type, const std::string &lexeme)
-{
-    m_Tokens.emplace_back(type, lexeme, m_CurrentLine);
+void Scanner::AddToken(TokenType type, const std::string &lexeme) {
+  m_Tokens.emplace_back(type, lexeme, m_CurrentLine);
 }
 
-void Scanner::AddIdentifier()
-{
-    while (std::isalnum(Peek()) || Peek() == '_')
-    {
-        Advance();
+void Scanner::AddIdentifier() {
+  while (std::isalnum(Peek()) || Peek() == '_') {
+    Advance();
+  }
+
+  std::string text = m_Source.substr(m_Start, m_CurrentPosition - m_Start);
+  TokenType type = IsKeywordOrIdentifier(text);
+
+  AddToken(type, text);
+}
+
+void Scanner::AddNumber() {
+  while (std::isdigit(Peek())) {
+    Advance();
+  }
+
+  // Check for decimal point (float literal)
+  if (Peek() == '.' && std::isdigit(PeekNext())) {
+    // Consume the '.'
+    Advance();
+
+    // Consume the fractional part
+    while (std::isdigit(Peek())) {
+      Advance();
     }
 
-    std::string text = m_Source.substr(m_Start, m_CurrentPosition - m_Start);
-    TokenType type = IsKeywordOrIdentifier(text);
-
-    AddToken(type, text);
+    AddToken(TokenType::FloatLiteral);
+  } else {
+    AddToken(TokenType::NumberLiteral);
+  }
 }
 
-void Scanner::AddNumber()
-{
-    while (std::isdigit(Peek()))
-    {
-        Advance();
-    }
-
-    // Check for decimal point (float literal)
-    if (Peek() == '.' && std::isdigit(PeekNext()))
-    {
-        // Consume the '.'
-        Advance();
-
-        // Consume the fractional part
-        while (std::isdigit(Peek()))
-        {
-            Advance();
-        }
-
-        AddToken(TokenType::FloatLiteral);
-    }
-    else
-    {
-        AddToken(TokenType::NumberLiteral);
-    }
-}
-
-void Scanner::AddStringLiteral()
-{
-    while (Peek() != '"' && !IsEndReached())
-    {
-        if (Peek() == '\n')
-        {
-            m_CurrentLine++;
-        }
-
-        Advance();
-    }
-
-    if (IsEndReached())
-    {
-        return;
+void Scanner::AddStringLiteral() {
+  while (Peek() != '"' && !IsEndReached()) {
+    if (Peek() == '\n') {
+      m_CurrentLine++;
     }
 
     Advance();
+  }
 
-    std::string value = m_Source.substr(m_Start + 1, m_CurrentPosition - m_Start - 2);
+  if (IsEndReached()) {
+    return;
+  }
 
-    AddToken(TokenType::StringLiteral, value);
+  Advance();
+
+  std::string value = m_Source.substr(m_Start + 1, m_CurrentPosition - m_Start - 2);
+
+  AddToken(TokenType::StringLiteral, value);
 }
 
-void Scanner::AddCharLiteral()
-{
-    // Current position is after the opening '
-    if (IsEndReached())
-    {
-        AddToken(TokenType::Unknown);
-        return;
+void Scanner::AddCharLiteral() {
+  // Current position is after the opening '
+  if (IsEndReached()) {
+    AddToken(TokenType::Unknown);
+    return;
+  }
+
+  char c = Advance();
+
+  // Handle escape sequences
+  if (c == '\\' && !IsEndReached()) {
+    char escaped = Advance();
+    switch (escaped) {
+    case 'n':
+      c = '\n';
+      break;
+    case 't':
+      c = '\t';
+      break;
+    case 'r':
+      c = '\r';
+      break;
+    case '\\':
+      c = '\\';
+      break;
+    case '\'':
+      c = '\'';
+      break;
+    case '0':
+      c = '\0';
+      break;
+    default:
+      // Unknown escape, just use the character as-is
+      c = escaped;
+      break;
     }
+  }
 
-    char c = Advance();
+  if (IsEndReached() || Peek() != '\'') {
+    AddToken(TokenType::Unknown);
+    return;
+  }
 
-    // Handle escape sequences
-    if (c == '\\' && !IsEndReached())
-    {
-        char escaped = Advance();
-        switch (escaped)
-        {
-        case 'n':
-            c = '\n';
-            break;
-        case 't':
-            c = '\t';
-            break;
-        case 'r':
-            c = '\r';
-            break;
-        case '\\':
-            c = '\\';
-            break;
-        case '\'':
-            c = '\'';
-            break;
-        case '0':
-            c = '\0';
-            break;
-        default:
-            // Unknown escape, just use the character as-is
-            c = escaped;
-            break;
-        }
-    }
+  Advance(); // consume closing '
 
-    if (IsEndReached() || Peek() != '\'')
-    {
-        AddToken(TokenType::Unknown);
-        return;
-    }
-
-    Advance(); // consume closing '
-
-    // Store the character value as a string
-    AddToken(TokenType::CharLiteral, std::string(1, c));
+  // Store the character value as a string
+  AddToken(TokenType::CharLiteral, std::string(1, c));
 }
 
-TokenType Scanner::IsKeywordOrIdentifier(const std::string &text)
-{
-    auto it = s_Keywords.find(text);
-    return it != s_Keywords.end() ? it->second : TokenType::Identifier;
+TokenType Scanner::IsKeywordOrIdentifier(const std::string &text) {
+  auto it = s_Keywords.find(text);
+  return it != s_Keywords.end() ? it->second : TokenType::Identifier;
 }
 
 } // namespace jlang

@@ -5,35 +5,23 @@
 #include <optional>
 #include <string>
 
-namespace jlang
-{
+namespace jlang {
 
-enum class DirectiveType
-{
-    Define,
-    Undef,
-    Ifdef,
-    Ifndef,
-    Else,
-    Endif,
-    Include
+enum class DirectiveType { Define, Undef, Ifdef, Ifndef, Else, Endif, Include };
+
+struct ParsedDirective {
+  DirectiveType type;
+  std::string arguments;
 };
 
-struct ParsedDirective
-{
-    DirectiveType type;
-    std::string arguments;
-};
+class DirectiveParser {
+public:
+  DirectiveParser();
 
-class DirectiveParser
-{
-  public:
-    DirectiveParser();
+  std::optional<ParsedDirective> Parse(const std::string &line) const;
 
-    std::optional<ParsedDirective> Parse(const std::string &line) const;
-
-  private:
-    Trie<DirectiveType> m_Keywords;
+private:
+  Trie<DirectiveType> m_Keywords;
 };
 
 } // namespace jlang

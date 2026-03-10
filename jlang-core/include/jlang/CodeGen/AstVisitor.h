@@ -1,7 +1,6 @@
 #pragma once
 
-namespace jlang
-{
+namespace jlang {
 
 // Forward declarations for AST nodes
 struct FunctionDecl;
@@ -39,46 +38,45 @@ struct MethodCallExpr;
 struct MemberAssignExpr;
 struct SwitchExpr;
 
-class AstVisitor
-{
-  public:
-    virtual ~AstVisitor() = default;
+class AstVisitor {
+public:
+  virtual ~AstVisitor() = default;
 
-    virtual void VisitFunctionDecl(FunctionDecl &) = 0;
-    virtual void VisitInterfaceDecl(InterfaceDecl &) = 0;
-    virtual void VisitStructDecl(StructDecl &) = 0;
-    virtual void VisitVariableDecl(VariableDecl &) = 0;
+  virtual void VisitFunctionDecl(FunctionDecl &) = 0;
+  virtual void VisitInterfaceDecl(InterfaceDecl &) = 0;
+  virtual void VisitStructDecl(StructDecl &) = 0;
+  virtual void VisitVariableDecl(VariableDecl &) = 0;
 
-    virtual void VisitIfStatement(IfStatement &) = 0;
-    virtual void VisitWhileStatement(WhileStatement &) = 0;
-    virtual void VisitForStatement(ForStatement &) = 0;
-    virtual void VisitForEachStatement(ForEachStatement &) = 0;
-    virtual void VisitBlockStatement(BlockStatement &) = 0;
-    virtual void VisitExprStatement(ExprStatement &) = 0;
-    virtual void VisitReturnStatement(ReturnStatement &) = 0;
-    virtual void VisitBreakStatement(BreakStatement &) = 0;
-    virtual void VisitContinueStatement(ContinueStatement &) = 0;
-    virtual void VisitSwitchStatement(SwitchStatement &) = 0;
+  virtual void VisitIfStatement(IfStatement &) = 0;
+  virtual void VisitWhileStatement(WhileStatement &) = 0;
+  virtual void VisitForStatement(ForStatement &) = 0;
+  virtual void VisitForEachStatement(ForEachStatement &) = 0;
+  virtual void VisitBlockStatement(BlockStatement &) = 0;
+  virtual void VisitExprStatement(ExprStatement &) = 0;
+  virtual void VisitReturnStatement(ReturnStatement &) = 0;
+  virtual void VisitBreakStatement(BreakStatement &) = 0;
+  virtual void VisitContinueStatement(ContinueStatement &) = 0;
+  virtual void VisitSwitchStatement(SwitchStatement &) = 0;
 
-    virtual void VisitCallExpr(CallExpr &) = 0;
-    virtual void VisitBinaryExpr(BinaryExpr &) = 0;
-    virtual void VisitUnaryExpr(UnaryExpr &) = 0;
-    virtual void VisitLiteralExpr(LiteralExpr &) = 0;
-    virtual void VisitVarExpr(VarExpr &) = 0;
-    virtual void VisitCastExpr(CastExpr &) = 0;
-    virtual void VisitAllocExpr(AllocExpr &) = 0;
-    virtual void VisitAssignExpr(AssignExpr &) = 0;
-    virtual void VisitMemberAccessExpr(MemberAccessExpr &) = 0;
-    virtual void VisitPrefixExpr(PrefixExpr &) = 0;
-    virtual void VisitPostfixExpr(PostfixExpr &) = 0;
-    virtual void VisitMatchExpr(MatchExpr &) = 0;
-    virtual void VisitOkExpr(OkExpr &) = 0;
-    virtual void VisitErrExpr(ErrExpr &) = 0;
-    virtual void VisitArrayLiteralExpr(ArrayLiteralExpr &) = 0;
-    virtual void VisitIndexExpr(IndexExpr &) = 0;
-    virtual void VisitIndexAssignExpr(IndexAssignExpr &) = 0;
-    virtual void VisitMethodCallExpr(MethodCallExpr &) = 0;
-    virtual void VisitMemberAssignExpr(MemberAssignExpr &) = 0;
-    virtual void VisitSwitchExpr(SwitchExpr &) = 0;
+  virtual void VisitCallExpr(CallExpr &) = 0;
+  virtual void VisitBinaryExpr(BinaryExpr &) = 0;
+  virtual void VisitUnaryExpr(UnaryExpr &) = 0;
+  virtual void VisitLiteralExpr(LiteralExpr &) = 0;
+  virtual void VisitVarExpr(VarExpr &) = 0;
+  virtual void VisitCastExpr(CastExpr &) = 0;
+  virtual void VisitAllocExpr(AllocExpr &) = 0;
+  virtual void VisitAssignExpr(AssignExpr &) = 0;
+  virtual void VisitMemberAccessExpr(MemberAccessExpr &) = 0;
+  virtual void VisitPrefixExpr(PrefixExpr &) = 0;
+  virtual void VisitPostfixExpr(PostfixExpr &) = 0;
+  virtual void VisitMatchExpr(MatchExpr &) = 0;
+  virtual void VisitOkExpr(OkExpr &) = 0;
+  virtual void VisitErrExpr(ErrExpr &) = 0;
+  virtual void VisitArrayLiteralExpr(ArrayLiteralExpr &) = 0;
+  virtual void VisitIndexExpr(IndexExpr &) = 0;
+  virtual void VisitIndexAssignExpr(IndexAssignExpr &) = 0;
+  virtual void VisitMethodCallExpr(MethodCallExpr &) = 0;
+  virtual void VisitMemberAssignExpr(MemberAssignExpr &) = 0;
+  virtual void VisitSwitchExpr(SwitchExpr &) = 0;
 };
 } // namespace jlang

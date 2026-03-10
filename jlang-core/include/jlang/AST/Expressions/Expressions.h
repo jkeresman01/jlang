@@ -3,227 +3,202 @@
 #include <jlang/AST/Ast.h>
 #include <jlang/AST/TypeRef.h>
 
-namespace jlang
-{
+namespace jlang {
 
-struct Expression : public AstNode
-{
+struct Expression : public AstNode {};
+
+struct CallExpr : public Expression {
+  std::string callee;
+  std::vector<std::shared_ptr<AstNode>> arguments;
+  std::vector<TypeRef> typeArguments;
+
+  CallExpr() { type = NodeType::CallExpr; }
+
+  void Accept(AstVisitor &visitor) override { visitor.VisitCallExpr(*this); }
 };
 
-struct CallExpr : public Expression
-{
-    std::string callee;
-    std::vector<std::shared_ptr<AstNode>> arguments;
-    std::vector<TypeRef> typeArguments;
+struct BinaryExpr : public Expression {
+  std::string op;
+  std::shared_ptr<AstNode> left;
+  std::shared_ptr<AstNode> right;
 
-    CallExpr() { type = NodeType::CallExpr; }
+  BinaryExpr() { type = NodeType::BinaryExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitCallExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitBinaryExpr(*this); }
 };
 
-struct BinaryExpr : public Expression
-{
-    std::string op;
-    std::shared_ptr<AstNode> left;
-    std::shared_ptr<AstNode> right;
+struct UnaryExpr : public Expression {
+  std::string op;
+  std::shared_ptr<AstNode> operand;
 
-    BinaryExpr() { type = NodeType::BinaryExpr; }
+  UnaryExpr() { type = NodeType::UnaryExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitBinaryExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitUnaryExpr(*this); }
 };
 
-struct UnaryExpr : public Expression
-{
-    std::string op;
-    std::shared_ptr<AstNode> operand;
+struct VarExpr : public Expression {
+  std::string name;
 
-    UnaryExpr() { type = NodeType::UnaryExpr; }
+  VarExpr() { type = NodeType::VarExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitUnaryExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitVarExpr(*this); }
 };
 
-struct VarExpr : public Expression
-{
-    std::string name;
+struct LiteralExpr : public Expression {
+  std::string value;
 
-    VarExpr() { type = NodeType::VarExpr; }
+  LiteralExpr() { type = NodeType::LiteralExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitVarExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitLiteralExpr(*this); }
 };
 
-struct LiteralExpr : public Expression
-{
-    std::string value;
+struct CastExpr : public Expression {
+  TypeRef targetType;
+  std::shared_ptr<AstNode> expr;
 
-    LiteralExpr() { type = NodeType::LiteralExpr; }
+  CastExpr() { type = NodeType::CastExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitLiteralExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitCastExpr(*this); }
 };
 
-struct CastExpr : public Expression
-{
-    TypeRef targetType;
-    std::shared_ptr<AstNode> expr;
+struct AllocExpr : public Expression {
+  TypeRef allocType;
 
-    CastExpr() { type = NodeType::CastExpr; }
+  AllocExpr() { type = NodeType::AllocExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitCastExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitAllocExpr(*this); }
 };
 
-struct AllocExpr : public Expression
-{
-    TypeRef allocType;
+struct AssignExpr : public Expression {
+  std::string name;
+  std::shared_ptr<AstNode> value;
 
-    AllocExpr() { type = NodeType::AllocExpr; }
+  AssignExpr() { type = NodeType::AssignExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitAllocExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitAssignExpr(*this); }
 };
 
-struct AssignExpr : public Expression
-{
-    std::string name;
-    std::shared_ptr<AstNode> value;
+struct MemberAccessExpr : public Expression {
+  std::shared_ptr<AstNode> object;
+  std::string memberName;
 
-    AssignExpr() { type = NodeType::AssignExpr; }
+  MemberAccessExpr() { type = NodeType::MemberAccessExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitAssignExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitMemberAccessExpr(*this); }
 };
 
-struct MemberAccessExpr : public Expression
-{
-    std::shared_ptr<AstNode> object;
-    std::string memberName;
+struct PrefixExpr : public Expression {
+  std::string op; // "++" or "--"
+  std::shared_ptr<AstNode> operand;
 
-    MemberAccessExpr() { type = NodeType::MemberAccessExpr; }
+  PrefixExpr() { type = NodeType::PrefixExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitMemberAccessExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitPrefixExpr(*this); }
 };
 
-struct PrefixExpr : public Expression
-{
-    std::string op; // "++" or "--"
-    std::shared_ptr<AstNode> operand;
+struct PostfixExpr : public Expression {
+  std::string op; // "++" or "--"
+  std::shared_ptr<AstNode> operand;
 
-    PrefixExpr() { type = NodeType::PrefixExpr; }
+  PostfixExpr() { type = NodeType::PostfixExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitPrefixExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitPostfixExpr(*this); }
 };
 
-struct PostfixExpr : public Expression
-{
-    std::string op; // "++" or "--"
-    std::shared_ptr<AstNode> operand;
+struct OkExpr : public Expression {
+  std::shared_ptr<AstNode> value;
+  TypeRef resultType; // Full Result<T, E> type (inferred from context)
 
-    PostfixExpr() { type = NodeType::PostfixExpr; }
+  OkExpr() { type = NodeType::OkExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitPostfixExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitOkExpr(*this); }
 };
 
-struct OkExpr : public Expression
-{
-    std::shared_ptr<AstNode> value;
-    TypeRef resultType; // Full Result<T, E> type (inferred from context)
+struct ErrExpr : public Expression {
+  std::shared_ptr<AstNode> error;
+  TypeRef resultType; // Full Result<T, E> type (inferred from context)
 
-    OkExpr() { type = NodeType::OkExpr; }
+  ErrExpr() { type = NodeType::ErrExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitOkExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitErrExpr(*this); }
 };
 
-struct ErrExpr : public Expression
-{
-    std::shared_ptr<AstNode> error;
-    TypeRef resultType; // Full Result<T, E> type (inferred from context)
-
-    ErrExpr() { type = NodeType::ErrExpr; }
-
-    void Accept(AstVisitor &visitor) override { visitor.VisitErrExpr(*this); }
+struct MatchArm {
+  std::string pattern;     // "Ok" or "Err"
+  std::string bindingName; // Variable name to bind the extracted value
+  std::shared_ptr<AstNode> body;
 };
 
-struct MatchArm
-{
-    std::string pattern;     // "Ok" or "Err"
-    std::string bindingName; // Variable name to bind the extracted value
-    std::shared_ptr<AstNode> body;
+struct MatchExpr : public Expression {
+  std::shared_ptr<AstNode> scrutinee;
+  MatchArm okArm;
+  MatchArm errArm;
+
+  MatchExpr() { type = NodeType::MatchExpr; }
+
+  void Accept(AstVisitor &visitor) override { visitor.VisitMatchExpr(*this); }
 };
 
-struct MatchExpr : public Expression
-{
-    std::shared_ptr<AstNode> scrutinee;
-    MatchArm okArm;
-    MatchArm errArm;
+struct ArrayLiteralExpr : public Expression {
+  std::vector<std::shared_ptr<AstNode>> elements;
 
-    MatchExpr() { type = NodeType::MatchExpr; }
+  ArrayLiteralExpr() { type = NodeType::ArrayLiteralExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitMatchExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitArrayLiteralExpr(*this); }
 };
 
-struct ArrayLiteralExpr : public Expression
-{
-    std::vector<std::shared_ptr<AstNode>> elements;
+struct IndexExpr : public Expression {
+  std::shared_ptr<AstNode> object;
+  std::shared_ptr<AstNode> index;
 
-    ArrayLiteralExpr() { type = NodeType::ArrayLiteralExpr; }
+  IndexExpr() { type = NodeType::IndexExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitArrayLiteralExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitIndexExpr(*this); }
 };
 
-struct IndexExpr : public Expression
-{
-    std::shared_ptr<AstNode> object;
-    std::shared_ptr<AstNode> index;
+struct IndexAssignExpr : public Expression {
+  std::shared_ptr<AstNode> object;
+  std::shared_ptr<AstNode> index;
+  std::shared_ptr<AstNode> value;
 
-    IndexExpr() { type = NodeType::IndexExpr; }
+  IndexAssignExpr() { type = NodeType::IndexAssignExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitIndexExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitIndexAssignExpr(*this); }
 };
 
-struct IndexAssignExpr : public Expression
-{
-    std::shared_ptr<AstNode> object;
-    std::shared_ptr<AstNode> index;
-    std::shared_ptr<AstNode> value;
+struct MethodCallExpr : public Expression {
+  std::shared_ptr<AstNode> object;
+  std::string methodName;
+  std::vector<std::shared_ptr<AstNode>> arguments;
 
-    IndexAssignExpr() { type = NodeType::IndexAssignExpr; }
+  MethodCallExpr() { type = NodeType::MethodCallExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitIndexAssignExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitMethodCallExpr(*this); }
 };
 
-struct MethodCallExpr : public Expression
-{
-    std::shared_ptr<AstNode> object;
-    std::string methodName;
-    std::vector<std::shared_ptr<AstNode>> arguments;
+struct MemberAssignExpr : public Expression {
+  std::shared_ptr<AstNode> object;
+  std::string memberName;
+  std::shared_ptr<AstNode> value;
 
-    MethodCallExpr() { type = NodeType::MethodCallExpr; }
+  MemberAssignExpr() { type = NodeType::MemberAssignExpr; }
 
-    void Accept(AstVisitor &visitor) override { visitor.VisitMethodCallExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitMemberAssignExpr(*this); }
 };
 
-struct MemberAssignExpr : public Expression
-{
-    std::shared_ptr<AstNode> object;
-    std::string memberName;
-    std::shared_ptr<AstNode> value;
-
-    MemberAssignExpr() { type = NodeType::MemberAssignExpr; }
-
-    void Accept(AstVisitor &visitor) override { visitor.VisitMemberAssignExpr(*this); }
+struct SwitchArm {
+  std::vector<std::shared_ptr<AstNode>> values; // empty = default
+  std::shared_ptr<AstNode> body;                // single expression or block
+  bool isDefault = false;
 };
 
-struct SwitchArm
-{
-    std::vector<std::shared_ptr<AstNode>> values; // empty = default
-    std::shared_ptr<AstNode> body;                // single expression or block
-    bool isDefault = false;
-};
+struct SwitchExpr : public Expression {
+  std::shared_ptr<AstNode> expr;
+  std::vector<SwitchArm> arms;
 
-struct SwitchExpr : public Expression
-{
-    std::shared_ptr<AstNode> expr;
-    std::vector<SwitchArm> arms;
+  SwitchExpr() { type = NodeType::SwitchExpr; }
 
-    SwitchExpr() { type = NodeType::SwitchExpr; }
-
-    void Accept(AstVisitor &visitor) override { visitor.VisitSwitchExpr(*this); }
+  void Accept(AstVisitor &visitor) override { visitor.VisitSwitchExpr(*this); }
 };
 
 } // namespace jlang
