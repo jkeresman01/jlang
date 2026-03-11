@@ -336,7 +336,7 @@ export default function Introduction() {
         <br />
         Most of the examples throughout this book also come from Java and C++
         &mdash; the two languages I have spent the most time with. If you check
-        my stats you will see around 55% Java and around 25% C++, so it only
+        my stats you will see around 50% Java and around 31% C++, so it only
         felt natural to draw from the worlds I know best.
         <br />
         <br />
