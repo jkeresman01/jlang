@@ -451,6 +451,16 @@ export default function Introduction() {
         ></iframe>
       </Callout>
 
+      <h2>Why the Name &ldquo;jlang&rdquo;?</h2>
+      <p>
+        Most of my personal projects get a &ldquo;j&rdquo; prefixed to them.
+        Not because it stands for something profound &mdash; it does not. It is
+        just a reflex at this point, the way some people always park in the same
+        spot or always order the same coffee. I needed a name, I had a keyboard
+        in front of me, and the letter was right there. The language got its
+        name in about two seconds, and the compiler took considerably longer.
+      </p>
+
       <h2>A Quick Taste</h2>
       <p>Every language starts the same way:</p>
       <CodeBlock
