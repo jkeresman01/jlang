@@ -52,18 +52,6 @@ export default function Introduction() {
         problem, the rest of the world simply stops existing.
       </p>
 
-      <Callout type="note">
-        There is a difference between programming and a job &mdash; whether that
-        job is software engineering or anything else. A job is a set of tasks
-        you execute so you can get paid, pay the bills, and put food on the
-        table. Programming, the way I mean it throughout this book, is something
-        else entirely. It is where your individuality, your creativity, and your
-        uniqueness come into play. It is a form of self-expression &mdash; a
-        space where you are not following someone else&rsquo;s checklist but
-        building something that is distinctly yours. When I talk about
-        programming here, that is what I am talking about.
-      </Callout>
-
       <p>
         And why write this? Truth be told, because I am terrified. Terrified
         that my obsession is coming to an end. I have done every programming
@@ -86,6 +74,18 @@ export default function Introduction() {
         they have become almost enjoyable to pay. In fact, I got one just today
         &mdash; or yesterday, I am not sure if it was before or after midnight.
       </p>
+
+      <Callout type="note">
+        There is a difference between programming and a job &mdash; whether that
+        job is software engineering or anything else. A job is a set of tasks
+        you execute so you can get paid, pay the bills, and put food on the
+        table. Programming, the way I mean it throughout this book, is something
+        else entirely. It is where your individuality, your creativity, and your
+        uniqueness come into play. It is a form of self-expression &mdash; a
+        space where you are not following someone else&rsquo;s checklist but
+        building something that is distinctly yours. When I talk about
+        programming here, that is what I am talking about.
+      </Callout>
       <p>
         I have also realized that the best books and the best authors are those
         who speak out of their own experience &mdash; the ones in whose skin you
