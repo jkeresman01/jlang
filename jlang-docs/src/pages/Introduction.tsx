@@ -51,6 +51,19 @@ export default function Introduction() {
         of thoughts, creation, and innovation. When you are deep enough inside a
         problem, the rest of the world simply stops existing.
       </p>
+
+      <Callout type="note">
+        There is a difference between programming and a job &mdash; whether that
+        job is software engineering or anything else. A job is a set of tasks
+        you execute so you can get paid, pay the bills, and put food on the
+        table. Programming, the way I mean it throughout this book, is something
+        else entirely. It is where your individuality, your creativity, and your
+        uniqueness come into play. It is a form of self-expression &mdash; a
+        space where you are not following someone else&rsquo;s checklist but
+        building something that is distinctly yours. When I talk about
+        programming here, that is what I am talking about.
+      </Callout>
+
       <p>
         And why write this? Truth be told, because I am terrified. Terrified
         that my obsession is coming to an end. I have done every programming
@@ -337,7 +350,11 @@ export default function Introduction() {
         Most of the examples throughout this book also come from Java and C++
         &mdash; the two languages I have spent the most time with. If you check
         my stats you will see around 50% Java and around 31% C++, so it only
-        felt natural to draw from the worlds I know best.
+        felt natural to draw from the worlds I know best. And when I say
+        &ldquo;worlds,&rdquo; I mean exactly that &mdash; not the jobs I have
+        worked in those languages, but the worlds I have lived in as a
+        programmer, where my curiosity, creativity, and individuality shaped the
+        way I think and build.
         <br />
         <br />
         Be better than you were yesterday.
