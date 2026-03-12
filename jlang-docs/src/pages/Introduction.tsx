@@ -224,6 +224,51 @@ export default function Introduction() {
         unexpected along the way.
       </p>
 
+      <h3>Why a Website?</h3>
+      <p>
+        You might wonder why this is a website and not a PDF, not a printed
+        book, and not written in LaTeX. The answer is simple &mdash;
+        accessibility. A website is the lowest barrier to entry there is. You
+        open a link and you are reading. No downloads, no special software, no
+        figuring out which PDF viewer renders the fonts correctly. It works on
+        your phone, on your laptop, on a ten-year-old tablet your grandmother
+        uses to read recipes. Anyone with a browser and an internet connection
+        can read this, and that is exactly the point.
+      </p>
+      <p>
+        LaTeX is a phenomenal tool &mdash; if you are writing a scientific
+        paper, a thesis, or a mathematical proof. It produces beautiful
+        typesetting and handles equations, citations, and formal formatting
+        better than anything else out there. But this is not a scientific paper.
+        This is a collection of thoughts, examples, and stories from someone who
+        programs every day and wanted to share what he has learned along the
+        way. Using LaTeX here would add complexity for the sake of complexity
+        &mdash; and that goes against everything this project stands for.
+      </p>
+      <p>
+        A PDF would have been another option, but PDFs are static. You cannot
+        embed a video in a PDF. You cannot have syntax-highlighted code blocks
+        that look the same on every device. You cannot have a dark mode toggle
+        for reading at 2 AM when you should be sleeping. And you certainly
+        cannot update a PDF after someone points out a mistake &mdash; you would
+        have to redistribute the entire file and hope people download the new
+        version.
+      </p>
+      <p>
+        A printed book carries weight &mdash; both literally and figuratively
+        &mdash; and I have deep respect for the medium. But printing costs
+        money, distribution takes time, and updates are impossible once ink hits
+        paper. For something that is still evolving, that would be premature.
+      </p>
+      <p>
+        A website lets me embed videos, update content the moment I spot an
+        error, and keep everything in one place that anyone can reach. It is not
+        the most prestigious format, and it will never sit on a shelf next to
+        Kernighan and Ritchie. But it is honest, it is practical, and it is
+        free. And for what this is &mdash; a twenty-five-year-old&rsquo;s
+        attempt to share what he knows &mdash; that feels like the right fit.
+      </p>
+
       <Callout type="tip">
         <strong>Fun fact:</strong> If this were a book on a shelf, it would not
         be filed under drama &mdash; it would be a comedy. And every comedy
