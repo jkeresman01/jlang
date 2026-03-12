@@ -15,6 +15,24 @@ export default function Arrays() {
       </blockquote>
 
       <Callout type="note">
+        <strong>Fun Fact &mdash; Why do arrays start at 0?</strong>
+        <br />
+        <br />
+        In 1982, Edsger Dijkstra wrote a memo titled{' '}
+        <em>"Why numbering should start at zero"</em>, arguing that zero-based
+        indexing is the most natural convention for half-open ranges. But the
+        real reason? In C, <code>arr[i]</code> is literally{' '}
+        <code>*(arr + i)</code> &mdash; pointer arithmetic. The first element is
+        at offset 0 from the base address. It's not philosophy, it's just math.
+        Every language that inherited C's memory model inherited its indexing.
+        Including this one.
+        <br />
+        <br />
+        Dijkstra's memo is worth reading &mdash; it's only one page and he
+        handwrote it, because of course he did.
+      </Callout>
+
+      <Callout type="note">
         <strong>
           Bonus &mdash; Dijkstra: "Programmer? No such profession."
         </strong>
@@ -42,24 +60,6 @@ export default function Arrays() {
           Design
         </em>
         , Chapter 4 &mdash; "Structured Programming".
-      </Callout>
-
-      <Callout type="note">
-        <strong>Fun Fact &mdash; Why do arrays start at 0?</strong>
-        <br />
-        <br />
-        In 1982, Edsger Dijkstra wrote a memo titled{' '}
-        <em>"Why numbering should start at zero"</em>, arguing that zero-based
-        indexing is the most natural convention for half-open ranges. But the
-        real reason? In C, <code>arr[i]</code> is literally{' '}
-        <code>*(arr + i)</code> &mdash; pointer arithmetic. The first element is
-        at offset 0 from the base address. It's not philosophy, it's just math.
-        Every language that inherited C's memory model inherited its indexing.
-        Including this one.
-        <br />
-        <br />
-        Dijkstra's memo is worth reading &mdash; it's only one page and he
-        handwrote it, because of course he did.
       </Callout>
 
       {/* ── Section 1: Stack-allocated Arrays ── */}
