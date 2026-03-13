@@ -43,23 +43,25 @@ export default function Introduction() {
         black hoodie and the only tie you will ever see is the one Steve Jobs
         got paid sixty dollars to wear &mdash; and even he looked like he wanted
         to rip it off the entire time. I have always believed that only
-        bartenders need to wear shirts and ties. The rest of us should be judged by what we
-        build, not by what we button up to our necks. A well-ironed shirt has
-        never fixed a bug, and a Windsor knot has never shipped a feature. If
-        your code compiles and your tests pass, nobody cares whether you wrote
-        it in a three-piece suit or in yesterday&rsquo;s pajamas.
+        bartenders need to wear shirts and ties. The rest of us should be judged
+        by what we build, not by what we button up to our necks. A well-ironed
+        shirt has never fixed a bug, and a Windsor knot has never shipped a
+        feature. If your code compiles and your tests pass, nobody cares whether
+        you wrote it in a three-piece suit or in yesterday&rsquo;s pajamas.
       </p>
       <p>
         The same goes for titles. Senior, staff, principal, lead, architect
         &mdash; these are just words on a business card. They tell you where
-        someone sits in an org chart, not how well they think through a problem of any nature.
-        A title is a label someone else gave you. Your
-        code is the only title that cannot be faked &mdash; and no amount of
-        seniority will make a broken build pass.
+        someone sits in an org chart, not how well they think through a problem
+        of any nature. A title is a label someone else gave you. Your code is
+        the only title that cannot be faked &mdash; and no amount of seniority
+        will make a broken build pass.
       </p>
 
       <Callout type="note">
-        <strong>Steve Jobs &mdash; &ldquo;They paid me $60 to wear a tie&rdquo;</strong>
+        <strong>
+          Steve Jobs &mdash; &ldquo;They paid me $60 to wear a tie&rdquo;
+        </strong>
         <br />
         <br />
         <iframe
