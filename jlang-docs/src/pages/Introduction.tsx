@@ -599,6 +599,33 @@ export default function Introduction() {
         &mdash; Robert Nystrom, <em>Crafting Interpreters</em>
       </p>
 
+      <p>
+        Muhammad Ali said it better than anyone:
+      </p>
+      <blockquote
+        style={{
+          borderLeft: '3px solid var(--border)',
+          paddingLeft: '1rem',
+          margin: '1.5rem 0',
+          fontStyle: 'italic',
+          opacity: 0.85,
+        }}
+      >
+        I hated every minute of training, but I said, &ldquo;Don&rsquo;t quit.
+        Suffer now and live the rest of your life as a champion.&rdquo;
+        <br />
+        <span style={{ fontStyle: 'normal', opacity: 0.7 }}>
+          &mdash; Muhammad Ali
+        </span>
+      </blockquote>
+      <p>
+        That is exactly what implementing a language from scratch feels like.
+        Every moment you spend wrestling with symbol tables, type resolution, and
+        code generation is a weight strapped to your ankle. But when you finally
+        take it off &mdash; when you go back to writing everyday code &mdash;
+        you see everything differently. The struggle is the point.
+      </p>
+
       <h2>Fun Facts</h2>
 
       <Callout type="note">
