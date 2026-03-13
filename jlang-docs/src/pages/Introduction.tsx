@@ -76,6 +76,20 @@ export default function Introduction() {
         ></iframe>
       </Callout>
 
+      <Callout type="tip">
+        <strong>Fun fact:</strong> When Apple&rsquo;s board of directors first
+        saw the finished &ldquo;1984&rdquo; Super Bowl commercial, they
+        unanimously hated it. The CEO at the time, John Sculley, instructed the
+        ad agency to sell back the Super Bowl airtime. But Steve Jobs refused to
+        back down and defied the entire leadership team. The 60-second ad aired
+        on January 22, 1984, during the third quarter of Super Bowl XVIII. Two
+        days later, the Macintosh went on sale. Apple sold over 72,000 units in
+        the first 100 days &mdash; $155 million worth of Macintoshes &mdash;
+        far exceeding expectations. By the end of the first year, 250,000 units
+        had been sold. The ad is now widely regarded as the greatest television
+        commercial ever made and raised the Apple brand to its legendary status.
+      </Callout>
+
       <h2>About Me</h2>
       <p>
         I am a clueless twenty-five-year-old who programs every day and is now,
