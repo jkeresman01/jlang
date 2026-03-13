@@ -84,9 +84,9 @@ export default function Introduction() {
         back down and defied the entire leadership team. The 60-second ad aired
         on January 22, 1984, during the third quarter of Super Bowl XVIII. Two
         days later, the Macintosh went on sale. Apple sold over 72,000 units in
-        the first 100 days &mdash; $155 million worth of Macintoshes &mdash;
-        far exceeding expectations. By the end of the first year, 250,000 units
-        had been sold. The ad is now widely regarded as the greatest television
+        the first 100 days &mdash; $155 million worth of Macintoshes &mdash; far
+        exceeding expectations. By the end of the first year, 250,000 units had
+        been sold. The ad is now widely regarded as the greatest television
         commercial ever made and raised the Apple brand to its legendary status.
       </Callout>
 
