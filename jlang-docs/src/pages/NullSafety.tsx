@@ -257,6 +257,17 @@ var cfg: Config* = primary ?: getDefaultConfig();
         The elvis operator is inspired by Kotlin's <code>?:</code> operator. The
         name comes from the resemblance of <code>?:</code> to Elvis Presley's
         hairstyle when viewed sideways.
+        <br />
+        <br />
+        <em>
+          "When things go wrong, don't go with them."
+        </em>{' '}
+        &mdash; Elvis Presley
+        <br />
+        <br />
+        Good advice for life, and exactly what <code>?:</code> does &mdash;
+        when the left side goes wrong (null), don't go with it. Take the
+        fallback instead.
       </Callout>
     </>
   );
