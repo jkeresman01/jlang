@@ -1,5 +1,6 @@
 import CodeBlock from '../components/CodeBlock';
 import Callout from '../components/Callout';
+import BitVisualizer from '../components/BitVisualizer';
 
 export default function Operators() {
   return (
@@ -307,6 +308,10 @@ var complement := ~a;      // bitwise NOT
 var leftShift  := a << 2;  // 0b110000 = 48
 var rightShift := a >> 1;  // 0b0110 = 6`}
       />
+
+      <p>Toggle the bits below to see how each operation transforms them:</p>
+
+      <BitVisualizer />
 
       <h3>Compound Assignment</h3>
       <p>All bitwise operators have compound assignment forms:</p>
