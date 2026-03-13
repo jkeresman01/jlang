@@ -296,7 +296,10 @@ export default function Introduction() {
         built on. Some of the videos featured here contain words and thoughts
         from people like Ken Thompson, Dennis Ritchie, Bjarne Stroustrup, and
         James Gosling &mdash; programmers whose work we all stand on, whether we
-        realize it or not.
+        realize it or not. You will also find quotes from great craftsmen,
+        athletes, and musicians &mdash; people whose dedication to their craft
+        transcends the field they practiced it in. Notable ones include Kobe
+        Bryant, Elvis Presley, Michael Jordan, and Muhammad Ali.
       </p>
       <p>
         Of course, calling this a &ldquo;book&rdquo; or a
