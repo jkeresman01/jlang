@@ -361,9 +361,14 @@ export default function Introduction() {
         from people like Ken Thompson, Dennis Ritchie, Bjarne Stroustrup, and
         James Gosling &mdash; programmers whose work we all stand on, whether we
         realize it or not. You will also find quotes from great craftsmen,
-        athletes, and musicians &mdash; people whose dedication to their craft
-        transcends the field they practiced it in. Notable ones include Kobe
-        Bryant, Elvis Presley, Michael Jordan, and Muhammad Ali.
+        athletes, coaches, musicians, and visionaries &mdash; people whose
+        dedication to their craft transcends the field they practiced it in.
+        Notable ones include Kobe Bryant, Elvis Presley, Michael Jordan,
+        Muhammad Ali, and Jos&eacute; Mourinho. You will also notice that Steve
+        Jobs appears throughout these pages more than anyone else &mdash; not
+        because I idolize the man, but because there was something weirdly
+        unique about the way he saw the world that reminds me of my own
+        weirdness.
       </p>
       <p>
         Of course, calling this a &ldquo;book&rdquo; or a
