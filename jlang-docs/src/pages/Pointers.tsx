@@ -6,16 +6,54 @@ export default function Pointers() {
     <>
       <h1>Pointers</h1>
 
+      <Callout type="life-lesson">
+        <strong>Life lesson:</strong> I used to sleep in my car &mdash; a
+        Renault Clio with about six different shades of red, because every time
+        I put a new dent in it I repainted that panel myself. It was not a
+        pretty car. But it was mine, and on the nights I had nowhere better to
+        be, it was also my bed.
+        <br />
+        <br />
+        One freezing night I parked on some street, pulled the seat back, and
+        fell asleep. I had forgotten to pull the handbrake. It was an old car
+        &mdash; the kind with a physical handbrake lever between the seats, the
+        kind you actually had to remember to use. The street had just enough
+        slope. I woke up on the other side of the road, wedged against the curb.
+        No one was there, thankfully. Just me, the cold, and a car that had
+        decided to relocate itself while I was sleeping in it.
+        <br />
+        <br />
+        The funny thing is &mdash; it happened twice.
+        <br />
+        <br />
+        The first time something goes wrong, it is a lesson. The second time, it
+        is a choice. A handbrake exists for a reason &mdash; you just never
+        think about it until your car is sliding down the street at midnight.
+        Safeguards feel unnecessary right up until the moment they are not. This
+        applies to handbrakes, to null checks, and to most things worth caring
+        about.
+      </Callout>
+
       {/* ── Section 1: What Is a Pointer ── */}
       <h2>What Is a Pointer</h2>
+      <p>
+        I knew the address where I parked. I could have told anyone exactly
+        where to find the car. But the car &mdash; the thing the address was
+        supposed to point to &mdash; was not where I left it. The address was
+        still valid. The thing it pointed to had moved. In programming, that is
+        called a dangling pointer &mdash; an address that confidently points to
+        a place where nothing useful lives anymore. And just like forgetting the
+        handbrake, the consequences range from harmless to catastrophic,
+        depending entirely on whether something else was in the way.
+      </p>
       <p>
         A pointer is a variable that holds a memory address. That is the entire
         definition. Not a reference, not a handle, not a smart wrapper around
         something the runtime manages for you. A pointer is a number &mdash; an
-        address &mdash; that tells you where something lives in memory. If you
-        can understand that a street address tells you where a building is
-        without being the building itself, you already understand pointers. The
-        rest is syntax.
+        address &mdash; that tells you where something lives in memory. If a
+        street address tells you where a building is without being the building
+        itself, a pointer tells you where your data lives without being the data
+        itself. The rest is syntax.
       </p>
       <p>
         In jlang, a pointer is declared by appending <code>*</code> to a type.{' '}
