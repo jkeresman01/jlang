@@ -349,15 +349,8 @@ export default function Introduction() {
         increasingly rare. In an era of vibes, where shipping fast matters more
         than understanding deeply, we have quietly forgotten the core concepts,
         the foundational books, and the hard-won lessons that this craft was
-        built on. But make no mistake &mdash; abstraction is not the enemy.
-        Every time we have raised the level of abstraction, we have unlocked
-        entirely new possibilities for innovation, enabling solutions to
-        problems that were previously out of reach and empowering more people to
-        build things that genuinely help others. The tool itself, in its current
-        form, is nothing short of extraordinary. What is worth mourning is not
-        progress, but the forgetting &mdash; when we stop asking why things work
-        the way they do, we lose the very foundation that makes the next leap
-        possible. Some of the videos featured here contain words and thoughts
+        built on. This book tries to bring some of those voices back. Some of
+        the videos featured here contain words and thoughts
         from people like Ken Thompson, Dennis Ritchie, Bjarne Stroustrup, and
         James Gosling &mdash; programmers whose work we all stand on, whether we
         realize it or not. You will also find quotes from great craftsmen,
@@ -369,6 +362,16 @@ export default function Introduction() {
         because I idolize the man, but because there was something weirdly
         unique about the way he saw the world that reminds me of my own
         weirdness.
+      </p>
+      <p>
+        None of this is to say that abstraction is the enemy. Every time we
+        have raised the level of abstraction, we have unlocked entirely new
+        possibilities for innovation, enabling solutions to problems that were
+        previously out of reach and empowering more people to build things that
+        genuinely help others. The tool itself, in its current form, is nothing
+        short of extraordinary. What is worth mourning is not progress, but the
+        forgetting &mdash; when we stop asking why things work the way they do,
+        we lose the very foundation that makes the next leap possible.
       </p>
       <p>
         Of course, calling this a &ldquo;book&rdquo; or a
