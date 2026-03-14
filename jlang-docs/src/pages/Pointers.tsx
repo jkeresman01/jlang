@@ -40,12 +40,41 @@ fn main() -> i32 {
 }`}
       />
 
-      <Callout type="note">
-        Pointers were the first concept that truly broke my brain. That feeling
-        where someone is drawing boxes and arrows on a whiteboard, explaining
-        how this address points to that address, and you are nodding but nothing
-        is clicking &mdash; just a wall of fog between you and the idea. If you
-        are reading this and feeling that fog, keep going. It clears.
+      <Callout type="important">
+        <strong>Why pointers earn their place here</strong>
+        <br />
+        <br />
+        Java was created in large part because of pointer bugs. James Gosling
+        looked at the damage C and C++ caused &mdash; dangling pointers, wild
+        arithmetic, entire systems undone by a single bad address &mdash; and
+        ripped pointers out entirely. But they kept <code>null</code>.{' '}
+        <code>NullPointerException</code> became the most thrown exception in
+        Java&rsquo;s history. If pointers were dangerous enough to kill,{' '}
+        <em>why did null survive?</em>
+        <br />
+        <br />
+        Pointers were the first concept that truly broke my brain &mdash; boxes
+        and arrows on a whiteboard, nodding but nothing clicking. If you are
+        feeling that fog right now, keep going. It clears.
+        <br />
+        <br />
+        Go proved that pointers don&rsquo;t have to be the nightmare that C
+        made them. Real pointers, but no pointer arithmetic &mdash; you cannot
+        walk through memory like a drunk cowboy with a loaded revolver. Forbid
+        the dangerous parts, keep the useful parts, and pointers become a tool
+        instead of a time bomb. That&rsquo;s exactly the bet Jlang makes.
+        <br />
+        <br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/RrMptmNYkSw"
+          title="James Gosling on why Java removed pointers"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
       </Callout>
 
       {/* ── Section 2: Declaring Pointers ── */}
@@ -162,14 +191,6 @@ printf("Third element: %d", arr[2]);
 free(arr);`}
       />
 
-      <Callout type="note">
-        Go made the same choice. Rob Pike once explained that pointer arithmetic
-        was left out of Go not because it is useless, but because the damage it
-        causes far outweighs the convenience it provides. Every buffer overflow
-        in the history of computing started with someone doing math on an
-        address. jlang agrees &mdash; if you need the third element, ask for the
-        third element. Do not hand-calculate where it lives.
-      </Callout>
 
       {/* ── Section 5: No Dereference Operator ── */}
       <h2>No Dereference Operator</h2>
