@@ -39,8 +39,11 @@ export const chapters = [
     items: [{ label: 'Operators', path: '/operators' }],
   },
   {
-    title: 'Memory',
-    items: [{ label: 'Memory Management', path: '/memory' }],
+    title: 'Pointers & Memory',
+    items: [
+      { label: 'Pointers', path: '/pointers' },
+      { label: 'Memory Management', path: '/memory' },
+    ],
   },
 ];
 
