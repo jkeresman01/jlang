@@ -350,22 +350,21 @@ export default function Introduction() {
         than understanding deeply, we have quietly forgotten the core concepts,
         the foundational books, and the hard-won lessons that this craft was
         built on. This book tries to bring some of those voices back. Some of
-        the videos featured here contain words and thoughts
-        from people like Ken Thompson, Dennis Ritchie, Bjarne Stroustrup, and
-        James Gosling &mdash; programmers whose work we all stand on, whether we
-        realize it or not. You will also find quotes from great craftsmen,
-        athletes, coaches, musicians, and visionaries &mdash; people whose
-        dedication to their craft transcends the field they practiced it in.
-        Notable ones include Kobe Bryant, Elvis Presley, Michael Jordan,
-        Muhammad Ali, and Jos&eacute; Mourinho. You will also notice that Steve
-        Jobs appears throughout these pages more than anyone else &mdash; not
-        because I idolize the man, but because there was something weirdly
-        unique about the way he saw the world that reminds me of my own
-        weirdness.
+        the videos featured here contain words and thoughts from people like Ken
+        Thompson, Dennis Ritchie, Bjarne Stroustrup, and James Gosling &mdash;
+        programmers whose work we all stand on, whether we realize it or not.
+        You will also find quotes from great craftsmen, athletes, coaches,
+        musicians, and visionaries &mdash; people whose dedication to their
+        craft transcends the field they practiced it in. Notable ones include
+        Kobe Bryant, Elvis Presley, Michael Jordan, Muhammad Ali, and
+        Jos&eacute; Mourinho. You will also notice that Steve Jobs appears
+        throughout these pages more than anyone else &mdash; not because I
+        idolize the man, but because there was something weirdly unique about
+        the way he saw the world that reminds me of my own weirdness.
       </p>
       <p>
-        None of this is to say that abstraction is the enemy. Every time we
-        have raised the level of abstraction, we have unlocked entirely new
+        None of this is to say that abstraction is the enemy. Every time we have
+        raised the level of abstraction, we have unlocked entirely new
         possibilities for innovation, enabling solutions to problems that were
         previously out of reach and empowering more people to build things that
         genuinely help others. The tool itself, in its current form, is nothing

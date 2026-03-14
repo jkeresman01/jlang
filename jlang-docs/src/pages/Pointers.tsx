@@ -58,10 +58,10 @@ fn main() -> i32 {
         feeling that fog right now, keep going. It clears.
         <br />
         <br />
-        Go proved that pointers don&rsquo;t have to be the nightmare that C
-        made them. Real pointers, but no pointer arithmetic &mdash; you cannot
-        walk through memory like a drunk cowboy with a loaded revolver. Forbid
-        the dangerous parts, keep the useful parts, and pointers become a tool
+        Go proved that pointers don&rsquo;t have to be the nightmare that C made
+        them. Real pointers, but no pointer arithmetic &mdash; you cannot walk
+        through memory like a drunk cowboy with a loaded revolver. Forbid the
+        dangerous parts, keep the useful parts, and pointers become a tool
         instead of a time bomb. That&rsquo;s exactly the bet Jlang makes.
         <br />
         <br />
@@ -190,7 +190,6 @@ printf("Third element: %d", arr[2]);
 
 free(arr);`}
       />
-
 
       {/* ── Section 5: No Dereference Operator ── */}
       <h2>No Dereference Operator</h2>
