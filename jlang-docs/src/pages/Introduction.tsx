@@ -357,12 +357,12 @@ export default function Introduction() {
         musicians, and visionaries &mdash; people whose dedication to their
         craft transcends the field they practiced it in. Notable ones include
         Kobe Bryant, Elvis Presley, Michael Jordan, Muhammad Ali, and
-        Jos&eacute; Mourinho &mdash; to be honest, the only reason
-        Mourinho is here is because he had a funny video; I do not
-        particularly care for him. You will also notice that Steve Jobs appears
-        throughout these pages more than anyone else &mdash; not because I
-        idolize the man, but because there was something weirdly unique about
-        the way he saw the world that reminds me of my own weirdness.
+        Jos&eacute; Mourinho &mdash; to be honest, the only reason Mourinho is
+        here is because he had a funny video; I do not particularly care for
+        him. You will also notice that Steve Jobs appears throughout these pages
+        more than anyone else &mdash; not because I idolize the man, but because
+        there was something weirdly unique about the way he saw the world that
+        reminds me of my own weirdness.
       </p>
       <p>
         None of this is to say that abstraction is the enemy. Every time we have
