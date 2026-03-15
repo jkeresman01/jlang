@@ -90,6 +90,36 @@ export default function Introduction() {
         commercial ever made and raised the Apple brand to its legendary status.
       </Callout>
 
+      <p>
+        Now, relaxed and open communication without perfectly curated
+        professionalism might sound like the norm &mdash; and in most small to
+        medium-sized places, it genuinely is. But if you ever step inside a
+        large corporate entity, you will witness the exact opposite. Everyone
+        says precisely what they are supposed to say. If someone declares that
+        the Earth is flat, you nod your head and agree &mdash; because
+        disagreeing is a career risk nobody is willing to take. Managers reward
+        presence over output, perfectly content with people sitting at their
+        desks all day staring at a screen &mdash; even if most of that screen
+        time is spent reading football stats. Groupthink replaces independent
+        thought. People huddle together beforehand to agree on what to say, then
+        invest their energy in games of power and battles of egos instead of the
+        craft itself. They act out of insecurity, constantly seeking approval
+        and validation from whoever sits above them in the hierarchy. And those
+        who refuse to play that game &mdash; the ones who just want to build
+        things &mdash; are quietly pushed to the margins through instruments of
+        structural removal: getting assigned work on impossibly tight schedules,
+        set up to fail, or simply managed out until they leave on their own.
+      </p>
+      <p>
+        So here, this is the opposite of that. This is open, transparent, and
+        opinionated &mdash; because there is nothing worse than a person without
+        an opinion. Or worse still, a person whose opinion shifts with the tide,
+        bending whichever way the wind blows, saying whatever the room wants to
+        hear. If you stand for nothing, you will fall for anything. And if your
+        convictions change with every conversation, they were never convictions
+        at all &mdash; just noise dressed up as thought.
+      </p>
+
       <h2>About Me</h2>
       <p>
         I am a clueless twenty-five-year-old who programs every day and is now,
