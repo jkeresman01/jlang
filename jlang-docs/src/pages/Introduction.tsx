@@ -53,9 +53,11 @@ export default function Introduction() {
         The same goes for titles. Senior, staff, principal, lead, architect
         &mdash; these are just words on a business card. They tell you where
         someone sits in an org chart, not how well they think through a problem
-        of any nature. A title is a label someone else gave you. Your code is
-        the only title that cannot be faked &mdash; and no amount of seniority
-        will make a broken build pass.
+        of any nature. A title is a label someone else gave you. Oh, almost forgot
+        Senior Specialist is yet another one that somenone probably saw from some
+        cartoon, not sure why people care for this. Your code is the only title that
+        cannot be faked &mdash; and no amount of seniority will make a broken build
+        pass.
       </p>
 
       <Callout type="note">
