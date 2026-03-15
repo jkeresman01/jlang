@@ -118,7 +118,16 @@ export default function Introduction() {
         people fall into these patterns &mdash; some lead the charge, some
         follow along, and some just look the other way. I have seen people cry
         when they see someone completing those things they were never allowed to
-        finish.
+        finish. But I have also seen the spark in people&rsquo;s eyes when they
+        connect the dots on their own. And that is the key &mdash; you cannot
+        force someone to see it. You can only point them in the right direction
+        and let them arrive at the conclusion themselves. So in this book, beyond
+        just the elements of jlang, you will find suggestions on how to use the
+        language &mdash; because I can only point you in the right direction, the
+        rest is yours. I have also noticed that women usually just have an eighth
+        sense for this kind of thing. There is an old saying: if an egg is broken
+        by an outside force, life ends &mdash; but if it is broken from within,
+        life begins.
       </p>
 
       <Callout type="note">
