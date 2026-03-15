@@ -56,7 +56,7 @@ export default function Introduction() {
         of any nature. A title is a label someone else gave you. Oh, almost forgot
         Senior Specialist is yet another one that somenone probably saw from some
         cartoon, not sure why people care for this, will try to mock them trough 
-        this document, the only reason being is that I don't really care for them,
+        this book, the only reason being is that I don't really care for them,
         we are all people doing something, titles and roles are of no relevance. 
         Your code is the only title that cannot be faked &mdash; and no amount of
         seniority will make a broken build pass.
