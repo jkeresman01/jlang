@@ -112,6 +112,25 @@ export default function Introduction() {
         have seen people cry when they see someone completing those things they
         were never allowed to finish.
       </p>
+
+      <Callout type="note">
+        <strong>
+          Muhammad Ali dodges 21 punches in 10 seconds
+        </strong>
+        <br />
+        <br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/nxZ-J7xit5Y"
+          title="Muhammad Ali dodges 21 punches in 10 seconds"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       <p>
         So here, this is the opposite of that. This is open, transparent, and
         opinionated &mdash; because there is nothing worse than a person without
