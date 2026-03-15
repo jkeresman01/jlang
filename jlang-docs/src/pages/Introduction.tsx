@@ -113,21 +113,24 @@ export default function Introduction() {
         play that game &mdash; the ones who just want to build things &mdash;
         are quietly pushed to the margins through instruments of structural
         sidelining &mdash; set up to fail, or simply managed out until they
-        leave on their own. You have to give them credit, they get remarkably
-        creative with it. And it's interesting to watch how different groups of
-        people fall into these patterns &mdash; some lead the charge, some
-        follow along, and some just look the other way. I have seen people cry
-        when they see someone completing those things they were never allowed to
-        finish. But I have also seen the spark in people&rsquo;s eyes when they
-        connect the dots on their own. And that is the key &mdash; you cannot
-        force someone to see it. You can only point them in the right direction
-        and let them arrive at the conclusion themselves. So in this book, beyond
-        just the elements of jlang, you will find suggestions on how to use the
-        language &mdash; because I can only point you in the right direction, the
-        rest is yours. I have also noticed that women usually just have an eighth
-        sense for this kind of thing. There is an old saying: if an egg is broken
-        by an outside force, life ends &mdash; but if it is broken from within,
-        life begins.
+        leave on their own. Assignments outside the person&rsquo;s expertise
+        with no training, reputation undermining &mdash; suddenly they are
+        &ldquo;not working,&rdquo; &ldquo;difficult,&rdquo; and who knows what
+        else might come to mind. You have to give them credit, they get
+        remarkably creative with it. And it&rsquo;s interesting to watch how
+        different groups of people fall into these patterns &mdash; some lead
+        the charge, some follow along, and some just look the other way. I have
+        seen people cry when they see someone completing those things they were
+        never allowed to finish. But I have also seen the spark in
+        people&rsquo;s eyes when they connect the dots on their own. And that is
+        the key &mdash; you cannot force someone to see it. You can only point
+        them in the right direction and let them arrive at the conclusion
+        themselves. So in this book, beyond just the elements of jlang, you will
+        find suggestions on how to use the language &mdash; because I can only
+        point you in the right direction, the rest is yours. I have also noticed
+        that women usually just have an eighth sense for this kind of thing.
+        There is an old saying: if an egg is broken by an outside force, life
+        ends &mdash; but if it is broken from within, life begins.
       </p>
 
       <Callout type="note">
@@ -510,7 +513,7 @@ export default function Introduction() {
         textbook explanation could have. Edit distance was yet another &mdash;
         the kind of problem that looks deceptively simple until you sit down and
         realize you need a 2D matrix and a recurrence relation you definitely
-        didn't have memorized. Those moments tend to stick with you.
+        didn&rsquo;t have memorized. Those moments tend to stick with you.
       </Callout>
 
       <Callout type="important">
@@ -726,13 +729,14 @@ export default function Introduction() {
         complex and performance critical. You must master recursion, dynamic
         arrays, trees, graphs, and hash tables. You probably use hash tables at
         least in your day-to-day programming, but do you really understand them?
-        Well, after we've crafted our own from scratch, I guarantee you will.
+        Well, after we&rsquo;ve crafted our own from scratch, I guarantee you
+        will.
       </p>
       <p>
-        While I intend to show you that an interpreter isn't as daunting as you
-        might believe, implementing one well is still a challenge. Rise to it,
-        and you'll come away a stronger programmer, and smarter about how you
-        use data structures and algorithms in your day job.
+        While I intend to show you that an interpreter isn&rsquo;t as daunting
+        as you might believe, implementing one well is still a challenge. Rise
+        to it, and you&rsquo;ll come away a stronger programmer, and smarter
+        about how you use data structures and algorithms in your day job.
       </p>
       <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.7 }}>
         &mdash; Robert Nystrom, <em>Crafting Interpreters</em>
