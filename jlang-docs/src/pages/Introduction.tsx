@@ -103,14 +103,19 @@ export default function Introduction() {
         time is spent reading football stats. Groupthink replaces independent
         thought. People huddle together beforehand to agree on what to say, then
         invest their energy in games of power and battles of egos instead of the
-        craft itself. They act out of insecurity, constantly seeking approval
-        and validation from whoever sits above them in the hierarchy. And those
-        who refuse to play that game &mdash; the ones who just want to build
-        things &mdash; are quietly pushed to the margins through instruments of
-        structural removal: getting assigned work on impossibly tight schedules,
-        set up to fail, or simply managed out until they leave on their own. I
-        have seen people cry when they see someone completing those things they
-        were never allowed to finish.
+        craft itself. They take things out of context and frame them in whatever
+        story benefits their own self-interest, spreading subtle lies in circles
+        where they have influence and playing on crowd control to shape the
+        narrative. Even those with the mental capacity to see through the facade
+        stay silent, afraid that speaking up will make them the next target.
+        People act out of insecurity, constantly seeking approval and validation
+        from whoever sits above them in the hierarchy. And those who refuse to
+        play that game &mdash; the ones who just want to build things &mdash;
+        are quietly pushed to the margins through instruments of structural
+        removal: getting assigned work on impossibly tight schedules, set up to
+        fail, or simply managed out until they leave on their own. I have seen
+        people cry when they see someone completing those things they were never
+        allowed to finish.
       </p>
 
       <Callout type="note">
