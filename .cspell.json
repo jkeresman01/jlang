@@ -88,6 +88,12 @@
     "doesn",
     "Heartbleed",
     "vtable",
-    "Exup"
+    "Exup",
+    "constexpr",
+    "consteval",
+    "constinit",
+    "gatekeeping",
+    "RAII",
+    "footguns"
   ]
 }
