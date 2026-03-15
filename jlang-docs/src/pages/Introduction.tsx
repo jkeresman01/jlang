@@ -114,9 +114,7 @@ export default function Introduction() {
       </p>
 
       <Callout type="note">
-        <strong>
-          Muhammad Ali dodges 21 punches in 10 seconds
-        </strong>
+        <strong>Muhammad Ali dodges 21 punches in 10 seconds</strong>
         <br />
         <br />
         <iframe
