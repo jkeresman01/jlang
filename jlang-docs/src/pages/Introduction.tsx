@@ -108,7 +108,9 @@ export default function Introduction() {
         who refuse to play that game &mdash; the ones who just want to build
         things &mdash; are quietly pushed to the margins through instruments of
         structural removal: getting assigned work on impossibly tight schedules,
-        set up to fail, or simply managed out until they leave on their own.
+        set up to fail, or simply managed out until they leave on their own. I
+        have seen people cry when they see someone completing those things they
+        were never allowed to finish.
       </p>
       <p>
         So here, this is the opposite of that. This is open, transparent, and
