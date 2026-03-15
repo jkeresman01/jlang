@@ -121,7 +121,7 @@ export default function Introduction() {
         different groups of people fall into these patterns &mdash; some lead
         the charge, some follow along, and some just look the other way. I have
         seen people cry when they see someone completing those things they were
-        never allowed to finish. But I have also seen the spark in
+        never allowed to finish, around a year ago. But I have also seen the spark in
         people&rsquo;s eyes when they connect the dots on their own. And that is
         the key &mdash; you cannot force someone to see it. You can only point
         them in the right direction and let them arrive at the conclusion
