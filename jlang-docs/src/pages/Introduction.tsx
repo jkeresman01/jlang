@@ -133,15 +133,15 @@ export default function Introduction() {
         ends &mdash; but if it is broken from within, life begins.
       </p>
 
-      <p>
-        So kids, watch out &mdash; find those good people of strong character
-        and learn from them. And learn how to spot the greedy ones, those who
-        act purely out of self-interest, and those whose entire value system is
-        built on money, titles, and positions inside some organization. Those
-        people will smile at you while pulling the ladder up behind them. Real
-        character is not measured by what someone has, but by what they do when
-        no one is watching.
-      </p>
+      <Callout type="life-lesson">
+        <strong>Life lesson:</strong> Watch out &mdash; find those good people
+        of strong character and learn from them. And learn how to spot the
+        greedy ones, those who act purely out of self-interest, and those whose
+        entire value system is built on money, titles, and positions inside some
+        organization. Those people will smile at you while pulling the ladder up
+        behind them. Real character is not measured by what someone has, but by
+        what they do when no one is watching.
+      </Callout>
 
       <Callout type="note">
         <strong>Muhammad Ali dodges 21 punches in 10 seconds</strong>
