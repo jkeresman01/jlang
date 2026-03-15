@@ -146,23 +146,7 @@ export default function Introduction() {
         organization. Those people will smile at you while pulling the ladder up
         behind them. Real character is not measured by what someone has, but by
         what they do when no one is watching.
-      </Callout>
-
-      <Callout type="note">
-        <strong>Muhammad Ali dodges 21 punches in 10 seconds</strong>
-        <br />
-        <br />
-        <iframe
-          width="100%"
-          height="315"
-          src="https://www.youtube.com/embed/nxZ-J7xit5Y"
-          title="Muhammad Ali dodges 21 punches in 10 seconds"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
-        ></iframe>
-      </Callout>
+      </Callout>  
 
       <p>
         So here, this is the opposite of that. This is open, transparent, and
