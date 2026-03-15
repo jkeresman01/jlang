@@ -112,10 +112,13 @@ export default function Introduction() {
         from whoever sits above them in the hierarchy. And those who refuse to
         play that game &mdash; the ones who just want to build things &mdash;
         are quietly pushed to the margins through instruments of structural
-        removal: getting assigned work on impossibly tight schedules, set up to
-        fail, or simply managed out until they leave on their own. I have seen
-        people cry when they see someone completing those things they were never
-        allowed to finish.
+        sidelining &mdash; set up to fail, or simply managed out until they
+        leave on their own. You have to give them credit, they get remarkably
+        creative with it. And it's interesting to watch how different groups of
+        people fall into these patterns &mdash; some lead the charge, some follow
+        along, and some just look the other way. I have seen people cry when
+        they see someone completing those things they were never allowed to
+        finish.
       </p>
 
       <Callout type="note">
