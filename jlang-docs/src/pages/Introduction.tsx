@@ -544,7 +544,7 @@ export default function Introduction() {
       <Callout type="tip">
         <strong>Fun fact:</strong> Most people call C++ an object-oriented
         language, but Bjarne Stroustrup himself disagrees. He has repeatedly
-        said that C++ is a<em>multi-paradigm</em> language and that forcing
+        said that C++ is a <em>multi-paradigm</em> language and that forcing
         everything into classes is a misuse of it. Here he is, making exactly
         that point:{' '}
         <a
