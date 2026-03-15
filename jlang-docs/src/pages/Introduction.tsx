@@ -112,7 +112,8 @@ export default function Introduction() {
         from whoever sits above them in the hierarchy. And those who refuse to
         play that game &mdash; the ones who just want to build things &mdash;
         are quietly pushed to the margins through instruments of structural
-        sidelining &mdash; set up to fail, or simply managed out until they
+        sidelining (not even sure if this is a real term &mdash; quite outside
+        my domain of interest) &mdash; set up to fail, or simply managed out until they
         leave on their own. Assignments outside the person&rsquo;s expertise
         with no training, reputation undermining &mdash; suddenly they are
         &ldquo;not working,&rdquo; &ldquo;difficult,&rdquo; and who knows what
