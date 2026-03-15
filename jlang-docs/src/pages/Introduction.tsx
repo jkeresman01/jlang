@@ -113,11 +113,11 @@ export default function Introduction() {
         play that game &mdash; the ones who just want to build things &mdash;
         are quietly pushed to the margins through instruments of structural
         sidelining (not even sure if this is a real term &mdash; quite outside
-        my domain of interest) &mdash; set up to fail, or simply managed out until they
-        leave on their own. Assignments outside the person&rsquo;s expertise
-        with no training, reputation undermining &mdash; suddenly they are
-        &ldquo;not working,&rdquo; &ldquo;difficult,&rdquo; and who knows what
-        else might come to mind. You have to give them credit, they get
+        my domain of interest) &mdash; set up to fail, or simply managed out
+        until they leave on their own. Assignments outside the person&rsquo;s
+        expertise with no training, reputation undermining &mdash; suddenly they
+        are &ldquo;not working,&rdquo; &ldquo;difficult,&rdquo; and who knows
+        what else might come to mind. You have to give them credit, they get
         remarkably creative with it. And it&rsquo;s interesting to watch how
         different groups of people fall into these patterns &mdash; some lead
         the charge, some follow along, and some just look the other way. I have
