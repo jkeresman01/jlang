@@ -55,7 +55,8 @@ export default function Introduction() {
         someone sits in an org chart, not how well they think through a problem
         of any nature. A title is a label someone else gave you. Oh, almost forgot
         Senior Specialist is yet another one that somenone probably saw from some
-        cartoon, not sure why people care for this, will try to mock them trough 
+        cartoon, solution architect is yet another like what do you do, create solutions in visual studio,
+        not sure why people care for this, will try to mock them trough 
         this book, the only reason being is that I don't really care for them,
         we are all people doing something, titles and roles are of no relevance. 
         Your code is the only title that cannot be faked &mdash; and no amount of
