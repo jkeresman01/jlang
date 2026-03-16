@@ -825,7 +825,9 @@ export default function Introduction() {
         place where knowledge can be obtained. It never really was &mdash; it
         was just the only place where knowledge came with a stamp of approval.
         And somewhere along the way, we confused the stamp with the knowledge
-        itself.
+        itself. But don't get me wrong, listening someone in lecture or a talk 
+        that can summarize you knowledge that they've spent years acquiring is 
+        worth listening to, but those tend to be extremly rare.
       </p>
       <p>
         But here is the thing. After all of that &mdash; after the arcane
