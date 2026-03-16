@@ -141,6 +141,22 @@ export default function Introduction() {
         but if it is broken from within, life begins.
       </p>
 
+      <Callout type="note">
+        <strong>This is how you get treated?</strong>
+        <br />
+        <br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/Lg2dqFCU67Q?start=38"
+          title="If it is broken from within, life begins"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       <Callout type="life-lesson">
         <strong>Life lesson:</strong> Watch out &mdash; find those good people
         of strong character and learn from them. And learn how to spot the
