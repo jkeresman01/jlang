@@ -157,6 +157,36 @@ export default function Introduction() {
         ></iframe>
       </Callout>
 
+      <Callout type="note">
+          <strong>Was thinking about writing a song recently: </strong>
+          <br />
+          <em>
+            In my house, in my house<br />
+            Who's gonna find even the smallest irregularity on that guy?<br />
+            Let the bounty hunt begin<br />
+            Search every corner, search with clarity<br />
+            <br />
+            In my house, in my house<br />
+            Every crack and every flaw<br />
+            Nothing's hidden, nothing's safe<br />
+            From the sharpest eye you ever saw<br />
+            <br />
+            Check the corners, check the floor<br />
+            Look behind every single door<br />
+            Under tables, under beds<br />
+            Every place where something's fled<br />
+            <br />
+            In my house, in my house<br />
+            The hunt is long but it's almost done<br />
+            Every shadow has been chased<br />
+            Every secret, every one<br />
+            <br />
+            And when the last flaw has been found<br />
+            When there's no more searching ground<br />
+            The bounty's claimed, the hunt is through<br />
+          </em>
+    </Callout>
+
       <Callout type="life-lesson">
         <strong>Life lesson:</strong> Watch out &mdash; find those good people
         of strong character and learn from them. And learn how to spot the
