@@ -158,7 +158,7 @@ export default function Introduction() {
       </Callout>
 
       <Callout type="note">
-          <strong>Was thinking about writing a song recently: </strong>
+          <strong>Was thinking about writing a song recently, house is used figuratively: </strong>
           <br />
           <em>
             In my house, in my house<br />
