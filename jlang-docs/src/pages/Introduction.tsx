@@ -54,7 +54,7 @@ export default function Introduction() {
         &mdash; these are just words on a business card. They tell you where
         someone sits in an org chart, not how well they think through a problem
         of any nature. A title is a label someone else gave you. Oh, almost forgot
-        Senior Specialist is yet another one that somenone probably saw from some
+        Senior Specialist is yet another one that someone probably saw from some
         cartoon, solution architect is yet another like what do you do, create solutions in visual studio,
         not sure why people care for this, will try to mock them trough 
         this book, the only reason being is that I don't really care for them,
@@ -874,7 +874,7 @@ export default function Introduction() {
         And somewhere along the way, we confused the stamp with the knowledge
         itself. But don't get me wrong, listening someone in lecture or a talk 
         that can summarize you knowledge that they've spent years acquiring is 
-        worth listening to, but those tend to be extremly rare.
+        worth listening to, but those tend to be extremely rare.
       </p>
       <p>
         But here is the thing. After all of that &mdash; after the arcane
