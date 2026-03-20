@@ -45,6 +45,10 @@ export const chapters = [
       { label: 'Memory Management', path: '/memory' },
     ],
   },
+  {
+    title: 'Epilogue',
+    items: [{ label: 'The End', path: '/ending' }],
+  },
 ];
 
 export const allPages = chapters.flatMap((ch) => ch.items);

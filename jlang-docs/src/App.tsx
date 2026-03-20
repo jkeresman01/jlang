@@ -15,6 +15,7 @@ import Generics from './pages/Generics';
 import GettingStarted from './pages/GettingStarted';
 import Comments from './pages/Comments';
 import Pointers from './pages/Pointers';
+import Ending from './pages/Ending';
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/getting-started" element={<GettingStarted />} />
         <Route path="/comments" element={<Comments />} />
         <Route path="/pointers" element={<Pointers />} />
+        <Route path="/ending" element={<Ending />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
