@@ -53,14 +53,15 @@ export default function Introduction() {
         The same goes for titles. Senior, staff, principal, lead, architect
         &mdash; these are just words on a business card. They tell you where
         someone sits in an org chart, not how well they think through a problem
-        of any nature. A title is a label someone else gave you. Oh, almost forgot
-        Senior Specialist is yet another one that someone probably saw from some
-        cartoon, solution architect is yet another like what do you do, create solutions in visual studio,
-        not sure why people care for this, will try to mock them trough 
-        this book, the only reason being is that I don't really care for them,
-        we are all people doing something, titles and roles are of no relevance. 
-        Your code is the only title that cannot be faked &mdash; and no amount of
-        seniority will make a broken build pass.
+        of any nature. A title is a label someone else gave you. Oh, almost
+        forgot Senior Specialist is yet another one that someone probably saw
+        from some cartoon, solution architect is yet another like what do you
+        do, create solutions in visual studio, not sure why people care for
+        this, will try to mock them trough this book, the only reason being is
+        that I don't really care for them, we are all people doing something,
+        titles and roles are of no relevance. Your code is the only title that
+        cannot be faked &mdash; and no amount of seniority will make a broken
+        build pass.
       </p>
 
       <Callout type="note">
@@ -158,34 +159,56 @@ export default function Introduction() {
       </Callout>
 
       <Callout type="note">
-          <strong>Was thinking about writing a song recently, house is used figuratively: </strong>
+        <strong>
+          Was thinking about writing a song recently, house is used
+          figuratively:{' '}
+        </strong>
+        <br />
+        <em>
+          In my house, in my house
           <br />
-          <em>
-            In my house, in my house<br />
-            Who's gonna find even the smallest irregularity on that guy?<br />
-            Let the bounty hunt begin<br />
-            Search every corner, search with clarity<br />
-            <br />
-            In my house, in my house<br />
-            Every crack and every flaw<br />
-            Nothing's hidden, nothing's safe<br />
-            From the sharpest eye you ever saw<br />
-            <br />
-            Check the corners, check the floor<br />
-            Look behind every single door<br />
-            Under tables, under beds<br />
-            Every place where something's fled<br />
-            <br />
-            In my house, in my house<br />
-            The hunt is long but it's almost done<br />
-            Every shadow has been chased<br />
-            Every secret, every one<br />
-            <br />
-            And when the last flaw has been found<br />
-            When there's no more searching ground<br />
-            The bounty's claimed, the hunt is through<br />
-          </em>
-    </Callout>
+          Who's gonna find even the smallest irregularity on that guy?
+          <br />
+          Let the bounty hunt begin
+          <br />
+          Search every corner, search with clarity
+          <br />
+          <br />
+          In my house, in my house
+          <br />
+          Every crack and every flaw
+          <br />
+          Nothing's hidden, nothing's safe
+          <br />
+          From the sharpest eye you ever saw
+          <br />
+          <br />
+          Check the corners, check the floor
+          <br />
+          Look behind every single door
+          <br />
+          Under tables, under beds
+          <br />
+          Every place where something's fled
+          <br />
+          <br />
+          In my house, in my house
+          <br />
+          The hunt is long but it's almost done
+          <br />
+          Every shadow has been chased
+          <br />
+          Every secret, every one
+          <br />
+          <br />
+          And when the last flaw has been found
+          <br />
+          When there's no more searching ground
+          <br />
+          The bounty's claimed, the hunt is through
+          <br />
+        </em>
+      </Callout>
 
       <Callout type="life-lesson">
         <strong>Life lesson:</strong> Watch out &mdash; find those good people
@@ -195,7 +218,7 @@ export default function Introduction() {
         organization. Those people will smile at you while pulling the ladder up
         behind them. Real character is not measured by what someone has, but by
         what they do when no one is watching.
-      </Callout>  
+      </Callout>
 
       <p>
         So here, this is the opposite of that. This is open, transparent, and
@@ -872,8 +895,8 @@ export default function Introduction() {
         place where knowledge can be obtained. It never really was &mdash; it
         was just the only place where knowledge came with a stamp of approval.
         And somewhere along the way, we confused the stamp with the knowledge
-        itself. But don't get me wrong, listening someone in lecture or a talk 
-        that can summarize you knowledge that they've spent years acquiring is 
+        itself. But don't get me wrong, listening someone in lecture or a talk
+        that can summarize you knowledge that they've spent years acquiring is
         worth listening to, but those tend to be extremely rare.
       </p>
       <p>
