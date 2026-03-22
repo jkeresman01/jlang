@@ -515,6 +515,14 @@ export default function Introduction() {
         we lose the very foundation that makes the next leap possible.
       </p>
       <p>
+        And this got me thinking about something. Software is becoming cheaper,
+        easier to build — this website has been written mostly with Claude's
+        Opus 4.6. Will there still be a need for companies that purely live on
+        providing software development services? Perhaps yes, perhaps no. But
+        one thing is for sure — those that have their own products will thrive
+        since they can bring value to their users faster and cheaper than ever.
+      </p>
+      <p>
         Of course, calling this a &ldquo;book&rdquo; or a
         &ldquo;reference&rdquo; is generous &mdash; for that to be true, it
         would need at least one reader. There are far better authors and far
