@@ -796,6 +796,51 @@ export default function Introduction() {
 }`}
       />
 
+      <h2>Compiled, Not Interpreted</h2>
+      <p>
+        If you have ever used Python, Ruby, or JavaScript, you are used to
+        languages where your code is read and executed line by line at runtime
+        &mdash; that is interpretation. Java and C# take a middle road: they
+        are both compiled <em>and</em> interpreted. Java compiles your source
+        into bytecode that runs on the JVM, and C# compiles to bytecode that
+        runs on the CLR. In both cases, the bytecode is then interpreted or
+        JIT-compiled at runtime by the virtual machine. jlang does neither. It is a <strong>compiled language</strong> &mdash; your
+        source code goes through scanning, parsing, and semantic analysis, then
+        gets translated into LLVM Intermediate Representation, and finally LLVM
+        turns that IR into native machine code for your platform. The result is
+        a real, standalone executable &mdash; no interpreter, no VM, no runtime
+        sitting between your code and the hardware.
+      </p>
+      <p>
+        This puts jlang in the same category as C, C++, Go, and Rust. Your
+        program runs at native speed, benefits from LLVM&rsquo;s battle-tested
+        optimization passes, and can be distributed as a single binary with no
+        dependencies. When you run <code>./output</code>, there is nothing
+        between you and the metal.
+      </p>
+
+      <Callout type="note">
+        <strong>
+          Chris Lattner &mdash; &ldquo;What is a compiler?&rdquo;
+        </strong>
+        <br />
+        <br />
+        Chris Lattner, the creator of LLVM and Clang, gives a high-level
+        explanation of what a compiler actually is.
+        <br />
+        <br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/yCd3CzGSte8?start=290"
+          title="Chris Lattner — What is a compiler?"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
       <h2>Why Implement a Language from Scratch?</h2>
       <p>
         Long distance runners sometimes train with weights strapped to their
