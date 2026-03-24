@@ -570,8 +570,8 @@ export default function Introduction() {
         stubbornly. That is exactly what makes them fun.
       </p>
       <Callout type="life-lesson">
-        <strong>Life lesson:</strong> I owe 60 euros in parking fines to
-        Proračun Grada Zagreba from last week for the way I park my car &mdash;
+        <strong>Life lesson:</strong> I owe 90 euros in parking fines to
+        Proračun Grada Zagreba from last month for the way I park my car &mdash;
         haven&rsquo;t paid them yet. Will I stop parking there? Absolutely not.
         But these tickets are getting unreasonably expensive, and at this rate I
         might end up funding an entire city block renovation with my violations
