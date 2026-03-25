@@ -570,7 +570,7 @@ export default function Introduction() {
         stubbornly. That is exactly what makes them fun.
       </p>
       <Callout type="life-lesson">
-        <strong>Life lesson:</strong> I owe 90 euros in parking fines to
+        <strong>Life lesson:</strong> I owe 120 euros in parking fines to
         Proračun Grada Zagreba from last month for the way I park my car &mdash;
         haven&rsquo;t paid them yet. Will I stop parking there? Absolutely not.
         But these tickets are getting unreasonably expensive, and at this rate I
@@ -832,7 +832,7 @@ export default function Introduction() {
         <iframe
           width="100%"
           height="315"
-          src="https://www.youtube.com/embed/yCd3CzGSte8?start=290"
+          src="https://www.youtube.com/embed/yCd3CzGSte8?start=2120"
           title="Chris Lattner — What is a compiler?"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -971,7 +971,7 @@ export default function Introduction() {
       <Callout type="tip">
         <strong>Fun fact:</strong> The C++ standard document (ISO/IEC
         14882:2020) is over 1,800 pages long. For comparison, the Go
-        specification fits in about 90 pages. The Lua reference manual is around
+        specification fits in about 120 pages. The Lua reference manual is around
         100. The entire K&amp;R C book &mdash; which defined the language that
         C++ was built on &mdash; is 272 pages, and that includes the tutorial,
         the reference, and the appendix. C++ is not a language &mdash; it is a
