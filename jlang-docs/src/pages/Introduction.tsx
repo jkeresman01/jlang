@@ -971,7 +971,7 @@ export default function Introduction() {
       <Callout type="tip">
         <strong>Fun fact:</strong> The C++ standard document (ISO/IEC
         14882:2020) is over 1,800 pages long. For comparison, the Go
-        specification fits in about 120 pages. The Lua reference manual is around
+        specification fits in about 90 pages. The Lua reference manual is around
         100. The entire K&amp;R C book &mdash; which defined the language that
         C++ was built on &mdash; is 272 pages, and that includes the tutorial,
         the reference, and the appendix. C++ is not a language &mdash; it is a
