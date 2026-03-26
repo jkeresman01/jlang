@@ -841,6 +841,29 @@ export default function Introduction() {
         ></iframe>
       </Callout>
 
+      <h2>How Difficult are compilers </h2>
+      <p>
+        Here is one video that explain exactly how difficult to understand 
+        they are:
+        <Callout type="note">
+            <strong>
+             &mdash; &ldquo;How difficult are compilers ?&rdquo;
+            </strong>
+            <br />
+            <br />
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/Mlr7iqVVnBk"
+              title="100 Drama, How can't you understand?"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+            ></iframe>
+          </Callout>
+      </p>
+
       <h2>Why Implement a Language from Scratch?</h2>
       <p>
         Long distance runners sometimes train with weights strapped to their
