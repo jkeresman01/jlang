@@ -41,6 +41,14 @@ export default function Comments() {
           or echoes outdated reasoning is the code equivalent of passing along a
           rumor. Let noise die where it lands. Only propagate what is true,
           useful, and necessary.
+          Searched trough my gallery on the old phone just some other day and
+          found one image of some small programming assignment from roughly 5 to 6 
+          years ago. Not really sure memory is a bloat, anyhow still
+          remember writting one large method that's splits some sentence into words.
+          Did all kinds of calisthenics in there. It was ugly. It was bad and it was
+          definetly ugly. Remember thinking about it in the momenet. I'm an Einstein, 
+          I'm an Einstein I better comment this out. Read few books later on 
+          and realised oh boy was I wrong, oh boy was I wrong.
         </p>
       </Callout>
 
