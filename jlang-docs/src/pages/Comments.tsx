@@ -48,7 +48,13 @@ export default function Comments() {
           Did all kinds of calisthenics in there. It was ugly. It was bad and it was
           definetly ugly. Remember thinking about it in the momenet. I'm an Einstein, 
           I'm an Einstein I better comment this out. Read few books later on 
-          and realised oh boy was I wrong, oh boy was I wrong.
+          and realised something profud: "oh boy was I wrong, oh boy was I wrong."
+          The language was java and while I'm on topic of java I remembered something
+          else been doing some eclipseing a while a go and only reason why you 
+          should be using it in 2026 is if you are from the stone age and you
+          are just waiting for mother nature to take care of things, you know 
+          ctrl + space, ctrl + space, those who know know, those who don't 
+          will never do, cause claude is a thing now.
         </p>
       </Callout>
 
