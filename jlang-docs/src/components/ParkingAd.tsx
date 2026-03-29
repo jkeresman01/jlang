@@ -86,7 +86,7 @@ export default function ParkingAd() {
             }}
           >
             The author of this documentation owes{' '}
-            <strong style={{ color: 'var(--text-primary)' }}>60 euros</strong>{' '}
+            <strong style={{ color: 'var(--text-primary)' }}>120 euros</strong>{' '}
             in parking fines to Prora&#x10D;un Grada Zagreba. Any donations
             toward keeping him out of debt collections are appreciated.
           </p>
