@@ -370,7 +370,7 @@ export default function Introduction() {
       <Callout type="life-lesson">
         <strong>Life lesson:</strong> I have been listening to that one crazy
         dude that you might or might not know, depending on the place from where
-        you know me, just some day ago. And you should probably be listening
+        you know me, just some day ago <strong>(The final boss)</strong>. And you should probably be listening
         more carefully, since he just wants what is best for you. I remembered
         him saying something, some time ago (not that day), along the lines of:{' '}
         <em>how do you know that you are doing a good job?</em> And the answer
