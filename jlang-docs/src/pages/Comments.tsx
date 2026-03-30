@@ -42,7 +42,7 @@ export default function Comments() {
           rumor. Let noise die where it lands. Only propagate what is true,
           useful, and necessary.
           Searched trough my gallery on the old phone just some other day and
-          found one image of some small programming assignment from roughly 5 to 6 
+          found one image of some small programming assignment from roughly 4 to 5 
           years ago. Not really sure memory is a bloat, anyhow still
           remember writting one large method that's splits some sentence into words.
           Did all kinds of calisthenics in there. It was ugly. It was bad and it was
