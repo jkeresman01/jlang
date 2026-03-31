@@ -529,7 +529,9 @@ export default function Introduction() {
        small prototypes and automating boring stuff, when it comes to real world problems 
        where you need to create something that runs everywhere on every device and always
        there are tons of edge cases and small little details, like security for example that
-       everyday Joe will probably not think of while vibing hes application.
+       everyday Joe will probably not think of while vibing hes application. But don't get
+       me wrong same goes for almost every discipline AI can write a song but without personal 
+       touch the song has no soul.
       </p>
       <p>
         Of course, calling this a &ldquo;book&rdquo; or a
