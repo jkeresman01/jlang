@@ -523,14 +523,14 @@ export default function Introduction() {
         since they can bring value to their users faster and cheaper than ever.
       </p>
       <p>
-       And with AI improving with every day, there comes a question. Will there be
+       And with AI improving every day, there comes a question. Will there be
        a need for software developers in the future ? And here is my answer, yes, the
        only reason being that software is too complex and while AI excels in creating 
        small prototypes and automating boring stuff, when it comes to real world problems 
        where you need to create something that runs everywhere on every device and always
        there are tons of edge cases and small little details, like security for example that
-       everyday Joe will probably not think of while vibing hes application. But don't get
-       me wrong same goes for almost every discipline AI can write a song but without personal 
+       everyday Joe will probably not think of while vibing he's application. But don't get
+       me wrong same goes for almost every discipline. AI can write a song but without personal 
        touch the song has no soul.
       </p>
       <p>
