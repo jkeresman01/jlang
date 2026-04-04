@@ -273,15 +273,15 @@ export default function Introduction() {
         to my life, mostly wasting time, I have accumulated a lot of interesting stories
         during that time.
         You'll find car sleeping one in pointers chapter. It doesn't fit top 100 (Some of them just flew
-        trough my head while loking trough galleries on 3 or 4 of my old phones and oh boy there's a bit 
-        of everything in there) and some of this stories are really hard to fit in a book about programming
-        to be honest. Perhaps  can be spoken about with someone, but most of the people are 
+        trough my head while loking trough galleries from 3 or 4 of my old phones and oh boy there's a bit 
+        of everything in there). Some of this stories are really hard to fit in a book about programming
+        to be honest, like really really hard. Perhaps can be spoken about with someone, but most of the people are 
         really boring to talk to, you know those surface level talks (weather in Zagreb),
         like 0 depth. Also while being here I've also realized that I haven't really been coding
         in the last 3 weeks, perhaps got burnedout and tired, perhaps got borred, don't really
         know. Used to pull allnighters, cause software required signifact effort, even like
-        a year ago, while now that's seconds or minutes. Now I'm like more in an "it can wait
-        category", but than again it's not that I'have come with an idea to build something weird 
+        a year ago, while now that's seconds or minutes. Now I'm like more in an "it can wait"
+        category, but than again it's not that I'have come with an idea to build something weird 
         that would keep me engaged, so just driffting back to routine every day 9 to 5 job
         while watching yt to keep me entertained (perhaps learn something or get an idea).
       </p>
