@@ -283,7 +283,8 @@ export default function Introduction() {
         a year ago, while now that's seconds or minutes. Now I'm like more in an "it can wait"
         category, but than again it's not that I'have come with an idea to build something weird 
         that would keep me engaged, so just driffting back to routine every day 9 to 5 job
-        while watching yt to keep me entertained (perhaps learn something or get an idea).
+        while watching yt to keep me entertained. Perhaps learn something or get an idea, but anyhow 
+        definetly a boring world to be in.
       </p>
 
       <p>
