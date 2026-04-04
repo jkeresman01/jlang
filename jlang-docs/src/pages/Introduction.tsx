@@ -273,7 +273,10 @@ export default function Introduction() {
         to my life, mostly wasting time, I have accumulated a lot of interesting stories
         during that time.
         You'll find car sleeping one in pointers chapter. It doesn't fit top 100, some 
-        of them are really hard to fit in a book about programming to be honest.
+        of them are really hard to fit in a book about programming to be honest. Perhaps 
+        can be spoken about with someone, but most of the people are 
+        really boring to talk too, you know those surface level talks (weather in Zagreb),
+        like 0 depth.
       </p>
 
       <p>
