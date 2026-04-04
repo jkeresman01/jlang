@@ -269,10 +269,11 @@ export default function Introduction() {
         something starts to interest us. Remembered myself saying words like: "when will
         I ever need this", but things clicked few years later down the road. Altough 
         those years were a mess and I feel quite good and organised right now and for 
-        past 3 years and this "messy" period wasn't something that was benefital 
-        to my life, mostly wasting time, I have accumulated a lot of interesting stories
-        during that time.
-        You'll find car sleeping one in pointers chapter. It doesn't fit top 100 (Some of them just flew
+        past 3 years and this "messy" period ( by "messy" I mean just me being a normal teenager) 
+        wasn't something that was benefital to my life, mostly wasting time, I have accumulated a lot of
+        interesting stories during that time.
+        You'll find car sleeping one in pointers chapter. Not that I had nowhere else to be just went out 
+        drank a bit and deciced it's better to sleep there than to drive. It doesn't fit top 100 (Some of them just flew
         trough my head while loking trough galleries from 3 or 4 of my old phones and oh boy there's a bit 
         of everything in there). Some of this stories are really hard to fit in a book about programming
         to be honest, like really really hard. Perhaps can be spoken about with someone, but most of the people are 
