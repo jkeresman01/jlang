@@ -119,28 +119,35 @@ export default function Preface() {
       </p>
 
       <p>
-        The real world is a cruel place to drift through without something to
+        And the real world is a cruel place, so you need to find something to
         keep you obsessed. I sat through a few university lectures just this
-        Wednesday, watching young students mostly uninterested in the topics
-        &mdash; and who can blame them. I was the same. During my first two
-        years of university I was a complete mess, uninterested in everything.
-        I would skip lectures entirely and just show up on exam day. It took a
-        few years to realise I should have been paying attention. I got my act
-        together in the final year, but I can see the same patterns in others
-        &mdash; we all have that moment where something finally clicks. I
-        remember saying &ldquo;when will I ever need this,&rdquo; and then
-        needing it three years later.
+        Wednesday, saw young fellas mostly uninterested in the topics &mdash;
+        and who can blame them. I remembered myself at their age. During my
+        first two years of university I was a complete mess, uninterested in
+        anything. I would sit through a lecture or not come to any of them and
+        just show up on exam day. I realised some years later that I should
+        have been listening better. I got my things together in the final year,
+        but I can see similar patterns in other young fellas &mdash; we all have
+        a moment where something starts to interest us. I remember saying words
+        like &ldquo;when will I ever need this,&rdquo; but things clicked a few
+        years later down the road.
       </p>
       <p>
-        Those messy years &mdash; really just me being a normal teenager &mdash;
-        were not productive, but they left me with a lot of stories. You will
-        find the car-sleeping one in the Pointers chapter. It was not that I had
-        nowhere to go &mdash; I had gone out, had a few drinks, and decided it
-        was better to sleep in the car than to drive. That story would not even
-        crack my top hundred. Some of them are genuinely hard to fit into a book
-        about programming. But here we are, trying anyway. I have also noticed
-        that the obsession comes in waves &mdash; sometimes I code through the
-        night, sometimes weeks pass and nothing pulls me in.
+        Although those years were a mess &mdash; really just me being a normal
+        teenager &mdash; and I feel quite good and organised right now and have
+        for the past three years &mdash; that messy period was not something
+        that was beneficial to my life. Mostly wasting time. But I accumulated
+        a lot of interesting stories during that time. You will find the
+        car-sleeping one in the Pointers chapter. It was not that I had nowhere
+        to go &mdash; I had gone out, had a few drinks, and decided it was
+        better to sleep in the car than to drive. That story does not even fit
+        in the top hundred, and some of them are really hard to
+        fit into a book about programming, to be honest. Perhaps they can be
+        spoken about with someone, but most people are really boring to talk
+        to &mdash; you know those surface-level talks about the weather in
+        Zagreb, zero depth. I have also noticed that the obsession comes in
+        waves &mdash; sometimes I code through the night, sometimes weeks pass
+        and nothing pulls me in.
       </p>
 
       <p>
