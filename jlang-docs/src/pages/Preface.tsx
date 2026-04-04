@@ -119,9 +119,11 @@ export default function Preface() {
       </p>
 
       <p>
-        And the real world is a cruel place, so you need to find something to
-        keep you obsessed. I sat through a few university lectures just this
-        Wednesday, saw young fellas mostly uninterested in the topics &mdash;
+        And the real world is a cruel place (Putin and Trump playing wars, AI 
+        being used in thoose for killing people instead of creating things),
+        so you need to find something to keep you obsessed and out of this things.
+        I sat through a few university lectures just this Wednesday, saw young 
+        fellas mostly uninterested in the topics &mdash;
         and who can blame them. I remembered myself at their age. During my
         first two years of university I was a complete mess, uninterested in
         anything. I would sit through a lecture or not come to any of them and
