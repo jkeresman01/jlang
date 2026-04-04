@@ -280,7 +280,9 @@ export default function Introduction() {
         in the last 3 weeks, perhaps got burnedout and tired, perhaps got borred, don't really
         know. Used to pull allnighters, cause software required signifact effort, even like
         a year ago, while now that's seconds or minutes. Now I'm like more in a it can wait
-        category.
+        category, but than again it's not that I'have come with an idea to build something weird 
+        that would keep me engaged, so just driffted back to routine every day 9 to 5 job
+        while watching yt to keep me entertained (perhaps learn something or get an idea).
       </p>
 
       <p>
