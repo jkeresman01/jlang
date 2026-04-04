@@ -258,6 +258,25 @@ export default function Introduction() {
       </p>
 
       <p>
+        And world of reality is cruel a place so you need to find something to
+        keep you obssesed. Sat trough few lectures just this wednesday, saw young
+        fellas mostly uninterested in the topics and who can blame them. Remembered 
+        myself at their age. During my first 2 years of univeristy I was a complete 
+        mess, being uninterested in anything. Would sit trough lecture or not
+        come to any of them just on the exam day, realised some years later that
+        I should have been listening better. Got my things together in the final year.
+        Can see simalar patterns in other young fellas, we all have a moment where 
+        something starts to interest us. Remembered myself saying words like: "when will
+        I ever need this", but things clicked few years later down the road. Altough 
+        those years were a mess and I feel quite good and organised right now and for 
+        past 3 years and this "messy" period wasn't something that was benefital 
+        to my life, mostly wasting time, I have accumulated a lot of interesting stories
+        during that time.
+        You'll find car sleeping one in pointers chapter. It doesn't fit top 100, some 
+        of them are really hard to fit in a book about programming to be honest.
+      </p>
+
+      <p>
         In programming, you can get stuck on a problem and keep thinking about
         it for days. I sometimes walk for half an hour to find my car because I
         have completely forgotten where I parked it &mdash; too deep inside this
