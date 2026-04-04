@@ -262,8 +262,8 @@ export default function Introduction() {
         keep you obssesed. Listened trough few lectures just this wednesday, saw young
         fellas mostly uninterested in the topics and who can blame them. Remembered 
         myself at their age. During my first 2 years of univeristy I was a complete 
-        mess, being uninterested in anything. Would sit trough lecture or not
-        come to any of them just on the exam day, realised some years later that
+        mess, being uninterested in anything. Would sit trough lecture or just don't
+        come to any them just appear on the exam day, realised some years later that
         I should have been listening better. Got my things together in the final year.
         Can see simalar patterns in other young fellas, we all have a moment where 
         something starts to interest us. Remembered myself saying words like: "when will
@@ -279,9 +279,9 @@ export default function Introduction() {
         like 0 depth. Also while being here I've also realized that I have really been coding
         in the last 3 weeks, perhaps got burnedout and tired, perhaps got borred, don't really
         know. Used to pull allnighters, cause software required signifact effort, even like
-        a year ago, while now that's seconds or minutes. Now I'm like more in a it can wait
-        category, but than again it's not that I'have come with an idea to build something weird 
-        that would keep me engaged, so just driffted back to routine every day 9 to 5 job
+        a year ago, while now that's seconds or minutes. Now I'm like more in an "it can wait
+        category", but than again it's not that I'have come with an idea to build something weird 
+        that would keep me engaged, so just driffting back to routine every day 9 to 5 job
         while watching yt to keep me entertained (perhaps learn something or get an idea).
       </p>
 
