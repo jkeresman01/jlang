@@ -259,7 +259,7 @@ export default function Introduction() {
 
       <p>
         And world of reality is cruel a place to be in so you need to find something to
-        keep you obssesed. Sat trough few lectures just this wednesday, saw young
+        keep you obssesed. Listened trough few lectures just this wednesday, saw young
         fellas mostly uninterested in the topics and who can blame them. Remembered 
         myself at their age. During my first 2 years of univeristy I was a complete 
         mess, being uninterested in anything. Would sit trough lecture or not
@@ -275,7 +275,7 @@ export default function Introduction() {
         You'll find car sleeping one in pointers chapter. It doesn't fit top 100, some 
         of them are really hard to fit in a book about programming to be honest. Perhaps 
         can be spoken about with someone, but most of the people are 
-        really boring to talk too, you know those surface level talks (weather in Zagreb),
+        really boring to talk to, you know those surface level talks (weather in Zagreb),
         like 0 depth. Also while being here I've also realized that I have really been coding
         in the last 3 weeks, perhaps got burnedout and tired, perhaps got borred, don't really
         know. Used to pull allnighters, cause software required signifact effort, even like
