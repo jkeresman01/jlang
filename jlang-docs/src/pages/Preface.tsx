@@ -386,7 +386,9 @@ export default function Preface() {
       <p>
         And this got me thinking about something. Software is becoming cheaper,
         easier to build — this website has been written mostly with Claude's
-        Opus 4.6. Will there still be a need for companies that purely live on
+        Opus 4.6 (The code is quite a mess but it works). Not the ideas not the
+        content, only the mundane boring work.
+        Will there still be a need for companies that purely live on
         providing software development services? Perhaps yes, perhaps no. But
         one thing is for sure — those that have their own products will thrive
         since they can bring value to their users faster and cheaper than ever.
