@@ -278,7 +278,9 @@ export default function Introduction() {
         really boring to talk too, you know those surface level talks (weather in Zagreb),
         like 0 depth. Also while being here I've also realized that I have really been coding
         in the last 3 weeks, perhaps got burnedout and tired, perhaps got borred, don't really
-        know.
+        know. Used to pull allnighters, cause software required signifact effort, even like
+        a year ago, while now that's seconds or minutes. Now I'm like more in a it can wait
+        category.
       </p>
 
       <p>
