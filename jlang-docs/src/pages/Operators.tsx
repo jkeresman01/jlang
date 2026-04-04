@@ -327,23 +327,6 @@ flags <<= 1;       // shift all bits left
 flags >>= 1;       // shift all bits right`}
       />
 
-      <h3>XOR Swap</h3>
-      <p>
-        A classic trick using XOR to swap two values without a temporary
-        variable:
-      </p>
-
-      <CodeBlock
-        code={`var x: i32 = 10;
-var y: i32 = 20;
-
-x ^= y;
-y ^= x;
-x ^= y;
-
-// x is now 20, y is now 10`}
-      />
-
       <Callout type="note">
         <strong>XOR swap trick</strong>
         <br />

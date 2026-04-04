@@ -77,6 +77,11 @@ export default function Ending() {
           style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
         ></iframe>
       </Callout>
+
+      <p>
+        If you made it this far, thank you. Now close this tab and go build
+        something. The compiler is waiting.
+      </p>
     </>
   );
 }

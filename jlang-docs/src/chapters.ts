@@ -2,7 +2,9 @@ export const chapters = [
   {
     title: 'Getting Started',
     items: [
+      { label: 'Preface', path: '/preface' },
       { label: 'Introduction', path: '/' },
+      { label: 'Technologies Used', path: '/technologies-used' },
       { label: 'Installation & Build', path: '/getting-started' },
     ],
   },
@@ -12,37 +14,36 @@ export const chapters = [
       { label: 'Comments', path: '/comments' },
       { label: 'Variables', path: '/variables' },
       { label: 'Types', path: '/types' },
-      { label: 'Functions', path: '/functions' },
+      { label: 'Operators', path: '/operators' },
     ],
   },
   {
     title: 'Control Flow',
-    items: [{ label: 'If / Else / Loops', path: '/control-flow' }],
+    items: [
+      { label: 'If / Else / Loops', path: '/control-flow' },
+      { label: 'Functions', path: '/functions' },
+    ],
   },
   {
     title: 'Data Structures',
     items: [
-      { label: 'Structs', path: '/structs' },
       { label: 'Arrays', path: '/arrays' },
-      { label: 'Generics', path: '/generics' },
+      { label: 'Structs', path: '/structs' },
     ],
-  },
-  {
-    title: 'Safety & Error Handling',
-    items: [
-      { label: 'Null Safety', path: '/null-safety' },
-      { label: 'Error Handling', path: '/error-handling' },
-    ],
-  },
-  {
-    title: 'Operators',
-    items: [{ label: 'Operators', path: '/operators' }],
   },
   {
     title: 'Pointers & Memory',
     items: [
       { label: 'Pointers', path: '/pointers' },
+      { label: 'Null Safety', path: '/null-safety' },
       { label: 'Memory Management', path: '/memory' },
+    ],
+  },
+  {
+    title: 'Advanced Features',
+    items: [
+      { label: 'Generics', path: '/generics' },
+      { label: 'Error Handling', path: '/error-handling' },
     ],
   },
   {

@@ -41,20 +41,14 @@ export default function Comments() {
           or echoes outdated reasoning is the code equivalent of passing along a
           rumor. Let noise die where it lands. Only propagate what is true,
           useful, and necessary.
-          Searched trough my gallery on the old phone just some other day and
-          found one image of some small programming assignment from roughly 4 to 5 
-          years ago. Not really sure memory is a bloat, anyhow still
-          remember writting one large method that's splits some sentence into words.
-          Did all kinds of calisthenics in there. It was ugly. It was bad and it was
-          definetly ugly. Remember thinking about it in the momenet. I'm an Einstein, 
-          I'm an Einstein I better comment this out. Read few books later on 
-          and realised something profud: "oh boy was I wrong, oh boy was I wrong."
-          The language was java and while I'm on topic of java I remembered something
-          else been doing some eclipseing a while a go and only reason why you 
-          should be using it in 2026 is if you are from the stone age and you
-          are just waiting for mother nature to take care of things, you know 
-          ctrl + space, ctrl + space, those who know know, those who don't 
-          will never do, cause claude is a thing now.
+          I found an old screenshot on my phone the other day &mdash; a
+          programming assignment from about five years ago. I still remember
+          writing one enormous method that split a sentence into words. It was
+          ugly. I remember thinking at the time: I am a genius, I better
+          comment this so future-me understands it. A few books later I
+          realised something profound &mdash; the code was so bad that no
+          comment could have saved it. The comment was not documentation, it
+          was a cry for help.
         </p>
       </Callout>
 
