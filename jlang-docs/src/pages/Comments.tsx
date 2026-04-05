@@ -41,7 +41,7 @@ export default function Comments() {
           or echoes outdated reasoning is the code equivalent of passing along a
           rumor. Let noise die where it lands. Only propagate what is true,
           useful, and necessary.
-          I found an old screenshot on my phone the other day &mdash; a
+          I found an old image on my phone the other day &mdash; a
           programming assignment from about five years ago. I still remember
           writing one enormous method that split a sentence into words. It was
           ugly. I remember thinking at the time: I am a genius, I better
@@ -50,6 +50,21 @@ export default function Comments() {
           comment could have saved it. The comment was not documentation, it
           was a cry for help.
         </p>
+        <p>
+          Linus Torvalds once gave a talk where he described what he considers
+          &ldquo;good taste&rdquo; in code &mdash; and the kind of people he
+          wants to work with. It is worth hearing in his own words:
+        </p>
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/o8NPllzkFhE?start=863&end=985"
+          title="Linus Torvalds on good taste in code"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
       </Callout>
 
       {/* ── Section 1: Single-line comments ── */}
