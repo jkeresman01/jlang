@@ -125,8 +125,9 @@ export default function Preface() {
         I sat through a few university lectures just this Wednesday, saw young 
         fellas mostly uninterested in the topics &mdash;
         and who can blame them, but to be honest some of them orders of magnitute
-        better than I am, and most od the people than I saw so sitting in there is
-        a complete waste of time for them, anyhow back to me. I remembered myself at their age.
+        better than I am, and most of the people that I saw so sitting in there is
+        a complete waste of time for them, learned something from them aswell,
+        anyhow back to me. I remembered myself at their age.
         During my first two years of university I was a complete mess, uninterested in
         anything. I would sit through a lecture or not come to any of them and
         just show up on exam day. I realised some years later that I should
