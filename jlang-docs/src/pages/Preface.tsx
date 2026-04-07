@@ -157,7 +157,8 @@ export default function Preface() {
         to build something weird lately, just scrolling trought yt in last 3 weeks,
         perhaps I learn something or get an idea to build something weird that would
         keep me engaged, perhaps not, perhaps I'll drift back to my routine, chill and 
-        relaxed 9 to 5, but than again maybe not, anyhow back to main tought in 
+        relaxed 9 to 5, perhaps could even start doing it in an actual 9 to 5 manner 
+        (doubt that), but than again maybe not, anyhow back to main tought in 
         next paragraph.
       </p>
 
