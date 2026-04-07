@@ -120,19 +120,19 @@ export default function Preface() {
 
       <p>
         And the real world is a cruel place (Putin and Trump playing wars, AI 
-        being used in thoose for killing people instead of creating things),
-        so you need to find something to keep you obsessed and out of this things.
+        being used in those for killing people instead of creating things),
+        so you need to find something to keep you obsessed and out of these things.
         I sat through a few university lectures just this Wednesday, saw young 
         fellas mostly uninterested in the topics &mdash; and who can blame them, 
-        but to be honest some of them orders of magnitute better than I am, and most 
-        of the people that I saw so sitting in there is a complete waste of time for 
-        them, learned something from them aswell (not that sitting there is a waste
-        but kids than to be more creative and in touch with technology),
+        but to be honest some of them are orders of magnitude better than I am, and most
+        of the people that I saw, so sitting in there is a complete waste of time for
+        them, learned something from them as well (not that sitting there is a waste
+        but kids tend to be more creative and in touch with technology),
         anyhow back to me. I remembered myself at their age. During my first two 
-        years of university I was a complete mess, uninterested in anything. I would 
+        years of university, I was a complete mess, uninterested in anything. I would 
         sit through a lecture or not come to any of them and just show up on exam 
         day (Electrical engineering ones, software engineering was more interesting to me,
-        but that's just my opinion, have huge respect for both disciplines tough and 
+        but that's just my opinion, have huge respect for both disciplines though, and 
         electrical engineering is arguably more difficult). 
         I realised some years later that I should have been listening better. 
         I got my things together in the final year, but I can see similar patterns 
@@ -155,12 +155,14 @@ export default function Preface() {
         to &mdash; you know those surface-level talks about the weather in
         Zagreb, zero depth. I have also noticed that the obsession comes in
         waves &mdash; sometimes I code through the night, sometimes weeks pass
-        and nothing pulls me in. But than again, I haven't come with an idea
-        to build something weird lately, just scrolling trought yt in last 3 weeks,
+        and nothing pulls me in. But then again, I haven't come up with an idea
+        to build something weird lately, just scrolling through yt in the last 3 weeks,
         perhaps I learn something or get an idea to build something weird that would
         keep me engaged, perhaps not, perhaps I'll drift back to my routine, chill and 
         relaxed 9 to 5, perhaps could even start doing it in an actual 9 to 5 manner 
-        (doubt that), but than again maybe not, anyhow back to main tought in 
+        (doubt that), perhaps it's time for new endeavours and adventures in some
+        other realms, like I don't know, music, writing, or something absurd,
+        but then again maybe not, anyhow back to main thought in 
         next paragraph.
       </p>
 
