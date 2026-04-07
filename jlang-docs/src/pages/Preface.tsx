@@ -138,7 +138,12 @@ export default function Preface() {
         I got my things together in the final year, but I can see similar patterns 
         in other young fellas &mdash; we all have a moment where something starts to 
         interest us. I remember saying words like &ldquo;when will I ever need this,&rdquo; 
-        but things clicked a few years later down the road.
+        but things clicked a few years later down the road and you need to pay the
+        respect to the professors and their patience, like they just know that their
+        is no point in arguing at the moment and that some time needs to pass in 
+        order for things to click and that when that moment happends that they 
+        probably won't get an thank you email with a message that says
+        I realise it now, you were right. (Here is my thanks btw).
       </p>
       <p>
         Although those years were a mess &mdash; really just me being a normal
