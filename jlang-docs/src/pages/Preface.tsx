@@ -123,20 +123,20 @@ export default function Preface() {
         being used in thoose for killing people instead of creating things),
         so you need to find something to keep you obsessed and out of this things.
         I sat through a few university lectures just this Wednesday, saw young 
-        fellas mostly uninterested in the topics &mdash;
-        and who can blame them, but to be honest some of them orders of magnitute
-        better than I am, and most of the people that I saw so sitting in there is
-        a complete waste of time for them, learned something from them aswell,
-        anyhow back to me. I remembered myself at their age.
-        During my first two years of university I was a complete mess, uninterested in
-        anything. I would sit through a lecture or not come to any of them and
-        just show up on exam day (Electrical engineering ones, software engineering 
-        was more interesting to me). I realised some years later that I should
-        have been listening better. I got my things together in the final year,
-        but I can see similar patterns in other young fellas &mdash; we all have
-        a moment where something starts to interest us. I remember saying words
-        like &ldquo;when will I ever need this,&rdquo; but things clicked a few
-        years later down the road.
+        fellas mostly uninterested in the topics &mdash; and who can blame them, 
+        but to be honest some of them orders of magnitute better than I am, and most 
+        of the people that I saw so sitting in there is a complete waste of time for 
+        them, learned something from them aswell (not that sitting there is a waste
+        but kids than to be more creative and in touch with technology),
+        anyhow back to me. I remembered myself at their age. During my first two 
+        years of university I was a complete mess, uninterested in anything. I would 
+        sit through a lecture or not come to any of them and just show up on exam 
+        day (Electrical engineering ones, software engineering was more interesting to me). 
+        I realised some years later that I should have been listening better. 
+        I got my things together in the final year, but I can see similar patterns 
+        in other young fellas &mdash; we all have a moment where something starts to 
+        interest us. I remember saying words like &ldquo;when will I ever need this,&rdquo; 
+        but things clicked a few years later down the road.
       </p>
       <p>
         Although those years were a mess &mdash; really just me being a normal
