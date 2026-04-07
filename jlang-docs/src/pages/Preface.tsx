@@ -130,7 +130,7 @@ export default function Preface() {
         anyhow back to me. I remembered myself at their age.
         During my first two years of university I was a complete mess, uninterested in
         anything. I would sit through a lecture or not come to any of them and
-        just show up on exam day. I realised some years later that I should
+        just show up on exam day (Electrical engineering ones). I realised some years later that I should
         have been listening better. I got my things together in the final year,
         but I can see similar patterns in other young fellas &mdash; we all have
         a moment where something starts to interest us. I remember saying words
@@ -152,7 +152,12 @@ export default function Preface() {
         to &mdash; you know those surface-level talks about the weather in
         Zagreb, zero depth. I have also noticed that the obsession comes in
         waves &mdash; sometimes I code through the night, sometimes weeks pass
-        and nothing pulls me in.
+        and nothing pulls me in. But than again, I haven't come with an idea
+        to build something weird lately, just scrolling trought yt in last 3 weeks,
+        perhaps I learn something or get an idea to build something weird that would
+        keep me engaged, perhaps not, perhaps I'll drift back to my routine, chill and 
+        relaxed 9 to 5, but than again maybe not, anyhow back to main tought in 
+        next paragraph.
       </p>
 
       <p>
