@@ -3,6 +3,8 @@ export const chapters = [
     title: 'Getting Started',
     items: [
       { label: 'Preface', path: '/preface' },
+      { label: 'Table of Contents', path: '/table-of-contents' },
+      { label: 'Table of Videos', path: '/table-of-videos' },
       { label: 'Introduction', path: '/' },
       { label: 'Technologies Used', path: '/technologies-used' },
       { label: 'Installation & Build', path: '/getting-started' },

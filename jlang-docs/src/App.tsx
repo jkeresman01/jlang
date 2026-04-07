@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Preface from './pages/Preface';
+import TableOfContents from './pages/TableOfContents';
+import TableOfVideos from './pages/TableOfVideos';
 import Introduction from './pages/Introduction';
 import TechnologiesUsed from './pages/TechnologiesUsed';
 import GettingStarted from './pages/GettingStarted';
@@ -24,6 +26,8 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/preface" element={<Preface />} />
+        <Route path="/table-of-contents" element={<TableOfContents />} />
+        <Route path="/table-of-videos" element={<TableOfVideos />} />
         <Route path="/" element={<Introduction />} />
         <Route path="/technologies-used" element={<TechnologiesUsed />} />
         <Route path="/getting-started" element={<GettingStarted />} />
