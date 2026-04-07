@@ -130,7 +130,8 @@ export default function Preface() {
         anyhow back to me. I remembered myself at their age.
         During my first two years of university I was a complete mess, uninterested in
         anything. I would sit through a lecture or not come to any of them and
-        just show up on exam day (Electrical engineering ones). I realised some years later that I should
+        just show up on exam day (Electrical engineering ones, software engineering 
+        was more interesting to me). I realised some years later that I should
         have been listening better. I got my things together in the final year,
         but I can see similar patterns in other young fellas &mdash; we all have
         a moment where something starts to interest us. I remember saying words
