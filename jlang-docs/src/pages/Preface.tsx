@@ -127,7 +127,8 @@ export default function Preface() {
         but to be honest some of them are orders of magnitude better than I am, and most
         of the people that I saw, so sitting in there is a complete waste of time for
         them, learned something from them as well (not that sitting there is a waste
-        but kids tend to be more creative and in touch with technology),
+        but kids tend to be more creative and in touch with technology and btw we should
+        probably keep that childish spirit to keep learning and experimenting),
         anyhow back to me. I remembered myself at their age. During my first two 
         years of university, I was a complete mess, uninterested in anything. I would 
         sit through a lecture or not come to any of them and just show up on exam 
@@ -143,7 +144,8 @@ export default function Preface() {
         is no point in arguing at the moment and that some time needs to pass in 
         order for things to click and that when that moment happends that they 
         probably won't get an thank you email with a message that says
-        I realise it now, you were right. (Here is my thanks btw).
+        I realise it now, you were right. (Here is my thanks btw, they probably 
+        won't read this and I aswell won't send the email, but here it is).
       </p>
       <p>
         Although those years were a mess &mdash; really just me being a normal
