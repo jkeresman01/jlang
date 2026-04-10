@@ -131,8 +131,9 @@ export default function Preface() {
         probably keep that childish spirit to keep learning and experimenting),
         anyhow back to me. I remembered myself at their age. During my first two 
         years of university, I was a complete mess, uninterested in anything. I would 
-        sit through a lecture or not come to any of them and just show up on exam 
-        day (Electrical engineering ones, software engineering was more interesting to me,
+        sit through a lecture or not come to any of them and just show up on exam day,
+        perhaps COVID pandemic was additional factor in there, wasn't big fan of online 
+        lectures (Electrical engineering ones, software engineering was more interesting to me,
         but that's just my opinion, have huge respect for both disciplines though, and 
         electrical engineering is arguably more difficult, again talking about the discipline in 
         general). I realised some years later that I should have been listening better. 
