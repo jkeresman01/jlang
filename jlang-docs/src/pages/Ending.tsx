@@ -96,7 +96,11 @@ export default function Ending() {
        Did I piss of my family while going to piss in ungodly hours and 
        while skuaqa doodling my personal projects during nights, that's for sure.
        Did my obssesion come to an end? No not really but the pull is definetly
-       weaker than it used to be.
+       weaker than it used to be, but one thing is for sure this isn't book 
+       isn't the last thing that will keep in the wonderfall world of toughts, 
+       inovation and creation ... and lately vibes ... it's quite interesting when
+       you get used to it, you should always adopt to new technologies.
+       (Openclaw is quite fun btw)
        </p>
 
        <p>
