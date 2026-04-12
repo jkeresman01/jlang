@@ -46,7 +46,9 @@ export default function Preface() {
       <p>Also, I’m not a professional writer and there are far better and 
       more expereince and knowledgeable people in this space that I am, I mostly 
       write whatever comes to mind in a really unstructured way so this might not
-      work the way I think it does. It might be boring either way.</p>
+      work the way I think it does. It might be boring either way. The tone is 
+      consistent and mine, interesting as I was told by claude, but than again,
+      neither I nor claude are really writters</p>
 
       <h1>Preface</h1>
 
