@@ -462,7 +462,9 @@ export default function Preface() {
         And this got me thinking about something. Software is becoming cheaper,
         easier to build — this website has been written mostly with Claude's
         Opus 4.6 (The code is quite a mess but it works). Not the ideas not the
-        content, only the mundane boring work.
+        content, only the mundane boring work, the rest was done from a phone while 
+        in a bed or taking a poop or from my desk by pressing a bunch of jkjkjkjks 
+        from some arcane editor, anyhow back to the thing that I was thinking about.
         Will there still be a need for companies that purely live on
         providing software development services? Perhaps yes, perhaps no. But
         one thing is for sure — those that have their own products will thrive
