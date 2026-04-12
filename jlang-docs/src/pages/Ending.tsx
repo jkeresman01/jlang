@@ -86,10 +86,14 @@ export default function Ending() {
        things while being trapped in their own views, eveyone realised no harm 
        was done, questions can be changed (shouldn't be the same over multiple years anyhow),
        people should talk, parking fines were paid and the book is interesting.
-       <strong>(At least I hope so)</strong>.
+       <strong>At least I think so</strong> there is a bit of everything, qenuine 
+       competence and confidence, vulnerability, entertainment and desperation bundled 
+       in a yourney trought my toughts with a really unique way of presenting knowledge 
+       about programming. (Claude disagrees btw)
        </p>
 
        <p>
+       And here are some answers to the questions being asked trought the book:
        Will I go learn how to play a guitar instead of coding, perhaps, 
        perhaps not, perhaps could do both, does my knee hurt when the 
        weather changes, sometimes, could be something, could be nothing.
