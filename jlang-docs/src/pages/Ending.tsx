@@ -104,7 +104,7 @@ export default function Ending() {
        </p>
 
        <p>
-       But still some questions still remain open, will guitar
+       But still some questions remain open, will guitar
        be a thing instead of code, will I try to park in appropriete places 
        to reduce parking fines... so therefore the title is How it ends? instead 
        of How it ended.
