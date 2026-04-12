@@ -45,8 +45,8 @@ export default function Preface() {
 
       <p>Also, I’m not a professional writer and there are far better and 
       more expereince and knowledgeable people in this space that I am, I mostly 
-      write whatever comes to mind, so this might not work the way I think it does. 
-      It might be boring either way.</p>
+      write whatever comes to mind in a really unstructured way so this might not
+      work the way I think it does. It might be boring either way.</p>
 
       <h1>Preface</h1>
 
