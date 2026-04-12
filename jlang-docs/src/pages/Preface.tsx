@@ -7,7 +7,7 @@ export default function Preface() {
       <h1>How it started?</h1>
 
       <p>I was walking, vibing, coding, and talking about random stuff with ChatGPT 
-      (it was Gandalf-smoking-weed-type stuff — the rest is about as serious as that...),
+      (It was questions like Was Gandalf smoking weed and funny and jokey things like that),
       and thinking about this project I’ve been working on in my free time.
       I decided to include programming challenges in the docs. Then, all of a sudden,
       while walking, something hit me from behind — almost like an Isaac Newton apple moment. 
