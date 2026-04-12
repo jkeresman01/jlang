@@ -16,18 +16,20 @@ export default function Preface() {
       <p>A few days later, I realized something — kind of like 
       a Balthazar lightbulb moment. I realized that genuinely good people 
       could misunderstand the situation and act with good intentions,
-      criticizing those questions and how they came to be. What was needed from them was 
-      to understand that no harm was done.</p>
+      criticizing those questions and how they came to be.
+      What was needed from them was to understand that no harm was done.</p>
 
-      <p>So the next step for me was to try to explain what’s going on (the origin of the questions)
-      through these docs. But for that to make sense, I needed to turn it 
-      into a book. I quite liked the idea, so I continued writing.</p>
+      <p>So the next step for me was to try to explain 
+      what’s going on (the origin of the questions)
+      through these docs. But for that to make sense, 
+      I needed to turn it into a book. I quite liked the idea, 
+      so I continued writing.</p>
 
       <p>At some point, I got pissed off and needed a place to rant.
-      Instead of going for a run, I continued writing — and ended up 
-      adding a paragraph about corporate politics. Later on, I realized 
-      that just as easily as I got pissed off, someone else could 
-      too, so I removed it.</p>
+      Instead of going for a run or continuing to write about the language 
+      and general stuff II added a paragraph about corporate politics. 
+      Later on, I realized that just as easily as I got pissed off, 
+      someone else could too, so I removed it.</p>
 
       <p>I still left some general life advice — like how you should 
       find good people of strong character and spend time with them.
