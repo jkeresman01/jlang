@@ -78,7 +78,7 @@ export default function Ending() {
         ></iframe>
       </Callout>
 
-      <h1>How it ended</h1>
+      <h1>How it ends ?</h1>
 
       <p>
        The book was written, alogside this journey a lot of genuinely 
