@@ -94,7 +94,9 @@ export default function Ending() {
        perhaps not, perhaps could do both, does my knee hurt when the 
        weather changes, sometimes, could be something could be nothing.
        Did I piss of my family while going to piss in ungodly hours and 
-       while skua doodling my personal projects during nights, that's for sure.
+       while skuaqa doodling my personal projects during nights, that's for sure.
+       Did my obssesion come to an end? No not really but the pull is definetly
+       weaker than it used to be.
        </p>
 
        <p>
