@@ -81,17 +81,26 @@ export default function Ending() {
       <h1>How it ends ?</h1>
 
       <p>
-       The book was written, alogside this journey a lot of genuinely 
+       The book was written, alogside the journey a lot of genuinely 
        good people, with good intentions potentially misunderstood a lot of 
-       things while being trapped in their own view of things and eveyone realised no harm 
+       things while being trapped in their own views, eveyone realised no harm 
        was done, questions can be changed (shouldn't be the same over multiple years anyhow),
-       people should talk, parking fines were paid and the book is interesting <strong>(At least I hope so)</strong>.
+       people should talk, parking fines were paid and the book is interesting.
+       <strong>(At least I hope so)</strong>.
       </p>
 
       <p>
         If you made it this far, thank you. Now close this tab and go build
         something. New adventures are waiting.
       </p>
+
+      <Callout type="tip">
+        <strong>Fun fact:</strong>
+        There is a  misconception that Biblo Baggins smoked weed and 
+        although the term "weed" is used in the books, he smoked pipe-weed, which J.R.R. Tolkien 
+        explicitly identified as a variety of Nicotiana (tobacco).  
+        In The Hobbit, the substance is directly called tobacco
+      </Callout>
     </>
   );
 }
