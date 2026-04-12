@@ -87,20 +87,30 @@ export default function Ending() {
        was done, questions can be changed (shouldn't be the same over multiple years anyhow),
        people should talk, parking fines were paid and the book is interesting.
        <strong>(At least I hope so)</strong>.
-      </p>
+       </p>
+
+       <p>
+       Will I go learn how to play a guitar instead of coding, perhaps, 
+       perhaps not, perhaps could do both, does my knee hurt when the 
+       weather changes, sometimes, could be something could be nothing.
+       Did I piss of my family while going to piss in ungodly hours and 
+       while skua doodling my personal projects during nights, that's for sure.
+       </p>
+
+      <Callout type="tip">
+        <strong>Fun fact:</strong>
+        There is a misconception that Biblo Baggins smoked weed and 
+        although the term "weed" is used in the books, he smoked pipe-weed, which J.R.R. Tolkien 
+        explicitly identified as a variety of Nicotiana (tobacco).  
+        In The Hobbit, the substance is directly called tobacco
+      </Callout>
 
       <p>
         If you made it this far, thank you. Now close this tab and go build
         something. New adventures are waiting.
       </p>
 
-      <Callout type="tip">
-        <strong>Fun fact:</strong>
-        There is a  misconception that Biblo Baggins smoked weed and 
-        although the term "weed" is used in the books, he smoked pipe-weed, which J.R.R. Tolkien 
-        explicitly identified as a variety of Nicotiana (tobacco).  
-        In The Hobbit, the substance is directly called tobacco
-      </Callout>
+
     </>
   );
 }
