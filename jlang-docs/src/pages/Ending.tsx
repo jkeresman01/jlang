@@ -78,9 +78,19 @@ export default function Ending() {
         ></iframe>
       </Callout>
 
+      <h1>How it ended</h1>
+
+      <p>
+       The book was written, alogside this journey a lot of genuinely 
+       good people, with good intentions potentially misunderstood a lot of 
+       things while being trapped in their own view of things and eveyone realised no harm 
+       was done, questions can be changed, people should talk and the book is 
+       interesting <strong>(At least I hope so)</strong>.
+      </p>
+
       <p>
         If you made it this far, thank you. Now close this tab and go build
-        something. The compiler is waiting.
+        something. New adventures are waiting.
       </p>
     </>
   );
