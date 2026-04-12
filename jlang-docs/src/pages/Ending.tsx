@@ -81,7 +81,7 @@ export default function Ending() {
       <h1>How it ends ?</h1>
 
       <p>
-       The book was written, alogside the journey a lot of genuinely 
+       The book was written, alogside this journey a lot of genuinely 
        good people, with good intentions potentially misunderstood a lot of 
        things while being trapped in their own views, eveyone realised no harm 
        was done, questions can be changed (shouldn't be the same over multiple years anyhow),
@@ -92,11 +92,11 @@ export default function Ending() {
        <p>
        Will I go learn how to play a guitar instead of coding, perhaps, 
        perhaps not, perhaps could do both, does my knee hurt when the 
-       weather changes, sometimes, could be something could be nothing.
+       weather changes, sometimes, could be something, could be nothing.
        Did I piss of my family while going to piss in ungodly hours and 
        while skuaqa doodling my personal projects during nights, that's for sure.
-       Did my obssesion come to an end? No not really but the pull is definetly
-       weaker than it used to be, but one thing is for sure this isn't book 
+       Did my obssesion come to an end? No, not really but the pull is definetly
+       weaker than it used to be. One thing is for sure this book 
        isn't the last thing that will keep in the wonderfall world of toughts, 
        inovation and creation ... and lately vibes ... it's quite interesting when
        you get used to it, you should always adopt to new technologies.
@@ -104,7 +104,7 @@ export default function Ending() {
        </p>
 
        <p>
-       But one thing is for sure, some questions are still open, will guitar
+       But still some questions still remain open, will guitar
        be a thing instead of code, will I try to park in appropriete places 
        to reduce parking fines... so therefore the title is How it ends? instead 
        of How it ended.
