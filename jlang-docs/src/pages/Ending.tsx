@@ -84,8 +84,8 @@ export default function Ending() {
        The book was written, alogside this journey a lot of genuinely 
        good people, with good intentions potentially misunderstood a lot of 
        things while being trapped in their own view of things and eveyone realised no harm 
-       was done, questions can be changed, people should talk and the book is 
-       interesting <strong>(At least I hope so)</strong>.
+       was done, questions can be changed, people should talk, parking fines were paid 
+       and the book is interesting <strong>(At least I hope so)</strong>.
       </p>
 
       <p>
