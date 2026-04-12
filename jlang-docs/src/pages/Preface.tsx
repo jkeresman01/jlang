@@ -6,35 +6,43 @@ export default function Preface() {
     <>
       <h1>How it started?</h1>
 
-      <p>
-       I was walking, vibing, coding, talking about random shit with chatgtp
-       (Was gandalf smoking weed stuff, the rest is as serious as that ...) 
-       and thinking, working on this project in free time, decided to put programming 
-       challenges in the docs, then all of sudden while walking something hit 
-       me behind the back, almost like an Isasc Newton apple story, still not sure 
-       what acctually was. Then some days later I realized something, almost 
-       like an Balthazar lightbulb thing going on, I realized that genuinely good 
-       people could misunderstand the situation and therefore act with good intentions,
-       criticizing those questions and how they got there, needed from them to 
-       realize that no harm was done, so the next thing from me was to try and 
-       explain what's going on (the origin of the question) trough this docs, 
-       but I needed to turn it into a book in order for that to make sense, quite 
-       liked the idea so I continued writting it.
-       At some point I got pissed of, needed a place to rant, instead of going for 
-       a run and contined to write about the language and general things I wrote a 
-       paragraph about corporate politcs, some time down the line realized
-       that as easy as I could get pissed of someone else could, removed it afterwards.
-       Still left the general advice in the life on how you should find good people
-       of strong charater and hang out with them, callout type should be general advice or
-       smth instead of a life lesson...
-       ... And the rest are funny stories from life, some based on actual events 
-       some are way to exaggerated for the puropose of keeping the reader enaged,
-       no other reasone. For example nothing will happend if I don't code for a 
-       day, but writting it in a way that says that I'm terrifed that my obssesion 
-       is coming to an end is more interesting to read and keeps the reader engaged.
-       Also I'm not a professional writer so this might not work in way that I think,
-       it's maybe boring enough for people written in both ways.
-      </p>
+      <p>I was walking, vibing, coding, and talking about random stuff with ChatGPT 
+      (it was Gandalf-smoking-weed-type stuff — the rest is about as serious as that...),
+      and thinking about this project I’ve been working on in my free time.
+      I decided to include programming challenges in the docs. Then, all of a sudden,
+      while walking, something hit me from behind — almost like an Isaac Newton apple moment. 
+      I’m still not sure what it actually was.</p>
+
+      <p>A few days later, I realized something — kind of like 
+      a Balthazar lightbulb moment. I realized that genuinely good people 
+      could misunderstand the situation and act with good intentions,
+      criticizing those questions and how they came to be. What was needed from them was 
+      to understand that no harm was done.</p>
+
+      <p>So the next step for me was to try to explain what’s going on (the origin of the questions)
+      through these docs. But for that to make sense, I needed to turn it 
+      into a book. I quite liked the idea, so I continued writing.</p>
+
+      <p>At some point, I got pissed off and needed a place to rant.
+      Instead of going for a run, I continued writing — and ended up 
+      adding a paragraph about corporate politics. Later on, I realized 
+      that just as easily as I got pissed off, someone else could 
+      too, so I removed it.</p>
+
+      <p>I still left some general life advice — like how you should 
+      find good people of strong character and spend time with them.
+      The callout should probably be framed as general advice or something, 
+      rather than a life lesson.</p>
+
+      <p>The rest are just funny stories from life. Some are based 
+      on actual events, while others are way too exaggerated for 
+      the purpose of keeping the reader engaged — no other reason.
+      For example, nothing will actually happen if I don’t code for a day, 
+      but writing it as if I’m terrified that my obsession is coming to 
+      an end is more interesting and engaging.</p>
+
+      <p>Also, I’m not a professional writer, so this might not work 
+      the way I think it does. It might be boring either way.</p>
 
       <h1>Preface</h1>
 
