@@ -87,9 +87,9 @@ export default function Ending() {
        was done, questions can be changed (shouldn't be the same over multiple years anyhow),
        people should talk, parking fines were paid and the book is interesting.
        <strong>At least I think so</strong> there is a bit of everything, qenuine 
-       competence and confidence, vulnerability, entertainment and desperation bundled 
-       in a yourney trought my toughts with a really unique way of presenting knowledge 
-       about programming. (Claude disagrees btw)
+       competence and confidence, vulnerability, embaressment of not knowing stuff, 
+       entertainment and desperation bundled in a journey trought my toughts with a
+       really unique way of presenting knowledge about programming. (Claude disagrees btw)
        </p>
 
        <p>
@@ -104,7 +104,8 @@ export default function Ending() {
        isn't the last thing that will keep in the wonderfall world of toughts, 
        inovation and creation ... and lately vibes ... it's quite interesting when
        you get used to it, you should always adopt to new technologies.
-       (Openclaw is quite fun btw)
+       (Openclaw is quite fun btw) and I will definetly start writting things 
+       on the paper.
        </p>
 
        <p>
