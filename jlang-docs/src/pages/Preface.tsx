@@ -4,6 +4,24 @@ import ParkingAd from '../components/ParkingAd';
 export default function Preface() {
   return (
     <>
+      <h1>How it started?</h1>
+
+      <p>
+       I was walking, vibing, coding, talking about random shit with chatgtp
+       (Was gandalf smoking weed stuff, the rest is as serious as that ...) 
+       and thinking, working on this project in free time, decided to put programming 
+       challenges in the docs, then all of sudden while walking something hit 
+       me behind the back, almost like an Isasc Newton apple story, still not sure 
+       what acctually was. Then some days later I realized something, almost 
+       like an Balthazar lightbulb thing going on, I realized that genuinely good 
+       people could misunderstand the situation and therefore act with good intentions,
+       criticizing those questions and how they got there, needed from them to 
+       realize that no harm was done, so the next thing from me was to try and 
+       explain what's going on (the origin of the question) trough this docs, 
+       but I needed to turn it into a book in order for that to make sense, quite 
+       liked the idea so I continued writting it.
+      </p>
+
       <h1>Preface</h1>
 
       <p>
