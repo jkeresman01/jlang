@@ -6,7 +6,8 @@ export default function Ending() {
       <h1>The End</h1>
       <p>
         You've reached the end of the Jlang book. Writing in Jlang is hard work,
-        so here's a funny football story before you go.
+        so here's a funny football story before you go. Wasn't really that good in 
+        that sport but the story is funny.
       </p>
 
       <Callout type="life-lesson">
