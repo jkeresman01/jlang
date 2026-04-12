@@ -206,7 +206,12 @@ export default function Preface() {
         frustration. Sometimes it is admiration. Sometimes it is hate. Sometimes
         your eyes fill with tears of joy. But the thing about people like that
         is that you can feel their passion and their dedication bleeding through
-        every page.
+        every page. But of course this is a book and books need to be enjoyable
+        to read, so some things are just poetry, for example ofcourse that's you'll 
+        see me wearing a tie and shirt trought my youngish life, still don't enjoy 
+        wearing them that much, but writing a paragraph in a manner like this:
+        I wear a black hoodie most of the time and when I need to wear a shirt 
+        I do is too boring to read.
       </p>
       <p>
         Robert Nystrom, in the acknowledgements of{' '}
