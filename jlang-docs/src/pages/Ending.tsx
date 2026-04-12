@@ -86,8 +86,8 @@ export default function Ending() {
        things while being trapped in their own views, eveyone realised no harm 
        was done, questions can be changed (shouldn't be the same over multiple years anyhow),
        people should talk, parking fines were paid and the book is interesting.
-       <strong>At least I think so</strong> there is a bit of everything, qenuine 
-       competence and confidence, vulnerability, embaressment of not knowing stuff, 
+       <strong>At least I think so</strong> there is a bit of everything, genuine 
+       competence and confidence (not arrogance), vulnerability (embaressment of not knowing stuff), 
        entertainment and desperation bundled in a journey trought my toughts with a
        really unique way of presenting knowledge about programming. (Claude disagrees btw)
        </p>
