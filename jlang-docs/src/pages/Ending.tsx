@@ -97,6 +97,13 @@ export default function Ending() {
        while skua doodling my personal projects during nights, that's for sure.
        </p>
 
+       <p>
+       But one thing is for sure, some questions are still open, will guitar
+       be a thing instead of code, will I try to park in appropriete places 
+       to reduce parking fines... so therefore the title is How it ends? instead 
+       of How it ended.
+       </p>
+
       <Callout type="tip">
         <strong>Fun fact:</strong>
         There is a misconception that Biblo Baggins smoked weed and 
@@ -109,8 +116,6 @@ export default function Ending() {
         If you made it this far, thank you. Now close this tab and go build
         something. New adventures are waiting.
       </p>
-
-
     </>
   );
 }
