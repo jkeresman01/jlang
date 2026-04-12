@@ -487,7 +487,7 @@ export default function Preface() {
         haven&rsquo;t paid them yet. Will I stop parking there? Absolutely not.
         But these tickets are getting unreasonably expensive, and at this rate I
         might end up funding an entire city block renovation with my violations
-        alone.
+        alone. <strong>(They are paid now)</strong>
       </Callout>
 
       <ParkingAd />
