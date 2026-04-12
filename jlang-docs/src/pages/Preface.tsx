@@ -20,6 +20,20 @@ export default function Preface() {
        explain what's going on (the origin of the question) trough this docs, 
        but I needed to turn it into a book in order for that to make sense, quite 
        liked the idea so I continued writting it.
+       At some point I got pissed of, needed a place to rant, instead of going for 
+       a run and contined to write about the language and general things I wrote a 
+       paragraph about corporate politcs, some time down the line realized
+       that as easy as I could get pissed of someone else could, removed it afterwards.
+       Still left the general advice in the life on how you should find good people
+       of strong charater and hang out with them, callout type should be general advice or
+       smth instead of a life lesson...
+       ... And the rest are funny stories from life, some based on actual events 
+       some are way to exaggerated for the puropose of keeping the reader enaged,
+       no other reasone. For example nothing will happend if I don't code for a 
+       day, but writting it in a way that says that I'm terrifed that my obssesion 
+       is coming to an end is more interesting to read and keeps the reader engaged.
+       Also I'm not a professional writer so this might not work in way that I think,
+       it's maybe boring enough for people written in both ways.
       </p>
 
       <h1>Preface</h1>
