@@ -43,8 +43,10 @@ export default function Preface() {
       but writing it as if I’m terrified that my obsession is coming to 
       an end is more interesting and engaging.</p>
 
-      <p>Also, I’m not a professional writer, so this might not work 
-      the way I think it does. It might be boring either way.</p>
+      <p>Also, I’m not a professional writer and there are far better and 
+      more expereince and knowledgeable people in this space that I am, I mostly 
+      write whatever comes to mind, so this might not work the way I think it does. 
+      It might be boring either way.</p>
 
       <h1>Preface</h1>
 
