@@ -211,7 +211,9 @@ export default function Preface() {
         fit into a book about programming, to be honest. Perhaps they can be
         spoken about with someone, but most people are really boring to talk
         to &mdash; you know those surface-level talks about the weather in
-        Zagreb, zero depth. I have also noticed that the obsession comes in
+        Zagreb, zero depth (I was born, I went to school, I went to colleage. 
+        I go to work from 9 to 5. I watch televison after that, than repeat - 
+        <strong>you just boring zero depth type of person</strong>). I have also noticed that the obsession comes in
         waves &mdash; sometimes I code through the night, sometimes weeks pass
         and nothing pulls me in. But then again, I haven't come up with an idea
         to build something weird lately, just scrolling through yt in the last 3 weeks,
