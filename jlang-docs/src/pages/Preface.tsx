@@ -174,7 +174,9 @@ export default function Preface() {
         of the people that I saw, so sitting in there is a complete waste of time for
         them, learned something from them as well (not that sitting there is a waste
         but kids tend to be more creative and in touch with technology and btw we should
-        probably keep that childish spirit to keep learning and experimenting),
+        probably keep that childish spirit to keep learning and experimenting, people like that
+        tend to be rare, most after some years go to back to their routines and loose that 
+        couriosity),
         anyhow back to me. I remembered myself at their age. During my first two 
         years of university, I was a complete mess, uninterested in anything. I would 
         sit through a lecture or not come to any of them and just show up on exam day,
