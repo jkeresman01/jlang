@@ -108,7 +108,7 @@ export default function Ending() {
        inovation and creation ... and lately vibes ... it's quite interesting when
        you get used to it, you should always adopt to new technologies.
        (Openclaw is quite fun btw) and I will definetly start writting things 
-       on the paper.
+       on the paper and I haven't driffted back to my 9 to 5.
        </p>
 
        <p>
