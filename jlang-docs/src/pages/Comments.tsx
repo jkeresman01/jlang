@@ -50,7 +50,8 @@ export default function Comments() {
           comment could have saved it. The comment was not documentation, it
           was a cry for help. Nameing is also import found this one ORM SQL Boiler 
           just some time ago, like who names the thing boiler, 
-          that goes in the bathroom.
+          that is usually installed on an exterior wall in a kitchen,
+          utility room, garage, or loft, not in the code.
         </p>
         <p>
           Linus Torvalds once gave a talk where he described what he considers
