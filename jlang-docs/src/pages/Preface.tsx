@@ -216,9 +216,10 @@ export default function Preface() {
         <strong>you just boring zero depth type of person</strong>). I have also noticed that the obsession comes in
         waves &mdash; sometimes I code through the night, sometimes weeks pass
         and nothing pulls me in. But then again, I haven't come up with an idea
-        to build something weird lately, just scrolling through yt in the last 3 weeks,
-        perhaps I learn something or get an idea to build something weird that would
-        keep me engaged, perhaps not, perhaps I'll drift back to my routine, chill and 
+        to build something weird lately, just scrolling through yt (some videos more than once, 
+        too dumb sometimes to comprehend from the first watch) in the last 3 weeks, 
+        perhaps I learn something or get an idea to build something weird that 
+        would keep me engaged, perhaps not, perhaps I'll drift back to my routine, chill and 
         relaxed 9 to 5, perhaps could even start doing it in an actual 9 to 5 manner 
         (doubt that), perhaps it's time for new endeavours and adventures in some
         other realms, like I don't know, music, writing, or something absurd,
