@@ -27,7 +27,7 @@ export default function Preface() {
 
       <p>At some point, I got pissed off and needed a place to rant.
       Instead of going for a run or continuing to write about the language 
-      and general stuff II added a paragraph about corporate politics. 
+      and general stuff I added a paragraph about corporate politics. 
       Later on, I realized that just as easily as I got pissed off, 
       someone else could too, so I removed it.</p>
 
