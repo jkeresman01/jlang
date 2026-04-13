@@ -184,7 +184,7 @@ export default function Preface() {
         electrical engineering is arguably more difficult, again talking about the discipline in 
         general, not like exams, points and grades but disciplines in general, disciplines are 
         broader and there might be things that interest you more or less but are out of the scope of
-        the exam). I realised some years later that I should have been listening better. 
+        the exam or are just fun to do in general). I realised some years later that I should have been listening better. 
         I got my things together in the final year, but I can see similar patterns 
         in other young fellas &mdash; we all have a moment where something starts to 
         interest us. I remember saying words like &ldquo;when will I ever need this,&rdquo; 
@@ -255,7 +255,7 @@ export default function Preface() {
         your eyes fill with tears of joy. But the thing about people like that
         is that you can feel their passion and their dedication bleeding through
         every page. But of course this is a book and books need to be enjoyable
-        to read, so some things are just poetry, for example ofcourse that's you'll 
+        to read, so some things are just poetry, for example ofcourse that you'll 
         see me wearing a tie and shirt trought my youngish life, still don't enjoy 
         wearing them that much, but writing a paragraph in a manner like this:
         I wear a black hoodie most of the time and when I need to wear a shirt 
