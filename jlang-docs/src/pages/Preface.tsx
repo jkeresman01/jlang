@@ -182,7 +182,7 @@ export default function Preface() {
         lectures (Electrical engineering ones, software engineering was more interesting to me,
         but that's just my opinion, have huge respect for both disciplines though, and 
         electrical engineering is arguably more difficult, again talking about the discipline in 
-        general). I realised some years later that I should have been listening better. 
+        general, not like exams, points and grades but disciplines in general). I realised some years later that I should have been listening better. 
         I got my things together in the final year, but I can see similar patterns 
         in other young fellas &mdash; we all have a moment where something starts to 
         interest us. I remember saying words like &ldquo;when will I ever need this,&rdquo; 
