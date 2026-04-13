@@ -48,7 +48,9 @@ export default function Comments() {
           comment this so future-me understands it. A few books later I
           realised something profound &mdash; the code was so bad that no
           comment could have saved it. The comment was not documentation, it
-          was a cry for help.
+          was a cry for help. Nameing is also import found this one ORM SQL Boiler 
+          just some time ago, like who names the thing boiler, 
+          that goes in the bathroom.
         </p>
         <p>
           Linus Torvalds once gave a talk where he described what he considers
