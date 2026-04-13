@@ -87,7 +87,8 @@ export default function Ending() {
        good people, with good intentions potentially misunderstood a lot of 
        things while being trapped in their own views, eveyone realised no harm 
        was done, questions can be changed (shouldn't be the same over multiple years anyhow),
-       people should talk, parking fines were paid and the book is interesting.
+       people should talk, parking fines were paid (I've actually parked in a place where
+       I can't get a ticket today, probably) and the book is interesting.
        <strong>At least I think so</strong> there is a bit of everything, genuine 
        competence and confidence (not arrogance), vulnerability (embaressment of not knowing stuff), 
        entertainment and desperation bundled in a journey trought my toughts with a
