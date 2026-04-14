@@ -113,16 +113,18 @@ export default function Ending() {
 
        <p>
        Did my obssesion come to an end? No, not really but the pull is definetly
-       weaker than it used to be. One thing is for sure this book 
-       isn't the last thing that will keep in the wonderfall world of toughts, 
-       inovation and creation ... and lately vibes ... it's quite interesting when
-       you get used to it, you should always adopt to new technologies.
-       (Openclaw is quite fun btw) and I will definetly start writting things 
-       on the paper.
+       weaker than it used to be.
        </p>
 
        <p>
-       Did I drifft back to my 9 to 5 ? No not really.
+       One thing is for sure this book isn't the last thing that will keep in the wonderfall world of toughts, 
+       inovation and creation ... and lately vibes ... it's quite interesting when
+       you get used to it, you should always adopt to new technologies.
+       (Openclaw is quite fun btw) and I will definetly start writting things on the paper.
+       </p>
+
+       <p>
+       Did I drifft back to my 9 to 5? No, not really.
        </p>
 
        <p>
@@ -146,6 +148,6 @@ export default function Ending() {
         In The Hobbit, the substance is directly called tobacco
       </Callout>
 
-          </>
+    </>
   );
 }
