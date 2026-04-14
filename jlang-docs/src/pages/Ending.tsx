@@ -83,7 +83,7 @@ export default function Ending() {
       <h1>How it ends ?</h1>
 
       <p>
-       The book was written, alogside this journey a lot of genuinely 
+       The book was written, alogside the journey a lot of genuinely 
        good people, with good intentions potentially misunderstood a lot of 
        things while being trapped in their own views, eveyone realised no harm 
        was done, questions can be changed (shouldn't be the same over multiple years anyhow),
@@ -93,22 +93,36 @@ export default function Ending() {
        competence and confidence (not arrogance), vulnerability (embaressment of not knowing stuff), 
        entertainment and desperation bundled in a journey trought my toughts with a
        really unique way of presenting knowledge about programming. (Claude disagrees btw)
+       And everything was explained, nothing more, nothing less to add.
        </p>
 
        <p>
        And here are some answers to the questions being asked trought the book:
-       Will I go learn how to play a guitar instead of coding, perhaps, 
-       perhaps not, perhaps could do both, does my knee hurt when the 
+       </p>
+
+       <p>
+       Will I go learn how to play a guitar instead of coding ? 
+       Perhaps, perhaps not, perhaps could do both, does my knee hurt when the 
        weather changes, sometimes, could be something, could be nothing.
+       </p>
+
+       <p>
        Did I piss of my family while going to piss in ungodly hours and 
-       while skuaqa doodling my personal projects during nights, that's for sure.
+       while skuaqa doodling my personal projects during some sleepless nights, that's for sure.
+       </p>
+
+       <p>
        Did my obssesion come to an end? No, not really but the pull is definetly
        weaker than it used to be. One thing is for sure this book 
        isn't the last thing that will keep in the wonderfall world of toughts, 
        inovation and creation ... and lately vibes ... it's quite interesting when
        you get used to it, you should always adopt to new technologies.
        (Openclaw is quite fun btw) and I will definetly start writting things 
-       on the paper and I haven't driffted back to my 9 to 5.
+       on the paper.
+       </p>
+
+       <p>
+       Did I drifft back to my 9 to 5 ? No not really.
        </p>
 
        <p>
@@ -118,6 +132,12 @@ export default function Ending() {
        of How it ended.
        </p>
 
+      <p>
+        If you made it this far, thank you. Now close this tab and go build
+        something. New adventures are waiting and perhaps you might find yourself
+        in this wonderfall world yourself.
+      </p>
+
       <Callout type="tip">
         <strong>Fun fact:</strong>
         There is a misconception that Biblo Baggins smoked weed and 
@@ -126,10 +146,6 @@ export default function Ending() {
         In The Hobbit, the substance is directly called tobacco
       </Callout>
 
-      <p>
-        If you made it this far, thank you. Now close this tab and go build
-        something. New adventures are waiting.
-      </p>
-    </>
+          </>
   );
 }
