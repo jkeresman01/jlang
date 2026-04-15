@@ -144,8 +144,10 @@ export default function Ending() {
 
        <p>
        And for the writting part, I guess go for it and don't be afraid to fail.
-       Writting is just like anything else, you will suck at it as I do, perphaps 
-       you might even be good at it, only one thing is for sure, people will judged anyway.
+       Writting is just like anything else, you will suck at it as I do now, perphaps 
+       you might even be good at it, only one thing is for sure, people will judge anyway.
+       But judging is easy, trying and doing is hard, so when ever you see someone 
+       starting out something, encourage and support them, judging is easy.
        </p>
 
        <p>
