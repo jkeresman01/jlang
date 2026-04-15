@@ -132,6 +132,17 @@ export default function Ending() {
        </p>
 
        <p>
+       And for the wars and this cruel world, you know Putin and Trump... I'm
+       really nobody to say, but here is my input anyways, drop the guns down, 
+       this world is much better place without it both for people in it and out of it.
+       You know I would rather get a notification about a breaktrough in technology 
+       rather than how many people died in some bombarding, as would anyone else.
+       Didn't even realize Trump started one, have been in this world of code, vibes
+       and toughts.
+       </p>
+
+
+       <p>
        But still some questions remain open, will guitar
        be a thing instead of code, will I try to park in appropriete places 
        to reduce parking fines... so therefore the title is How it ends? instead 
