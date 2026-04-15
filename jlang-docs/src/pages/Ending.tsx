@@ -169,13 +169,13 @@ export default function Ending() {
         In The Hobbit, the substance is directly called tobacco
       </Callout>
 
-      <h2>
+      <h4>
       <strong>
        THE END. NOTHING MORE SAY, JUST FEW THANKS FOR ALL
        ANGLES GUARDINS THAT HAVE PROTECTED ME AND GAVE ME THE STRENGTH
        TO FINISH THIS BOOK. DON'T KNOW HOW TO REPAY.
       </strong>
-      </h2>
+      </h4>
 
       <p><i>Grammar and words will still be improved</i></p>
 
