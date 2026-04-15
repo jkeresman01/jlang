@@ -138,12 +138,18 @@ export default function Ending() {
        You know I would rather get a notification about a breaktrough in technology 
        rather than how many people died in some bombarding, as would anyone else.
        Didn't even realize Trump started one, have been in this world of code, vibes
-       and toughts.
+       and toughts and you shoud find yourself one, could be in someone you love, could
+       be in code or sport, but it's good to have such a place.
        </p>
 
+       <p>
+       And for the writting part, I guess go for it and don't be afraid to fail.
+       Writting is just like anything else, you will suck at it as I do, perphaps 
+       you might even be good at it, only one thing is for sure, people will judged anyway.
+       </p>
 
        <p>
-       But still some questions remain open, will guitar
+       But still afte everything some questions still remain open, will guitar
        be a thing instead of code, will I try to park in appropriete places 
        to reduce parking fines... so therefore the title is How it ends? instead 
        of How it ended.
@@ -162,6 +168,16 @@ export default function Ending() {
         explicitly identified as a variety of Nicotiana (tobacco).  
         In The Hobbit, the substance is directly called tobacco
       </Callout>
+
+      <h2>
+      <strong>
+       THE END. NOTHING MORE SAY, JUST FEW THANKS FOR ALL
+       ANGLES GUARDINS THAT HAVE PROTECTED ME AND GAVE ME THE STRENGTH
+       TO FINISH THIS BOOK. DON'T KNOW HOW TO REPAY.
+      </strong>
+      </h2>
+
+      <p><i>Grammar and words will still be improved</i></p>
 
     </>
   );
