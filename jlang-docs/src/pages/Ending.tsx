@@ -117,10 +117,14 @@ export default function Ending() {
        </p>
 
        <p>
-       One thing is for sure this book isn't the last thing that will keep in the wonderfall world of toughts, 
-       inovation and creation ... and lately vibes ... it's quite interesting when
-       you get used to it, you should always adopt to new technologies.
-       (Openclaw is quite fun btw) and I will definetly start writting things on the paper.
+       One thing is for sure this book isn't the last thing that will keep in the 
+       wonderfall world of toughts, inovation and creation ... and lately vibes ... 
+       Don't get me wrong I'm no inovator nor creator, perhaps more like a child that 
+       likes to fool around, play and work with technology, not against it. Don't get 
+       me wrong I have some fight's with it, fought against AI for quite some time, 
+       but than again those who don't adopt will cease to exist, so always adpot 
+       and play with new technologies, be like children, always explore, play and 
+       work with it, never fight it, found Openclaw to be quite fun lately.
        </p>
 
        <p>
