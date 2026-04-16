@@ -163,6 +163,14 @@ export default function Ending() {
         in this wonderfall world yourself.
       </p>
 
+      <p>
+      One last thing that occupied my mind and I almost forget, 
+      noticed one girl she was different, she was good noticed it 
+      right away, call her snow white, probably said doubt that I am,
+      made me smile, should've said hi, instead I walked right away.
+      </p>
+      
+      
       <Callout type="tip">
         <strong>Fun fact:</strong>
         There is a misconception that Biblo Baggins smoked weed and 
