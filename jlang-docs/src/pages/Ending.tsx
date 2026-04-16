@@ -150,6 +150,14 @@ export default function Ending() {
        starting out something, encourage and support them, judging is easy.
        </p>
 
+      <p>
+      One last thing that occupied my mind and I almost forgot, 
+      noticed one girl she was different, she was good noticed it 
+      right away, don't know her name, call her snow white, probably
+      said doubt that I am (no reason to doubt, you quite cute), 
+      made me smile, should've said hi, instead I walked right away.
+      </p>
+      
        <p>
        But still afte everything some questions still remain open, will guitar
        be a thing instead of code, will I try to park in appropriete places 
@@ -163,14 +171,6 @@ export default function Ending() {
         in this wonderfall world yourself.
       </p>
 
-      <p>
-      One last thing that occupied my mind and I almost forgot, 
-      noticed one girl she was different, she was good noticed it 
-      right away, don't know her name, call her snow white, probably
-      said doubt that I am (no reason to doubt, you quite cute), 
-      made me smile, should've said hi, instead I walked right away.
-      </p>
-      
       <Callout type="tip">
         <strong>Fun fact:</strong>
         There is a misconception that Biblo Baggins smoked weed and 
