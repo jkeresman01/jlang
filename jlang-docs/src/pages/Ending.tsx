@@ -164,12 +164,12 @@ export default function Ending() {
       </p>
 
       <p>
-      One last thing that occupied my mind and I almost forget, 
+      One last thing that occupied my mind and I almost forgot, 
       noticed one girl she was different, she was good noticed it 
-      right away, call her snow white, probably said doubt that I am,
+      right away, don't know her name, call her snow white, probably
+      said doubt that I am (no reason to doubt, you quite cute), 
       made me smile, should've said hi, instead I walked right away.
       </p>
-      
       
       <Callout type="tip">
         <strong>Fun fact:</strong>
