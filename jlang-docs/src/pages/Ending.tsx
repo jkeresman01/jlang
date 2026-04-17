@@ -173,6 +173,7 @@ export default function Ending() {
 
       <p>
        The story is done, it will be quite funny, after some time has passed.
+       Might even mention it in my next book, who knows.
       </p>
     
       <Callout type="tip">
