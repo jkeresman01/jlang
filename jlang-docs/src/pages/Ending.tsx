@@ -171,6 +171,10 @@ export default function Ending() {
         in this wonderfall world yourself.
       </p>
 
+      <p>
+       The story is done, it will be quite funny, after some time has passed.
+      </p>
+    
       <Callout type="tip">
         <strong>Fun fact:</strong>
         There is a misconception that Biblo Baggins smoked weed and 
