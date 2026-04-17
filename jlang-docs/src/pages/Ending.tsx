@@ -156,7 +156,8 @@ export default function Ending() {
       right away, don't know her name, call her snow white, probably
       said to herself and/or a friend, doubt that I am (no reason to doubt, you quite cute), 
       made me smile, should've said hi, instead I walked right away. Will
-      probably never see her again, and not like in song this time it's a shame.
+      probably never see her again, and not like in the song this time it's a shame, just 
+      realized it made me quite sad.
       </p>
       
       <p>
