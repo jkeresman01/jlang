@@ -163,6 +163,12 @@ export default function Ending() {
       care, since she is in the main tought anyway.
       </p>
       
+       <Callout type="life-lesson">
+           <video width="640" height="360" controls>
+               <source src={`${import.meta.env.BASE_URL}assets/stayed_in_the_shade.mp4`} type="video/mp4"/>
+           </video>
+       </Callout>
+
       <p>
        But still after everything some questions still remain open, will guitar
        be a thing instead of code, just realized the answer, no not really code is there to stay,
