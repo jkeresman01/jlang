@@ -159,13 +159,14 @@ export default function Ending() {
       probably never see her again, and not like in song this time it's a shame.
       </p>
       
-       <p>
+      <p>
        But still after everything some questions still remain open, will guitar
-       be a thing instead of code, will I try to park in appropriete places 
-       to reduce parking fines... so therefore the title is How it ends? instead 
+       be a thing instead of code, just realized the answer, no not really code is there to stay,
+       just need an interesting project idea to keep me engaged,
+       will I try to park in appropriete places to reduce parking fines... so therefore the title is How it ends? instead 
        of How it ended.
-       </p>
-
+      </p>
+      
       <p>
         If you made it this far, thank you. Now close this tab and go build
         something. New adventures are waiting and perhaps you might find yourself
