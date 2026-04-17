@@ -159,7 +159,8 @@ export default function Ending() {
       probably never see her again, and not like in the song this time it's a shame, just 
       realized it made me quite sad. I hope she will read, "sumnjam" was the 
       word in the park, far from fountain yesterday. Besides her all the women 
-      look the same.
+      look the same, you know so fake and obvious right away, but why to even 
+      care, since she is in the main tought anyway.
       </p>
       
       <p>
