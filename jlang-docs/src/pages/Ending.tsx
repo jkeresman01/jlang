@@ -155,11 +155,12 @@ export default function Ending() {
       noticed one girl she was different, she was good noticed it 
       right away, don't know her name, call her snow white, probably
       said to herself and/or a friend, doubt that I am (no reason to doubt, you quite cute), 
-      made me smile, should've said hi, instead I walked right away.
+      made me smile, should've said hi, instead I walked right away. Will
+      probably never see her again, and not like in song this time it's a shame.
       </p>
       
        <p>
-       But still afte everything some questions still remain open, will guitar
+       But still after everything some questions still remain open, will guitar
        be a thing instead of code, will I try to park in appropriete places 
        to reduce parking fines... so therefore the title is How it ends? instead 
        of How it ended.
