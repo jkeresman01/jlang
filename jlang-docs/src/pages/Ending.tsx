@@ -153,8 +153,9 @@ export default function Ending() {
       <p>
       One last thing that occupied my mind and I almost forgot, 
       noticed one girl she was different, she was good noticed it 
-      right away, don't know her name, call her snow white, probably
-      said to herself and/or a friend, doubt that I am (no reason to doubt, you quite cute), 
+      right away, don't know her name, call her snow white (the name has nothing to do with
+      the physical apperance, just needed a name, call my home the underworld for example)
+      probably said to herself and/or a friend, doubt that I am (no reason to doubt, you quite cute), 
       made me smile, should've said hi, instead I walked right away. Will
       probably never see her again, and not like in the song this time it's a shame, just 
       realized it made me quite sad. I hope she will read, "sumnjam" was the 
