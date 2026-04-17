@@ -157,7 +157,8 @@ export default function Ending() {
       said to herself and/or a friend, doubt that I am (no reason to doubt, you quite cute), 
       made me smile, should've said hi, instead I walked right away. Will
       probably never see her again, and not like in the song this time it's a shame, just 
-      realized it made me quite sad.
+      realized it made me quite sad. I hope she will read, "sumnjam" was the 
+      word in the park, far from fountain yesterday.
       </p>
       
       <p>
