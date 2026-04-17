@@ -158,7 +158,8 @@ export default function Ending() {
       made me smile, should've said hi, instead I walked right away. Will
       probably never see her again, and not like in the song this time it's a shame, just 
       realized it made me quite sad. I hope she will read, "sumnjam" was the 
-      word in the park, far from fountain yesterday.
+      word in the park, far from fountain yesterday. Besides her all the women 
+      look the same.
       </p>
       
       <p>
