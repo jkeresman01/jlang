@@ -185,7 +185,7 @@ export default function Ending() {
       <p>
        But still after everything some questions still remain open, will guitar
        be a thing instead of code, just realized the answer, no not really code is there to stay,
-       just need an interesting project idea to keep me engaged,
+       just need an interesting project idea to keep me engaged, the code will preveil,
        will I try to park in appropriete places to reduce parking fines... so therefore the title is How it ends? instead 
        of How it ended.
       </p>
