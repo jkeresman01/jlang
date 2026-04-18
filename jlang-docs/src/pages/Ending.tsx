@@ -169,7 +169,15 @@ export default function Ending() {
                <source src={`${import.meta.env.BASE_URL}assets/stayed_in_the_shade.mp4`} type="video/mp4"/>
            </video>
        </Callout>
-
+      
+      <p>
+        Questions and their origin were explain, but the story and the book 
+        were perhaps way too much, for a thing that while at the moment not knowing 
+        I never asked to be involved in as such, this all caused too much tension, stress and doubt. 
+        You know which side project to do, to write a book, which technology to use,
+        perhaps now it's time to do some REST, gRPC or SOAP.
+      </p>
+      
       <p>
        But still after everything some questions still remain open, will guitar
        be a thing instead of code, just realized the answer, no not really code is there to stay,
