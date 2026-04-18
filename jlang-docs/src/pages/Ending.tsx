@@ -6,15 +6,16 @@ export default function Ending() {
       <h1>The End</h1>
       <p>
         You've reached the end of the Jlang book. Writing in Jlang is hard work,
-        so here's a funny football story before you go. Looking objectivly, wasn't 
-        really that good in that sport but the story is funny, had my moments tough and 
-        the tournament was really unimportant, was really bad at it.
-        Found small paper from history of diesese, everything to exaggerated for 
-        the purpose of poetry, timeline could be different, the stories could be 2, 
-        but than again I might be wrong everythings from memory, doctor one and the tournament, 
-        noted part of the one song down one night, still remember how hard was it 
-        for me to ryhme that all in, the song is quite childish, 
-        so the guitar and me will not be.
+        so here's a funny football story before you go. Looking objectively, I
+        wasn't really that good at the sport, but the story is funny. I had my
+        moments, though, and the tournament was really unimportant. I was really
+        bad at it.
+        I found a small piece of paper from the history of disease, everything
+        exaggerated for the purpose of poetry. The timeline could be different,
+        the stories could be two, but then again I might be wrong—everything's
+        from memory: the doctor one and the tournament. I noted part of one song
+        down one night; I still remember how hard it was for me to rhyme it all
+        in. The song is quite childish, so the guitar and I will not be.
       </p>
 
       <Callout type="life-lesson">
@@ -60,7 +61,7 @@ export default function Ending() {
           <br />
           my grandma used to tell me that — I thought it sounded strange.
           <br />
-          But grandma was right, I believe her now it's true,
+          But grandma was right, I believe her now, it's true,
           <br />
           just needed some time to understand what grandma always knew.
         </p>
@@ -86,175 +87,189 @@ export default function Ending() {
         ></iframe>
       </Callout>
 
-      <h1>How it ends ?</h1>
+      <h1>How does it end?</h1>
 
       <p>
-       The book was written, alogside the journey a lot of genuinely 
-       good people, with good intentions potentially misunderstood a lot of 
-       things while being trapped in their own views, eveyone realised no harm 
-       was done, questions can be changed (shouldn't stay the same over almost half a decade,
-       isn't that just insane), people should talk, parking fines were paid (I've actually parked in a place where
-       I can't get a ticket today, probably) and the book is interesting.
-       <strong>At least I think so</strong> there is a bit of everything, genuine 
-       competence and confidence (not arrogance), vulnerability (embaressment of not knowing stuff), 
-       entertainment and desperation bundled in a journey trought my toughts with a
-       really unique way of presenting knowledge about programming. (Claude disagrees btw)
-       And everything was explained, nothing more, nothing less to add.
-       </p>
-
-       <p>
-       And here are some answers to the questions being asked trought the book:
-       </p>
-
-       <p>
-       Will I go learn how to play a guitar instead of coding ? 
-       Perhaps, perhaps not, perhaps could do both, does my knee hurt when the 
-       weather changes, sometimes, could be something, could be nothing.
-       </p>
-
-       <p>
-       Did I piss of my family while going to piss in ungodly hours and 
-       while skuaqa doodling my personal projects during some sleepless nights, that's for sure.
-       </p>
-
-       <p>
-       Did my obssesion come to an end? No, not really but the pull is definetly
-       weaker than it used to be.
-       </p>
-
-       <p>
-       One thing is for sure this book isn't the last thing that will keep in the 
-       wonderfall world of toughts, inovation and creation ... and lately vibes ... 
-       Don't get me wrong I'm no inovator nor creator, perhaps more like a child that 
-       likes to fool around, play and work with technology, not against it. Don't get 
-       me wrong I have some fight's with it, fought against AI for quite some time, 
-       but than again those who don't adopt will cease to exist, so always adpot 
-       and play with new technologies, be like children, always explore, play and 
-       work with it, never fight it, found Openclaw to be quite fun lately.
-       </p>
-
-       <p>
-       Did I drifft back to my 9 to 5? No, not really.
-       </p>
-
-       <p>
-       And for the wars and this cruel world, you know Putin and Trump... I'm
-       really nobody to say, but here is my input anyways, drop the guns down, 
-       this world is much better place without it both for people in it and out of it.
-       You know I would rather get a notification about a breaktrough in technology 
-       rather than how many people died in some bombarding, as would anyone else.
-       Didn't even realize Trump started one, have been in this world of code, vibes
-       and toughts and you shoud find yourself one, could be in someone you love, could
-       be in code or sport, but it's good to have such a place.
-       </p>
-
-       <p>
-       For the writting part, I guess go for it and don't be afraid to fail.
-       Writting is just like anything else, you will suck at it as I do now, perphaps 
-       you might even be good at it, only one thing is for sure, people will judge anyway.
-       But judging is easy, trying and doing is hard, so when ever you see someone 
-       starting out something, encourage and support them, judging is easy.
-       </p>
-
-      <p>
-      One last thing that occupied my mind and I almost forgot, 
-      noticed one girl she was different, she was good noticed it 
-      right away, don't know her name, call her snow white (the name has nothing to do with
-      the physical apperance, just needed a name, call my home the underworld)
-      probably said to herself and/or a friend, doubt that I am (no reason to doubt, you quite cute), 
-      made me smile, should've said hi, instead I walked right away. Will
-      probably never see her again, and not like in the song this time it's a shame, just 
-      realized it made me quite sad. I hope she will read, "sumnjam" was the 
-      word in the park, far from fountain yesterday. Besides her all the women 
-      look the same, you know so fake and obvious right away, but why to even 
-      care, since she is in the main tought anyway. She is not related in any way
-      or form, to this my programming story, just an interesting side tought of my own,
-      but than again she failed my walk test, played the game instead of being herself,
-      it's all okay, she didn't notice I was being involved and paying attention anyway,
-      but now she understands. She is a delight, a truly lovely sight, also quite smart.
-      Never meant to put her on the spot (in the book), for that I'm sorry, the thing came as one last after 
-      tought, just one hi and story would've been a different one, if she realized I hope she 
-      atleast smiled. Set my own walk test to 10000 steps a day, perhaps could even not reach that
-      goal today, perhaps its good to rest for a day, watch some netflix while I lay down in bad.
-      Watch some random movie, to make some time pass away, onepiece and boring stuff like that,
-      there was a story, 2 giants fighting over a decade, they forgot what the reason even was.
-      Remaineded me of something, why do people fight. My at home sometimes do just that,
-      sometimes with me, wind slaming doors to loudly or things like that, but than again thats
-      just normal human stuff.
-      </p>
-      
-       <Callout type="life-lesson">
-           <video width="640" height="360" controls>
-               <source src={`${import.meta.env.BASE_URL}assets/stayed_in_the_shade.mp4`} type="video/mp4"/>
-           </video>
-       </Callout>
-      
-      <p>
-        Questions and their origin were explained, but the story and the book 
-        were perhaps way too much, for a thing that while at the moment not knowing 
-        I never asked to be involved in as such, this all caused too much tension, stress and doubt. 
-        You know which side project to do, to write a book, which technology to use,
-        perhaps now it's time to do some REST, gRPC or SOAP. Project approach is cool,
-        this midterm no exams to pass, everything has few meanings, perhaps anyone
-        that touched my life could relate, should they is another coversation to be held
-        and questions now have the answers in my website form. Still there is a lot 
-        that I don't know, one thing is for sure, those who did relate I love them all. 
-        Things that I today write came from looking back trough story, still trying to figure 
-        it all out and all the why, who, when and what, piece is what I like, 
-        walking trough the park, my tought was better not to know and the questions were perhaps
-        maybe three, probably now lost in the sea.
-      </p>
-      
-      <p>
-       Some questions remain open, will guitar
-       be a thing instead of code, just realized the answer, no not really code is there to stay,
-       just need an interesting project idea to keep me engaged, the code will preveil,
-       the code will preveil, the code will preveil.
-       What will my next book be about? Dragons, code or romanse, that's what I don't know, 
-       this one is about some questions, my life and the code.
+        The book was written alongside the journey. A lot of genuinely good
+        people, with good intentions, potentially misunderstood many things
+        while being trapped in their own views. Everyone realized no harm was
+        done. Questions can change (they shouldn't stay the same for almost half
+        a decade—isn't that just insane?). People should talk. Parking fines were
+        paid (I've actually parked in a place where I can't get a ticket today,
+        probably), and the book is interesting.
+        <strong>At least I think so</strong>. There is a bit of everything:
+        genuine competence and confidence (not arrogance), vulnerability
+        (embarrassment of not knowing stuff), entertainment, and desperation
+        bundled in a journey through my thoughts with a really unique way of
+        presenting knowledge about programming (Claude disagrees, by the way).
+        And everything was explained—nothing more, nothing less to add.
       </p>
 
-       <p>
-           Will I try to park in appropriete places to reduce parking fines?
-       </p>
+      <p>
+        And here are some answers to the questions being asked throughout the
+        book:
+      </p>
 
       <p>
-          <strong> ....so therefore the title is How it ends? instead of How it ended. </strong>
+        Will I go learn how to play the guitar instead of coding? Perhaps,
+        perhaps not. Perhaps I could do both. Does my knee hurt when the weather
+        changes? Sometimes. Could be something, could be nothing.
+      </p>
+
+      <p>
+        Did I piss off my family while going to the bathroom at ungodly hours and
+        while doodling my personal projects during sleepless nights? That's for
+        sure.
+      </p>
+
+      <p>
+        Did my obsession come to an end? No, not really, but the pull is
+        definitely weaker than it used to be.
+      </p>
+
+      <p>
+        One thing is for sure: this book isn't the last thing that will keep me
+        in the wonderful world of thoughts, innovation, and creation... and
+        lately, vibes. Don't get me wrong—I'm no innovator nor creator, perhaps
+        more like a child who likes to fool around, play, and work with
+        technology, not against it. Don't get me wrong, I have some fights with
+        it. I fought against AI for quite some time, but then again, those who
+        don't adopt will cease to exist, so always adopt and play with new
+        technologies. Be like children—always explore, play, and work with it,
+        never fight it. I found OpenClaw to be quite fun lately.
+      </p>
+
+      <p>
+        Did I drift back to my 9-to-5? No, not really.
+      </p>
+
+      <p>
+        And for the wars and this cruel world—you know, Putin and Trump—I'm
+        really nobody to say, but here is my input anyway: put the guns down.
+        This world is a much better place without them, both for people in it and
+        out of it. I would rather get a notification about a breakthrough in
+        technology than hear how many people died in some bombardment, as would
+        anyone else. I didn't even realize Trump started one; I've been in this
+        world of code, vibes, and thoughts, and you should find yourself one. It
+        could be in someone you love, it could be in code or sport, but it's good
+        to have such a place.
+      </p>
+
+      <p>
+        For the writing part, I guess go for it and don't be afraid to fail.
+        Writing is just like anything else—you will suck at it, as I do now.
+        Perhaps you might even be good at it. Only one thing is for sure: people
+        will judge anyway. But judging is easy, trying and doing is hard, so
+        whenever you see someone starting something, encourage and support them.
+        Judging is easy.
+      </p>
+
+      <p>
+        One last thing that occupied my mind and I almost forgot: I noticed one
+        girl. She was different, she was good—I noticed it right away. I don't
+        know her name; I call her Snow White (the name has nothing to do with
+        physical appearance, I just needed a name—I call my home the
+        underworld). She probably said to herself and/or a friend that she doubts
+        who I am (no reason to doubt, you're quite cute). It made me smile. I
+        should've said hi; instead, I walked away. I will probably never see her
+        again, and not like in the song—this time it's a shame. I just realized
+        it made me quite sad. I hope she will read. "Sumnjam" was the word in the
+        park, far from the fountain yesterday. Besides her, all the women look
+        the same—so fake and obvious right away—but why even care, since she is
+        in the main thought anyway. She is not related in any way to this
+        programming story, just an interesting side thought of my own. But then
+        again, she failed my walk test—she played the game instead of being
+        herself. It's all okay; she didn't notice I was paying attention anyway,
+        but now she understands. She is a delight, a truly lovely sight, also
+        quite smart. I never meant to put her on the spot (in the book); for that
+        I'm sorry. The thing came as one last afterthought. Just one "hi" and the
+        story would've been different. If she realized, I hope she at least
+        smiled. I set my own walk test to 10,000 steps a day; perhaps I won't
+        reach that goal today. Perhaps it's good to rest for a day, watch some
+        Netflix while I lie down in bed. Watch some random movie to make some
+        time pass away—One Piece and boring stuff like that. There was a story:
+        two giants fighting for over a decade; they forgot what the reason even
+        was. It reminded me of something—why do people fight? My family at home
+        sometimes does just that, sometimes with me—slamming doors too loudly or
+        things like that—but then again, that's just normal human stuff.
+      </p>
+
+      <Callout type="life-lesson">
+        <video width="640" height="360" controls>
+          <source
+            src={`${import.meta.env.BASE_URL}assets/stayed_in_the_shade.mp4`}
+            type="video/mp4"
+          />
+        </video>
+      </Callout>
+
+      <p>
+        Questions and their origin were explained, but the story and the book
+        were perhaps way too much for something I never asked to be involved in.
+        This all caused too much tension, stress, and doubt. You know—what side
+        project to do, whether to write a book, which technology to use. Perhaps
+        now it's time to do some REST, gRPC, or SOAP. The project approach is
+        cool—this midterm has no exams to pass. Everything has a few meanings;
+        perhaps anyone who touched my life could relate. Whether they should is
+        another conversation to be held, and the questions now have answers in my
+        website form. Still, there is a lot that I don't know. One thing is for
+        sure: those who did relate, I love them all. Things that I write today
+        came from looking back through the story, still trying to figure it all
+        out—the why, who, when, and what. Peace is what I like—walking through
+        the park. My thought was that it's better not to know, and the questions
+        were perhaps three, probably now lost in the sea.
+      </p>
+
+      <p>
+        Some questions remain open. Will the guitar become a thing instead of
+        code? I just realized the answer—no, not really. Code is here to stay. I
+        just need an interesting project idea to keep me engaged. The code will
+        prevail, the code will prevail, the code will prevail. What will my next
+        book be about? Dragons, code, or romance—that's what I don't know. This
+        one is about some questions, my life, and the code.
+      </p>
+
+      <p>
+        Will I try to park in appropriate places to reduce parking fines?
+      </p>
+
+      <p>
+        <strong>
+          ....so therefore the title is "How it ends?" instead of "How it ended."
+        </strong>
       </p>
 
       <p>
         If you made it this far, thank you. Now close this tab and go build
-        something. New adventures are waiting and perhaps you might find yourself
-        in this wonderfall world yourself.
+        something. New adventures are waiting, and perhaps you might find
+        yourself in this wonderful world yourself.
       </p>
 
       <p>
-       The story is done, it will be quite funny after some time has passed.
-       Might even mention it in my next book as a funny story, who knows...
-       The domain is not known, could be me fighting dragons, romance, code 
-       or poetry but the next book is there to be.
+        The story is done; it will be quite funny after some time has passed. I
+        might even mention it in my next book as a funny story—who knows. The
+        domain is not known—it could be me fighting dragons, romance, code, or
+        poetry—but the next book is there to be.
       </p>
-    
+
       <Callout type="tip">
         <strong>Fun fact:</strong>
-        There is a misconception that Biblo Baggins smoked weed and 
-        although the term "weed" is used in the books, he smoked pipe-weed, which J.R.R. Tolkien 
-        explicitly identified as a variety of Nicotiana (tobacco).  
-        In The Hobbit, the substance is directly called tobacco
+        There is a misconception that Bilbo Baggins smoked weed, and although
+        the term "weed" is used in the books, he smoked pipe-weed, which J.R.R.
+        Tolkien explicitly identified as a variety of Nicotiana (tobacco). In
+        The Hobbit, the substance is directly called tobacco.
       </Callout>
 
       <h4>
-      <strong>
-       THE END. NOTHING MORE TO SAY, JUST FEW THANKS FOR ALL
-       ANGLES GUARDINS THAT HAVE PROTECTED ME AND GAVE ME THE STRENGTH
-       TO FINISH THIS BOOK. DON'T KNOW HOW TO REPAY AND IT'S A SMALL BOOK
-       SO I ALSO PAY RESPECT TO ALL THE AUTHORS AND WRITTERS OUT THERE, IT'S 
-       A LOT OF WORK.
-      </strong>
+        <strong>
+          THE END. NOTHING MORE TO SAY, JUST A FEW THANKS TO ALL ANGEL GUARDIANS
+          THAT HAVE PROTECTED ME AND GAVE ME THE STRENGTH TO FINISH THIS BOOK. I
+          DON'T KNOW HOW TO REPAY YOU. IT'S A SMALL BOOK, SO I ALSO PAY RESPECT TO
+          ALL THE AUTHORS AND WRITERS OUT THERE—IT'S A LOT OF WORK.
+        </strong>
       </h4>
 
       <p><i>Grammar and words will still be improved</i></p>
-
     </>
   );
 }
