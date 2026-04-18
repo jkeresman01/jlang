@@ -172,11 +172,15 @@ export default function Ending() {
       but than again she failed my walk test, played the game instead of being herself,
       it's all okay, she didn't notice I was being involved and paying attention anyway,
       but now she understands. She is a delight, a truly lovely sight, also quite smart.
-      Never meant to put her on the spot, for that I'm sorry, the thing came as one last after 
+      Never meant to put her on the spot (in the book), for that I'm sorry, the thing came as one last after 
       tought, just one hi and story would've been a different one, if she realized I hope she 
       atleast smiled. Set my own walk test to 10000 steps a day, perhaps could even not reach that
-      goal today, perhaps its good to rest for a day, watch some netflix while I lay down in bed.
-      Watch some random movie, to make some time pass away.
+      goal today, perhaps its good to rest for a day, watch some netflix while I lay down in bad.
+      Watch some random movie, to make some time pass away, onepiece and boring stuff like that,
+      there was a story, 2 giants fighting over a decade, they forgot what the reason even was.
+      Remaineded me of something, why do people fight. My at home sometimes do just that,
+      sometimes with me, wind slaming doors to loudly or things like that, but than again thats
+      just normal human stuff.
       </p>
       
        <Callout type="life-lesson">
