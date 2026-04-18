@@ -166,6 +166,8 @@ export default function Ending() {
       but than again she failed my walk test, played the game instead of being herself,
       it's all okay, she didn't notice I was being involved and paying attention anyway,
       but now she understands. She is a delight, a truly lovely sight, also quite smart.
+      Never meant to put her on the spot, for that I'm sorry, the thing came as one last after 
+      tought, just one hi and story would've been different, black panther and a snow white.
       </p>
       
        <Callout type="life-lesson">
