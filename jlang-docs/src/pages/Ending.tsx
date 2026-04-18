@@ -188,13 +188,20 @@ export default function Ending() {
       </p>
       
       <p>
-       But still after everything some questions still remain open, will guitar
+       But still after everything some questions remain open, will guitar
        be a thing instead of code, just realized the answer, no not really code is there to stay,
        just need an interesting project idea to keep me engaged, the code will preveil,
-       will I try to park in appropriete places to reduce parking fines... so therefore the title is How it ends? instead 
-       of How it ended.
+       the code will preveil, the code will preveil.
       </p>
-      
+
+       <p>
+           Will I try to park in appropriete places to reduce parking fines?
+       </p>
+
+      <p>
+          <strong> ....so therefore the title is How it ends? instead of How it ended. </strong>
+      </p>
+
       <p>
         If you made it this far, thank you. Now close this tab and go build
         something. New adventures are waiting and perhaps you might find yourself
