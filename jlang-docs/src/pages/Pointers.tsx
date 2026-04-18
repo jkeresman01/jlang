@@ -10,8 +10,8 @@ export default function Pointers() {
         <strong>Life lesson:</strong> I used to sleep in my car &mdash; a
         Renault Clio with about six different shades of red, because every time
         I put a new dent in it I repainted that panel myself. It was not a
-        pretty car. But it was mine, and on the nights I had nowhere better to
-        be, it was also my bed.
+        pretty car. But it was mine, not on paper but in heart,
+        and on the nights I had nowhere better to be, it was also my bed.
         <br />
         <br />
         One freezing night I parked on some street, pulled the seat back, and
