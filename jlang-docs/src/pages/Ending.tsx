@@ -11,9 +11,10 @@ export default function Ending() {
         the tournament was really unimportant, was really bad at it.
         Found small paper from history of diesese, everything to exaggerated for 
         the purpose of poetry, timeline could be different, the stories could be 2, 
-        doctor one and the tournament, noted part of the one song down one night, still 
-        remember how hard was it for me to ryhme that all in, the song 
-        is quite childish, so the guitar and me will not be.
+        but than again I might be wrong everythings from memory, doctor one and the tournament, 
+        noted part of the one song down one night, still remember how hard was it 
+        for me to ryhme that all in, the song is quite childish, 
+        so the guitar and me will not be.
       </p>
 
       <Callout type="life-lesson">
