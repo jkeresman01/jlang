@@ -200,7 +200,8 @@ export default function Ending() {
        be a thing instead of code, just realized the answer, no not really code is there to stay,
        just need an interesting project idea to keep me engaged, the code will preveil,
        the code will preveil, the code will preveil.
-       What will my next book be about? Dragons, code or romans...
+       What will my next book be about? Dragons, code or romanse, that's what I don't know, 
+       this one is about some questions, my life and the code.
       </p>
 
        <p>
