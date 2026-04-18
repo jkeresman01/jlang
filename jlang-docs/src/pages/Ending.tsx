@@ -162,7 +162,8 @@ export default function Ending() {
       word in the park, far from fountain yesterday. Besides her all the women 
       look the same, you know so fake and obvious right away, but why to even 
       care, since she is in the main tought anyway. She is not related in any way
-      or form, to this my programming story, just an interesting side tought of my own.
+      or form, to this my programming story, just an interesting side tought of my own,
+      but than again she failed my walk test, played the game instead of being herself.
       </p>
       
        <Callout type="life-lesson">
