@@ -195,10 +195,11 @@ export default function Ending() {
       </p>
       
       <p>
-       But still after everything some questions remain open, will guitar
+       Some questions remain open, will guitar
        be a thing instead of code, just realized the answer, no not really code is there to stay,
        just need an interesting project idea to keep me engaged, the code will preveil,
        the code will preveil, the code will preveil.
+       What will my next book be about? Dragons, code or romans...
       </p>
 
        <p>
