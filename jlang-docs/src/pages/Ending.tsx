@@ -174,7 +174,7 @@ export default function Ending() {
       but now she understands. She is a delight, a truly lovely sight, also quite smart.
       Never meant to put her on the spot, for that I'm sorry, the thing came as one last after 
       tought, just one hi and story would've been a different one, if she realized I hope she 
-      atleast smiled.
+      atleast smiled. Set my own walk test to 10000 steps a day.
       </p>
       
        <Callout type="life-lesson">
