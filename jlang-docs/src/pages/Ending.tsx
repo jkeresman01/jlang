@@ -190,7 +190,8 @@ export default function Ending() {
         perhaps now it's time to do some REST, gRPC or SOAP. Project approach is cool,
         this midterm no exams to pass, everything has few meanings, perhaps anyone
         that touched my life could relate, should they is another coversation to be held
-        and questions now have the answers in my website form.
+        and questions now have the answers in my website form. Still there is a lot 
+        that I don't know, one thing is for sure, those who did relate I love them all.
       </p>
       
       <p>
