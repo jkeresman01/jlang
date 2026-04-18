@@ -171,11 +171,14 @@ export default function Ending() {
        </Callout>
       
       <p>
-        Questions and their origin were explain, but the story and the book 
+        Questions and their origin were explained, but the story and the book 
         were perhaps way too much, for a thing that while at the moment not knowing 
         I never asked to be involved in as such, this all caused too much tension, stress and doubt. 
         You know which side project to do, to write a book, which technology to use,
-        perhaps now it's time to do some REST, gRPC or SOAP.
+        perhaps now it's time to do some REST, gRPC or SOAP. Project approach is cool,
+        this midterm no exams to pass, everything has few meanings, perhaps anyone
+        that touched my life could relate, should they is another coversation to be held
+        and questions now have the answers in my website form.
       </p>
       
       <p>
