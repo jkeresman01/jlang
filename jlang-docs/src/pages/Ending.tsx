@@ -149,7 +149,7 @@ export default function Ending() {
        </p>
 
        <p>
-       And for the writting part, I guess go for it and don't be afraid to fail.
+       For the writting part, I guess go for it and don't be afraid to fail.
        Writting is just like anything else, you will suck at it as I do now, perphaps 
        you might even be good at it, only one thing is for sure, people will judge anyway.
        But judging is easy, trying and doing is hard, so when ever you see someone 
@@ -201,7 +201,8 @@ export default function Ending() {
         that I don't know, one thing is for sure, those who did relate I love them all. 
         Things that I today write came from looking back trough story, still trying to figure 
         it all out and all the why, who, when and what, piece is what I like, 
-        walking trough the park, my tought was better not to know.
+        walking trough the park, my tought was better not to know and the questions were perhaps
+        maybe three, probably now lost in the sea.
       </p>
       
       <p>
