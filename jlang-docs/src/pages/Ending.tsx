@@ -163,7 +163,8 @@ export default function Ending() {
       look the same, you know so fake and obvious right away, but why to even 
       care, since she is in the main tought anyway. She is not related in any way
       or form, to this my programming story, just an interesting side tought of my own,
-      but than again she failed my walk test, played the game instead of being herself.
+      but than again she failed my walk test, played the game instead of being herself,
+      it's all okay, she didn't notice I was paying attention anyway, but she understands.
       </p>
       
        <Callout type="life-lesson">
