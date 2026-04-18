@@ -175,7 +175,8 @@ export default function Ending() {
       Never meant to put her on the spot, for that I'm sorry, the thing came as one last after 
       tought, just one hi and story would've been a different one, if she realized I hope she 
       atleast smiled. Set my own walk test to 10000 steps a day, perhaps could even not reach that
-      goal today. 
+      goal today, perhaps its good to rest for a day, watch some netflix while I lay down in bed.
+      Watch some random movie, to make some time pass away.
       </p>
       
        <Callout type="life-lesson">
