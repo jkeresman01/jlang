@@ -216,6 +216,8 @@ export default function Ending() {
       <p>
        The story is done, it will be quite funny after some time has passed.
        Might even mention it in my next book as a funny story, who knows...
+       The domain is not known, could be me fighting dragons, romance, code 
+       or poetry but the next book is there to be.
       </p>
     
       <Callout type="tip">
