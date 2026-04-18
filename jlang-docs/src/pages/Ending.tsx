@@ -160,7 +160,7 @@ export default function Ending() {
       One last thing that occupied my mind and I almost forgot, 
       noticed one girl she was different, she was good noticed it 
       right away, don't know her name, call her snow white (the name has nothing to do with
-      the physical apperance, just needed a name, call my home the underworld for example)
+      the physical apperance, just needed a name, call my home the underworld)
       probably said to herself and/or a friend, doubt that I am (no reason to doubt, you quite cute), 
       made me smile, should've said hi, instead I walked right away. Will
       probably never see her again, and not like in the song this time it's a shame, just 
@@ -173,7 +173,7 @@ export default function Ending() {
       it's all okay, she didn't notice I was being involved and paying attention anyway,
       but now she understands. She is a delight, a truly lovely sight, also quite smart.
       Never meant to put her on the spot, for that I'm sorry, the thing came as one last after 
-      tought, just one hi and story would've been different, black panther and a snow white.
+      tought, just one hi and story would've been a different one.
       </p>
       
        <Callout type="life-lesson">
