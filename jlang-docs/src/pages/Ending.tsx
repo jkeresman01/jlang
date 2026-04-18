@@ -194,7 +194,10 @@ export default function Ending() {
         this midterm no exams to pass, everything has few meanings, perhaps anyone
         that touched my life could relate, should they is another coversation to be held
         and questions now have the answers in my website form. Still there is a lot 
-        that I don't know, one thing is for sure, those who did relate I love them all.
+        that I don't know, one thing is for sure, those who did relate I love them all. 
+        Things that I today write came from looking back trough story, still trying to figure 
+        it all out and all the why, who, when and what, piece is what I like, 
+        walking trough the park, my tought was better not to know.
       </p>
       
       <p>
