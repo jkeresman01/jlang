@@ -173,7 +173,8 @@ export default function Ending() {
       it's all okay, she didn't notice I was being involved and paying attention anyway,
       but now she understands. She is a delight, a truly lovely sight, also quite smart.
       Never meant to put her on the spot, for that I'm sorry, the thing came as one last after 
-      tought, just one hi and story would've been a different one.
+      tought, just one hi and story would've been a different one, if she realized I hope she 
+      atleast smiled.
       </p>
       
        <Callout type="life-lesson">
