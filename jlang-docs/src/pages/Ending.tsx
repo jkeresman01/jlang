@@ -130,18 +130,6 @@ export default function Ending() {
       </p>
 
       <p>
-        One thing is for sure: this book isn't the last thing that will keep me
-        in the wonderful world of thoughts, innovation, and creation... and
-        lately, vibes. Don't get me wrong—I'm no innovator nor creator, perhaps
-        more like a child who likes to fool around, play, and work with
-        technology, not against it. Don't get me wrong, I have some fights with
-        it. I fought against AI for quite some time, but then again, those who
-        don't adopt will cease to exist, so always adopt and play with new
-        technologies. Be like children—always explore, play, and work with it,
-        never fight it. I found OpenClaw to be quite fun lately.
-      </p>
-
-      <p>
         <strong>Did I drift back to my 9-to-5?</strong>
       </p>
 
@@ -154,10 +142,10 @@ export default function Ending() {
      </p>
 
       <Callout type="tip">
-         <h3>Just one interesting side puzzle before you go: </h3>
+         <h4>Just one interesting side puzzle before you go: </h4>
 
          <p>
-             People can work in department responsible for selling milk, but they sell shoes, 
+             People who work in department responsible for selling milk, but they sell shoes, 
              beacuse it's what they are supposed to do, are they shoeseller or a milkseeler, 
              or are they both true. Could someone use it as something they are not supposed 
              to do, is one a lie, and other one the truth, or are they both true. Hard puzzle
@@ -165,8 +153,22 @@ export default function Ending() {
           </p>
     </Callout>
 
+      <h2>General knowledge and realizations accuqired trought this book: </h2>
+
       <p>
-        And for the wars and this cruel world—you know, Putin and Trump—I'm
+        This book isn't the last thing that will keep me in the wonderful world 
+        of thoughts, innovation, and creation... and lately, vibes. 
+        Don't get me wrong—I'm no innovator nor creator, perhaps
+        more like a child who likes to fool around, play, and work with
+        technology, not against it. Don't get me wrong, I have some fights with
+        it. I fought against AI for quite some time, but then again, those who
+        don't adopt will cease to exist, so always adopt and play with new
+        technologies. Be like children—always explore, play, and work with it,
+        never fight it. I found OpenClaw to be quite fun lately.
+      </p>
+
+      <p>
+        For the wars and this cruel world—you know, Putin and Trump—I'm
         really nobody to say, but here is my input anyway: put the guns down.
         This world is a much better place without them, both for people in it and
         out of it. I would rather get a notification about a breakthrough in
@@ -185,6 +187,66 @@ export default function Ending() {
         whenever you see someone starting something, encourage and support them.
         So always remember judging is easy.
       </p>
+
+      <p>
+        Questions and their origin were explained, but the story and the book
+        were perhaps way too much for something I never asked to be involved in
+        as such. This all caused too much tension, stress, and doubt. You know—what side
+        project to do, whether to write a book, which technology to use. Perhaps
+        now it's time to do some REST, gRPC, or SOAP. The project approach is
+        cool—this midterm has no exams to pass. Everything has a few meanings;
+        perhaps anyone who touched my life could relate. Whether they should is
+        another conversation to be held, and the questions now have answers in my
+        website form. Still, there is a lot that I don't know. One thing is for
+        sure: those who did relate, I love them all. Things that I write today
+        came from looking back through the story, still trying to figure it all
+        out—the why, who, when, and what. Peace is what I like—walking through
+        the park. My thought was that it's better not to know, and the questions
+        were perhaps three, probably now lost in the sea.
+      </p>
+
+      <p>
+        Some questions remain open. Will the guitar become a thing instead of
+        code? I just realized the answer—no, not really. Code is here to stay. I
+        just need an interesting project idea to keep me engaged. The code will
+        prevail, the code will prevail, the code will prevail. What will my next
+        book be about? Dragons, code, or romance—that's what I don't know. This
+        one is about some questions, my life, and the code.
+      </p>
+
+      <p>
+        Will I try to park in appropriate places to reduce parking fines?
+      </p>
+
+      <p>
+        <strong>
+          ....so therefore the title is "How it ends?" instead of "How it ended."
+        </strong>
+      </p>
+
+      <p>
+        The story is done; it will be quite funny after some time has passed. I
+        might even mention it in my next book as a funny story—who knows. The
+        domain is not known—it could be me fighting dragons, romance, code, or
+        poetry—but the next book is there to be.
+      </p>
+
+      <p>
+        If you made it this far, thank you. Now close this tab and go build
+        something weird. New adventures are waiting, and perhaps you might find
+        yourself in this wonderful world yourself.
+      </p>
+
+      <Callout type="tip">
+        <strong>Fun fact:</strong>
+        There is a misconception that Bilbo Baggins smoked weed, and although
+        the term "weed" is used in the books, he smoked pipe-weed, which J.R.R.
+        Tolkien explicitly identified as a variety of Nicotiana (tobacco). In
+        The Hobbit, the substance is directly called tobacco.
+      </Callout>
+
+
+      <h2>Offtopic stuff that occupies my mind</h2>
 
       <p>
         One last thing that occupied my mind and I almost forgot: I noticed one
@@ -228,62 +290,7 @@ export default function Ending() {
         </video>
       </Callout>
 
-      <p>
-        Questions and their origin were explained, but the story and the book
-        were perhaps way too much for something I never asked to be involved in
-        as such. This all caused too much tension, stress, and doubt. You know—what side
-        project to do, whether to write a book, which technology to use. Perhaps
-        now it's time to do some REST, gRPC, or SOAP. The project approach is
-        cool—this midterm has no exams to pass. Everything has a few meanings;
-        perhaps anyone who touched my life could relate. Whether they should is
-        another conversation to be held, and the questions now have answers in my
-        website form. Still, there is a lot that I don't know. One thing is for
-        sure: those who did relate, I love them all. Things that I write today
-        came from looking back through the story, still trying to figure it all
-        out—the why, who, when, and what. Peace is what I like—walking through
-        the park. My thought was that it's better not to know, and the questions
-        were perhaps three, probably now lost in the sea.
-      </p>
-
-      <p>
-        Some questions remain open. Will the guitar become a thing instead of
-        code? I just realized the answer—no, not really. Code is here to stay. I
-        just need an interesting project idea to keep me engaged. The code will
-        prevail, the code will prevail, the code will prevail. What will my next
-        book be about? Dragons, code, or romance—that's what I don't know. This
-        one is about some questions, my life, and the code.
-      </p>
-
-      <p>
-        Will I try to park in appropriate places to reduce parking fines?
-      </p>
-
-      <p>
-        <strong>
-          ....so therefore the title is "How it ends?" instead of "How it ended."
-        </strong>
-      </p>
-
-      <p>
-        If you made it this far, thank you. Now close this tab and go build
-        something weird. New adventures are waiting, and perhaps you might find
-        yourself in this wonderful world yourself.
-      </p>
-
-      <p>
-        The story is done; it will be quite funny after some time has passed. I
-        might even mention it in my next book as a funny story—who knows. The
-        domain is not known—it could be me fighting dragons, romance, code, or
-        poetry—but the next book is there to be.
-      </p>
-
-      <Callout type="tip">
-        <strong>Fun fact:</strong>
-        There is a misconception that Bilbo Baggins smoked weed, and although
-        the term "weed" is used in the books, he smoked pipe-weed, which J.R.R.
-        Tolkien explicitly identified as a variety of Nicotiana (tobacco). In
-        The Hobbit, the substance is directly called tobacco.
-      </Callout>
+      <h2>Final thanks and my reflections on giving thanks and this book: </h2>
 
       <h4>
         <strong>
@@ -294,27 +301,35 @@ export default function Ending() {
         </strong>
       </h4>
 
+      <br />
+      <br />
+
       <p><i>A small thanks, funny test of mine to see who responds, perhaps a way for me
-      to connect it all, perhaps something was learned, perhaps not at all, a lot 
-      of people touch my life, learned something from them all, no way for me to know,
-      one thing is for sure compilers are way to complex, too much internal jargon, hard to understand 
-      for outside Joe (developer from some other domain)</i></p>
+      to connect it all, perhaps something was learned, perhaps not at all. And perhaps
+      some might find themself realated to some stories of mine. Who respods is also quite 
+      funny, since there is no way for author to know.
+      </i></p>
+
+      <p><i>
+      A lot of people touched my life, learned something from them all.
+      one thing is for sure compilers are way to complex, too much internal phrasing,
+      hard to understand for outside Joe (developer from some other domain) an interesting
+      and complex topic that's for sure.</i></p>
 
       <p><i>This thanks are quite funny, the thing could become a bestseller, 
       not this mine but generally speaking, but readers would always skip this part and 
       people to whom the thanks was given would perhaps never read it</i></p>
 
-      <p><i>Grammar and wording will still to be improved</i></p>
+      <p><i>
+       Everything is written for a reason, some things are a goose chase 
+       (no programming knowledge to be found, but perhaps some general advice), 
+       some are puzzles, some are questions, some boring technical stuff, 
+       one thing is for sure a website is no reason for someone to react, my 
+       understanding of a conecpt like monomorphization could be wrong perhaps, find 
+       valid source, book or something like that and some people are pure evil 
+       theres no doubt, wars and things like that.</i></p>
 
-      <p>
-        <i>
-        <strong>
-       Everything is written for a reason, some things are a goose chase (no programming knowledge to be found), 
-       some are puzzles, some are questions, some boring technical stuff, one thing is for sure a 
-       website is no reason for someone to react and some people are pure evil theres no doubt.
-      </strong>
-        </i>
-        </p>
+      <p><i>Grammar and wording are still to be improved</i></p>
     </>
   );
 }
