@@ -118,7 +118,7 @@ export default function Ending() {
 
       </p>
         Did I piss off my family while going to the bathroom at ungodly hours and
-        while doodling my personal projects during sleepless nights? That's for sure.
+        while squqa doodling my personal projects during sleepless nights? 
       </p>
 
       <p>
@@ -190,7 +190,7 @@ export default function Ending() {
         Perhaps you might even be good at it. Only one thing is for sure: people
         will judge anyway. But judging is easy, trying and doing is hard, so
         whenever you see someone starting something, encourage and support them.
-        So always remember judging is easy.
+        Always remember judging is easy.
       </p>
 
       <p>
@@ -204,19 +204,22 @@ export default function Ending() {
         another conversation to be held, and the questions now have answers in my
         website form. Still, there is a lot that I don't know. One thing is for
         sure: those who did relate, I love them all. Things that I write today
-        came from looking back through the story, still trying to figure it all
-        out—the why, who, when, and what. Peace is what I like—walking through
-        the park. My thought was that it's better not to know, and the questions
-        were perhaps three, probably now lost in the sea.
+        came from looking back through the stories, still trying to figure it all
+        out—the why, who, when, and what. You know where I parked my car in the pointers story, 
+        and things like that, it's not like I note it all down, anyhow peace 
+        is what I like—walking through the park. My thought was that it's better 
+        not to know, and the questions were perhaps three, probably now lost in the sea.
       </p>
+
+      <h3>Remaining questions?</h3>
 
       <p>
         Some questions remain open. Will the guitar become a thing instead of
         code? I just realized the answer—no, not really. Code is here to stay. I
         just need an interesting project idea to keep me engaged. The code will
-        prevail, the code will prevail, the code will prevail. What will my next
-        book be about? Dragons, code, or romance—that's what I don't know. This
-        one is about some questions, my life, and the code.
+        prevail, the code will prevail. What will my next book be about? 
+        Dragons, code, or romance—that's what I don't know. 
+        This one is about some questions, my life, and the code.
       </p>
 
       <p>
@@ -227,19 +230,6 @@ export default function Ending() {
         <strong>
           ....so therefore the title is "How it ends?" instead of "How it ended."
         </strong>
-      </p>
-
-      <p>
-        The story is done; it will be quite funny after some time has passed. I
-        might even mention it in my next book as a funny story—who knows. The
-        domain is not known—it could be me fighting dragons, romance, code, or
-        poetry—but the next book is there to be.
-      </p>
-
-      <p>
-        If you made it this far, thank you. Now close this tab and go build
-        something weird. New adventures await, and perhaps you might find
-        yourself in this wonderful world yourself.
       </p>
 
       <Callout type="tip">
@@ -260,8 +250,8 @@ export default function Ending() {
         and/or a friend that "doubt that I am" (no reason to doubt, you're quite cute). 
         It made me smile. I should've said hi; instead, I walked away. I will 
         probably never see her again, and not like in the song—this time it's a shame. 
-        I just realized it made me quite sad. I hope she will read. "Sumnjam" was the word in the
-        park, far from the fountain yesterday. Besides her, all the women look
+        I just realized it made me quite sad. I hope she will read. "sumnjam" was the 
+        word in the park, far from the fountain yesterday. Besides her, all the women look
         the same—so fake and obvious right away—but why even care, since she is
         in the main thought anyway. She is not related in any way to this
         programming story, just an interesting side thought of my own. But then
@@ -297,6 +287,7 @@ export default function Ending() {
 
       <h2>Final thanks and my reflections on giving thanks and this book: </h2>
 
+      
       <h4>
         <strong>
           THE END. NOTHING MORE TO SAY, JUST A FEW THANKS TO ALL ANGEL GUARDIANS
@@ -307,7 +298,6 @@ export default function Ending() {
       </h4>
 
       <br />
-      <br />
 
       <p><i>A small thanks, funny test of mine to see who responds, perhaps a way for me
       to connect it all, perhaps something was learned, perhaps not at all. And perhaps
@@ -317,7 +307,7 @@ export default function Ending() {
 
       <p><i>
       A lot of people touched my life, learned something from them all.
-      one thing is for sure compilers are way to complex, too much internal phrasing,
+      One thing is for sure compilers are way to complex, too much internal phrasing,
       hard to understand for outside Joe (developer from some other domain) an interesting
       and complex topic that's for sure.</i></p>
 
@@ -333,6 +323,19 @@ export default function Ending() {
        understanding of a conecpt like monomorphization could be wrong perhaps, find 
        valid source, book or something like that and some people are pure evil 
        theres no doubt, wars and things like that.</i></p>
+
+      <p><i>
+        The story is done; it will be quite funny after some time has passed. I
+        might even mention it in my next book as a funny story—who knows. The
+        domain is not known—it could be me fighting dragons, romance, code, or
+        poetry—but the next book is there to be.
+      </i></p>
+
+      <p><i>
+        If you made it this far, thank you. Now close this tab and go build
+        something weird. New adventures await, and perhaps you might find
+        yourself in this wonderful world yourself.
+      </i></p>
 
       <p><i>Grammar and wording are still to be improved</i></p>
     </>
