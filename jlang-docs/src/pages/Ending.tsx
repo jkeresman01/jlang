@@ -136,9 +136,14 @@ export default function Ending() {
       <p>
          No, not really, was thinking about leaving for 
          quite some time. Phases of my life were many, currently enjoying being
-         low key, perhaps to fool around when I feel comfortable. When personal 
-         peace is disturbed, some perhaps three questions get involved you know it's time to go.
-         Currently I enjoy writing, could perhaps continue, doing just that.
+         low key, perhaps to fool around when I feel comfortable. Not to talk much and do my thing.
+         Don't get me wrong I talk a lot but only about stuff that interest me. Where did you
+         buy that shirt, or similar small talk stuff just don't interest me ... but yes, yes if 
+         you really want to nitpick ofcourse you will see me involved in small talk, no way to avoid 
+         it, some people are just chatty and boring, anyhow back to the main tought in next sentence.
+         When personal peace is disturbed, some perhaps three questions get involved, 
+         you know it's time to go. Currently I enjoy writing, could perhaps continue,
+         doing just that.
      </p>
 
       <Callout type="tip">
