@@ -93,14 +93,14 @@ export default function Ending() {
         The book was written alongside the journey. A lot of genuinely good
         people, with good intentions, potentially misunderstood many things
         while being trapped in their own views. Everyone realized no harm was
-        done. Questions can change (they shouldn't stay the same for almost half
+        done. Questions can changed (they shouldn't stay the same for almost half
         a decade—isn't that just insane?). People should talk. Parking fines were
         paid (I've actually parked in a place where I can't get a ticket today,
         probably), and the book is interesting.
         <strong>At least I think so</strong>. There is a bit of everything:
         genuine competence and confidence (not arrogance), vulnerability
         (embarrassment of not knowing stuff), entertainment, and desperation
-        bundled in a journey through my thoughts with a really unique way of
+        bundled in a journey throught my thoughts with a really unique way of
         presenting knowledge about programming (Claude disagrees, by the way).
       </p>
 
@@ -142,15 +142,15 @@ export default function Ending() {
      </p>
 
       <Callout type="tip">
-         <h4>Just one interesting side puzzle before you go: </h4>
+      <h4>Just one interesting side puzzle before you go: </h4>
 
-         <p>
-             People who work in department responsible for selling milk, but they sell shoes, 
-             beacuse it's what they are supposed to do, are they shoeseller or a milkseeler, 
-             or are they both true. Could someone use it as something they are not supposed 
-             to do, is one a lie, and other one the truth, or are they both true. Hard puzzle
-             indeed it is, what I'm trying to tell is don't get tricked.
-          </p>
+       <p>
+         People who work in department responsible for selling milk, but they sell shoes, 
+         beacuse it's what they are supposed to do, are they shoeseller or a milkseeler, 
+         or are they both true. Could someone use it as something they are not supposed 
+         to do, is one a lie, and other one the truth, or are they both true. Hard puzzle
+         indeed it is, what I'm trying to tell is don't get tricked, answers could be many.
+      </p>
     </Callout>
 
       <h2>General knowledge and realizations accuqired trought this book: </h2>
