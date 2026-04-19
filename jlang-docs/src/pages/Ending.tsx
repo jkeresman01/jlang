@@ -269,6 +269,10 @@ export default function Ending() {
         </strong>
       </h4>
 
+      <p><i>A small thanks, funny test of mine to see who responds, perhaps a way for me
+      to connect it all, perhaps something was learned, perhaps not at all, one thing is for 
+      sure compiler are way to complex, too much internal jargon, hard to understand 
+      for outside Joe (developer from some other domain)</i></p>
       <p><i>Grammar and words will still be improved</i></p>
     </>
   );
