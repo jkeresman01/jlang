@@ -249,13 +249,12 @@ export default function Ending() {
         One last thing that occupied my mind and I almost forgot: I noticed one
         girl. She was different, she was good—I noticed it right away. I don't
         know her name; I call her Snow White. She probably said to herself 
-        and/or a friend that "doubt that I am" (no reason to doubt, you're quite cute). 
+        and/or a friend "doubt that I am" (no reason to doubt, you're quite cute). 
         It made me smile. I should've said hi; instead, I walked away. I will 
         probably never see her again, and not like in the song—this time it's a shame. 
-        I just realized it made me quite sad. I hope she will read. "sumnjam" was the 
-        word in the park, far from the fountain yesterday. Besides her, all the women look
-        the same—so fake and obvious right away—but why even care, since she is
-        in the main thought anyway. She is not related in any way to this
+        I just realized it made me quite sad. I hope she reads. Besides her, 
+        all the women look the same—so fake and obvious right away—but why even care, 
+        since she is in the main thought anyway. She is not related in any way to this
         programming story, just an interesting side thought of my own. But then
         again, she failed my walk test—she played the game instead of being
         herself. It's all okay; she didn't notice I was paying attention anyway,
