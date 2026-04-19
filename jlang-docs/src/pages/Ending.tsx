@@ -167,13 +167,11 @@ export default function Ending() {
       <p>
         One last thing that occupied my mind and I almost forgot: I noticed one
         girl. She was different, she was good—I noticed it right away. I don't
-        know her name; I call her Snow White (the name has nothing to do with
-        physical appearance, I just needed a name—I call my home the
-        underworld). She probably said to herself and/or a friend that she doubts
-        who I am (no reason to doubt, you're quite cute). It made me smile. I
-        should've said hi; instead, I walked away. I will probably never see her
-        again, and not like in the song—this time it's a shame. I just realized
-        it made me quite sad. I hope she will read. "Sumnjam" was the word in the
+        know her name; I call her Snow White. She probably said to herself 
+        and/or a friend that she doubts who I am (no reason to doubt, you're quite cute). 
+        It made me smile. I should've said hi; instead, I walked away. I will 
+        probably never see her again, and not like in the song—this time it's a shame. 
+        I just realized it made me quite sad. I hope she will read. "Sumnjam" was the word in the
         park, far from the fountain yesterday. Besides her, all the women look
         the same—so fake and obvious right away—but why even care, since she is
         in the main thought anyway. She is not related in any way to this
@@ -187,12 +185,17 @@ export default function Ending() {
         smiled. I set my own walk test to 10,000 steps a day; perhaps I won't
         reach that goal today. Perhaps it's good to rest for a day, watch some
         Netflix while I lie down in bed. Watch some random movie to make some
-        time pass away—One Piece and boring stuff like that. There was a story:
+        time pass away—One Piece and boring, childish stuff like that. There was a story:
         two giants fighting for over a decade; they forgot what the reason even
         was. It reminded me of something—why do people fight? My family at home
         sometimes does just that, sometimes with me—slamming doors too loudly or
-        things like that—but then again, that's just normal human stuff.
+        other irrelevant things like that—but then again, that's just normal human stuff.
       </p>
+
+       <p>
+          <i>The name has nothing to do with physical appearance,
+          I just needed a name—I call my home the underworld</i>
+       </p>
 
       <Callout type="life-lesson">
         <video width="640" height="360" controls>
