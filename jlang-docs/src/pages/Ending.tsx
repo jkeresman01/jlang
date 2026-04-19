@@ -142,8 +142,24 @@ export default function Ending() {
       </p>
 
       <p>
-        Did I drift back to my 9-to-5? No, not really, we just didn't click.
+        <strong>Did I drift back to my 9-to-5?</strong>
       </p>
+
+      <p>
+         No, not really, we just didn't click.
+     </p>
+
+      <Callout type="tip">
+         <h3>Just one interesting side puzzle before you go: </h3>
+
+         <p>
+             People can work in department responsible for selling milk, but they sell shoes, 
+             beacuse it's what they are supposed to do, are they shoeseller or a milkseeler, 
+             or are they both true. Could someone use it as something they are not supposed 
+             to do, is one a lie, and other one the truth, or are they both true. Hard puzzle
+             indeed it is, what I'm trying to tell is don't get tricked.
+          </p>
+    </Callout>
 
       <p>
         And for the wars and this cruel world—you know, Putin and Trump—I'm
