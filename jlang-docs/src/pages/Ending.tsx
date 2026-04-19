@@ -305,7 +305,7 @@ export default function Ending() {
       <p><strong>
        Everything is written for a reason, some things are a goose chase, some are puzzles, some 
        are questions, some boring technical stuff, one thing is for sure a website is no reason 
-       for someone to react.
+       for someone to react and some people are pure evil theres no doubt.
       </strong></p>
     </>
   );
