@@ -146,7 +146,11 @@ export default function Ending() {
       </p>
 
       <p>
-         No, not really, we just didn't click.
+         No, not really, was thinking about leaving for 
+         quite some time. Phases of my life were many, currently enjoying being
+         low key, perhaps to fool around when I feel comfortable. When personal 
+         peace is disturbed, some perhaps three questions get involved you know it's time to go.
+         Currently I enjoy writing, could perhaps continue, doing just that.
      </p>
 
       <Callout type="tip">
