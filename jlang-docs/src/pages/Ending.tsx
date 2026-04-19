@@ -195,7 +195,7 @@ export default function Ending() {
       </p>
 
        <p>
-          <i>The name has nothing to do with physical appearance,
+          <i>The name Snow White has nothing to do with physical appearance,
           I just needed a name—I call my home the underworld</i>
        </p>
 
