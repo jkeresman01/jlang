@@ -95,11 +95,9 @@ export default function Ending() {
         while being trapped in their own views. Everyone realized no harm was
         done. Questions can changed (they shouldn't stay the same for almost half
         a decade—isn't that just insane?). People should talk. Parking fines were
-        paid (I've actually parked in a place where I can't get a ticket today,
-        probably), and the book is interesting.
-        <strong>At least I think so</strong>. There is a bit of everything:
-        genuine competence and confidence (not arrogance), vulnerability
-        (embarrassment of not knowing stuff), entertainment, desperation and
+        paid  and the book is interesting. <strong>At least I think so</strong>. 
+        There is a bit of everything: genuine competence and confidence (not arrogance), 
+        vulnerability (embarrassment of not knowing stuff), entertainment, desperation and
         hoppless romantic thing as an offtopic cause all good stories tend to have 
         that (doubt that she read anyhow) bundled in a journey throught my 
         thoughts with a really unique way of presenting knowledge about 
