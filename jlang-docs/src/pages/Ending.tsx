@@ -102,29 +102,31 @@ export default function Ending() {
         (embarrassment of not knowing stuff), entertainment, and desperation
         bundled in a journey through my thoughts with a really unique way of
         presenting knowledge about programming (Claude disagrees, by the way).
-        And everything was explained—nothing more, nothing less to add.
       </p>
 
       <p>
-        And here are some answers to the questions being asked throughout the
-        book:
+        Here are some answers to the questions being asked throughout the book:
       </p>
 
       <p>
-        Will I go learn how to play the guitar instead of coding? Perhaps,
-        perhaps not. Perhaps I could do both. Does my knee hurt when the weather
+        <strong>Will I go learn how to play the guitar instead of coding?</strong></p>
+      <p>
+
+      <p>
+        Perhaps, perhaps not. Perhaps I could do both. Does my knee hurt when the weather
         changes? Sometimes. Could be something, could be nothing.
-      </p>
 
-      <p>
+      </p>
         Did I piss off my family while going to the bathroom at ungodly hours and
-        while doodling my personal projects during sleepless nights? That's for
-        sure.
+        while doodling my personal projects during sleepless nights? That's for sure.
       </p>
 
       <p>
-        Did my obsession come to an end? No, not really, but the pull is
-        definitely weaker than it used to be.
+        <strong>Did my obsession come to an end?</strong>
+      </p>
+
+      <p>
+          No, not really, but the pull is definitely weaker than it used to be.
       </p>
 
       <p>
@@ -140,7 +142,7 @@ export default function Ending() {
       </p>
 
       <p>
-        Did I drift back to my 9-to-5? No, not really.
+        Did I drift back to my 9-to-5? No, not really, we just didn't click.
       </p>
 
       <p>
@@ -161,7 +163,7 @@ export default function Ending() {
         Perhaps you might even be good at it. Only one thing is for sure: people
         will judge anyway. But judging is easy, trying and doing is hard, so
         whenever you see someone starting something, encourage and support them.
-        Judging is easy.
+        So always remember judging is easy.
       </p>
 
       <p>
@@ -273,10 +275,16 @@ export default function Ending() {
       </h4>
 
       <p><i>A small thanks, funny test of mine to see who responds, perhaps a way for me
-      to connect it all, perhaps something was learned, perhaps not at all, no way for me to know,
-      one thing is for sure compiler are way to complex, too much internal jargon, hard to understand 
+      to connect it all, perhaps something was learned, perhaps not at all, a lot 
+      of people touch my life, learned something from them all, no way for me to know,
+      one thing is for sure compilers are way to complex, too much internal jargon, hard to understand 
       for outside Joe (developer from some other domain)</i></p>
-      <p><i>Grammar and words will still be improved</i></p>
+
+      <p><i>This thanks are quite funny, the thing could become a bestseller, 
+      not this mine but generally speaking, but readers would always skip this part and 
+      people to whom the thanks was given would perhaps never read it</i></p>
+
+      <p><i>Grammar and wording will still be improved</i></p>
     </>
   );
 }
