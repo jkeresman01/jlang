@@ -300,12 +300,12 @@ export default function Ending() {
       not this mine but generally speaking, but readers would always skip this part and 
       people to whom the thanks was given would perhaps never read it</i></p>
 
-      <p><i>Grammar and wording will still be improved</i></p>
+      <p><i>Grammar and wording will still to be improved</i></p>
 
       <p>
         <i>
         <strong>
-       Everything is written for a reason, some things are a goose chase (no knowledge to be found), 
+       Everything is written for a reason, some things are a goose chase (no programming knowledge to be found), 
        some are puzzles, some are questions, some boring technical stuff, one thing is for sure a 
        website is no reason for someone to react and some people are pure evil theres no doubt.
       </strong>
