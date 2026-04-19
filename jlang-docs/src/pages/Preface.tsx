@@ -562,7 +562,7 @@ export default function Preface() {
         didn&rsquo;t have memorized. Those moments tend to stick with you.
       </Callout>
 
-      <Callout type="important">
+      <Callout type="life-lesson">
         Every example throughout this book is here because, at some point, it
         made me feel embarrassed or insecure &mdash; I didn&rsquo;t know the
         answer, and I felt like I should have. But instead of letting that
@@ -585,7 +585,7 @@ export default function Preface() {
         <br />
         Most of the examples throughout this book also come from Java and C++
         &mdash; the two languages I have spent the most time with. If you check
-        my stats you will see around 50% Java and around 31% C++, so it only
+        my stats you will see around 50% Java and around 30% C++, so it only
         felt natural to draw from the worlds I know best. And when I say
         &ldquo;worlds,&rdquo; I mean exactly that &mdash; not the jobs I have
         worked in those languages, but the worlds I have lived in as a
