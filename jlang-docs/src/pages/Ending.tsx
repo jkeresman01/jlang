@@ -208,8 +208,8 @@ export default function Ending() {
 
       <p>
         Questions and their origin were explained, but the story and the book
-        were perhaps way too much for something I never asked to be involved in.
-        This all caused too much tension, stress, and doubt. You know—what side
+        were perhaps way too much for something I never asked to be involved in
+        as such. This all caused too much tension, stress, and doubt. You know—what side
         project to do, whether to write a book, which technology to use. Perhaps
         now it's time to do some REST, gRPC, or SOAP. The project approach is
         cool—this midterm has no exams to pass. Everything has a few meanings;
