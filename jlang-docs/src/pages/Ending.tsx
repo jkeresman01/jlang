@@ -321,8 +321,8 @@ export default function Ending() {
        some are puzzles, some are questions, some boring technical stuff, 
        one thing is for sure a website is no reason for someone to react, my 
        understanding of a conecpt like monomorphization could be wrong perhaps, find 
-       valid source, book or something like that and some people are pure evil 
-       theres no doubt, wars and things like that.</i></p>
+       valid source, book or something like that (I mean this is a book, but written by me while taking a poop...)
+       and some people are pure evil theres no doubt, wars and things like that.</i></p>
 
       <p><i>
         The story is done; it will be quite funny after some time has passed. I
