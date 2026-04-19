@@ -301,6 +301,12 @@ export default function Ending() {
       people to whom the thanks was given would perhaps never read it</i></p>
 
       <p><i>Grammar and wording will still be improved</i></p>
+
+      <p><strong>
+       Everything is written for a reason, some things are a goose chase, some are puzzles, some 
+       are questions, some boring technical stuff, one thing is for sure a website is no reason 
+       for someone to react.
+      </strong></p>
     </>
   );
 }
