@@ -168,7 +168,7 @@ export default function Ending() {
         One last thing that occupied my mind and I almost forgot: I noticed one
         girl. She was different, she was good—I noticed it right away. I don't
         know her name; I call her Snow White. She probably said to herself 
-        and/or a friend that she doubts who I am (no reason to doubt, you're quite cute). 
+        and/or a friend that "doubt that I am" (no reason to doubt, you're quite cute). 
         It made me smile. I should've said hi; instead, I walked away. I will 
         probably never see her again, and not like in the song—this time it's a shame. 
         I just realized it made me quite sad. I hope she will read. "Sumnjam" was the word in the
