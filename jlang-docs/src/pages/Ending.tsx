@@ -262,7 +262,7 @@ export default function Ending() {
 
       <p>
         If you made it this far, thank you. Now close this tab and go build
-        something. New adventures are waiting, and perhaps you might find
+        something weird. New adventures are waiting, and perhaps you might find
         yourself in this wonderful world yourself.
       </p>
 
