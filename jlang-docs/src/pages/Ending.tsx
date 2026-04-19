@@ -233,7 +233,7 @@ export default function Ending() {
 
       <p>
         If you made it this far, thank you. Now close this tab and go build
-        something weird. New adventures are waiting, and perhaps you might find
+        something weird. New adventures await, and perhaps you might find
         yourself in this wonderful world yourself.
       </p>
 
@@ -277,8 +277,8 @@ export default function Ending() {
       </p>
 
        <p>
-          <i>The name Snow White has nothing to do with physical appearance,
-          I just needed a name—I call my home the underworld</i>
+          <i><strong>The name Snow White has nothing to do with physical appearance,
+          I just needed a name—I call my home the underworld</strong></i>
        </p>
 
       <Callout type="life-lesson">
