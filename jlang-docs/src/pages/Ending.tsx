@@ -99,9 +99,11 @@ export default function Ending() {
         probably), and the book is interesting.
         <strong>At least I think so</strong>. There is a bit of everything:
         genuine competence and confidence (not arrogance), vulnerability
-        (embarrassment of not knowing stuff), entertainment, and desperation
-        bundled in a journey throught my thoughts with a really unique way of
-        presenting knowledge about programming (Claude disagrees, by the way).
+        (embarrassment of not knowing stuff), entertainment, desperation and
+        hoppless romantic thing as an offtopic cause all good stories tend to have 
+        that (doubt that she read anyhow) bundled in a journey throught my 
+        thoughts with a really unique way of presenting knowledge about 
+        programming (Claude disagrees, by the way).
       </p>
 
       <p>
