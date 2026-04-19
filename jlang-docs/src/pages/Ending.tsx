@@ -288,7 +288,6 @@ export default function Ending() {
 
       <h2>Final thanks and my reflections on giving thanks and this book: </h2>
 
-      
       <h4>
         <strong>
           THE END. NOTHING MORE TO SAY, JUST A FEW THANKS TO ALL ANGEL GUARDIANS
@@ -336,6 +335,11 @@ export default function Ending() {
         If you made it this far, thank you. Now close this tab and go build
         something weird. New adventures await, and perhaps you might find
         yourself in this wonderful world yourself.
+      </i></p>
+
+      <p><i>
+        Perhaps you might try to write a story of your own, reasons to write are many,
+        yours might be different, perhaps this might inspire you, altought I highly doubt.
       </i></p>
 
       <p><i>Grammar and wording are still to be improved</i></p>
