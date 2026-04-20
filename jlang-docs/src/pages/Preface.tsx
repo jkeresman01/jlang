@@ -176,9 +176,12 @@ export default function Preface() {
         but kids tend to be more creative and in touch with technology and btw we should
         probably keep that childish spirit to keep learning and experimenting, people like that
         tend to be rare, most after some years go to back to their routines and loose that 
-        couriosity),
-        anyhow back to me. I remembered myself at their age. During my first two 
-        years of university, I was a complete mess, uninterested in anything. I would 
+        couriosity), anyhow back to me in the next paragraph.
+       </p>
+
+       <p>
+        I remembered myself at their age. During my first two years of university,
+        I was a complete mess, uninterested in anything. I would 
         sit through a lecture or not come to any of them and just show up on exam day,
         perhaps COVID pandemic was additional factor in there, wasn't big fan of online 
         lectures (Electrical engineering ones, software engineering was more interesting to me,
@@ -198,6 +201,7 @@ export default function Preface() {
         I realise it now, you were right. (Here is my thanks btw, they probably 
         won't read this and I aswell won't send the email, but here it is).
       </p>
+
       <p>
         Although those years were a mess &mdash; really just me being a normal
         teenager &mdash; and I feel quite good and organised right now and have
@@ -213,7 +217,11 @@ export default function Preface() {
         to &mdash; you know those surface-level talks about the weather in
         Zagreb, zero depth (I was born, I went to school, I went to colleage. 
         I go to work from 9 to 5. I watch televison after that, than repeat - 
-        <strong>you just boring zero depth type of person</strong>). I have also noticed that the obsession comes in
+        <strong>you just boring zero depth type of person</strong>). 
+        </p>
+
+        <p>
+        I have also noticed that the obsession comes in
         waves &mdash; sometimes I code through the night, sometimes weeks pass
         and nothing pulls me in. But then again, I haven't come up with an idea
         to build something weird lately, just scrolling through yt (some videos more than once, 
