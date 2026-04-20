@@ -330,16 +330,16 @@ export default function Ending() {
       </i></p>
 
       <p><i>
-        If you made it this far, thank you. Now close this tab and go build
-        something weird. New adventures await and perhaps you might find
-        yourself in this wonderful world, world of toughts.
-      </i></p>
-
-      <p><i>
         Perhaps you might try to write a story of your own, reasons to write are many,
         yours might be different, perhaps this might inspire you, altought I highly doubt, 
         the journey will be intense, people will judge, we humans tend to do that,
         perhaps it's easier, but anyhow don't be afraid to start.
+      </i></p>
+
+      <p><i>
+        If you made it this far, thank you. Now close this tab and go build
+        something weird. New adventures await and perhaps you might find
+        yourself in this wonderful world, world of toughts.
       </i></p>
 
       <p><i>Grammar and wording are still to be improved</i></p>
