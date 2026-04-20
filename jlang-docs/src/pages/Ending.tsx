@@ -303,15 +303,15 @@ export default function Ending() {
       funny, since there is no way for author to know.
       </i></p>
 
+      <p><i>The thing could become a bestseller, not this mine but generally speaking, 
+      but readers would always skip this part and people to whom the thanks was given 
+      would perhaps never read it</i></p>
+
       <p><i>
       A lot of people touched my life, learned something from them all.
       One thing is for sure compilers are way to complex, too much internal phrasing,
       hard to understand for outside Joe (developer from some other domain) an interesting
       and complex topic that's for sure.</i></p>
-
-      <p><i>This thanks are quite funny, the thing could become a bestseller, 
-      not this mine but generally speaking, but readers would always skip this part and 
-      people to whom the thanks was given would perhaps never read it</i></p>
 
       <p><i>
        Everything is written for a reason, some things are a goose chase 
