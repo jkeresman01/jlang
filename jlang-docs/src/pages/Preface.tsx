@@ -142,7 +142,7 @@ export default function Preface() {
         I am a clueless twenty-five-year-old who programs every day and is now,
         for reasons I cannot fully explain, writing this. If you ever see me in
         person, you will probably see me in a black hoodie, staring into the void
-        in particular, and you might wonder what is going on in that guy&rsquo;s
+        and you might wonder what is going on in that guy&rsquo;s
         head &mdash; or why he codes every day, or why he thinks he can write
         something that people would actually read. Truth be told, I do not know
         the answer to that last one. But I can try to answer the rest.
