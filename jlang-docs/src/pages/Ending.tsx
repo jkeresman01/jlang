@@ -125,7 +125,8 @@ export default function Ending() {
       </p>
 
       <p>
-          No, not really, but the pull is definitely weaker than it used to be.
+          No, not really, but the pull is definitely weaker than it used to be,
+          perhaps writting this book occupied my mind.
       </p>
 
       <p>
