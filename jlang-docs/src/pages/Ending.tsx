@@ -367,6 +367,15 @@ export default function Ending() {
       </i></p>
 
       <p><i>
+        One last life lesson: working on side projects or ways to improve is what most people don't like.
+        It requires a lot of effort and it's easier for them to speak about how they 
+        went on a hike and from a place of comfot possibly judge. So personal projects 
+        I like to keep for myself, but people be people they will dig it out somehow 
+        anyway and what I'm trying to say is that goofing around is better for everyone's sake, 
+        being a smartass can get you in trouble anyway.
+      </i></p>
+
+      <p><i>
         If you made it this far, thank you. Now close this tab and go build
         something weird. New adventures await and perhaps you might find
         yourself in this wonderful world, world of toughts.
