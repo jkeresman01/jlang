@@ -352,7 +352,7 @@ export default function Ending() {
        <p><i>
         Same goes for everything, was something that I was just thinking about. 
         A foootball player might have a bad game, people will judge, 
-        person could speek at the conference, people will judge and,
+        person could speek at the conference, people will judge,
         Violinist could have a bad play, people will judge, someone will 
         try to go for a run to lose some weight, people will judge and
         my question is why, it just makes it harder for anyone to start.
@@ -360,19 +360,22 @@ export default function Ending() {
       </i></p>
 
       <p><i>
-        Also you will need an extreme patience, you know docs were started 
-        2 or 3 months ago, unexpected pivot to book was needed that's for sure, while 
-        the projects goes even a year before, Rome wasn't built in a day is something 
-        that I was always trying to say.
+        Also you will need an extreme patience, time and consistency
+        you know docs were started 2 or 3 months ago, unexpected pivot 
+        to book was needed that's for sure, while the projects goes even 
+        a year before, Rome wasn't built in a day is something that 
+        I was always trying to say.
       </i></p>
 
       <p><i>
-        One last general advice: working on side projects or ways to improve is what most people don't like.
-        It requires a lot of effort and it's easier for them to speak about how they 
-        went on a hike and from a place of comfot possibly judge. So personal projects 
-        I like to keep for myself, but people be people they will dig it out somehow 
-        anyway and what I'm trying to say is that goofing around is better for everyone's sake, 
-        being a smartass can get you in trouble anyway.
+        One last advice: working on side projects or ways to improve is 
+        what most people don't like. It requires a lot of effort and 
+        it's easier for them to speak about how they went on a hike and 
+        from a place of comfot possibly judge. So personal projects 
+        I like to keep for myself, but people be people they will dig 
+        it out somehow anyway and what I'm trying to say is that goofing 
+        around is better for everyone's sake, being a smartass can get you 
+            in trouble anyway.
       </i></p>
 
       <p><i>
