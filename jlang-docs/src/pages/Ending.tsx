@@ -7,14 +7,15 @@ export default function Ending() {
       <p>
         You've reached the end of the Jlang book. Writing in Jlang is hard work,
         so here's a funny football story before you go. Looking objectively, I
-        wasn't really that good at the sport, but the story is funny. I had my
-        moments, though, and the tournament was really unimportant. I was really bad at it.
-        I found a small piece of paper from the history of disease, everything
-        exaggerated for the purpose of poetry. The timeline could be different,
-        the stories could be two, but then again I might be wrong—everything's
-        from memory: the doctor one and the tournament. I noted part of one song
-        down one night; I still remember how hard it was for me to rhyme it all
-        in. The song is quite childish, so the guitar and I will not be.
+        wasn't really that good at the sport, i was really bad at it,
+        but the story is funny. I had my moments, though, and the tournament 
+        was really unimportant. I found a small piece of paper from the history of 
+        disease, everything exaggerated for the purpose of poetry. The timeline 
+        could be different, the stories could be two, but then again I might 
+        be wrong—everything's from memory: the doctor one and the tournament. 
+        I noted part of one song down one night; I still remember how hard 
+        it was for me to rhyme it all in. The song is quite childish, so 
+        the guitar and I will not be.
       </p>
 
       <Callout type="life-lesson">
@@ -215,16 +216,17 @@ export default function Ending() {
         perhaps anyone who touched my life could relate. Whether they should is
         another conversation to be held, and the questions now have answers in my
         website form. Still, there is a lot that I don't know. One thing is for
-        sure: those who did relate, I love them all.      </p>
+        sure: those who did relate, I love them all.
+       </p>
 
-        <p>
+       <p>
         Things that I write today came from looking back through the stories, 
         still trying to figure it all out—the why, who, when, and what. 
         You know where I parked my car in the pointers story, and things like that, 
         it's not like I note it all down, anyhow peace is what I like—walking through the park. 
         My thought was that it's better not to know, and the questions were perhaps three,
         probably now lost in the sea.
-        </p>
+       </p>
 
       <h3>Remaining questions?</h3>
 
