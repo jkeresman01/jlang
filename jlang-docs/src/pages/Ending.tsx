@@ -370,12 +370,13 @@ export default function Ending() {
       <p><i>
         One last advice: working on side projects or ways to improve is 
         what most people don't like. It requires a lot of effort and 
-        it's easier for them to speak about how they went on a hike and 
+        it's easier for people to speak about how they went on a hike and 
         from a place of comfot possibly judge. So personal projects 
         I like to keep for myself, but people be people they will dig 
         it out somehow anyway and what I'm trying to say is that goofing 
         around is better for everyone's sake, being a smartass can get you 
-            in trouble anyway.
+        in trouble anyway. But yes yes, I'm no person to give advice, just a 
+        guy finishing his book.
       </i></p>
 
       <p><i>
