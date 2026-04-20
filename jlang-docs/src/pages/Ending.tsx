@@ -352,6 +352,14 @@ export default function Ending() {
       </i></p>
 
       <p><i>
+        Same goes for everything, was something that I was just thinking about. 
+        A foootball player might have a bad game, people will judge, 
+        person could speek at the conference, people will judge and 
+        my question is why, it just makes it harder for anyone to start.
+        But perhaps being in the zone of comfort is what people like.
+      </i></p>
+
+      <p><i>
         If you made it this far, thank you. Now close this tab and go build
         something weird. New adventures await and perhaps you might find
         yourself in this wonderful world, world of toughts.
