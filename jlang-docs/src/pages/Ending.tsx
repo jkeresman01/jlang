@@ -338,7 +338,8 @@ export default function Ending() {
       <p><i>
         Perhaps you might try to write a story of your own, reasons to write are many,
         yours might be different, perhaps this might inspire you, altought I highly doubt, 
-        the journey will be intense, people will judge but don't be afraid to start.
+        the journey will be intense, people will judge, we humans tend to do that,
+        perhaps it's easier, but anyhow don't be afraid to start.
       </i></p>
 
       <p><i>Grammar and wording are still to be improved</i></p>
