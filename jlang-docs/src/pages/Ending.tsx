@@ -310,8 +310,8 @@ export default function Ending() {
 
       <p><i>A small thanks, funny test of mine to see who responds, perhaps a way for me
       to connect it all, perhaps something was learned, perhaps not at all. And perhaps
-      some might find themself realated to some stories of mine. Who respods is also quite 
-      funny, since there is no way for author to know.
+      some might find themself realated to some of this stories. Who respods is also 
+      quite funny, since there is no way for author to know.
       </i></p>
 
       <p><i>The thing could become a bestseller, not this mine but generally speaking, 
@@ -327,12 +327,12 @@ export default function Ending() {
       <p><i>
        Everything is written for a reason, some things are a goose chase 
        (no programming knowledge to be found, but perhaps some general advice), 
-       some are puzzles, some are questions, some boring technical stuff, 
-       one thing is for sure a website is no reason for someone to react, my 
-       understanding of a conecpt like monomorphization could be wrong perhaps, find a
-       valid source, book or something like that (I mean this is a book, 
-       but some parts are written by me while taking a poop...) and some people 
-       are pure evil theres no doubt, wars and things like that.</i></p>
+       some are puzzles, some are questions, some are lessons, some are fun facts 
+       and some are just boring technical stuff, one thing is for sure a website is no 
+       reason for someone to react, my understanding of a conecpt like monomorphization 
+       could be wrong perhaps, find a valid source, book or something like that 
+       (I mean this is a book, but some parts are written by me while taking a poop...) 
+       and some people are pure evil theres no doubt, wars and things like that.</i></p>
 
       <p><i>
         The story is done; it will be quite funny after some time has passed. I
