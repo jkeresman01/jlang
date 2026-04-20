@@ -134,16 +134,17 @@ export default function Ending() {
       </p>
 
       <p>
-         No, not really, was thinking about leaving for 
-         quite some time. Phases of my life were many, currently enjoying being
-         low key, perhaps to fool around when I feel comfortable. Not to talk much and do my thing.
-         Don't get me wrong I talk a lot but only about stuff that interest me. Where did you
-         buy that shirt, or similar small talk stuff just don't interest me ... but yes, yes if 
-         you really want to nitpick ofcourse you will see me involved in small talk, no way to avoid 
-         it, some people are just chatty and boring, anyhow back to the main tought in next sentence.
-         When personal peace is disturbed, some perhaps three questions get involved, 
-         you know it's time to go. Currently I enjoy writing, could perhaps continue,
-         doing just that.
+         No, not really, was thinking about leaving for quite some time. 
+         Phases of my life were many, currently enjoying being low key, 
+         perhaps to fool around when I feel comfortable. Not to talk much 
+         and do my thing. Don't get me wrong I talk a lot but only about stuff 
+         that interest me. Where did you buy that shirt, or similar small talk 
+         stuff just don't bother me ... but yes, yes if you really want to 
+         nitpick ofcourse you will see me involved in small talk, no way to avoid 
+         it, some people are just chatty and boring. Currently I enjoy writing, 
+         it's quite and peaceful and thats what I like, could perhaps continue, 
+         doing just that, and for the job I really don't know, but my coding journey 
+         was never about that.
      </p>
 
       <Callout type="tip">
@@ -163,12 +164,11 @@ export default function Ending() {
       <p>
         This book isn't the last thing that will keep me in the wonderful world 
         of thoughts, innovation, and creation... and lately, vibes. 
-        Don't get me wrong—I'm no innovator nor creator, perhaps
-        more like a child who likes to fool around, play, and work with
-        technology, not against it. Don't get me wrong, I have some fights with
-        it. I fought against AI for quite some time, but then again, those who
-        don't adopt will cease to exist, so always adopt and play with new
-        technologies. Be like children—always explore, play, and work with it,
+        Ofcourse I'm no innovator nor creator, perhaps more like a child who likes 
+        to fool around, play, and work with technology, not against it. 
+        Have some fights with it, fought against AI for quite some time, 
+        but then again, those who don't adopt will cease to exist, so always adopt 
+        and play with new technologies. Be like children—always explore, play, and work with it,
         never fight it. I found OpenClaw to be quite fun lately.
       </p>
 
@@ -203,13 +203,16 @@ export default function Ending() {
         perhaps anyone who touched my life could relate. Whether they should is
         another conversation to be held, and the questions now have answers in my
         website form. Still, there is a lot that I don't know. One thing is for
-        sure: those who did relate, I love them all. Things that I write today
-        came from looking back through the stories, still trying to figure it all
-        out—the why, who, when, and what. You know where I parked my car in the pointers story, 
-        and things like that, it's not like I note it all down, anyhow peace 
-        is what I like—walking through the park. My thought was that it's better 
-        not to know, and the questions were perhaps three, probably now lost in the sea.
-      </p>
+        sure: those who did relate, I love them all.      </p>
+
+        <p>
+        Things that I write today came from looking back through the stories, 
+        still trying to figure it all out—the why, who, when, and what. 
+        You know where I parked my car in the pointers story, and things like that, 
+        it's not like I note it all down, anyhow peace is what I like—walking through the park. 
+        My thought was that it's better not to know, and the questions were perhaps three,
+        probably now lost in the sea.
+        </p>
 
       <h3>Remaining questions?</h3>
 
