@@ -347,9 +347,9 @@ export default function Ending() {
         yours might be different, perhaps this might inspire you, altought I highly doubt, 
         the journey will be intense, people will judge, we humans tend to do that,
         perhaps it's easier, but anyhow don't be afraid to start.
-      </i></p>
+       </i></p>
 
-      <p><i>
+       <p><i>
         Same goes for everything, was something that I was just thinking about. 
         A foootball player might have a bad game, people will judge, 
         person could speek at the conference, people will judge and,
@@ -357,6 +357,13 @@ export default function Ending() {
         try to go for a run to lose some weight, people will judge and
         my question is why, it just makes it harder for anyone to start.
         But perhaps being in the zone of comfort is what people like.
+      </i></p>
+
+      <p><i>
+        Also you will need an extreme patience, you know docs were started 
+        2 or 3 months ago, unexpected pivot to book was needed that's for sure, while 
+        the projects goes even a year before, Rome wasn't built in a day is something 
+        that I was always trying to say.
       </i></p>
 
       <p><i>
