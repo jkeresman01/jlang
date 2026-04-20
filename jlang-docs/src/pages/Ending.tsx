@@ -352,7 +352,9 @@ export default function Ending() {
       <p><i>
         Same goes for everything, was something that I was just thinking about. 
         A foootball player might have a bad game, people will judge, 
-        person could speek at the conference, people will judge and 
+        person could speek at the conference, people will judge and,
+        Violinist could have a bad play, people will judge, someone will 
+        try to go for a run to lose some weight, people will judge and
         my question is why, it just makes it harder for anyone to start.
         But perhaps being in the zone of comfort is what people like.
       </i></p>
