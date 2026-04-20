@@ -134,9 +134,9 @@ export default function Ending() {
       <p>
           No, not really, but the pull is definitely weaker than it used to be,
           perhaps writting this book occupied my mind lately, so the coding part fell 
-          a little behind, and the writting gets you trapped in this world of toughts
-          that's something that I really like. When you are deep enough in tought
-          the rest of the world simply stops existing
+          a little behind, and the writting gets you trapped in this world of toughts, 
+          when you are deep enough in tought the rest of the world simply stops existing
+          and that's something that I really like.
       </p>
 
       <p>
