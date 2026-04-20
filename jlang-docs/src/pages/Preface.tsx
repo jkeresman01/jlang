@@ -471,7 +471,7 @@ export default function Preface() {
         Opus 4.6 (The code is quite a mess but it works). Not the ideas not the
         content, only the mundane boring work, the rest was done from a phone while 
         in a bed or taking a poop or from my desk by pressing a bunch of jkjkjkjks 
-        from some arcane editor, anyhow back to the thing that I was thinking about.
+        inside some arcane editor, anyhow back to the thing that I was thinking about.
         Will there still be a need for companies that purely live on
         providing software development services? Perhaps yes, perhaps no. But
         one thing is for sure — those that have their own products will thrive
@@ -536,6 +536,7 @@ export default function Preface() {
         is convinced their approach is the right one, and they will defend it
         stubbornly. That is exactly what makes them fun.
       </p>
+
       <Callout type="life-lesson">
         <strong>Life lesson:</strong> I owe 120 euros in parking fines to
         Proračun Grada Zagreba from last month for the way I park my car &mdash;

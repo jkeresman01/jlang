@@ -8,8 +8,7 @@ export default function Ending() {
         You've reached the end of the Jlang book. Writing in Jlang is hard work,
         so here's a funny football story before you go. Looking objectively, I
         wasn't really that good at the sport, but the story is funny. I had my
-        moments, though, and the tournament was really unimportant. I was really
-        bad at it.
+        moments, though, and the tournament was really unimportant. I was really bad at it.
         I found a small piece of paper from the history of disease, everything
         exaggerated for the purpose of poetry. The timeline could be different,
         the stories could be two, but then again I might be wrong—everything's
@@ -151,7 +150,7 @@ export default function Ending() {
 
        <p>
          People who work in department responsible for selling milk, but they sell shoes, 
-         beacuse it's what they are supposed to do, are they shoeseller or a milkseeler, 
+         beacuse it's what they are supposed to do, are they a shoeseller or a milkseeler, 
          or are they both true. Could someone use it as something they are not supposed 
          to do, is one a lie, and other one the truth, or are they both true. Hard puzzle
          indeed it is, what I'm trying to tell is don't get tricked, answers could be many.
@@ -318,7 +317,7 @@ export default function Ending() {
        (no programming knowledge to be found, but perhaps some general advice), 
        some are puzzles, some are questions, some boring technical stuff, 
        one thing is for sure a website is no reason for someone to react, my 
-       understanding of a conecpt like monomorphization could be wrong perhaps, find 
+       understanding of a conecpt like monomorphization could be wrong perhaps, find a
        valid source, book or something like that (I mean this is a book, 
        but some parts are written by me while taking a poop...) and some people 
        are pure evil theres no doubt, wars and things like that.</i></p>
@@ -332,13 +331,14 @@ export default function Ending() {
 
       <p><i>
         If you made it this far, thank you. Now close this tab and go build
-        something weird. New adventures await, and perhaps you might find
-        yourself in this wonderful world yourself.
+        something weird. New adventures await and perhaps you might find
+        yourself in this wonderful world, world of toughts.
       </i></p>
 
       <p><i>
         Perhaps you might try to write a story of your own, reasons to write are many,
-        yours might be different, perhaps this might inspire you, altought I highly doubt.
+        yours might be different, perhaps this might inspire you, altought I highly doubt, 
+        the journey will be intense, people will judge but don't be afraid to start.
       </i></p>
 
       <p><i>Grammar and wording are still to be improved</i></p>
