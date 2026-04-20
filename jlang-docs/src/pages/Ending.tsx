@@ -116,8 +116,14 @@ export default function Ending() {
         changes? Sometimes. Could be something, could be nothing.
 
       </p>
+        <strong>
         Did I piss off my family while going to the bathroom at ungodly hours and
         while squqa doodling my personal projects during sleepless nights? 
+        </strong>
+      </p>
+
+      <p>
+       Yes, there is no doubt, but they are quite easy to piss off, so there goes that.
       </p>
 
       <p>
@@ -126,7 +132,8 @@ export default function Ending() {
 
       <p>
           No, not really, but the pull is definitely weaker than it used to be,
-          perhaps writting this book occupied my mind.
+          perhaps writting this book occupied my mind lately, so the coding part fell 
+          a little behind.
       </p>
 
       <p>
