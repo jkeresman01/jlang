@@ -144,7 +144,11 @@ export default function Ending() {
          it, some people are just chatty and boring. Currently I enjoy writing, 
          it's quite and peaceful and thats what I like, could perhaps continue, 
          doing just that, and for the job I really don't know, but my coding journey 
-         was never about that.
+         was never about that, as I said at the start, just a set of tasks you 
+         execute to get paid, while coding and writting are where your individual
+         quirks come into play, it's a way of self expression, where you can 
+         get lost in the toughts. "How do I write this paragrah", "Which words would be 
+         better here" and things like that.
      </p>
 
       <Callout type="tip">
