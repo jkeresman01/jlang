@@ -367,7 +367,7 @@ export default function Ending() {
       </i></p>
 
       <p><i>
-        One last life lesson: working on side projects or ways to improve is what most people don't like.
+        One last general advice: working on side projects or ways to improve is what most people don't like.
         It requires a lot of effort and it's easier for them to speak about how they 
         went on a hike and from a place of comfot possibly judge. So personal projects 
         I like to keep for myself, but people be people they will dig it out somehow 
