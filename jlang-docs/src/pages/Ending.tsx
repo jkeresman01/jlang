@@ -276,14 +276,8 @@ export default function Ending() {
         I'm sorry. The thing came as one last afterthought. Just one "hi" and the
         story would've been different. If she realized, I hope she at least
         smiled. I set my own walk test to 10,000 steps a day; perhaps I won't
-        reach that goal today. Perhaps it's good to rest for a day, watch some
-        Netflix while I lie down in bed. Watch some random movie to make some
-        time pass away—One Piece and boring, childish stuff like that. There was a story:
-        two giants fighting for over a decade; they forgot what the reason even
-        was. It reminded me of something—why do people fight? My family at home
-        sometimes does just that, sometimes with me—slamming doors too loudly or
-        other irrelevant things like that—but then again, that's just normal human stuff.
-      </p>
+        reach that goal today.
+        </p>
 
        <p>
           <i><strong>The name Snow White has nothing to do with physical appearance,
