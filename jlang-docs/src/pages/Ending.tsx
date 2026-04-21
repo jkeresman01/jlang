@@ -315,9 +315,9 @@ export default function Ending() {
 
       <p><i>
        Everything is written for a reason, some things are a goose chase (no programming
-       knowledge to be found, but perhaps some general advice), some are puzzles, some
-       are questions, some are lessons, some are fun facts and some are just boring
-       technical stuff, one thing is for sure a website is no reason for someone
+       knowledge to be found, but perhaps some general advice or a funny story of mine),
+       some are puzzles, some are questions, some are lessons, some are fun facts and some
+       are just boring technical stuff, one thing is for sure a website is no reason for someone
        to react, my understanding of a conecpt like monomorphization could be wrong
        perhaps, find a valid source, book or something like that (I mean this is a book,
        but some parts are written by me while taking a poop...)  and some people are
