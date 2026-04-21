@@ -95,7 +95,7 @@ export default function Ending() {
         with good intentions, potentially misunderstood many things while being
         trapped in their own views. Everyone realized no harm was done. Questions can
         changed (how can one know that they stayed the same for almost half a decade). 
-        People should talk. Parking fines were paid  and the book is interesting. 
+        People should talk. Parking fines were paid and the book is interesting. 
         <strong>At least I think so</strong>. There is a bit of everything:
         genuine competence and confidence (not arrogance), vulnerability (embarrassment
         of not knowing stuff), entertainment, desperation and hoppless romantic thing
@@ -149,8 +149,8 @@ export default function Ending() {
          writing, it's quite and peaceful and thats what I like, could perhaps continue,
          doing just that, and for the job I really don't know, but my coding journey was
          never really about that, as I said at the start, just a set of tasks you execute to get
-         paid, while coding and writting are where your individual quirks come into play,
-         it's a way of self expression, where you can get lost in the toughts. "How do
+         paid, but that's just my point of view, while coding and writting are where your
+         individual quirks come into play, it's a way of self expression, where you can get lost in the toughts. "How do
          I write this paragrah", "Which words would be better here" and things like that.
      </p>
 
