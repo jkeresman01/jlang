@@ -253,6 +253,7 @@ export default function Ending() {
 
       <p>
         Will I try to park in appropriate places to reduce parking fines?
+        Got additional parking fine today, so there goes that, but will see...
       </p>
 
       <p>
