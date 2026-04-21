@@ -171,15 +171,15 @@ export default function Ending() {
        <br />
         
       <p><i>
-         An interesting tought about that, world is quite simple,
+         "An interesting tought about that, world is quite simple,
          unless people decide to make it complicated,
          we don't see it objectivly, but are instead traped in our own views 
          in our own subjective reality and that's generaly fine, perhaps a fact is
          missing for that to make sense. Perhaps one might think that one is a lie.
-         Perhaps he might be right. Perhaps people get afraid and defend their own view
-         altought it might be a lie, does it really matter, is that really a problem 
-         or is this about something else. Ond thing is for sure, people who generaly 
-         don't care, get out of the debate.
+         Perhaps they might be right. Perhaps people get afraid and defend their own views
+         altought it might be a lie, the older they get, the more of this they do, 
+         perhaps a more to lose. One thing is for sure, people who generaly 
+         don't care, get out of the debate."
       </i></p>
     </Callout>
 
