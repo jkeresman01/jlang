@@ -316,7 +316,8 @@ export default function Ending() {
               some could read and while being traped in their own subjective reality possibly relate. Story is written
               vaguely any girl that I walked by and she possibly said "I doubt" could depending 
               on her interest possibly relate, since we all live in our own subjective realities. 
-              Is there one on my mind, well perhaps.
+              Is there one on my mind, well perhaps, do I call her snow white, well perhaps, did she 
+              said "doubt that I am", well perhaps.
             </i>
          </p>
       </Callout>
