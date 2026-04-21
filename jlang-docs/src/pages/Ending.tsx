@@ -93,9 +93,9 @@ export default function Ending() {
         The book was written alongside the journey. A lot of genuinely good people,
         with good intentions, potentially misunderstood many things while being
         trapped in their own views. Everyone realized no harm was done. Questions can
-        changed (they shouldn't stay the same for almost half a decade—isn't that
-        just insane?). People should talk. Parking fines were paid  and the book is
-        interesting. <strong>At least I think so</strong>.  There is a bit of everything:
+        changed (how can one know that they stayed the same for almost half a decade). 
+        People should talk. Parking fines were paid  and the book is interesting. 
+        <strong>At least I think so</strong>. There is a bit of everything:
         genuine competence and confidence (not arrogance), vulnerability (embarrassment
         of not knowing stuff), entertainment, desperation and hoppless romantic thing
         as an offtopic cause all good stories tend to have that (doubt that she read
@@ -103,9 +103,7 @@ export default function Ending() {
         presenting knowledge about programming (Claude disagrees, by the way).
       </p>
 
-      <p>
-        Here are some answers to the questions being asked throughout the book:
-      </p>
+       <h3>Answers to the questions being asked throughout the book</h3>
 
       <p>
         <strong>Will I go learn how to play the guitar instead of coding?</strong></p>
@@ -189,31 +187,7 @@ export default function Ending() {
         (tobacco). In The Hobbit, the substance is directly called tobacco.
       </Callout>
 
-
-      <Callout type="tip"> <h4>Just one interesting side puzzle before you go: </h4>
-
-       <p>
-         People who work in department responsible for selling milk, but they sell
-         shoes, beacuse it's what they are supposed to do, are they a shoeseller or a
-         milkseeler, or are they both true. Could someone use it as something they are
-         not supposed to do, is one a lie, and other one the truth, or are they both
-         true. Complex puzzle indeed it is, what I'm trying to tell is don't get tricked,
-         answers could be many. Words were choosen wisly, figure it out and you've unreveled
-         a mystery.
-      </p>
-      </Callout>
       
-      <Callout type="tip">
-      <p><i>
-         "An interesting tought about that, world is quite simple,
-         unless people make it complicated, we don't see it objectively, but instead live 
-         in our own subjective realities, perhaps a fact is missing for that to make sense.
-         Perhaps one might think that one is a lie. Perhaps the one might right. Perhaps 
-         one might be wrong. We all live our own stories in our own subjective realities 
-         and little puzzle like this could perhaps for some have another meaning, but perhaps not"
-      </i></p>
-    </Callout>
-
       <h2>General knowledge and realizations accuqired trought this book: </h2>
 
       <p>
@@ -275,16 +249,18 @@ export default function Ending() {
       </Callout>
 
       
-      <h2>Offtopic stuff that occupies my mind</h2>
+      <h2>Offtopic stuff that occupies my mind and I'm just curious about</h2>
+
+      <h3>Girls, songs, music and things like that</h3>
 
       <p>
-        One last thing that occupied my mind and I almost forgot: I noticed one girl. She
-        was different, she was good—I noticed it right away. I don't know her name;
-        I call her Snow White. She probably said to herself and/or a friend "doubt that I
-        am" (no reason to doubt, you quite cute).  It made me smile. I should've said
-        hi; instead, I walked away. I will probably never see her again, and not like
-        in the song—this time it's a shame. I just realized it made me quite sad. I
-        hope she reads is what I said to myself, being good is what made her stand out.
+        I've  noticed one girl. She was different, she was good—I noticed it right away. 
+        I don't know her name; I call her Snow White. She probably said to herself and/or 
+        a friend "doubt that I am" (no reason to doubt, you quite cute). 
+        It made me smile. I should've said hi; instead, I walked away. I will probably 
+        never see her again, and not like in the song—this time it's a shame. I just realized 
+        it made me quite sad. I hope she reads is what I said to myself, being good is what 
+        made her stand out.
       </p>
 
        <p>
@@ -318,6 +294,29 @@ export default function Ending() {
           in order for that to make any sense."
          </i></p>
       </Callout>
+
+      <h3>Puzzles, philosophy and things like that</h3>
+
+      <p>
+         People who work in department responsible for selling milk, but they sell
+         shoes, beacuse it's what they are supposed to do, are they a shoeseller or a
+         milkseeler, or are they both true. Could someone use it as something they are
+         not supposed to do, is one a lie, and other one the truth, or are they both
+         true. Complex puzzle indeed it is, what I'm trying to tell is don't get tricked,
+         answers could be many. Words were choosen wisly, figure it out and you will unreveled
+         a mystery.
+      </p>
+      
+      <Callout type="tip">
+      <p><i>
+         "An interesting tought about that, world is quite simple,
+         unless people make it complicated, we don't see it objectively, but instead live 
+         in our own subjective realities, perhaps a fact is missing for that to make sense.
+         Perhaps one might think that one is a lie. Perhaps the one might right. Perhaps 
+         one might be wrong. We all live our own stories in our own subjective realities 
+         and little puzzle like this could perhaps for some have another meaning, but perhaps not"
+      </i></p>
+    </Callout>
 
       <h2>Final thanks and my reflections on giving thanks and this book</h2>
 
