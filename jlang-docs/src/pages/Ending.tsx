@@ -265,8 +265,6 @@ export default function Ending() {
       </i></p>
     </Callout>
 
-      <h3>Girls, songs, music and things like that</h3>
-
       <p>
         I've  noticed one girl. She was different, she was good—I noticed it right away. 
         I don't know her name; I call her Snow White. She probably said to herself and/or 
