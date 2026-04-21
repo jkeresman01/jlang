@@ -163,8 +163,9 @@ export default function Ending() {
          shoes, beacuse it's what they are supposed to do, are they a shoeseller or a
          milkseeler, or are they both true. Could someone use it as something they are
          not supposed to do, is one a lie, and other one the truth, or are they both
-         true. Hard puzzle indeed it is, what I'm trying to tell is don't get tricked,
-         answers could be many.
+         true. Complex puzzle indeed it is, what I'm trying to tell is don't get tricked,
+         answers could be many. Words were choosen wisly, figure it out and you've unreveled
+         a mystery.
       </p>
     </Callout>
 
