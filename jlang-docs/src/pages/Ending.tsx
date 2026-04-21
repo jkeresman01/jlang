@@ -304,17 +304,23 @@ export default function Ending() {
       </Callout>
 
       <Callout type="tip">
-         <p>
-            <i>
-              "An interesting tought about this story, coming back to subjective reality point.
-              The girl could be any, there could be many or there could be none. None could read or 
-              some could read and while being traped in their own subjective reality possibly relate. Story is written
-              vaguely any girl that I walked by and she possibly said "I doubt" could depending 
-              on her interest possibly relate, since we all live in our own subjective realities. 
-              Is there one on my mind, well perhaps, do I call her snow white, well perhaps, did she 
-              said "doubt that I am", well perhaps.
-            </i>
-         </p>
+         <p><i>
+          "An interesting tought about this story, coming back to subjective
+          reality point. The girl could be any, there could be many or there could
+          be none. None could read or some could read and while being traped in
+          their own subjective reality possibly relate. Story is written vaguely
+          any girl that I walked by and she possibly said "I doubt" could depending
+          on her interest possibly relate, since they all live in their own subjective
+          realities.
+          </i></p>
+
+         <p><i>
+          Is there one on my mind, well perhaps, do I call her Snow
+          White, well perhaps, did she said "doubt that I am", well perhaps, did 
+          few possibly relate, well perhaps, did right one relate after she said
+          she doubts in the park, could be but  I would need to be clairvoyant 
+          in order for that to make any sense."
+         </i></p>
       </Callout>
 
       <h2>Final thanks and my reflections on giving thanks and this book: </h2>
@@ -346,14 +352,15 @@ export default function Ending() {
 
       <p><i>
        Everything is written for a reason, some things are a goose chase (no programming
-       knowledge to be found, but perhaps some general advice or a funny story of mine),
-       some are puzzles (I've started reading some philosophy so addded a few debates for you, can disanged
-       shoeseller sell more shoes and things like that), some are questions, some are lessons, some are fun facts and some
-       are just boring technical stuff, one thing is for sure a website is no reason for someone
-       to react, my understanding of a conecpt like monomorphization could be wrong
-       perhaps, find a valid source, book or something like that (I mean this is a book,
-       but some parts are written by me while taking a poop...)  and some people are
-       pure evil theres no doubt, wars and things like that.</i></p>
+       knowledge to be found, but perhaps some general advice or a funny story of
+       mine), some are puzzles (I've started reading some philosophy so addded a
+       few debates for you, can disanged shoeseller sell more shoes and things like
+       that), some are questions, some are lessons, some are fun facts and some are
+       just boring technical stuff, one thing is for sure a website is no reason for
+       someone to react, my understanding of a conecpt like monomorphization could be
+       wrong perhaps, find a valid source, book or something like that (I mean this
+       is a book, but some parts are written by me while taking a poop...)  and some
+       people are pure evil theres no doubt, wars and things like that.</i></p>
 
       <p><i>
         The story is done; it will be quite funny after some time has passed. I might
@@ -398,7 +405,8 @@ export default function Ending() {
       <p><i>
         One additional life hack for those who stayed for this long, if you 
         have an old parking fine, put it under the windshield, they'll just skip 
-        you because you already have a ticket or just pay the parking thing.
+        you because you already have a ticket or just pay the parking thing,
+        preferably pay that's correct advice to give.
       </i></p>
       
       <p><i>
