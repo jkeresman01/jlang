@@ -416,10 +416,20 @@ export default function Ending() {
         </Callout>
 
       <Callout type="tip">
+           <p><i>
+            <strong>The lastest advice (normal word, "lastest")</strong> Easiest
+            way to start writing is just to start, it's gonna be a lot if nonsene
+            and everything at some point and you will probably throw out about 60%
+            along the way. You know toughts come and go .. yes yes, I'm no person to
+            give advice, but who really is ...  </i></p>
+        </Callout>
+
+      <Callout type="tip">
           <p><i>
-            <strong>One last life hack</strong> for those who stayed for this long, if you have an
-            old parking fine, put it under the windshield, they'll just skip you because
-            you already have a ticket or just pay the parking thing
+            <strong>One last life hack</strong> for those who stayed for this long,
+            if you have an old parking fine, put it under the windshield, 
+            they'll just skip you because you already have a ticket or just 
+        pay the parking thing
             ... preferably pay that's correct advice to give.
           </i></p> 
         </Callout>
