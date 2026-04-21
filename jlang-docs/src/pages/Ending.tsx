@@ -307,32 +307,28 @@ export default function Ending() {
          </i></p>
       </Callout>
 
-      
-      <h2>Final thanks and my reflections on giving thanks and this book</h2>
+       <h2>Final Thanks & Reflections</h2>
 
-      <blockquote>
-
-      <p><strong>
-          "The end. nothing more to say, just a few thanks to all angel guardians that
-          have protected me and gave me the strength to finish this book. I don't
-          know how to repay and it's a small book, so i also pay respect to all the
-          authors and writers out there—it's a lot of work."
-        </strong></p>
-      </blockquote>
+        <blockquote>
+          <p><strong>
+            “The end. Nothing more to say—only thanks to the unseen guardians
+            who carried me through these pages and lent me strength to finish.
+            I owe more than I can repay. And though this is a small book,
+            my respect goes to every writer—this craft asks much.”
+          </strong></p>
+        </blockquote>
 
       <br />
 
-      <p><i>
-          A small thanks, funny test of mine to see who responds, perhaps a way for
-          me to connect it all, perhaps something was learned, perhaps not at all. And
-          perhaps some might find themself realated to some of this stories. Who respods
-          is also quite funny, since there is no way for author to know. 
+      <p><i> 
+      A small thanks—perhaps a quiet test, perhaps a thread to tie it all together.
+      Maybe something was learned, maybe not. Perhaps someone will see themselves
+      in these stories. And who answers? That remains a mystery to the author.
       </i></p>
 
       <p><i>
-          The thing could become a bestseller, not this mine but generally speaking,
-          but readers would always skip this part and people to whom the thanks was given
-          would perhaps never read it.
+        A book might become a bestseller—any book, not just mine—
+        yet this part is often skipped, and those thanked may never read it.
       </i></p>
 
       <p><i>
@@ -343,32 +339,24 @@ export default function Ending() {
       </i></p>
 
       <p><i>
-       Everything is written for a reason, some things are a goose chase (no programming
-       knowledge to be found, but perhaps some general advice or a funny story of mine),
-       some are puzzles (I've started reading some philosophy so I addded a few debates
-       for you at the end), some are questions, some are lessons, some are fun facts
-       and some are just boring technical stuff, one thing is for sure a website is no
-       reason for someone to react, my understanding of a conecpt like monomorphization
-       could be wrong perhaps, find a valid source, book or something like that (I mean
-       this is a book, but some parts are written by me while taking a poop...)  and some
-       people are pure evil theres no doubt, wars and things like that.  
-       </i></p>
+        Everything here has a reason. Some pages wander, some hide puzzles, some ask
+        questions, some teach, some amuse, some simply are.  A website is no reason to react,
+        my understanding of concept like monomorphization could be wrong perhaps,
+        so seek better sources if you must.  After all, some of this was written in the 
+        most human of moments. And yes—some people are cruel; the world proves that enough.
+      </i></p>
 
       <p><i>
-        Perhaps you might try to write a story of your own, reasons to write are many,
-        yours might be different, perhaps this might inspire you, altought I highly
-        doubt, the journey will be intense, people will judge, we humans tend to do
-        that, perhaps it's easier, but anyhow don't be afraid to start.
-       </i></p>
-
-       <p><i>
-        Same goes for everything, was something that I was just thinking about.
-        A foootball player might have a bad game, people will judge, person could
-        speek at the conference, people will judge, Violinist could have a bad play,
-        people will judge, someone will try to go for a run to lose some weight, people
-        will judge and my question is why, it just makes it harder for anyone to start.
-        But perhaps being in the zone of comfort is what people like.
+        Perhaps you’ll write something of your own.  Reasons differ. Maybe this sparks
+        something—though I doubt it.  The road is long, judgment is certain, but do not let
+        that stop you from beginning.
       </i></p>
+
+      <p><i> It’s true beyond writing. A player falters—judged.  A speaker
+        stumbles—judged. A violinist misses—judged.  Someone simply tries—judged.  Why? It
+        makes every beginning heavier.  Perhaps comfort is easier to defend.
+      </i></p>
+
 
       <p><i>
         Also you will need an extreme patience, a lot of time and consistency, you
@@ -378,10 +366,10 @@ export default function Ending() {
       </i></p>
 
        <p><i>
-        The story is done; it will be quite funny after some time has passed. I might
-        even mention it in my next book as a funny story—who knows. The domain is
-        what I don't know, it could be about dragons, dwarfs, romance, code, or poetry...
-      </i></p>
+        The story is done; it will be quite funny after some time has passed.
+        Maybe I’ll mention it in another book one day. 
+        Who knows what that one will be about— dragons, dwarfs, romance, code… or poetry.
+       </i></p>
 
       <p><i>
         If you made it this far, thank you. Now close this tab and go build something
@@ -389,9 +377,9 @@ export default function Ending() {
         wonderful world, world of toughts.
       </i></p>
 
-      <p><i>Grammar and wording are still to be improved</i></p>
+       <p><i>Grammar and wording still need improvement… but that’s part of it.</i></p>
 
-      <Callout type="tip">
+       <Callout type="tip">
            <p><i>
             <strong>One last advice:</strong> working on side projects or ways to improve
             is what most people don't like. It requires a lot of effort and it's easier
