@@ -155,6 +155,41 @@ export default function Ending() {
          I write this paragrah", "Which words would be better here" and things like that.
      </p>
 
+     <h3>Remaining questions?</h3>
+
+      <p><strong>Will the guitar be a thing instead of code? </strong></p>
+
+      <p>
+        I just realized the answer—no, not really. Code is here to stay. 
+        I just need an interesting project idea to keep me engaged. 
+        The code will prevail, the code will prevail. know. 
+        langauge and some toughts.
+      </p>
+
+      <p><strong>What will my next book be about? </strong></p>
+
+      <p>This one is about some questions, my life, and the code bundled with a language and
+      some toughts, next one could be about Dragons, code, dwarfs or romance... 
+      </p>
+
+      <p><strong>Will I try to park in appropriate places to reduce parking fines?</strong></p>
+
+      <p>
+        Got additional parking fine today, so there goes that, but we'll see, who knows ...
+      </p>
+
+      <p>
+        <strong>....so therefore the title is "How it ends?" instead of "How it ended." </strong>
+      </p>
+
+      <Callout type="tip">
+        <strong>Fun fact:</strong> There is a misconception that Bilbo Baggins smoked
+        weed, and although the term "weed" is used in the books, he smoked pipe-weed,
+        which J.R.R.  Tolkien explicitly identified as a variety of Nicotiana
+        (tobacco). In The Hobbit, the substance is directly called tobacco.
+      </Callout>
+
+
       <Callout type="tip"> <h4>Just one interesting side puzzle before you go: </h4>
 
        <p>
@@ -239,41 +274,7 @@ export default function Ending() {
        </p>
       </Callout>
 
-      <h3>Remaining questions?</h3>
-
-      <p><strong>Will the guitar be a thing instead of code? </strong></p>
-
-      <p>
-        I just realized the answer—no, not really. Code is here to stay. 
-        I just need an interesting project idea to keep me engaged. 
-        The code will prevail, the code will prevail. know. 
-        langauge and some toughts.
-      </p>
-
-      <p><strong>What will my next book be about? </strong></p>
-
-      <p>This one is about some questions, my life, and the code bundled with a language and
-      some toughts, next one could be about Dragons, code, dwarfs or romance... 
-      </p>
-
-      <p><strong>Will I try to park in appropriate places to reduce parking fines?</strong></p>
-
-      <p>
-        Got additional parking fine today, so there goes that, but we'll see, who knows ...
-      </p>
-
-      <p>
-        <strong>....so therefore the title is "How it ends?" instead of "How it ended." </strong>
-      </p>
-
-      <Callout type="tip">
-        <strong>Fun fact:</strong> There is a misconception that Bilbo Baggins smoked
-        weed, and although the term "weed" is used in the books, he smoked pipe-weed,
-        which J.R.R.  Tolkien explicitly identified as a variety of Nicotiana
-        (tobacco). In The Hobbit, the substance is directly called tobacco.
-      </Callout>
-
-
+      
       <h2>Offtopic stuff that occupies my mind</h2>
 
       <p>
