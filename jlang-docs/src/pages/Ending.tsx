@@ -347,9 +347,9 @@ export default function Ending() {
       </i></p>
 
       <p><i>
-        Also you will need an extreme patience, time and consistency you know docs
+        Also you will need an extreme patience, a lot of time and consistency, you know docs
         were started 2 or 3 months ago, unexpected pivot to book was needed that's
-        for sure, while the projects goes even a year before, Rome wasn't built in a
+        for sure, while the project goes even a year before, Rome wasn't built in a
         day is something that I was always trying to say.
       </i></p>
 
