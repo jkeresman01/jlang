@@ -321,14 +321,15 @@ export default function Ending() {
       
       <h2>Final thanks and my reflections on giving thanks and this book</h2>
 
-      <h4>
-        <strong>
-          THE END. NOTHING MORE TO SAY, JUST A FEW THANKS TO ALL ANGEL GUARDIANS THAT
-          HAVE PROTECTED ME AND GAVE ME THE STRENGTH TO FINISH THIS BOOK. I DON'T
-          KNOW HOW TO REPAY AND IT'S A SMALL BOOK, SO I ALSO PAY RESPECT TO ALL THE
-          AUTHORS AND WRITERS OUT THERE—IT'S A LOT OF WORK.
-        </strong>
-      </h4>
+      <blockquote>
+
+      <p><strong>
+          "The end. nothing more to say, just a few thanks to all angel guardians that
+          have protected me and gave me the strength to finish this book. I don't
+          know how to repay and it's a small book, so i also pay respect to all the
+          authors and writers out there—it's a lot of work."
+        </strong></p>
+      </blockquote>
 
       <br />
 
