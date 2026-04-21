@@ -160,8 +160,7 @@ export default function Ending() {
       <p>
         I just realized the answer—no, not really. Code is here to stay. 
         I just need an interesting project idea to keep me engaged. 
-        The code will prevail, the code will prevail. know. 
-        langauge and some toughts.
+        The code will prevail.
       </p>
 
       <p><strong>What will my next book be about? </strong></p>
@@ -207,7 +206,7 @@ export default function Ending() {
       </p>
 
       <p>
-        For the wars and this cruel world—you know, Putin and Trump—I'm really
+        About wars and this cruel world—you know, Putin and Trump—I'm really
         nobody to say, but here is my input anyway: put the guns down.  This world
         is a much better place without them, both for people in it and out of it. I
         would rather get a notification about a breakthrough in technology than hear
@@ -215,14 +214,6 @@ export default function Ending() {
         even realize Trump started one; I've been in this world of code, vibes, and
         thoughts, and you should find yourself one. It could be in someone you love,
         it could be in code or sport, but it's good to have such a place.
-      </p>
-
-      <p>
-        For the writing part, I guess go for it and don't be afraid to fail. Writing is
-        just like anything else—you will suck at it, as I do now.  Perhaps you might
-        even be good at it. Only one thing is for sure: people will judge anyway. But
-        judging is easy, trying and doing is hard, so whenever you see someone starting
-        something, encourage and support them. Always remember judging is easy.
       </p>
 
       <p>
