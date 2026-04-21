@@ -228,7 +228,8 @@ export default function Ending() {
         just realized the answer—no, not really. Code is here to stay. I just need an
         interesting project idea to keep me engaged. The code will prevail, the code will
         prevail. What will my next book be about?  Dragons, code, or romance—that's
-        what I don't know.  This one is about some questions, my life, and the code.
+        what I don't know.  This one is about some questions, my life, and the code bundled
+        with a langauge and some toughts.
       </p>
 
       <p>
