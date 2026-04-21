@@ -178,7 +178,10 @@ export default function Ending() {
          missing for that to make sense. Perhaps one might think that one is a lie.
          Perhaps they might be right. Perhaps people get afraid and defend their own views
          altought it might be a lie. One thing is for sure, people who generaly 
-         don't care, get out of the debate."
+         don't care, get out of the debate. But generaly what I'm trying to say, people
+         live in their own subjective realities and little puzzle like this could have 
+         another meaning for them, while generaly it is a puzzle about a 
+         shoeseller or a milkseller."
       </i></p>
     </Callout>
 
