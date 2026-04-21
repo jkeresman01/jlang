@@ -396,6 +396,12 @@ export default function Ending() {
       </i></p>
 
       <p><i>
+        One additional life hack for those who stayed for this long, if you 
+        have an old parking fine, put it under the windshield, they'll just skip 
+        you because you already have a ticket.
+      </i></p>
+      
+      <p><i>
         If you made it this far, thank you. Now close this tab and go build something
         weird. New adventures await and perhaps you might find yourself in this
         wonderful world, world of toughts.
