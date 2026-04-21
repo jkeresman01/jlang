@@ -167,6 +167,11 @@ export default function Ending() {
          answers could be many. Words were choosen wisly, figure it out and you've unreveled
          a mystery.
       </p>
+
+      <p><i>
+         An interesting tought about that, world is quite simple, unless people make it complicated,
+         we don't see it objectivly, but are traped in our own views in our own subjective reality.
+      </i></p>
     </Callout>
 
       <h2>General knowledge and realizations accuqired trought this book: </h2>
@@ -179,7 +184,7 @@ export default function Ending() {
         fought against AI for quite some time, but then again, those who don't adopt
         will cease to exist, so always adopt and play with new technologies. Be like
         children—always explore, play, and work with it, never fight it. I found
-        OpenClaw to be quite fun lately, so always remember keep that childish spirit 
+        OpenClaw to be quite fun lately,so always remember keep that childish spirit 
         of curiosity, you know if there is anything in this life thats simple and 
         contains truth that would be a world from childs points of view, but as child
         matures into adulthood he quickly realizes what the limitions of this world really are,
