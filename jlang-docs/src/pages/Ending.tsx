@@ -167,9 +167,11 @@ export default function Ending() {
          answers could be many. Words were choosen wisly, figure it out and you've unreveled
          a mystery.
       </p>
+      </Callout>
 
-       <br />
-        
+      <br />
+      
+      <Callout type="tip">
       <p><i>
          "An interesting tought about that, world is quite simple,
          unless people decide to make it complicated,
