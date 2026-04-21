@@ -398,7 +398,7 @@ export default function Ending() {
       <p><i>
         One additional life hack for those who stayed for this long, if you 
         have an old parking fine, put it under the windshield, they'll just skip 
-        you because you already have a ticket.
+        you because you already have a ticket or just pay the parking thing.
       </i></p>
       
       <p><i>
