@@ -172,16 +172,11 @@ export default function Ending() {
       <Callout type="tip">
       <p><i>
          "An interesting tought about that, world is quite simple,
-         unless people decide to make it complicated,
-         we don't see it objectivly, but are instead traped in our own views 
+         unless people make it complicated, we don't see it objectivly, but live 
          in our own subjective reality, perhaps a fact is missing for that to make sense.
-         Perhaps one might think that one is a lie. Perhaps they might be right. 
-         Perhaps people get afraid and defend their own views altought it might be a lie.
-         One thing is for sure, people who generaly don't care, get out of the debate.
-         But generaly what I'm trying to say, people live in their own subjective realities 
-         and live there own stories and little puzzle like this could have 
-         another meaning for them, while generaly it is a puzzle about a shoeseller or 
-         a milkseller."
+         Perhaps one might think that one is a lie. Perhaps they might be right.
+         But we all live our own stories in our own subjective realities and little puzzle 
+         like this could perhaps for some have another meaning"
       </i></p>
     </Callout>
 
