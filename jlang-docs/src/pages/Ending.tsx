@@ -179,7 +179,12 @@ export default function Ending() {
         fought against AI for quite some time, but then again, those who don't adopt
         will cease to exist, so always adopt and play with new technologies. Be like
         children—always explore, play, and work with it, never fight it. I found
-        OpenClaw to be quite fun lately.
+        OpenClaw to be quite fun lately, so always remember keep that childish spirit 
+        of curiosity, you know if there is anything in this life thats simple and 
+        contains truth that would be a world from childs points of view, but as child
+        matures into adulthood he quickly realizes what the limitions of this world really are,
+        what he is supposed to say or do and while that might be reality, never loose that 
+        spirit to learn and explore.
       </p>
 
       <p>
