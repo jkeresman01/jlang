@@ -168,8 +168,6 @@ export default function Ending() {
          a mystery.
       </p>
       </Callout>
-
-      <br />
       
       <Callout type="tip">
       <p><i>
