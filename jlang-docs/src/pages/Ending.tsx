@@ -12,9 +12,10 @@ export default function Ending() {
         funny. I had my moments, though, and the tournament was really unimportant. I
         found a small piece of paper from the history of disease, everything exaggerated
         for the purpose of poetry. The timeline could be different, the stories
-        could be two, but then again I might be wrong—everything's from memory:
-        the doctor one and the tournament. I noted part of one song down one night;
-        I still remember how hard it was for me to rhyme it all in. The song is quite
+        could be two (the doctor "oops" one and the tournament one), not sure if the date from the paper 
+        is from when it was requested or when the appointment was done so the story could be one, 
+        anyhow back to the main tought, I noted part of this song down one "evening";
+        I still remember how hard it was it for me to rhyme it all in. The song is quite
         childish, so the guitar and I will not be.
       </p>
 
