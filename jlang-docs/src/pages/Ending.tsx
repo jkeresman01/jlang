@@ -312,8 +312,8 @@ export default function Ending() {
          <p>
             <i>
               "An interesting tought about this story, coming back to subjective reality point.
-              The girl could be any, there could be many or there could be none. Some could
-              read and being traped in their own subjective reality possibly relate. Story is written
+              The girl could be any, there could be many or there could be none. None could read or 
+              some could read and while being traped in their own subjective reality possibly relate. Story is written
               vaguely any girl that I walked by and she possibly said "I doubt" could depending 
               on her interest possibly relate, since we all live in our own subjective realities. 
               Is there one on my mind, well perhaps.
