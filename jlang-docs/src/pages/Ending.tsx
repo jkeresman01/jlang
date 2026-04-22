@@ -378,7 +378,8 @@ export default function Ending() {
         wonderful world, world of toughts.
       </i></p>
 
-       <p><i>Grammar and wording still need improvement… but that’s part of it.</i></p>
+       <p><i>The book is now complete so this makes it last commit</i></p>
+       <p><i>Peace is what I like, walking trough the park</i></p>
 
        <Callout type="tip">
            <p><i>
