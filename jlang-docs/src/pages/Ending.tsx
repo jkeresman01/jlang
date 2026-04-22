@@ -378,9 +378,6 @@ export default function Ending() {
         wonderful world, world of toughts.
       </i></p>
 
-       <p><i>The book is now complete so this makes it last commit</i></p>
-       <p><i>Peace is what I like, walking trough the park</i></p>
-
       <Callout type="note">
         <strong>
           We started with Steve so we end with Steve and his experience 
@@ -399,6 +396,9 @@ export default function Ending() {
           style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
         ></iframe>
       </Callout>
+
+       <p><i>The book is now complete so this makes it now for real my last commit</i></p>
+       <p><i>Peace is what I like, walking trough the park</i></p>
 
        <Callout type="tip">
            <p><i>
