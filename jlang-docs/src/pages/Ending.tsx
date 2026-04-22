@@ -391,7 +391,7 @@ export default function Ending() {
         <iframe
           width="100%"
           height="315"
-          src="https://www.youtube.com/embed/UF8uR6Z6KLc?start=435&end=540"
+          src="https://www.youtube.com/embed/UF8uR6Z6KLc?start=480&end=540"
           title="Steve Jobs on starting Pixar and Next"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
