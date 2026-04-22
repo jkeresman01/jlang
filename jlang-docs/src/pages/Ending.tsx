@@ -383,8 +383,8 @@ export default function Ending() {
 
       <Callout type="note">
         <strong>
-          We start with Steve so we end with Steve and his experience 
-          from getting fired from Apple
+          We started with Steve so we end with Steve and his experience 
+          about getting fired from Apple
         </strong>
         <br />
         <br />
