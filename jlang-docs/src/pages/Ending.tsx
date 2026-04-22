@@ -395,11 +395,11 @@ export default function Ending() {
 
       <Callout type="tip">
            <p><i>
-            <strong>The lastest advice (normal word, "lastest"): </strong> Easiest
-            way to start writing is just to start, it's gonna be a lot of nonsene
-            and everything at some point and you will probably throw out about 60%
-            along the way. You know toughts come and go .. yes yes, I'm no person to
-            give advice, but who really is ...  </i></p>
+            <strong>Last +1 advice: </strong> Easiest way to start writing is just 
+            to start, it's gonna be a lot of nonsene and everything at some point 
+            and you will probably throw out about 60% along the way. You know toughts 
+            come and go .. yes yes, I'm no person to give advice, but who really is ... 
+           </i></p>
         </Callout>
 
       <Callout type="tip">
