@@ -381,6 +381,25 @@ export default function Ending() {
        <p><i>The book is now complete so this makes it last commit</i></p>
        <p><i>Peace is what I like, walking trough the park</i></p>
 
+      <Callout type="note">
+        <strong>
+          We start with Steve so we end with Steve and his experience 
+          from getting fired from Apple
+        </strong>
+        <br />
+        <br />
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/UF8uR6Z6KLc?start=435&end=540"
+          title="Steve Jobs on starting Pixar and Next"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: '8px', border: '1px solid var(--border)' }}
+        ></iframe>
+      </Callout>
+
        <Callout type="tip">
            <p><i>
             <strong>One last advice:</strong> working on side projects or ways to improve
