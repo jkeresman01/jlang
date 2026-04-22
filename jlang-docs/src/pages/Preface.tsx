@@ -6,49 +6,43 @@ export default function Preface() {
     <>
       <h1>How it started?</h1>
 
-      <p>I was walking, vibing, coding, and talking about random stuff with ChatGPT 
-      (It was questions like Was Gandalf smoking weed and funny and jokey things like that),
-      and thinking about this project I’ve been working on in my free time.
+      <p>I was walking, vibing, coding, and talking about random stuff with ChatGPT
+      (It was questions like Was Gandalf smoking weed and funny and jokey things like
+      that), and thinking about this project I’ve been working on in my free time.
       I decided to include programming challenges in the docs. Then, all of a sudden,
-      while walking, something hit me from behind — almost like an Isaac Newton apple moment. 
-      I’m still not sure what it actually was.</p>
+      while walking, something hit me from behind — almost like an Isaac Newton
+      apple moment.  I’m still not sure what it actually was.</p>
 
-      <p>A few days later, I realized something — kind of like 
-      a Balthazar lightbulb moment. I realized that genuinely good people 
-      could misunderstand the situation and act with good intentions,
-      criticizing those questions and how they came to be.
+      <p>A few days later, I realized something — kind of like a Balthazar lightbulb
+      moment. I realized that genuinely good people could misunderstand the situation
+      and act with good intentions, criticizing those questions and how they came to be.
       What was needed from them was to understand that no harm was done.</p>
 
-      <p>So the next step for me was to try to explain 
-      what’s going on (the origin of the questions)
-      through these docs. But for that to make sense, 
-      I needed to turn it into a book. I quite liked the idea, 
-      so I continued writing.</p>
+      <p>So the next step for me was to try to explain what’s going on (the origin
+      of the questions) through these docs. But for that to make sense, I needed to
+      turn it into a book. I quite liked the idea, so I continued writing.</p>
 
-      <p>At some point, I got pissed off and needed a place to rant.
-      Instead of going for a run or continuing to write about the language 
-      and general stuff I added a paragraph about corporate politics. 
-      Later on, I realized that just as easily as I got pissed off, 
-      someone else could too, so I removed it.</p>
+      <p>At some point, I got pissed off and needed a place to rant.  Instead of going
+      for a run or continuing to write about the language and general stuff I added
+      a paragraph about corporate politics.  Later on, I realized that just as easily
+      as I got pissed off, someone else could too, so I removed it.</p>
 
-      <p>I still left some general life advice — like how you should 
-      find good people of strong character and spend time with them.
-      The callout should probably be framed as general advice or something, 
-      rather than a life lesson.</p>
+      <p>I still left some general life advice — like how you should find good people
+      of strong character and spend time with them.  The callout should probably be
+      framed as general advice or something, rather than a life lesson.</p>
 
-      <p>The rest are just funny stories from life. Some are based 
-      on actual events, while others are way too exaggerated for 
-      the purpose of keeping the reader engaged — no other reason.
-      For example, nothing will actually happen if I don’t code for a day, 
-      but writing it as if I’m terrified that my obsession is coming to 
-      an end is more interesting and engaging.</p>
+      <p>The rest are just funny stories from life. Some are based on actual events,
+      while others are way too exaggerated for the purpose of keeping the reader
+      engaged — no other reason.  For example, nothing will actually happen if I
+      don’t code for a day, but writing it as if I’m terrified that my obsession
+      is coming to an end is more interesting and engaging.</p>
 
-      <p>Also, I’m not a professional writer and there are far better and 
-      more expereinced and knowledgeable people in this space than I am, I mostly 
-      write whatever comes to mind in a really unstructured way so this might not
-      work the way I think it does. It might be boring either way. The tone is 
-      consistent and mine, interesting as I was told by claude, but than again,
-      neither I nor claude are really writters</p>
+      <p>Also, I’m not a professional writer and there are far better and more
+      expereinced and knowledgeable people in this space than I am, I mostly write
+      whatever comes to mind in a really unstructured way so this might not work the
+      way I think it does. It might be boring either way. The tone is consistent and
+      mine, interesting as I was told by claude, but than again, neither I nor claude
+      are really writters</p>
 
       <h1>Preface</h1>
 
@@ -165,41 +159,42 @@ export default function Preface() {
       </p>
 
       <p>
-        And the real world is a cruel place (Putin and Trump playing wars, AI 
-        being used in those for killing people instead of creating things),
-        so you need to find something to keep you obsessed and out of these things.
-        I sat through a few university lectures just this Wednesday, saw young 
-        fellas mostly uninterested in the topics &mdash; and who can blame them, 
-        but to be honest some of them are orders of magnitude better than I am, and most
-        of the people that I saw, so sitting in there is a complete waste of time for
-        them, learned something from them as well (not that sitting there is a waste
-        but kids tend to be more creative and in touch with technology and btw we should
-        probably keep that childish spirit to keep learning and experimenting, people like that
-        tend to be rare, most after some years go to back to their routines and loose that 
+        And the real world is a cruel place (Putin and Trump playing wars, AI being used
+        in those for killing people instead of creating things), so you need to find
+        something to keep you obsessed and out of these things.  I sat through a few
+        university lectures just this Wednesday, saw young fellas mostly uninterested
+        in the topics &mdash; and who can blame them, but to be honest some of them
+        are orders of magnitude better than I am, and most of the people that I saw,
+        so sitting in there is a complete waste of time for them, learned something
+        from them as well (not that sitting there is a waste but kids tend to be more
+        creative and in touch with technology and btw we should probably keep that
+        childish spirit to keep learning and experimenting, people like that tend to
+        be rare, most after some years go to back to their routines and loose that
         couriosity), anyhow back to me in the next paragraph.
        </p>
 
        <p>
-        I remembered myself at their age. During my first two years of university,
-        I was a complete mess, uninterested in anything. I would 
-        sit through a lecture or not come to any of them and just show up on exam day,
-        perhaps COVID pandemic was additional factor in there, wasn't big fan of online 
-        lectures (Electrical engineering ones, software engineering was more interesting to me,
-        but that's just my opinion, have huge respect for both disciplines though, and 
-        electrical engineering is arguably more difficult, again talking about the discipline in 
-        general, not like exams, points and grades but disciplines in general, disciplines are 
-        broader and there might be things that interest you more or less but are out of the scope of
-        the exam or are just fun to do in general). I realised some years later that I should have been listening better. 
-        I got my things together in the final year, but I can see similar patterns 
-        in other young fellas &mdash; we all have a moment where something starts to 
-        interest us. I remember saying words like &ldquo;when will I ever need this,&rdquo; 
+        I remembered myself at their age. During my first two years of university, I
+        was a complete mess, uninterested in anything. I would sit through a lecture or
+        not come to any of them and just show up on exam day, perhaps COVID pandemic
+        was additional factor in there, wasn't big fan of online lectures (Electrical
+        engineering ones, software engineering was more interesting to me, but that's
+        just my opinion, have huge respect for both disciplines though, and electrical
+        engineering is arguably more difficult, again talking about the discipline
+        in general, not like exams, points and grades but disciplines in general,
+        disciplines are broader and there might be things that interest you more or
+        less but are out of the scope of the exam or are just fun to do in general). I
+        realised some years later that I should have been listening better.  I got
+        my things together in the final year, but I can see similar patterns in other
+        young fellas &mdash; we all have a moment where something starts to interest
+        us. I remember saying words like &ldquo;when will I ever need this,&rdquo;
         but things clicked a few years later down the road and you need to pay the
         respect to the professors and their patience, like they just know that their
-        is no point in arguing at the moment and that some time needs to pass in 
-        order for things to click and that when that moment happends that they 
-        probably won't get an thank you email with a message that says
-        I realise it now, you were right. (Here is my thanks btw, they probably 
-        won't read this and I aswell won't send the email, but here it is).
+        is no point in arguing at the moment and that some time needs to pass in order
+        for things to click and that when that moment happends that they probably
+        won't get an thank you email with a message that says I realise it now, you
+        were right. (Here is my thanks btw, they probably won't read this and I aswell
+        won't send the email, but here it is).
       </p>
 
       <p>
@@ -220,19 +215,17 @@ export default function Preface() {
         <strong>you just boring zero depth type of person</strong>). 
         </p>
 
-        <p>
-        I have also noticed that the obsession comes in
-        waves &mdash; sometimes I code through the night, sometimes weeks pass
-        and nothing pulls me in. But then again, I haven't come up with an idea
-        to build something weird lately, just scrolling through yt (some videos more than once, 
-        too dumb sometimes to comprehend from the first watch) in the last 3 weeks, 
-        perhaps I learn something or get an idea to build something weird that 
-        would keep me engaged, perhaps not, perhaps I'll drift back to my routine, chill and 
-        relaxed 9 to 5, perhaps could even start doing it in an actual 9 to 5 manner 
-        (doubt that), perhaps it's time for new endeavours and adventures in some
-        other realms, like I don't know, music, writing, or something absurd,
-        but then again maybe not, anyhow back to main thought in 
-        next paragraph.
+        <p> I have also noticed that the obsession comes in waves &mdash; sometimes
+        I code through the night, sometimes weeks pass and nothing pulls me in. But
+        then again, I haven't come up with an idea to build something weird lately,
+        just scrolling through yt (some videos more than once, too dumb sometimes
+        to comprehend from the first watch) in the last 3 weeks, perhaps I learn
+        something or get an idea to build something weird that would keep me engaged,
+        perhaps not, perhaps I'll drift back to my routine, chill and relaxed 9 to 5,
+        perhaps could even start doing it in an actual 9 to 5 manner (doubt that),
+        perhaps it's time for new endeavours and adventures in some other realms, like
+        I don't know, music, writing, or something absurd, but then again maybe not,
+        anyhow back to main thought in next paragraph.
       </p>
 
       <p>
@@ -269,10 +262,11 @@ export default function Preface() {
         is that you can feel their passion and their dedication bleeding through
         every page. But of course this is a book and books need to be enjoyable
         to read, so some things are just poetry, for example ofcourse that you'll 
-        see me wearing a tie and shirt trought my youngish life, still don't enjoy 
+        see me wearing a tie and a shirt trought my youngish life, still don't enjoy 
         wearing them that much, but writing a paragraph in a manner like this:
         I wear a black hoodie most of the time and when I need to wear a shirt 
-        I do is too boring to read.
+        I do is too boring to read while some are my general opinions about things
+        which might or might not be objectivly correct.
       </p>
       <p>
         Robert Nystrom, in the acknowledgements of{' '}
@@ -353,9 +347,10 @@ export default function Preface() {
       <Callout type="life-lesson">
         <strong>Life lesson:</strong> I have been listening to that one crazy
         dude that you might or might not know, depending on the place from where
-        you know me, just some day ago <strong>(The final boss)</strong>. And you should probably be listening
-        more carefully, since he just wants what is best for you. I remembered
-        him saying something, some time ago (not that day), along the lines of:{' '}
+        you know me, just some day ago <strong>(The final boss)</strong>. 
+        And you should probably be listening more carefully, since he just wants 
+        what is best for you. I remembered him saying something, some time ago 
+        (not that day), along the lines of:{' '} 
         <em>how do you know that you are doing a good job?</em> And the answer
         was &mdash; <strong>when the job finds you, and not you the job</strong>
         . So I dug up one email from last year:
