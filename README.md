@@ -20,3 +20,10 @@ A journey through my thoughts, bundled into a language.
 > [!NOTE]
 > This project and the accompanying book are actively being developed.
 > Things may change over time and some parts might be inaccurate.
+
+
+> [!NOTE]
+> The book is now mostly complete it contains a bit of everything, funny videos, programming challanges, cool coding tricks,
+> stories from my life, some from my youngish years when I was completly disorganized up to the last 3 years where I felt generaly good about myself,
+> constantly trying to improve the things that I do and dropping some unhealthy stuff with every year, ending up with this book, the story
+> how it started is quite funny (you can read all about it in the book)... and all that is bundled with this language and some toughts of mine. 
