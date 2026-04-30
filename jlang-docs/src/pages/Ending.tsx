@@ -430,6 +430,14 @@ export default function Ending() {
             pay the parking thing... preferably pay that's correct advice to give.
           </i></p> 
         </Callout>
+      <Callout type="tip">
+          <p><i>
+            <strong>Last piece of wisdom by all mighty me: </strong>
+             The quote is no more "Walk the talk" it should be 
+             just talk and don't walk, that will get you further.
+             Just trust me on this one.
+          </i></p> 
+        </Callout>
     </>
   );
 }
