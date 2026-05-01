@@ -433,10 +433,20 @@ export default function Ending() {
       <Callout type="tip">
           <p><i>
             <strong>Last piece of wisdom by all mighty me: </strong>
-             The quote is no more "Walk the talk" it should be 
+             The quote is no more "Walk the talk" it should be
              just talk and don't walk, that will get you further.
              Just trust me on this one.
-          </i></p> 
+          </i></p>
+          <p><i>
+            P.S. if you stayed this long, here is my second book:{' '}
+            <a
+              href="https://jkeresman01.github.io/crafting-interpreters-dummified/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Just talk, don't walk: The continuation of the tought.....
+            </a>
+          </i></p>
         </Callout>
     </>
   );
