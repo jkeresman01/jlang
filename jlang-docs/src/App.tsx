@@ -19,7 +19,6 @@ import NullSafety from './pages/NullSafety';
 import Memory from './pages/Memory';
 import Generics from './pages/Generics';
 import ErrorHandling from './pages/ErrorHandling';
-import Ending from './pages/Ending';
 
 export default function App() {
   return (
@@ -44,7 +43,6 @@ export default function App() {
         <Route path="/memory" element={<Memory />} />
         <Route path="/generics" element={<Generics />} />
         <Route path="/error-handling" element={<ErrorHandling />} />
-        <Route path="/ending" element={<Ending />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

@@ -48,10 +48,6 @@ export const chapters = [
       { label: 'Error Handling', path: '/error-handling' },
     ],
   },
-  {
-    title: 'Epilogue',
-    items: [{ label: 'The End', path: '/ending' }],
-  },
-];
+  ];
 
 export const allPages = chapters.flatMap((ch) => ch.items);
