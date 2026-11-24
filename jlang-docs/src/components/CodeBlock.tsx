@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/components/prism-kotlin';
+
 
 // Register a custom jlang grammar based on C-like syntax
 Prism.languages['jlang'] = {
